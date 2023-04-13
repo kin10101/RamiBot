@@ -6,8 +6,8 @@ from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 
-#jjjj
-class SayHello(App):
+
+class Main(App):
     def build(self):
         self.window = GridLayout()
         self.window.cols = 1
@@ -58,7 +58,12 @@ class SayHello(App):
             background_color = '#213b9a'
             )
 
-        #self.button.bind(on_press=self.callback) #call button function
+        # call button function
+        self.button1.bind(on_press=self.callback1)
+        self.button2.bind(on_press=self.callback2)
+        self.button3.bind(on_press=self.callback3)
+        self.button4.bind(on_press=self.callback4)
+
         self.window.add_widget(self.button1)
         self.window.add_widget(self.button2)
         self.window.add_widget(self.button3)
@@ -66,10 +71,16 @@ class SayHello(App):
 
         return self.window
 
-'''def callback(self, instance): #function for button
-    self.greeting.text = "Hello " + self.user.text + "!"'''
-
-
+    def callback1(self, instance): #function for button
+        self.greeting.text = "SHS Department"
+    def callback2(self, instance): #function for button
+        self.greeting.text = "College Department"
+    def callback3(self, instance):  # function for button
+        self.greeting.text = "Graduate School"
+    def callback4(self, instance):  # function for button
+        self.greeting.text = "Offices"
+        #self.greeting.text = "Hello " + self.user.text + "!"
 
 if __name__ == "__main__":
-    SayHello().run() #run program
+    Main().run() #run class
+
