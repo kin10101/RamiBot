@@ -1,0 +1,308 @@
+WindowManager:
+    MainWindow:
+
+    SHSWindow:
+    CollegeWindow:
+    GradWindow:
+    OfficesWindow:
+
+    SoEFacultyWindow:
+    SoEInfo1Window:
+    SoEInfo2Window:
+
+<MainWindow>:
+    name: "first"
+    Image:
+        source: 'main bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.7, 0.8)
+        pos_hint: {"x":0.15, "y":0.15}
+        Label:
+            text: "Faculty Schedule"
+            font_size: 75
+            bold: True
+
+        Button:
+            text: "Senior High School"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "shs"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "College Department"
+            size_hint:(1.2, 0.45)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "college"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Graduate School"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "gradschool"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Offices"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "offices"
+                root.manager.transition.direction = "left"
+
+<SHSWindow>:
+    name: "shs"
+    Image:
+        source: 'main bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.7, 0.8)
+        pos_hint: {"x":0.15, "y":0.15}
+        Label:
+            text: "Senior High School"
+            font_size: 75
+        Button:
+            text: "Science, Technology, Engineering, and Mathematics (STEM)"
+            size_hint:(1.2, 0.5)
+            font_size: 20
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Accountacy, Business and Management (ABM)"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Humanities and Social Science (HUMSS)"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.5)
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<CollegeWindow>:
+    name: "college"
+    Image:
+        source: 'main bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.7, 0.8)
+        pos_hint: {"x":0.15, "y":0.15}
+        Label:
+            text: "College Department"
+            font_size: 65
+        Button:
+            text: "School of Engineering (SoE)"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "soe"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "School of Computing and Information Technology (SoCIT)"
+            size_hint:(1.2, 0.5)
+            font_size: 21
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "School of Multimedia and Arts (SoMA)"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "School of Managemenet (SoM)"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "School of Architecture (SoAr)"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.5)
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<SoEFacultyWindow>:
+    name: "soe"
+    Image:
+        source: 'main bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.7, 0.8)
+        pos_hint: {"x":0.15, "y":0.15}
+        Image:
+            source: 'soel.png'
+        Button:
+            text: "Engr. Einstein D. Yong"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "sir yong"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Engr. Juan Miguel Villarroel"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "sir migs"
+                root.manager.transition.direction = "left"
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.5)
+            on_release:
+                app.root.current = "college"
+                root.manager.transition.direction = "right"
+
+<SoEInfo1Window>:
+    name: "sir yong"
+    Image:
+        source: 'main bg.png'
+        allow_stretch: True
+        keep_ratio: False
+    GridLayout:
+        cols: 2
+        size_hint: (0.7, 0.8)
+        pos_hint: {"x":0.125, "y":0.065}
+        Image:
+            source: 'prof.png'
+            size_hint: (0.15, 0.15)
+        Label:
+            text: "Sir Yong"
+            pos_hint: {"x":1.5, "y":1.5}
+            font_size: 45
+        GridLayout:
+            cols: 1
+            size_hint: (0.7, 0.8)
+            pos_hint: {"x":0.15, "y":0.15}
+            Label:
+                text: "Prof Schedule"
+                size_hint:(1.2, 0.5)
+                font_size: 40
+<SoEInfo2Window>:
+    name: "sir migs"
+    Image:
+        source: 'info bg.png'
+        allow_stretch: True
+        keep_ratio: False
+    GridLayout:
+        cols: 2
+        size_hint: (0.7, 0.8)
+        pos_hint: {"x":0.15, "y":0.15}
+        Image:
+            source: 'prof.png'
+        Label:
+            text: "Sir Migs"
+            font_size: 50
+        GridLayout:
+            cols: 1
+            size_hint: (0.7, 0.8)
+            pos_hint: {"x":0.15, "y":0.15}
+            Label:
+                text: "Prof Schedule"
+                size_hint:(1.2, 0.5)
+                font_size: 40
+
+
+<GradWindow>:
+    name: "gradschool"
+    Image:
+        source: 'main bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.7, 0.8)
+        pos_hint: {"x":0.15, "y":0.15}
+        Label:
+            text: "Graduate Schools"
+            font_size: 70
+        Button:
+            text: "Master of Engineering in Computer Engineering"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Master in Game Design"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Master in Information Systems"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Master in Information Technology"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Master in Management"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Master of Science in Computer Science"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.5)
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<OfficesWindow>:
+    name: "offices"
+    Image:
+        source: 'main bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.7, 0.8)
+        pos_hint: {"x":0.15, "y":0.15}
+        Label:
+            text: "Offices"
+            font_size: 70
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.5)
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
