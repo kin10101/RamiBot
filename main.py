@@ -3,7 +3,7 @@ from kivy.uix.image import Image
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
-
+from kivy.core.window import Window
 class MainWindow(Screen):
     pass
 
@@ -34,6 +34,7 @@ kv = Builder.load_file("my.kv")
 
 class Main(MDApp):
     def build (self):
+        Window.fullscreen = True
         return kv
 
 Main().run()
