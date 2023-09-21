@@ -8,7 +8,6 @@ WindowManager:
 
     SoEFacultyWindow:
     SoEInfo1Window:
-    SoEInfo2Window:
 
 <MainWindow>:
     name: "first"
@@ -152,13 +151,15 @@ WindowManager:
         source: 'main bg.png'
         allow_stretch: True
         keep_ratio: False
-
+    Image:
+        source: 'soel.png'
+        size_hint: (0.6, 0.2)
+        pos_hint: {"x":0.2, "y":0.7}
     GridLayout:
         cols: 1
-        size_hint: (0.7, 0.8)
+        size_hint: (0.7, 0.52)
         pos_hint: {"x":0.15, "y":0.15}
-        Image:
-            source: 'soel.png'
+
         Button:
             text: "Engr. Einstein D. Yong"
             size_hint:(1.2, 0.5)
@@ -166,14 +167,6 @@ WindowManager:
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
             on_release:
                 app.root.current = "sir yong"
-                root.manager.transition.direction = "left"
-        Button:
-            text: "Engr. Juan Miguel Villarroel"
-            size_hint:(1.2, 0.5)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "sir migs"
                 root.manager.transition.direction = "left"
 
         Button:
@@ -208,30 +201,6 @@ WindowManager:
                 text: "Prof Schedule"
                 size_hint:(1.2, 0.5)
                 font_size: 40
-<SoEInfo2Window>:
-    name: "sir migs"
-    Image:
-        source: 'info bg.png'
-        allow_stretch: True
-        keep_ratio: False
-    GridLayout:
-        cols: 2
-        size_hint: (0.7, 0.8)
-        pos_hint: {"x":0.15, "y":0.15}
-        Image:
-            source: 'prof.png'
-        Label:
-            text: "Sir Migs"
-            font_size: 50
-        GridLayout:
-            cols: 1
-            size_hint: (0.7, 0.8)
-            pos_hint: {"x":0.15, "y":0.15}
-            Label:
-                text: "Prof Schedule"
-                size_hint:(1.2, 0.5)
-                font_size: 40
-
 
 <GradWindow>:
     name: "gradschool"

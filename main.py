@@ -25,8 +25,6 @@ class SoEFacultyWindow(Screen):
 class SoEInfo1Window(Screen):
     pass
 
-class SoEInfo2Window(Screen):
-    pass
 
 class WindowManager(ScreenManager):
     pass
