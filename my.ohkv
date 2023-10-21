@@ -1,0 +1,78 @@
+WindowManager:
+    MainWindow:
+    AdmissionsWindow:
+
+<MainWindow>:
+    name: "first"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+    GridLayout:
+        cols: 1
+        size_hint: (0.7, 0.7)
+        pos_hint: {"x":0.15, "y":0.17}
+        Label:
+            text: "Offices"
+            font_size: 90
+            bold: True
+        Button:
+            text: "Admissions Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "admin"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Registrar's Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Finance Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Information and Technology Resource Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Building Management Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Guidance Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Discipline Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Publication Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+
+<AdmissionsWindow>:
+    name: "admin"
+    Image:
+        source: 'lobby fm.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
