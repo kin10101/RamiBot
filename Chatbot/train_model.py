@@ -20,7 +20,7 @@ from keras.utils import plot_model
 def train_bot():
     lemmatizer = WordNetLemmatizer()
 
-    intents = json.loads(open('intents.json').read())
+    intents = json.loads(open('chatbotintents.json').read())
 
     words = []
     classes = []

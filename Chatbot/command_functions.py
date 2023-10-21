@@ -38,7 +38,7 @@ def train_bot():
 def edit_intent():
     intent_tag = input("Enter the tag of the intent you want to edit: ")
     new_responses = input("Enter new responses for the intent (separated by |): ").split('|')
-    addintent.edit_intent("intents.json", intent_tag, new_responses)
+    addintent.edit_intent("chatbotintents.json", intent_tag, new_responses)
 
 
 command_mappings = {
