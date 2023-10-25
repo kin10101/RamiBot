@@ -9,7 +9,32 @@ class MainWindow(Screen):
 
 class AdmissionsWindow(Screen):
     pass
-
+class FloorMapsWindow(Screen):
+    pass
+class FirstFloor(Screen):
+    pass
+class SecondFloor(Screen):
+    pass
+class ThirdFloor(Screen):
+    pass
+class FourthFloor(Screen):
+    pass
+class FifthFloor(Screen):
+    pass
+class SixthFloor(Screen):
+    pass
+class SeventhFloor(Screen):
+    pass
+class EighthFloor(Screen):
+    pass
+class NinthFloor(Screen):
+    pass
+class TenthFloor(Screen):
+    pass
+class EleventhFloor(Screen):
+    pass
+class TwelveFloor(Screen):
+    pass
 class WindowManager(ScreenManager):
     pass
 
