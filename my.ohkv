@@ -1,6 +1,19 @@
 WindowManager:
     MainWindow:
     AdmissionsWindow:
+    FloorMapsWindow:
+    FirstFloor:
+    SecondFloor:
+    ThirdFloor:
+    FourthFloor:
+    FifthFloor:
+    SixthFloor:
+    SeventhFloor:
+    EighthFloor:
+    NinthFloor:
+    TenthFloor:
+    EleventhFloor:
+    TwelveFloor:
 
 <MainWindow>:
     name: "first"
@@ -8,15 +21,16 @@ WindowManager:
         source: 'bg.png'
         allow_stretch: True
         keep_ratio: False
+    Label:
+        text: "Offices and Floor Maps"
+        font_size: 70
+        bold: True
+        pos_hint: {"x":0.01, "y":0.33}
 
     GridLayout:
-        cols: 1
-        size_hint: (0.7, 0.7)
-        pos_hint: {"x":0.15, "y":0.17}
-        Label:
-            text: "Offices"
-            font_size: 90
-            bold: True
+        cols: 2
+        size_hint: (0.7, 0.65)
+        pos_hint: {"x":0.15, "y":0.13}
         Button:
             text: "Admissions Office"
             size_hint:(1.2, 0.4)
@@ -56,10 +70,19 @@ WindowManager:
             font_size: 25
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
         Button:
+            text: "Floor Maps"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "left"
+        Button:
             text: "Publication Office"
             size_hint:(1.2, 0.4)
             font_size: 25
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+
 
 <AdmissionsWindow>:
     name: "admin"
@@ -75,4 +98,299 @@ WindowManager:
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
             on_release:
                 app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<FloorMapsWindow>:
+    name: "floor"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+    GridLayout:
+        cols: 2
+        size_hint: (0.7, 0.7)
+        pos_hint: {"x":0.15, "y":0.15}
+        Button:
+            text: "1st Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "1st"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "2nd Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "2nd"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "3rd Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "3rd"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "4th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "4th"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "5th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "5th"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "6th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "6th"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "7th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "7th"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "8th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "8th"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "9th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "9th"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "10th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "10th"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "11th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "11th"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "12th Floor"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "12th"
+                root.manager.transition.direction = "left"
+<FirstFloor>:
+    name: "1st"
+    Image:
+        source: 'lobby fm.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<SecondFloor>:
+    name: "2nd"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<ThirdFloor>:
+    name: "3rd"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<FourthFloor>:
+    name: "4th"
+    Image:
+        source: '4thfloor fm.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<FifthFloor>:
+    name: "5th"
+    Image:
+        source: '5thfloor fm.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<SixthFloor>:
+    name: "6th"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<SeventhFloor>:
+    name: "7th"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<EighthFloor>:
+    name: "8th"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<NinthFloor>:
+    name: "9th"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<TenthFloor>:
+    name: "10th"
+    Image:
+        source: '10thfloor fm.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<EleventhFloor>:
+    name: "11th"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
+                root.manager.transition.direction = "right"
+<TwelveFloor>:
+    name: "12th"
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "floor"
                 root.manager.transition.direction = "right"
