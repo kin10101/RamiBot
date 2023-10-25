@@ -1,0 +1,108 @@
+<Command>
+    size_hint_y: None
+    pos_hint: {"right": .98}
+    height: self.texture_size[1]
+    width: self.texture_size[0]
+    padding: 12, 10
+    theme_text_color: "Custom"
+    text_color: 1, 1, 1, 1
+    canvas.before:
+        Color:
+            rgb: (0, 170/255, 23/255, 1)
+        RoundedRectangle:
+            size: self.width, self.height
+            pos: self.pos
+            radius: [23, 23, 0, 23]
+
+<Response>
+    size_hint_y: None
+    pos_hint: {"x": .02}
+    height: self.texture_size[1]
+    width: self.texture_size[0]
+    padding: 12, 10
+    canvas.before:
+        Color:
+            rgb: (1, 1, 1, 1)
+        RoundedRectangle:
+            size: self.width, self.height
+            pos: self.pos
+            radius: [23, 23, 23, 0]
+MDScreen:
+    bot_name: bot_name
+    text_input: text_input
+    chat_list: chat_list
+    name: "ChatGUI"
+
+
+    MDFloatLayout:
+        MDFloatLayout:
+            md_bg_color: 245/255, 245/255, 245/255, 1
+            size_hint_y: .11
+            pos_hint: {"center_y": .95}
+
+            MDLabel:
+                id: bot_name
+                text: "RamiBot Chatbot GUI"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                halign: "center"
+                font_size: "20sp"
+                font_name: "Poppins"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+
+        ScrollView:
+            size_hint_y: .77
+            pos_hint: {"x": 0, "y": .116}
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                id: chat_list
+                orientation: "vertical"
+                size_hint: 1, None
+                height: self.minimum_height
+                cols: 1
+                spacing: 5
+
+        MDFloatLayout:
+            md_bg_color: 245/255, 245/255, 245/255, 1
+            size_hint_y: .11
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: .8, .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+
+                canvas:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+
+                        radius: [22, 22, 22, 22]
+
+                TextInput:
+                    id: text_input
+                    hint_text: "Type your message here"
+                    size_hint_y: 1, None
+                    font_size: "18sp"
+                    font_name: "Poppins"
+                    height: self.minimum_height
+                    multiline: False
+                    cursor_color: 1, 170/255, 23/255, 1
+
+                    cursor_width: "2sp"
+                    foreground_color: 0, 170/255, 23/255, 1
+                    background_color: 1, 1, 1, 0  # Set a white background color
+                    padding: 15
+
+            MDIconButton:
+                id: send_button
+                pos_hint: {"center_x": .91, "center_y": .5}
+                icon: "send"
+                user_font_size: "18sp"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                md_bg_color: 0, 170/255, 23/255, 1
+                on_release: app.send_message()
+

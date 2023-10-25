@@ -39,7 +39,7 @@ class WindowManager(ScreenManager):
     pass
 
 Window.size = (1920,1080)
-kv2 = Builder.load_file("my.ohkv")
+kv2 = Builder.load_file("myoh.kv")
 
 class Main(MDApp):
     def build (self):
