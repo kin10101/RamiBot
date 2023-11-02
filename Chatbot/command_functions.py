@@ -1,7 +1,7 @@
 import chatbot
 import datetime
 from datetime import datetime
-import train_model
+import cb_train_model
 
 
 def test_func():
