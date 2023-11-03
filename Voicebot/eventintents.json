@@ -1,6 +1,22 @@
 {
     "intents": [
         {
+            "tag": "GEN hello",
+            "patterns": [
+                "hi",
+                "hello",
+                "hi romy",
+                "hello rami"
+            ],
+            "responses": [
+                "Hello there! how can i be of service?",
+                "Greetings! How can I be of service?",
+                "Hello there! ask me anything related to me or this event",
+                "hi! how may i help you?",
+                "hello, what would you like me to do?"
+            ]
+        },
+        {
             "tag": "Fallback unknown",
             "patterns": [],
             "responses": [
@@ -12,35 +28,12 @@
         {
             "tag": "FB swearwords",
             "patterns": [
-                "tang ina",
-                "tangina",
-                "fuck you",
-                "stupid",
-                "bitch",
-                "gago",
-                "shit",
-                "puta",
-                "pota",
-                "ina mo"
+                "tang ina", "tangina", "fuck you", "stupid", "bitch", "gago", "shit",
+                "puta", "pota", "ina mo"
             ],
             "responses": [
-                "please refrain from saying such words"
-            ]
-        },
-        {
-            "tag": "GEN hello",
-            "patterns": [
-                "hi",
-                "hello",
-                "hi romy",
-                "hello rami"
-            ],
-            "responses": [
-                "Hello there! how can i be of service?",
-                "Greetings! How can I be of service?",
-                "Hello there! I'm all ears and ready to assist.",
-                "hi! how may i help you?",
-                "hello, what would you like me to do?"
+                "please refrain from saying such words", "Let's keep the conversation respectful, please.",
+                "I'm sure we can communicate without using offensive words.", "We can discuss this in a more civil manner."
             ]
         },
         {
@@ -142,16 +135,6 @@
             ]
         },
         {
-            "tag": "GEN hotdog",
-            "patterns": [
-                "hotdog",
-                "hot dog"
-            ],
-            "responses": [
-                "hotdog"
-            ]
-        },
-        {
             "tag": "GEN who are you",
             "patterns": [
                 "who are you",
@@ -174,318 +157,6 @@
             "responses": [
                 "i am currently capable of answering questions that i am trained for",
                 "at the moment, i can't do much because I am still in development"
-            ]
-        },
-        {
-            "tag": "LOC cafeteria",
-            "patterns": [
-                "eat",
-                "drink",
-                "food",
-                "water",
-                "refill"
-            ],
-            "responses": [
-                " You'll find the cafeteria right on the first floor, enjoy your meal!"
-            ]
-        },
-        {
-            "tag": "LOC registrar",
-            "patterns": [
-                "enroll",
-                "enrollment",
-                "registrar"
-            ],
-            "responses": [
-                "you can go to the registrar in the fourth floor"
-            ]
-        },
-        {
-            "tag": "LOC location_help",
-            "patterns": [
-                "can you help me locate a room",
-                "find room"
-            ],
-            "responses": [
-                "What room do you want me to search for"
-            ],
-            "context_set": [
-                "find_room"
-            ],
-            "function": "followup_question"
-        },
-        {
-            "tag": "LOC lobby floor location",
-            "patterns": [
-                "cafeteria",
-                "admission office",
-                "clinic",
-                "chapel",
-                "floor mph1",
-                "mph one",
-                "mph1",
-                "MPH1"
-            ],
-            "responses": [
-                "it is located here at the 1st floor"
-            ]
-        },
-        {
-            "tag": "LOC second floor location",
-            "patterns": [
-                "room 201",
-                "room 202",
-                "room 203",
-                "room 204",
-                "room 205",
-                "room 206",
-                "room 207",
-                "room 208",
-                "room 209",
-                "room 213",
-                "room 214",
-                "room 215",
-                "room 216",
-                "room 217",
-                "room 218"
-            ],
-            "responses": [
-                "it is located at the 2nd floor"
-            ]
-        },
-        {
-            "tag": "LOC third floor location",
-            "patterns": [
-                "room 301",
-                "room 302",
-                "room 303",
-                "room 304",
-                "room 305",
-                "room 306",
-                "room 307",
-                "room 308",
-                "room 309",
-                "room 313",
-                "room 314",
-                "room 315",
-                "room 316",
-                "room 317",
-                "room 318"
-            ],
-            "responses": [
-                "it is located at the 3rd floor"
-            ]
-        },
-        {
-            "tag": "LOC fourth floor location",
-            "patterns": [
-                "room 401",
-                "room 402",
-                "room 403",
-                "room 409",
-                "room 414",
-                "room 415",
-                "room 416",
-                "room 417",
-                "room 418",
-                "part time room",
-                "the registrars office",
-                "registrar",
-                "faculty",
-                "board room"
-            ],
-            "responses": [
-                "it is located at the 4th floor"
-            ]
-        },
-        {
-            "tag": "LOC fifth floor location",
-            "patterns": [
-                "room 501",
-                "itro",
-                "ITRO",
-                "i t r o",
-                "room 502",
-                "room 504",
-                "room 505",
-                "room 506",
-                "room 508",
-                "room 513",
-                "room 514",
-                "room 515",
-                "room 517",
-                "recording studio",
-                "music recording studio",
-                "video and photography studio",
-                "photoshoot room",
-                "photography room",
-                "apc center",
-                "APC center",
-                "documentation office",
-                "hr office",
-                "human resource office",
-                "hr office",
-                "consulting office",
-                "consultation office"
-            ],
-            "responses": [
-                "it is located at the 5th floor"
-            ]
-        },
-        {
-            "tag": "LOC sixth floor location",
-            "patterns": [
-                "room 601",
-                "room 602",
-                "room 603",
-                "room 604",
-                "room 605",
-                "room 606",
-                "room 607",
-                "room 608",
-                "room 609",
-                "room 614",
-                "room 615",
-                "room 616",
-                "room 617",
-                "room 618"
-            ],
-            "responses": [
-                "it is located at the 6th floor"
-            ]
-        },
-        {
-            "tag": "LOC seventh floor location",
-            "patterns": [
-                "discussion room",
-                "meeting room",
-                "shs faculty",
-                "senior high school faculty",
-                "library",
-                "library office",
-                "technical library",
-                "avr",
-                "mrc"
-            ],
-            "responses": [
-                "it is located at the 7th floor"
-            ]
-        },
-        {
-            "tag": "LOC eighth floor location",
-            "patterns": [
-                "room 801",
-                "digital electronics laboratory",
-                "digital electronics lab",
-                "systems design laboratory",
-                "room 802",
-                "room 803",
-                "room 804",
-                "room 805",
-                "room 806",
-                "room 807",
-                "room 808",
-                "room 809",
-                "room 811",
-                "room 813",
-                "room 814",
-                "room 815",
-                "room 816",
-                "room 817",
-                "room 818",
-                "eslo",
-                "oslo"
-            ],
-            "responses": [
-                "it is located at the 8th floor"
-            ]
-        },
-        {
-            "tag": "LOC ninth floor location",
-            "patterns": [
-                "room 901",
-                "room 902",
-                "room 903",
-                "room 904",
-                "room 905",
-                "room 906",
-                "room 907",
-                "room 908",
-                "room 909",
-                "dormitory",
-                "dorm room"
-            ],
-            "responses": [
-                "it is located at the 9th floor"
-            ]
-        },
-        {
-            "tag": "LOC tenth floor location",
-            "patterns": [
-                "room 1004",
-                "gym",
-                "jim",
-                "gymnasium",
-                "room 1007",
-                "shower room",
-                "room 1008",
-                "logistics office",
-                "room 1011",
-                "bmo",
-                "kitchen",
-                "discipline office",
-                "disciplinary office",
-                "room 1013",
-                "room 1014",
-                "room 1015",
-                "room 1016",
-                "room 1017",
-                "room 1018"
-            ],
-            "responses": [
-                "it is located at the 10th floor "
-            ]
-        },
-        {
-            "tag": "LOC eleventh floor location",
-            "patterns": [
-                " room 1109",
-                " court",
-                " basketball court",
-                " room 1110",
-                " room 1111",
-                " room 1114",
-                " room 1115",
-                " room 1116",
-                " room 1117",
-                " room 1118",
-                " chem lab",
-                " chemistry lab",
-                " guidance office"
-            ],
-            "responses": [
-                "it is located on the 11th floor"
-            ]
-        },
-        {
-            "tag": "LOC twelfth floor location",
-            "patterns": [
-                " auditorium"
-            ],
-            "responses": [
-                "it is located on the 12th floor"
-            ]
-        },
-        {
-            "tag": "LOC gym_keywords",
-            "patterns": [
-                "gym",
-                "workout",
-                "exercise",
-                "dance"
-            ],
-            "responses": [
-                "you can go to the gym at the 10th floor"
             ]
         },
         {
@@ -523,84 +194,6 @@
             ],
             "responses": [
                 "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG socit courses",
-            "patterns": [
-                "it",
-                "socit",
-                "school of computing and information technology"
-            ],
-            "responses": [
-                "the school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG soa",
-            "patterns": [
-                "architecture",
-                "soar",
-                "school of architecture and design"
-            ],
-            "responses": [
-                "The School of Architecture consists of BS Architecture"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG som",
-            "patterns": [
-                "management",
-                "som",
-                "school of management"
-            ],
-            "responses": [
-                "The school of management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business "
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG soma",
-            "patterns": [
-                "multimedia arts",
-                "soma",
-                "school of multimedia arts"
-            ],
-            "responses": [
-                "The School of Multimedia Arts consists of BS Multimedia Arts and BS Psychology"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG grad",
-            "patterns": [
-                "graduate school",
-                "grad",
-                "graduate"
-            ],
-            "responses": [
-                ""
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG professional tracks",
-            "patterns": [
-                "professional tracks",
-                "professional",
-                "tracks"
-            ],
-            "responses": [
-                ""
             ],
             "context_filter": "apc_programs",
             "context_set": ""
