@@ -114,6 +114,20 @@ def get_tag(message):
     tag = predict_class(message)
     return tag
 
+def get_response(tag):
+    """Get wake word response."""
+    with open('eventintents.json') as file:  # change file name when necessary
+        intents_json = json.load(file)
+
+    list_of_intents = intents_json['intents']
+    result = None
+
+    for intent in list_of_intents:
+        if intent['tag'] == tag:
+            result = random.choice(intent['responses'])
+            break
+
+    return result
 
 def run_chatbot():
     """Run chatbot by using the command line."""
@@ -136,3 +150,4 @@ def run_chatbot():
         except Exception as e:
             response = e
             pass
+
