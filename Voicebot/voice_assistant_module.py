@@ -2,6 +2,7 @@ import sys
 
 import speech_recognition as sr
 
+import serialModule
 import voicebotengine
 import mimictts as ts
 
@@ -68,14 +69,18 @@ def test_assistant():
                 # transcribe audio input
                 text = r.recognize_google(audio)
                 text = text.lower()
-                print("wakeword received text: " + text)  #
+                print("Audio received to text: " + text)
+
 
                 # check wake word
                 if any(variation in text for variation in WAKE_WORD_VARIATIONS):
                     wakeword_detected = True
-
-                    print('now listening')
+                    wake_word_response = voicebotengine.get_response("GEN hello")
+                    ts.speak(wake_word_response)
+                    print('Wake word detected. Now listening...')
                     ts.playAudioFile('audio/activate.wav')
+                    serialModule.sendSerialMessage('1')
+
 
                     # listen for the command after wake word is detected
                     audio = r.listen(source=source, timeout=5, phrase_time_limit=8)
@@ -89,6 +94,7 @@ def test_assistant():
                         ts.speak(response)
 
                     ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
+                    serialModule.sendSerialMessage('0')
 
 
         except sr.RequestError:
