@@ -18,7 +18,8 @@ def playAudioFile(file):
     pygame.mixer.init()
     sound = pygame.mixer.Sound(file)
     sound.play()
-    pygame.time.delay(int(sound.get_length() * 1000))
+    pygame.time.delay(int(sound.get_length() * 1000 + 500))
     pygame.quit()
+
 
 playAudioFile("audio/activate.wav")
