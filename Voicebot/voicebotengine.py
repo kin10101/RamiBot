@@ -110,14 +110,14 @@ def get_from_json(tag):
         intents_json = json.load(file)
 
     list_of_intents = intents_json['intents']
-    result = None
+    js = None
 
     for intent in list_of_intents:
         if intent['tag'] == tag:
-            result = random.choice(intent['responses'])
+            js = random.choice(intent['responses'])
             break
 
-    return result
+    return js
 
 
 def run_chatbot():

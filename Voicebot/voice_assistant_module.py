@@ -75,11 +75,12 @@ def test_assistant():
                 # check wake word
                 if any(variation in text for variation in WAKE_WORD_VARIATIONS):
                     wakeword_detected = True
-                    wake_word_response = voicebotengine.get_response("GEN hello")
+                    wake_word_response = voicebotengine.get_from_json("GEN hello")
                     ts.speak(wake_word_response)
                     print('Wake word detected. Now listening...')
                     ts.playAudioFile('audio/activate.wav')
-                    serialModule.sendSerialMessage('1')
+
+                    serialModule.sendSerialMessage('2')
 
 
                     # listen for the command after wake word is detected
@@ -94,7 +95,7 @@ def test_assistant():
                         ts.speak(response)
 
                     ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
-                    serialModule.sendSerialMessage('0')
+                    serialModule.sendSerialMessage('1')
 
 
         except sr.RequestError:
