@@ -114,7 +114,7 @@ def get_tag(message):
     tag = predict_class(message)
     return tag
 
-def get_response(tag):
+def get_from_json(tag):
     """Get wake word response."""
     with open('eventintents.json') as file:  # change file name when necessary
         intents_json = json.load(file)
