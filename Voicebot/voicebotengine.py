@@ -46,8 +46,8 @@ def predict_class(sentence):
     """Predict the intent of the sentence."""
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]
-    ERROR_THRESHOLD = 0.7  # Acceptable limit to output the response. Adjust if necessary
-    results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
+    error_threshold = 0.7  # Acceptable limit to output the response. Adjust if necessary
+    results = [[i, r] for i, r in enumerate(res) if r > error_threshold]
     results.sort(key=lambda x: x[1], reverse=True)  # sort by strength of probability
     return_list = []
     for r in results:
@@ -60,13 +60,13 @@ def predict_class(sentence):
 
 
 def get_response(intents_list, intents_json, context):
-    """Get a response based on the predicted intent."""
     tag = intents_list[0]['intent']
     list_of_intents = intents_json['intents']
-    result = None
+
+    result = get_from_json("Fallback unknown")  # default response if no intent is found
+
     for i in list_of_intents:
         if i['tag'] == tag:
-
             if 'context_filter' in i and i['context_filter'] not in context:
                 continue
 
@@ -74,17 +74,14 @@ def get_response(intents_list, intents_json, context):
                 context[0] = i['context_set']
 
             if 'function' in i:
-                result = "running function..."
+                result = "running function..."  # remove this line before deployment. should run a function instead of returning a string
+                # intent_methods[i['function']]()  # call the function
+                # refactor to use intent_methods
+                break
 
-            if not i:
-                result = "sorry, I am not yet capable of responding to that"
-                continue
-
-            result = random.choice(i['responses'])  # Gets a random response from the given list
-            break
-
-    if result is None:
-        result = "sorry, I am not yet capable of responding to that"
+            if 'responses' in i and i['responses']:
+                result = random.choice(i['responses'])  # Gets a random response from the given list
+                break
 
     return result
 
@@ -96,23 +93,16 @@ def handle_request(message, context):
     print("PREDICTED INTENTS", predicted_intents)
     check_response = get_response(predicted_intents, intents, context)
 
-    if not predicted_intents:
-        response = "sorry, I am not yet capable of responding to that"
-
-    elif predicted_intents[0]['intent'] in intent_methods.keys():  # if predicted intent is mapped to a function
+    if predicted_intents[0]['intent'] in intent_methods.keys():  # if predicted intent is mapped to a function
         intent_methods[predicted_intents[0]['intent']]()  # call the function
 
-    else:
-        response = check_response
-
-    if response is None:
-        response = "sorry, I am not yet capable of responding to that response"
-    return response
+    return check_response
 
 
 def get_tag(message):
     tag = predict_class(message)
     return tag
+
 
 def get_from_json(tag):
     """Get wake word response."""
@@ -128,6 +118,7 @@ def get_from_json(tag):
             break
 
     return result
+
 
 def run_chatbot():
     """Run chatbot by using the command line."""
@@ -150,4 +141,3 @@ def run_chatbot():
         except Exception as e:
             response = e
             pass
-
