@@ -1,23 +1,20 @@
-import serial.tools.list_ports
+import serial
 import time
 
-ports = serial.tools.list_ports.comports()
-serialInst = serial.Serial()
-portList = []
-
-for onePort in ports:
-    portList.append(str(onePort))
-    print(str(onePort))
-
-serialInst.baudrate = 9600
-serialInst.port = "/dev/ttyUSB0"
-serialInst.open()
 
 def sendSerialMessage(command):
     serialInst.write(command.encode('utf-8'))
 
-#while True:
-#    sendSerialMessage('1')
-#   time.sleep(1)
-#   sendSerialMessage('2')
-#   time.sleep(1)
+
+try:
+    serialInst = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
+
+    while True:
+        sendSerialMessage(input("input: S"))
+        serialInst.flushInput()
+
+
+except serial.SerialException as e:
+    print(f"An error occurred: {e}")
+finally:
+    serialInst.close()
