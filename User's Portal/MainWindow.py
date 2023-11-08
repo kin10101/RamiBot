@@ -32,6 +32,7 @@ class MainWindow(App):
             text="Programs Offered",
             size_hint=(1.2, 0.5),
             bold=True,
+            font_size=25,
             background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
             background_normal = ""  #to copy exact color
         )
@@ -41,6 +42,7 @@ class MainWindow(App):
             text="Faculty Scheduless",
             size_hint=(1.2, 0.5),
             bold=True,
+            font_size=25,
             background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
             background_normal=""
         )
@@ -50,6 +52,7 @@ class MainWindow(App):
             text="Offices and Floor Maps",
             size_hint=(1.2, 0.5),
             bold=True,
+            font_size=25,
             background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
             background_normal=""
         )
@@ -59,6 +62,7 @@ class MainWindow(App):
             text="Announcements",
             size_hint=(1.2, 0.5),
             bold=True,
+            font_size=25,
             background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
             background_normal=""
         )
