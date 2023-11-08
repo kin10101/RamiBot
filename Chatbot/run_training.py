@@ -1,3 +1,3 @@
-import train_model
+import cb_train_model
 
-train_model.train_bot()
+cb_train_model.train_bot()

@@ -1,0 +1,748 @@
+{
+    "intents": [
+        {
+            "tag": "GEN hello",
+            "patterns": [
+                "hi",
+                "hello",
+                "hi romy",
+                "hello rami"
+            ],
+            "responses": [
+                "Hello there! how can i be of service?",
+                "Greetings! How can I be of service?",
+                "Hello there! ask me anything related to me or this event",
+                "hi! how may i help you?",
+                "hello, what would you like me to do?"
+            ]
+        },
+        {
+            "tag": "Fallback unknown",
+            "patterns": [],
+            "responses": [
+                "sorry, I cant understand you, could you please repeat what you said?",
+                "could you please repeat what you said? i could not understand you",
+                "i dont understand what you are saying"
+            ]
+        },
+        {
+            "tag": "FB swearwords",
+            "patterns": [
+                "tang ina", "tangina", "fuck you", "stupid", "bitch", "gago", "shit",
+                "puta", "pota", "ina mo"
+            ],
+            "responses": [
+                "please refrain from saying such words", "Let's keep the conversation respectful, please.",
+                "I'm sure we can communicate without using offensive words.", "We can discuss this in a more civil manner."
+            ]
+        },
+        {
+            "tag": "GEN good morning",
+            "patterns": [
+                "good morning rami",
+                " good day rami",
+                " good morning"
+            ],
+            "responses": [
+                "Good morning! How can I assist you today?",
+                "Good morning! What can I do for you today?",
+                "Good morning! I'm ready to help. What can I do for you today?"
+            ]
+        },
+        {
+            "tag": "GEN bye",
+            "patterns": [
+                "goodbye",
+                "bye",
+                "see you later",
+                "see you",
+                "have a nice day",
+                "have a good day"
+            ],
+            "responses": [
+                "Goodbye! Take care and have a wonderful day!",
+                "Bye! Until we meet again.",
+                "See you later! Have a great day!",
+                "See you! Wishing you a fantastic day ahead.",
+                "Have a nice day! Take care!"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "GEN help",
+            "patterns": [
+                "how can you help me",
+                "what can you do",
+                "capabilities",
+                "capable"
+            ],
+            "responses": [
+                "I'm here to provide you with information about Asia Pacific College. How can I assist you specifically?",
+                "Feel free to ask me anything or assign me any task. I'm at your service and ready to help!"
+            ]
+        },
+        {
+            "tag": "RAMI height",
+            "patterns": [
+                "how tall are you",
+                "how tall is rami",
+                "how tall are you rami",
+                "how tall is rami bot",
+                "how tall are you rami bot"
+            ],
+            "responses": [
+                "I'm 4.5 feet tall"
+            ]
+        },
+        {
+            "tag": "GEN thanks",
+            "patterns": [
+                "thanks",
+                "thank you",
+                "thank you rami",
+                "thank you rami bot"
+            ],
+            "responses": [
+                "You're welcome",
+                "No problem",
+                "My pleasure"
+            ]
+        },
+        {
+            "tag": "GEN gossip",
+            "patterns": [
+                "do you have someone you like",
+                "are you interested in anyone",
+                "do you have a crush"
+
+            ],
+            "responses": [
+                "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
+                "Hmm, my lips are sealed tight on that matter!",
+                "Well, there is someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move. It's all in good fun, though!"
+            ]
+        },
+        {
+            "tag": "GEN Hobby",
+            "patterns": [
+                "do you have any hobbies",
+                "what do you like to do in your free time",
+                "what are your hobbies"
+            ],
+            "responses": [
+                "I like watching people pass by",
+                "in my free time, I usually look at the funny faces stored in my database"
+            ]
+        },
+        {
+            "tag": "GEN who are you",
+            "patterns": [
+                "who are you",
+                "sino ka",
+                "name",
+                "about yourself",
+                "introduce yourself"
+            ],
+            "responses": [
+                "Hey there! I'm Rami Bot, your one and only robotic assistant designed exclusively for APC.",
+                "Greetings. I am Rami Bot, a purpose-built robotic assistant exclusively assigned to serve APC. If you require any assistance, I am at your disposal."
+            ]
+        },
+        {
+            "tag": "GEN capabilities",
+            "patterns": [
+                "what can you do",
+                "what are you capable of doing"
+            ],
+            "responses": [
+                "i am currently capable of answering questions that i am trained for",
+                "at the moment, i can't do much because I am still in development"
+            ]
+        },
+        {
+            "tag": "PRG apc programs",
+            "patterns": [
+                "what programs does apc offer",
+                "other programs",
+                "what are the programs offered in apc"
+            ],
+            "responses": [
+                "asia pacific college offers many programs under different schools, which school are you interested in?",
+                "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one are you interested in?"
+            ],
+            "context_set": "apc_programs"
+        },
+        {
+            "tag": "PRG shs",
+            "patterns": [
+                "what is senior high school",
+                "tell me more about shs",
+                "high school"
+            ],
+            "responses": [
+                "senior high school is a two year program open to junior highschool graduates. it is divided into three strands which are STEM, ABM, and HUMSS."
+            ],
+            "context_filter": "apc_programs",
+            "context_set": ""
+        },
+        {
+            "tag": "PRG soe courses",
+            "patterns": [
+                "engineering",
+                "soe",
+                "school of engineering"
+            ],
+            "responses": [
+                "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
+            ],
+            "context_filter": "apc_programs",
+            "context_set": ""
+        },
+        {
+            "tag": "FN_sing",
+            "patterns": [
+                "sing a song"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "sing"
+            ]
+        },
+        {
+            "tag": "FN_current_time",
+            "patterns": [
+                "time is it now",
+                "tell time",
+                "oras na",
+                "current time",
+                "what time is it"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "current_time"
+            ]
+        },
+        {
+            "tag": "FN_current_date",
+            "patterns": [
+                "what day is it today",
+                "date is it now",
+                "tell day",
+                "araw na",
+                "current date",
+                "can you tell me what day it is today"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "current_date"
+            ]
+        },
+        {
+            "tag": "FN_add_intents",
+            "patterns": [
+                "i want to add intents",
+                "add intents",
+                "let me teach you new words",
+                "i want to teach you new words"
+            ],
+            "responses": [
+                "please input the intent_tag, followed by the words you want to add, and the response you want to give"
+            ],
+            "function": [
+                "add_intents"
+            ]
+        },
+        {
+            "tag": "FN_edit_intents",
+            "patterns": [
+                "i want to edit intents",
+                "edit intents"
+            ],
+            "responses": [
+                "please enter the tag of the intent you want to edit"
+            ],
+            "function": [
+                "edit_intents"
+            ]
+        },
+        {
+            "tag": "FN_show_intents",
+            "patterns": [
+                "show intents",
+                "let me see intents",
+                "i want to see the intents",
+                "show me the list of intents"
+            ],
+            "responses": [
+                "sure here is the list of intents"
+            ],
+            "function": [
+                "show_intents"
+            ]
+        },
+        {
+            "tag": "FN_update",
+            "patterns": [
+                "train yourself",
+                "retrain",
+                "update",
+                "update yourself",
+                "begin training"
+            ],
+            "responses": [
+                "updating myself, please wait"
+            ],
+            "function": [
+                "update"
+            ]
+        },
+        {
+            "tag": "APC tell me more",
+            "patterns": [
+                "can you tell me more about a pc",
+                "can you tell me more about apc"
+            ],
+            "responses": [
+                "Sure, which part would you like to know more about?"
+            ]
+        },
+        {
+            "tag": "APC acronym",
+            "patterns": [
+                "What does a pc stand for?",
+                "What is the meaning of APC?"
+            ],
+            "responses": [
+                "APC stands for Asia Pacific College."
+            ]
+        },
+        {
+            "tag": "APC Vision",
+            "patterns": [
+                "What is the vision of APC?",
+                "tell me about the vision of APC",
+                "state APC vision statement",
+                "what is the vision statement of APC"
+            ],
+            "responses": [
+                "Asia Pacific College envisions itself to be the preferred Higher Education Institution bridging academe and industry with its programs founded on the concepts and applications of IT, guided by the core values of integrity, industry and innovation that works."
+            ]
+        },
+        {
+            "tag": "APC Mission",
+            "patterns": [
+                "What is the mission of APC?",
+                "tell me about the mission of APC",
+                "state APC mission statement",
+                "what is the mission statement of APC"
+            ],
+            "responses": [
+                "Asia Pacific College, powered by education and industry professionals as faculty and a balanced curriculum, aims to provide business and the information and communications technology industry in the Philippines and in the global community lifelong learning graduates who are anchored on the principles of integrity and professionalism."
+            ]
+        },
+        {
+            "tag": "APC differences",
+            "patterns": [
+                "APC different from other schools",
+                "APC unique",
+                "APC special",
+                "asia pacific college"
+            ],
+            "responses": [
+                "APC is the school of choice for those seeking world-class education with a strong IT-based foundation, preparing graduates for various sectors of businesses and industries."
+            ]
+        },
+        {
+            "tag": "APC education",
+            "patterns": [
+                "What kind of education does APC offer?",
+                "What courses are available at APC?",
+                "What courses does Asia Pacific College offer?"
+            ],
+            "responses": [
+                "APC offers education in information technology, commerce, engineering, accountancy, entrepreneurship, multimedia arts, and other areas of education."
+            ]
+        },
+        {
+            "tag": "APC specialization",
+            "patterns": [
+                "What areas does APC specialize in?",
+                "what does APC specialize in?",
+                "what does asia pacific college specialize in?"
+            ],
+            "responses": [
+                "APC specializes in information technology, commerce, engineering, accountancy, entrepreneurship, and multimedia arts.",
+                "Asia Pacific College specializes in information technology, commerce, engineering, accountancy, entrepreneurship, and multimedia arts."
+            ]
+        },
+        {
+            "tag": "APC preparation",
+            "patterns": [
+                "How does apc prepare its students",
+                "how does asia pacific college treat its students"
+            ],
+            "responses": [
+                "APC prepares its students for the global community by providing a strong foundation in IT, and education in areas that are relevant to the 21st century global economy."
+            ]
+        },
+        {
+            "tag": "APC graduates employment",
+            "patterns": [
+                "Where are APC graduates currently employed?",
+                "where do APC graduates work after graduation"
+            ],
+            "responses": [
+                "APC graduates are employed in various sectors of businesses and industries."
+            ]
+        },
+        {
+            "tag": "APC successful alumni",
+            "patterns": [
+                "Can you give me examples of successful APC alumni?"
+            ],
+            "responses": [
+                "Some successful APC alumni include CEOs, entrepreneurs, and leaders in various industries."
+            ]
+        },
+        {
+            "tag": " 4 year program duration",
+            "patterns": [
+                "how long is the program"
+            ],
+            "responses": [
+                "The program is a four-year undergraduate degree program."
+            ]
+        },
+        {
+            "tag": "BSCS",
+            "patterns": [
+                "What is the Bachelor of Science in Computer Science",
+                "tell me more about the BSCS program",
+                "What is the BSCS program?"
+            ],
+            "responses": [
+                "The Bachelor of Science in Computer Science (BSCS) is a four-year undergraduate degree program that focuses on theories, concepts, and computing solutions for business, society, and industry."
+            ]
+        },
+        {
+            "tag": "BSCS Curriculum",
+            "patterns": [
+                "What does the BSCS curriculum cover",
+                "what are the topics taught in the computer science program",
+                "What is the objective of the BSCS program"
+            ],
+            "responses": [
+                "The curriculum of the BSCS program highlights theories, concepts, algorithmic foundations, and implementation and application of information, computing and innovative solutions. Its objective is to provide students with a unique learning experience through the appropriate combination of theories, hands-on exercises, teamwork, and guided project work."
+            ]
+        },
+        {
+            "tag": "BSCS-SS",
+            "patterns": [
+                "What is the Bachelor of Science in Computer Science with specialization in Systems Software?",
+                "Can you tell me about the BSCS-SS program?"
+            ],
+            "responses": [
+                "The Bachelor of Science in Computer Science with specialization in Systems Software (BSCS-SS) is a four-year undergraduate degree program that aims to educate students in theories, concepts, and tools for systems software development."
+            ]
+        },
+        {
+            "tag": "BS-SF",
+            "patterns": [
+                "What is the Bachelor of Science in Computer Science with specialization in Security Digital Forensics?",
+                "Can you tell me about the BS-SF program?"
+            ],
+            "responses": [
+                "The Bachelor of Science in Computer Science with specialization in Security Digital Forensics (BS-SF) is a four-year undergraduate degree program that aims to produce IT graduates skilled in digital forensics and computer networking and security."
+            ]
+        },
+        {
+            "tag": "BS-SF Curriculum",
+            "patterns": [
+                "What topics are covered under the BS-SF program?",
+                "What is the objective of the BS-SF program?"
+            ],
+            "responses": [
+                "The topics covered under the BS-SF program include digital forensics investigation stages, principles of investigation, legal studies, evidence handling, operating systems, hardware network protocols, data structures, programming, and scripting languages. Its objective is to produce graduates who are skilled in digital forensics, industry standards, and computer networking and security."
+            ]
+        },
+        {
+            "tag": "about_BSCS",
+            "patterns": [
+                "What is Bachelor of Science in Computer Science?",
+                "tell me more about BSCS?"
+            ],
+            "responses": [
+                "Bachelor of Science in Computer Science is a four-year undergraduate degree program that teaches theories, concepts, algorithmic foundations, and computing solutions."
+            ]
+        },
+        {
+            "tag": "about_BSCS_SS",
+            "patterns": [
+                "What is BSCS-SS?",
+                "Can you explain what Bachelor of Science in Computer Science with specialization in Systems Software is?"
+            ],
+            "responses": [
+                "BSCS-SS is a four-year undergraduate degree program that specializes in systems software. It covers programming, systems analysis and design, testing and software engineering."
+            ]
+        },
+        {
+            "tag": "about_BS_SF",
+            "patterns": [
+                "What is BS-SF?",
+                "What is Bachelor of Science in Computer Science with specialization in Security & Digital Forensics?"
+            ],
+            "responses": [
+                "BS-SF is a four-year undergraduate degree program that specializes in security and digital forensics. It covers topics on forensic sciences like Principles of Investigation, Legal Studies and Evidence Handling."
+            ]
+        },
+        {
+            "tag": "career_opportunities",
+            "patterns": [
+                "What career opportunities can I get with a degree in BSCS?",
+                "What jobs can I pursue after graduating from BSCS?"
+            ],
+            "responses": [
+                "As a BSCS graduate, you can work in various industries such as software development, network administration, cybersecurity, and data analytics."
+            ]
+        },
+        {
+            "tag": "requirements",
+            "patterns": [
+                "What are the requirements to enroll in BSCS?",
+                "Can you tell me the admission requirements for BSCS?"
+            ],
+            "responses": [
+                "The admission requirements for BSCS may vary per institution, but generally, you need to have a high school diploma or its equivalent and pass the entrance examination."
+            ]
+        },
+        {
+            "tag": "duration",
+            "patterns": [
+                "How long does it take to complete BSCS?",
+                "What is the duration of BSCS?"
+            ],
+            "responses": [
+                "BSCS is a four-year undergraduate degree program."
+            ]
+        },
+        {
+            "tag": "future_study",
+            "patterns": [
+                "Can I pursue a master's degree after completing BSCS?",
+                "What post-graduate degrees can I pursue after BSCS?"
+            ],
+            "responses": [
+                "Yes, you can pursue a master's degree after completing BSCS. You can choose to pursue a master's degree in Computer Science or related fields such as Data Science, Cybersecurity, or Information Technology."
+            ]
+        },
+        {
+            "tag": "why_choose_BSCS",
+            "patterns": [
+                "Why should I choose BSCS as my undergraduate degree?",
+                "What are the advantages of taking BSCS?"
+            ],
+            "responses": [
+                "BSCS is a highly in-demand program that offers various career opportunities. It teaches students theories, concepts, and innovative computing solutions that cater to the needs of different industries."
+            ]
+        },
+        {
+            "tag": "bsit_program",
+            "patterns": [
+                "What is the Bachelor of Science in Information Technology (BSIT) program?"
+            ],
+            "responses": [
+                "The Bachelor of Science in Information Technology (BSIT) is a four-year trimestral undergraduate degree program that aims to prepare students to solve business, societal, and industry problems using IT as a tool."
+            ]
+        },
+        {
+            "tag": "bsit_duration",
+            "patterns": [
+                "What is the duration of the BSIT program?"
+            ],
+            "responses": [
+                "The BSIT program is a four-year undergraduate degree program."
+            ]
+        },
+        {
+            "tag": "bsit_objective",
+            "patterns": [
+                "What is the objective of the BSIT program?"
+            ],
+            "responses": [
+                "The goal of the BSIT program is to gear up students in becoming 'information technologists' who can assist individuals, organizations, and society in solving problems using relevant IT tools and techniques."
+            ]
+        },
+        {
+            "tag": "bsit_career",
+            "patterns": [
+                "What are the career prospects after completing the BSIT program?"
+            ],
+            "responses": [
+                "After completing the BSIT program, students can pursue careers in various fields such as software development, web development, database administration, network administration, and many more."
+            ]
+        },
+        {
+            "tag": "bsit_courses",
+            "patterns": [
+                "Can you provide more information about the courses offered in the BSIT program?"
+            ],
+            "responses": [
+                "The BSIT program offers courses in areas such as systems analysis and design, IT services, advanced hardware support, mobile and web application development, game development, and several programming languages."
+            ]
+        },
+        {
+            "tag": "bsit_admission",
+            "patterns": [
+                "Are there any prerequisites or admission requirements for the BSIT program?"
+            ],
+            "responses": [
+                "Admission requirements for the BSIT program may vary depending on the institution, but typically include a high school diploma or equivalent and passing the entrance exam."
+            ]
+        },
+        {
+            "tag": "bsit_mobile",
+            "patterns": [
+                "Can you tell me more about the mobile and web application development courses offered in the BSIT program?"
+            ],
+            "responses": [
+                "The mobile and web application development courses offered in the BSIT program provide students with the knowledge and skills needed to develop applications for mobile devices and the web."
+            ]
+        },
+        {
+            "tag": "bsit_experience",
+            "patterns": [
+                "Are there any opportunities for hands-on experience or internships during the BSIT program?"
+            ],
+            "responses": [
+                "Many institutions offer opportunities for hands-on experience or internships during the BSIT program to provide students with real-world experience."
+            ]
+        },
+        {
+            "tag": "barch_program",
+            "patterns": [
+                "What is the Bachelor of Architecture (B. Arch) program at APC?"
+            ],
+            "responses": [
+                "The Bachelor of Architecture (B. Arch) program in APC is a four-year and one-term, trimestral professional degree program that aims to graduate future-ready architects with the necessary skills and abilities to utilize technology to generate trailblazing architectural solutions to present and future built-environment challenges."
+            ]
+        },
+        {
+            "tag": "College admission requirements",
+            "patterns": [
+                "What are the admission requirements"
+            ],
+            "responses": [
+                "Admission requirements for the B. Arch program may vary depending on the institution, but typically include a high school diploma or equivalent and passing the entrance exam."
+            ]
+        },
+        {
+            "tag": "GEN food prices",
+            "patterns": [
+                "How much does food cost in the cafeteria?",
+                "How much is the food in the cafeteria?",
+                "How much is the food in the canteen?"
+            ],
+            "responses": [
+                "Food prices vary from 10 to 30 pesos for snacks and 50 to 140 pesos for a meal. It may be best however if you would see the menu for yourself."
+            ]
+        },
+        {
+            "tag": "GEN shuttle route",
+            "patterns": [
+                "what route does the shuttle take"
+            ],
+            "responses": [
+                "APC - Lapu-Lapu St./South Super Highway"
+            ]
+        },
+        {
+            "tag": "GEN shuttle pickup points",
+            "patterns": [
+                "Where are the shuttle's pickup points?"
+            ],
+            "responses": [
+                "Humabon Parking, fronting the APC building and at the corner of Victoria and Lapu-Lapu Street in front of the Barangay Magallanes Hall"
+            ]
+        },
+        {
+            "tag": "SPC credits",
+            "patterns": [
+                "Who made you",
+                " who developed you",
+                " who programmed you",
+                " who created ramibot"
+            ],
+            "responses": [
+                "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
+            ]
+        },
+        {
+            "tag": "CPE about CPE",
+            "patterns": [
+                "what is cpe",
+                "what is bscpe",
+                "what is computer engineering",
+                "tell me more about computer engineering cpe"
+            ],
+            "responses": [
+                "The Bachelor of Science in Computer Engineering (BSCpE) is a four-year trimestral degree that aims to produce certified computer engineers. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
+            ]
+        },
+        {
+            "tag": "CPE specialization",
+            "patterns": [
+                "what are the specializations covered in CPE",
+                "what specializations are covered in computer engineering"
+            ],
+            "responses": [
+                "Specializations covered by this program include the following: Embedded systems technology, System and network administration, Computing algorithm, Software development and design (including mobile application development), Internet-of-Things (IoT), Machine learning, Robotics technology, Robotics Process Automation (RPA)"
+            ]
+        },
+        {
+            "tag": "APC address",
+            "patterns": [
+                "what is the address of APC",
+                "what is the address of asia pacific college",
+                "apc located"
+            ],
+            "responses": [
+                "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
+            ]
+        },
+        {
+            "tag": "end presentation DELETE",
+            "patterns": [
+                "presentation"
+            ],
+            "responses": [
+                "Thank you for listening to our presentation! any suggestions and recommendations are highly appreciated!"
+            ]
+        },
+        {
+            "tag": "chatbot process DELETE",
+            "patterns": [
+                "chatbot work",
+                "explain the process chatbot"
+            ],
+            "responses": [
+                "So, for the chatbot feature, text input from the user is preprocessed by means of tokenization which splits up raw text into individual words, and is then normalized using lemmatization which converts the word into its base form. The next step is the removal of stop words or words that provide little to no semantic value. This helps remove noise in the data and helps me to focus more on the meaningful words. Once the text has been preprocessed it is converted into a bag of words representation so that the pre-trained model can analyze and predict the probability of each vector and output the response with the highest probability. "
+            ]
+        },
+        {
+            "tag": "ECE what is ECE",
+            "patterns": [
+                "what is electronics engineering",
+                " what is ece"
+            ],
+            "responses": [
+                "The Bachelor of Science in Electronics Engineering (BS ECE) is a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
+            ]
+        }
+    ]
+}

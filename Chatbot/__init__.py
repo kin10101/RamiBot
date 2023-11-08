@@ -1,4 +1,4 @@
 import chatbot
 import command_functions
-import train_model
+import cb_train_model
 import chatbotGUI
