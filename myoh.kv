@@ -1,6 +1,8 @@
 WindowManager:
     MainWindow:
-    AdmissionsWindow:
+
+    SchedulesWindow:
+
     FloorMapsWindow:
     FirstFloor:
     SecondFloor:
@@ -25,72 +27,36 @@ WindowManager:
         text: "Offices and Floor Maps"
         font_size: 70
         bold: True
-        pos_hint: {"x":0.01, "y":0.33}
+        pos_hint: {"x":0.01, "y":0.27}
 
     GridLayout:
-        cols: 2
-        size_hint: (0.7, 0.65)
-        pos_hint: {"x":0.15, "y":0.13}
+        cols: 1
+        size_hint: (0.7, 0.25)
+        pos_hint: {"x":0.15, "y":0.40}
         Button:
-            text: "Admissions Office"
+            text: "Office Schedules"
             size_hint:(1.2, 0.4)
-            font_size: 25
+            font_size: 45
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
             on_release:
-                app.root.current = "admin"
+                app.root.current = "scheds"
                 root.manager.transition.direction = "left"
-        Button:
-            text: "Registrar's Office"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Button:
-            text: "Finance Office"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Button:
-            text: "Information and Technology Resource Office"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Button:
-            text: "Building Management Office"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Button:
-            text: "Guidance Office"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Button:
-            text: "Discipline Office"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
         Button:
             text: "Floor Maps"
             size_hint:(1.2, 0.4)
-            font_size: 25
+            font_size: 45
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
             on_release:
                 app.root.current = "floor"
                 root.manager.transition.direction = "left"
-        Button:
-            text: "Publication Office"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
 
 
-<AdmissionsWindow>:
-    name: "admin"
+<SchedulesWindow>:
+    name: "scheds"
     Image:
-        source: 'lobby fm.png'
+        source: 'bg.png'
         allow_stretch: True
         keep_ratio: False
-
         Button:
             text: "back"
             size_hint:(1.2, 0.2)
@@ -99,6 +65,94 @@ WindowManager:
             on_release:
                 app.root.current = "first"
                 root.manager.transition.direction = "right"
+    GridLayout:
+        cols: 2
+        rows: 4
+        size_hint: (0.8, 0.8)
+        pos_hint: {"x":0.10, "y":0.155}
+        Label:
+            text: "ADMISSION'S OFFICE"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            bold: True
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Label:
+            text: "ACCOUNTING AND FINANCE OFFICE"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            bold: True
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Label:
+            text: "REGISTRAR'S OFFICE"
+            size_hint:(1.2, 0.4)
+            font_size: 30
+            bold: True
+
+        Label:
+            text: "IT RESOURCES OFFICE"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            bold: True
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Label:
+            text: "BUILDING MANAGEMENT OFFICE"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            bold: True
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Label:
+            text: "DISCIPLINE OFFICE"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            bold: True
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Label:
+            text: "GUIDANCE OFFICE"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            bold: True
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+
+    GridLayout:
+        cols: 2
+        rows: 4
+        size_hint: (0.8, 0.8)
+        pos_hint: {"x": 0.10, "y": 0.085}
+        Label:
+            text: "Open Hours: \n8:00am to 5:00pm (Mondays-Saturdays)"
+            size_hint: (1.2, 0.4)
+            font_size: 25
+            halign: "left"
+        Label:
+            text: "Open Hours: \n7:00am to 6:00pm (Mondays-Fridays)\n7:00am to 5:00pm (Saturdays)"
+            size_hint: (1.2, 0.4)
+            font_size: 25
+            halign: "left"
+        Label:
+            text: "Transaction Hours: \n8:00am to 5:00pm (Monday-Saturday)"
+            size_hint: (1.2, 0.4)
+            font_size: 25
+            halign: "left"
+        Label:
+            text: "Open Hours: \n7:00am to 5:00pm (Mondays-Fridays)\n7:00am to 4:00pm (Saturdays)"
+            size_hint: (1.2, 0.4)
+            font_size: 25
+            halign: "left"
+        Label:
+            text: "Open Hours: \n8:00am to 7:00pm (Mondays-Fridays)\n8:00am to 6:00pm (Saturdays)"
+            size_hint: (1.2, 0.4)
+            font_size: 25
+            halign: "left"
+        Label:
+            text: "\nDiscipline Officer's Schedule \n(Mondays-Fridays): \n8:00am to 12:00m (Room 509)\n1:00pm to 5:00pm (Room 1009)"
+            size_hint: (1.2, 0.4)
+            font_size: 25
+            halign: "left"
+        Label:
+            text: "Open Hours: \n"
+            size_hint: (1.2, 0.4)
+            font_size: 25
+            halign: "left"
 
 <FloorMapsWindow>:
     name: "floor"
