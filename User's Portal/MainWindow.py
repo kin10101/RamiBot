@@ -1,11 +1,11 @@
 import subprocess
 from kivy.uix.image import Image
-
 from kivy.core.window import Window
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+
 class MainWindow(App):
     def build(self):
         Window.size = (1920, 1080)
@@ -26,14 +26,14 @@ class MainWindow(App):
             font_size=60,
             color='#FFFFFF'
         )
-        self.window.add_widget(self.label)  # to call
+        self.window.add_widget(self.label)  #to call
 
         self.po = Button(
             text="Programs Offered",
             size_hint=(1.2, 0.5),
             bold=True,
-            background_color='#213b9a'
-            # background_normal = "" - to copy exact color
+            background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
+            background_normal = ""  #to copy exact color
         )
         self.window.add_widget(self.po)
 
@@ -41,7 +41,8 @@ class MainWindow(App):
             text="Faculty Scheduless",
             size_hint=(1.2, 0.5),
             bold=True,
-            background_color='#213b9a'
+            background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
+            background_normal=""
         )
         self.window.add_widget(self.fs)
 
@@ -49,7 +50,8 @@ class MainWindow(App):
             text="Offices and Floor Maps",
             size_hint=(1.2, 0.5),
             bold=True,
-            background_color='#213b9a'
+            background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
+            background_normal=""
         )
         self.window.add_widget(self.offices)
 
@@ -57,7 +59,8 @@ class MainWindow(App):
             text="Announcements",
             size_hint=(1.2, 0.5),
             bold=True,
-            background_color='#213b9a'
+            background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
+            background_normal=""
         )
         self.window.add_widget(self.announce)
 
@@ -67,6 +70,7 @@ class MainWindow(App):
 
     def programs(self, instance):
         subprocess.call(['python','programMain.py'])
+
     def office(self, instance):
         subprocess.call(['python','officeInfo.py'])
 
