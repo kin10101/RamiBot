@@ -3,7 +3,7 @@ import time
 import cv2
 import main as m
 
-video = cv2.VideoCapture(1)
+video = cv2.VideoCapture(0)
 
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
@@ -21,15 +21,13 @@ while True:
         currentID = serial
         #if serial == currentID:
             #continue
-        print(str(serial) + " " + "confidence:" + str(conf))
-        if conf > 70:
+        if conf > 60:
 
             count = count + 1
 
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y - 40), (x + w, y), (50, 50, 255), -1)
-            cv2.putText(frame, str(serial), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
 
             if count == 1:
                     m.returnName1(str(serial), conf)
@@ -39,12 +37,14 @@ while True:
                     else:
                         continue
             else:
+
                 continue
         else:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y - 40), (x + w, y), (50, 50, 255), -1)
-            cv2.putText(frame, "Unknown", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
+            #text_to_speech
+
 
     frame = cv2.resize(frame, (640, 480))
     cv2.imshow('frame', frame)

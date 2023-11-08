@@ -80,7 +80,7 @@ def test_assistant():
                     print('Wake word detected. Now listening...')
                     ts.playAudioFile('audio/activate.wav')
 
-                    serialModule.sendSerialMessage('2')
+                    serialModule.sendSerialMessage('S')
 
 
                     # listen for the command after wake word is detected
@@ -95,7 +95,7 @@ def test_assistant():
                         ts.speak(response)
 
                     ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
-                    serialModule.sendSerialMessage('1')
+                    serialModule.sendSerialMessage('R')
 
 
         except sr.RequestError:

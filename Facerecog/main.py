@@ -2,6 +2,7 @@ import mysql.connector
 import datetime
 import pyttsx3
 import re
+import random
 import os
 import shutil
 
@@ -49,7 +50,7 @@ def returnName1(ID_Num,result):
     cur.execute(check_id)
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
-    threshold = 70
+    threshold = 60
 
     temp = False
     for x in res:
@@ -72,9 +73,11 @@ def returnName1(ID_Num,result):
             text_to_speech(result_text)
             print(f"Recognized: {name} (ID: {ID_Num})")
         else:
+            unknown_user_greeting()
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
     else:
+        unknown_user_greeting()
         print("User not exist")
 
 def text_to_speech(text):
@@ -92,3 +95,21 @@ def get_time_of_day_greeting():
         return "Good afternoon!"
     else:
         return "Good evening!"
+
+def unknown_user_greeting():
+
+    n = random.randint(0,5)
+
+    if n == 1:
+        text_to_speech("Hi, I'm RamiBot")
+    elif n == 2:
+        text_to_speech("Hello, I'm RamiBot")
+    elif n == 3:
+        get_time_of_day_greeting()
+    elif n == 4:
+        text_to_speech("Mabuhay, Ako si RamiBot")
+    elif n == 5:
+        text_to_speech("Kamusta, Ako si RamiBot")
+    else:
+        text_to_speech("Hey, I'm Ramibot")
+

@@ -1,16 +1,13 @@
-# This is a sample Python script.
+from kivy.app import App
+from kivy.uix.label import Label
+from kivy.lang import Builder
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Load the .kv file
+Builder.load_file('test.kv')
 
+class TestKivyApp(App):
+    def build(self):
+        return Label(text="Hello, Kivy on Raspberry Pi!")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    TestKivyApp().run()

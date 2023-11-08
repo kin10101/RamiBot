@@ -10,11 +10,10 @@ try:
     serialInst = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 
     while True:
-        sendSerialMessage(input("input: S"))
-        serialInst.flushInput()
+        sendSerialMessage(input("input: "))
+
+        # serialInst.flushInput()
 
 
 except serial.SerialException as e:
     print(f"An error occurred: {e}")
-finally:
-    serialInst.close()
