@@ -16,5 +16,4 @@ try:
 
 except serial.SerialException as e:
     print(f"An error occurred: {e}")
-finally:
-    serialInst.close()
+
