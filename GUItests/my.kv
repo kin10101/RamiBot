@@ -1,5 +1,39 @@
+BoxLayout:
+    orientation: 'vertical'
 
-MDBoxLayout:
-    MDLabel:
-        text: "HELLO"
-        color: 0,12,0,1
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        MDLabel:
+            text: "Hello, I'm RamiBot!"
+            font_size: 60
+            theme_text_color: "Secondary"
+            halign: "center"
+
+        MDRaisedButton:
+            text: "Programs Offered"
+            size_hint: (1.2, 0.5)
+            bold: True
+            font_size: 25
+            align: "center"
+            size_hint_x: 0.5
+            md_bg_color: (6/255.0, 38/255.0, 201/255.0, 0.5)
+            on_release: app.programs()
+
+        MDRaisedButton:
+            text: "Offices and Floor Maps"
+            size_hint: (1.2, 0.5)
+            bold: True
+            font_size: 25
+            md_bg_color: (6/255.0, 38/255.0, 201/255.0, 0.5)
+            on_release: app.office()
+
+        # Add more buttons as needed
