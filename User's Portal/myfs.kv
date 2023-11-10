@@ -7,7 +7,6 @@ WindowManager:
     OfficesWindow:
 
     SoEFacultyWindow:
-    SoEInfo1Window:
 
 <MainWindow>:
     name: "first"
@@ -19,13 +18,12 @@ WindowManager:
 
     GridLayout:
         cols: 1
-        size_hint: (0.7, 0.8)
+        size_hint: (0.7, 0.75)
         pos_hint: {"x":0.15, "y":0.15}
         Label:
             text: "Faculty Schedule"
             font_size: 75
             bold: True
-
         Button:
             text: "Senior High School"
             size_hint:(1.2, 0.5)
@@ -68,15 +66,16 @@ WindowManager:
 
     GridLayout:
         cols: 1
-        size_hint: (0.7, 0.8)
+        size_hint: (0.7, 0.7)
         pos_hint: {"x":0.15, "y":0.15}
         Label:
             text: "Senior High School"
             font_size: 75
+            bold: True
         Button:
             text: "Science, Technology, Engineering, and Mathematics (STEM)"
             size_hint:(1.2, 0.5)
-            font_size: 20
+            font_size: 25
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
         Button:
             text: "Accountacy, Business and Management (ABM)"
@@ -107,11 +106,12 @@ WindowManager:
 
     GridLayout:
         cols: 1
-        size_hint: (0.7, 0.8)
+        size_hint: (0.7, 0.75)
         pos_hint: {"x":0.15, "y":0.15}
         Label:
             text: "College Department"
-            font_size: 65
+            font_size: 75
+            bold: True
         Button:
             text: "School of Engineering (SoE)"
             size_hint:(1.2, 0.5)
@@ -123,7 +123,7 @@ WindowManager:
         Button:
             text: "School of Computing and Information Technology (SoCIT)"
             size_hint:(1.2, 0.5)
-            font_size: 21
+            font_size: 25
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
         Button:
             text: "School of Multimedia and Arts (SoMA)"
@@ -156,65 +156,46 @@ WindowManager:
         source: 'bg.png'
         allow_stretch: True
         keep_ratio: False
-    Image:
-        source: 'soel.png'
-        size_hint: (0.6, 0.2)
-        pos_hint: {"x":0.2, "y":0.7}
     GridLayout:
         cols: 1
-        size_hint: (0.7, 0.52)
+        size_hint: (0.7, 0.8)
         pos_hint: {"x":0.15, "y":0.15}
-
+        Label:
+            text: "SoE Faculty"
+            font_size: 75
+            bold: True
         Button:
             text: "Engr. Einstein D. Yong"
             size_hint:(1.2, 0.5)
             font_size: 25
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "sir yong"
-                root.manager.transition.direction = "left"
-
+        Button:
+            text: "Engr. Leonardo A. Samaniego"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Engr. Luigi Carlo M. De Jesus"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Engr. Sergio R. Peruda"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+        Button:
+            text: "Engr. Stanley Glenn E. Brucal"
+            size_hint:(1.2, 0.5)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
         Button:
             text: "back"
             size_hint:(1.2, 0.2)
             pos_hint:(0.2, 0.2)
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
             on_release:
-                app.root.current = "first"
-                root.manager.transition.direction = "right"
-
-<SoEInfo1Window>:
-    name: "sir yong"
-    Image:
-        source: 'bg.png'
-        allow_stretch: True
-        keep_ratio: False
-    GridLayout:
-        cols: 2
-        size_hint: (0.7, 0.8)
-        pos_hint: {"x":0.125, "y":0.065}
-        Image:
-            source: 'prof.png'
-            size_hint: (0.15, 0.15)
-        Label:
-            text: "Sir Yong"
-            pos_hint: {"x":1.5, "y":1.5}
-            font_size: 45
-        GridLayout:
-            cols: 1
-            size_hint: (0.7, 0.8)
-            pos_hint: {"x":0.15, "y":0.15}
-            Label:
-                text: "Prof Schedule"
-                size_hint:(1.2, 0.5)
-                font_size: 40
-        Button:
-            text: "back"
-            size_hint:(1.2, 0.2)
-            pos_hint:(0.2, 0.2)
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "first"
+                app.root.current = "college"
                 root.manager.transition.direction = "right"
 
 <GradWindow>:
@@ -228,9 +209,7 @@ WindowManager:
         cols: 1
         size_hint: (0.7, 0.8)
         pos_hint: {"x":0.15, "y":0.15}
-        Label:
-            text: "Graduate Schools"
-            font_size: 70
+
         Button:
             text: "Master of Engineering in Computer Engineering"
             size_hint:(1.2, 0.5)
@@ -271,26 +250,3 @@ WindowManager:
                 app.root.current = "first"
                 root.manager.transition.direction = "right"
 
-<OfficesWindow>:
-    name: "offices"
-    Image:
-        source: 'bg.png'
-        allow_stretch: True
-        keep_ratio: False
-
-    GridLayout:
-        cols: 1
-        size_hint: (0.7, 0.8)
-        pos_hint: {"x":0.15, "y":0.15}
-        Label:
-            text: "Offices"
-            font_size: 70
-
-        Button:
-            text: "back"
-            size_hint:(1.2, 0.2)
-            pos_hint:(0.2, 0.2)
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "first"
-                root.manager.transition.direction = "right"

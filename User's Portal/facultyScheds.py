@@ -1,5 +1,3 @@
-from kivy.uix.image import Image
-
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
@@ -21,9 +19,6 @@ class OfficesWindow(Screen):
     pass
 
 class SoEFacultyWindow(Screen):
-    pass
-
-class SoEInfo1Window(Screen):
     pass
 
 class WindowManager(ScreenManager):
