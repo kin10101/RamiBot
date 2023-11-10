@@ -70,6 +70,7 @@ class MainWindow(App):
 
         self.po.bind(on_press=self.programs) #to call button
         self.offices.bind(on_press=self.office)
+        self.fs.bind(on_press=self.faculty)
         return self.window
 
     def programs(self, instance):
@@ -77,6 +78,9 @@ class MainWindow(App):
 
     def office(self, instance):
         subprocess.call(['python','officeInfo.py'])
+
+    def faculty(self, instance):
+        subprocess.call(['python', 'facultyScheds.py'])
 
 if __name__ == "__main__":
     MainWindow().run()  # run program

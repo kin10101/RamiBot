@@ -6,7 +6,8 @@ from kivy.core.window import Window
 
 class MainWindow(Screen):
     pass
-
+class SchedulesWindow(Screen):
+    pass
 class AdmissionsWindow(Screen):
     pass
 class FloorMapsWindow(Screen):
