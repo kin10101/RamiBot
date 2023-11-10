@@ -5,6 +5,9 @@ import speech_recognition as sr
 import serialModule
 import voicebotengine
 import mimictts as ts
+from pygtts import text_to_speech as tts
+
+
 
 WAKE_WORD = 'hello rami'
 WAKE_WORD_VARIATIONS = [
@@ -76,7 +79,10 @@ def test_assistant():
                 if any(variation in text for variation in WAKE_WORD_VARIATIONS):
                     wakeword_detected = True
                     wake_word_response = voicebotengine.get_from_json("GEN hello")
-                    ts.speak(wake_word_response)
+
+                    tts(wake_word_response, lang='en')
+                    # ts.speak(wake_word_response)
+
                     print('Wake word detected. Now listening...')
                     ts.playAudioFile('audio/activate.wav')
 
@@ -92,7 +98,8 @@ def test_assistant():
                     # generate a response from the chatbot
                     response = handle_command(text, context)
                     if response:
-                        ts.speak(response)
+                        tts(response, lang='en')
+                        # ts.speak(response)
 
                     ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
                     serialModule.sendSerialMessage('1')
@@ -103,7 +110,7 @@ def test_assistant():
         except sr.UnknownValueError:
             if wakeword_detected is True:
                 ts.playAudioFile('audio/deactivate.wav') #sound to indicate that the wake word was not detected
-                print("Wake word detected")
+                print("Wake word detected but")
 
             print("Unable to recognize speech")
         except sr.WaitTimeoutError:
