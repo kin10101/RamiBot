@@ -8,7 +8,7 @@ if not os.path.exists(dataset_dir):
     os.makedirs(dataset_dir)
 
 # Open a video capture object
-video = cv2.VideoCapture(1)
+video = cv2.VideoCapture(0)
 
 # Load a Haar Cascade Classifier for face detection
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")

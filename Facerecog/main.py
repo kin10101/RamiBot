@@ -2,8 +2,7 @@ import mysql.connector
 import datetime
 import pyttsx3
 import re
-import os
-import shutil
+from Voicebot import pygtts
 
 RamiDB = mysql.connector.connect(
     host = "192.168.80.4",
@@ -69,17 +68,13 @@ def returnName1(ID_Num,result):
         # Convert the recognition result to text
         if result > threshold:
             result_text = f"'{greeting}', '{name}'"
-            text_to_speech(result_text)
+            pygtts.text_to_speech(result_text)
             print(f"Recognized: {name} (ID: {ID_Num})")
         else:
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
     else:
         print("User not exist")
-
-def text_to_speech(text):
-    engine.say(text)
-    engine.runAndWait()
 
 def get_time_of_day_greeting():
     # Get the current hour
@@ -92,3 +87,16 @@ def get_time_of_day_greeting():
         return "Good afternoon!"
     else:
         return "Good evening!"
+
+def greeted_users_timestamp(user_id):
+    try:
+        cur.execute('INSERT INTO greeted_users (ID_Number) VALUES (?)', (user_id))
+
+        RamiDB.commit()
+        print(f"User ID {user_id} added to greeted_users database")
+
+    except Exception as e:
+        print(f"Error adding user to the greeted_user database: {e}")
+
+    finally:
+        RamiDB.close()
