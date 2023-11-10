@@ -14,7 +14,7 @@ class MainWindow(App):
         self.window.cols = 1
         self.background_color = '#213b9a'
         self.window.size_hint = (0.8, 0.65)
-        self.window.pos_hint = {"center_x": 0.5, "center_y": 0.6}
+        self.window.pos_hint = {"center_x": 0.5, "center_y": 0.55}
 
         # add widgets to window
         background = Image(source='bg.png', allow_stretch=True, keep_ratio=False)
@@ -23,7 +23,8 @@ class MainWindow(App):
         # label widget
         self.label = Label(
             text="Hello, I'm RamiBot!",
-            font_size=60,
+            font_size=75,
+            bold=True,
             color='#FFFFFF'
         )
         self.window.add_widget(self.label)  #to call
@@ -31,8 +32,7 @@ class MainWindow(App):
         self.po = Button(
             text="Programs Offered",
             size_hint=(1.2, 0.5),
-            bold=True,
-            font_size=25,
+            font_size=30,
             background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
             background_normal = ""  #to copy exact color
         )
@@ -41,30 +41,27 @@ class MainWindow(App):
         self.fs = Button(
             text="Faculty Scheduless",
             size_hint=(1.2, 0.5),
-            bold=True,
-            font_size=25,
+            font_size=30,
             background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
-            background_normal=""
+            background_normal = ""
         )
         self.window.add_widget(self.fs)
 
         self.offices = Button(
             text="Offices and Floor Maps",
             size_hint=(1.2, 0.5),
-            bold=True,
-            font_size=25,
+            font_size=30,
             background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
-            background_normal=""
+            background_normal = ""
         )
         self.window.add_widget(self.offices)
 
         self.announce = Button(
             text="Announcements",
             size_hint=(1.2, 0.5),
-            bold=True,
-            font_size=25,
+            font_size=30,
             background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
-            background_normal=""
+            background_normal = ""
         )
         self.window.add_widget(self.announce)
 
