@@ -1,7 +1,7 @@
 {
     "intents": [
         {
-            "tag": "GEN hello",
+            "tag": "GEN_hello",
             "patterns": [
                 "hi",
                 "hello",
@@ -17,7 +17,7 @@
             ]
         },
         {
-            "tag": "Fallback unknown",
+            "tag": "FB_unknown",
             "patterns": [],
             "responses": [
                 "sorry, I cant understand you, could you please repeat what you said?",
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "tag": "FB swearwords",
+            "tag": "FB_swearwords",
             "patterns": [
                 "tang ina", "tangina", "fuck you", "stupid", "bitch", "gago", "shit",
                 "puta", "pota", "ina mo"
@@ -37,7 +37,7 @@
             ]
         },
         {
-            "tag": "GEN good morning",
+            "tag": "GEN_goodmorning",
             "patterns": [
                 "good morning rami",
                 " good day rami",
@@ -50,7 +50,7 @@
             ]
         },
         {
-            "tag": "GEN bye",
+            "tag": "GEN_bye",
             "patterns": [
                 "goodbye",
                 "bye",
@@ -69,7 +69,7 @@
             "context_set": ""
         },
         {
-            "tag": "GEN help",
+            "tag": "GEN_help",
             "patterns": [
                 "how can you help me",
                 "what can you do",
@@ -82,20 +82,7 @@
             ]
         },
         {
-            "tag": "RAMI height",
-            "patterns": [
-                "how tall are you",
-                "how tall is rami",
-                "how tall are you rami",
-                "how tall is rami bot",
-                "how tall are you rami bot"
-            ],
-            "responses": [
-                "I'm 4.5 feet tall"
-            ]
-        },
-        {
-            "tag": "GEN thanks",
+            "tag": "GEN_thanks",
             "patterns": [
                 "thanks",
                 "thank you",
@@ -135,7 +122,7 @@
             ]
         },
         {
-            "tag": "GEN who are you",
+            "tag": "RAMI_who_are_you",
             "patterns": [
                 "who are you",
                 "sino ka",
@@ -149,7 +136,7 @@
             ]
         },
         {
-            "tag": "GEN capabilities",
+            "tag": "RAMI_capabilities",
             "patterns": [
                 "what can you do",
                 "what are you capable of doing"
@@ -157,6 +144,19 @@
             "responses": [
                 "i am currently capable of answering questions that i am trained for",
                 "at the moment, i can't do much because I am still in development"
+            ]
+        },
+        {
+            "tag": "RAMI_height",
+            "patterns": [
+                "how tall are you",
+                "how tall is rami",
+                "how tall are you rami",
+                "how tall is rami bot",
+                "how tall are you rami bot"
+            ],
+            "responses": [
+                "I'm 4.5 feet tall"
             ]
         },
         {
@@ -172,44 +172,7 @@
             ],
             "context_set": "apc_programs"
         },
-        {
-            "tag": "PRG shs",
-            "patterns": [
-                "what is senior high school",
-                "tell me more about shs",
-                "high school"
-            ],
-            "responses": [
-                "senior high school is a two year program open to junior highschool graduates. it is divided into three strands which are STEM, ABM, and HUMSS."
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG soe courses",
-            "patterns": [
-                "engineering",
-                "soe",
-                "school of engineering"
-            ],
-            "responses": [
-                "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "FN_sing",
-            "patterns": [
-                "sing a song"
-            ],
-            "responses": [
-                " "
-            ],
-            "function": [
-                "sing"
-            ]
-        },
+        
         {
             "tag": "FN_current_time",
             "patterns": [
@@ -244,62 +207,14 @@
             ]
         },
         {
-            "tag": "FN_add_intents",
+            "tag": "APC address",
             "patterns": [
-                "i want to add intents",
-                "add intents",
-                "let me teach you new words",
-                "i want to teach you new words"
+                "what is the address of APC",
+                "what is the address of asia pacific college",
+                "apc located"
             ],
             "responses": [
-                "please input the intent_tag, followed by the words you want to add, and the response you want to give"
-            ],
-            "function": [
-                "add_intents"
-            ]
-        },
-        {
-            "tag": "FN_edit_intents",
-            "patterns": [
-                "i want to edit intents",
-                "edit intents"
-            ],
-            "responses": [
-                "please enter the tag of the intent you want to edit"
-            ],
-            "function": [
-                "edit_intents"
-            ]
-        },
-        {
-            "tag": "FN_show_intents",
-            "patterns": [
-                "show intents",
-                "let me see intents",
-                "i want to see the intents",
-                "show me the list of intents"
-            ],
-            "responses": [
-                "sure here is the list of intents"
-            ],
-            "function": [
-                "show_intents"
-            ]
-        },
-        {
-            "tag": "FN_update",
-            "patterns": [
-                "train yourself",
-                "retrain",
-                "update",
-                "update yourself",
-                "begin training"
-            ],
-            "responses": [
-                "updating myself, please wait"
-            ],
-            "function": [
-                "update"
+                "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
             ]
         },
         {
@@ -401,116 +316,7 @@
                 "APC graduates are employed in various sectors of businesses and industries."
             ]
         },
-        {
-            "tag": "APC successful alumni",
-            "patterns": [
-                "Can you give me examples of successful APC alumni?"
-            ],
-            "responses": [
-                "Some successful APC alumni include CEOs, entrepreneurs, and leaders in various industries."
-            ]
-        },
-        {
-            "tag": " 4 year program duration",
-            "patterns": [
-                "how long is the program"
-            ],
-            "responses": [
-                "The program is a four-year undergraduate degree program."
-            ]
-        },
-        {
-            "tag": "BSCS",
-            "patterns": [
-                "What is the Bachelor of Science in Computer Science",
-                "tell me more about the BSCS program",
-                "What is the BSCS program?"
-            ],
-            "responses": [
-                "The Bachelor of Science in Computer Science (BSCS) is a four-year undergraduate degree program that focuses on theories, concepts, and computing solutions for business, society, and industry."
-            ]
-        },
-        {
-            "tag": "BSCS Curriculum",
-            "patterns": [
-                "What does the BSCS curriculum cover",
-                "what are the topics taught in the computer science program",
-                "What is the objective of the BSCS program"
-            ],
-            "responses": [
-                "The curriculum of the BSCS program highlights theories, concepts, algorithmic foundations, and implementation and application of information, computing and innovative solutions. Its objective is to provide students with a unique learning experience through the appropriate combination of theories, hands-on exercises, teamwork, and guided project work."
-            ]
-        },
-        {
-            "tag": "BSCS-SS",
-            "patterns": [
-                "What is the Bachelor of Science in Computer Science with specialization in Systems Software?",
-                "Can you tell me about the BSCS-SS program?"
-            ],
-            "responses": [
-                "The Bachelor of Science in Computer Science with specialization in Systems Software (BSCS-SS) is a four-year undergraduate degree program that aims to educate students in theories, concepts, and tools for systems software development."
-            ]
-        },
-        {
-            "tag": "BS-SF",
-            "patterns": [
-                "What is the Bachelor of Science in Computer Science with specialization in Security Digital Forensics?",
-                "Can you tell me about the BS-SF program?"
-            ],
-            "responses": [
-                "The Bachelor of Science in Computer Science with specialization in Security Digital Forensics (BS-SF) is a four-year undergraduate degree program that aims to produce IT graduates skilled in digital forensics and computer networking and security."
-            ]
-        },
-        {
-            "tag": "BS-SF Curriculum",
-            "patterns": [
-                "What topics are covered under the BS-SF program?",
-                "What is the objective of the BS-SF program?"
-            ],
-            "responses": [
-                "The topics covered under the BS-SF program include digital forensics investigation stages, principles of investigation, legal studies, evidence handling, operating systems, hardware network protocols, data structures, programming, and scripting languages. Its objective is to produce graduates who are skilled in digital forensics, industry standards, and computer networking and security."
-            ]
-        },
-        {
-            "tag": "about_BSCS",
-            "patterns": [
-                "What is Bachelor of Science in Computer Science?",
-                "tell me more about BSCS?"
-            ],
-            "responses": [
-                "Bachelor of Science in Computer Science is a four-year undergraduate degree program that teaches theories, concepts, algorithmic foundations, and computing solutions."
-            ]
-        },
-        {
-            "tag": "about_BSCS_SS",
-            "patterns": [
-                "What is BSCS-SS?",
-                "Can you explain what Bachelor of Science in Computer Science with specialization in Systems Software is?"
-            ],
-            "responses": [
-                "BSCS-SS is a four-year undergraduate degree program that specializes in systems software. It covers programming, systems analysis and design, testing and software engineering."
-            ]
-        },
-        {
-            "tag": "about_BS_SF",
-            "patterns": [
-                "What is BS-SF?",
-                "What is Bachelor of Science in Computer Science with specialization in Security & Digital Forensics?"
-            ],
-            "responses": [
-                "BS-SF is a four-year undergraduate degree program that specializes in security and digital forensics. It covers topics on forensic sciences like Principles of Investigation, Legal Studies and Evidence Handling."
-            ]
-        },
-        {
-            "tag": "career_opportunities",
-            "patterns": [
-                "What career opportunities can I get with a degree in BSCS?",
-                "What jobs can I pursue after graduating from BSCS?"
-            ],
-            "responses": [
-                "As a BSCS graduate, you can work in various industries such as software development, network administration, cybersecurity, and data analytics."
-            ]
-        },
+        
         {
             "tag": "requirements",
             "patterns": [
@@ -521,126 +327,7 @@
                 "The admission requirements for BSCS may vary per institution, but generally, you need to have a high school diploma or its equivalent and pass the entrance examination."
             ]
         },
-        {
-            "tag": "duration",
-            "patterns": [
-                "How long does it take to complete BSCS?",
-                "What is the duration of BSCS?"
-            ],
-            "responses": [
-                "BSCS is a four-year undergraduate degree program."
-            ]
-        },
-        {
-            "tag": "future_study",
-            "patterns": [
-                "Can I pursue a master's degree after completing BSCS?",
-                "What post-graduate degrees can I pursue after BSCS?"
-            ],
-            "responses": [
-                "Yes, you can pursue a master's degree after completing BSCS. You can choose to pursue a master's degree in Computer Science or related fields such as Data Science, Cybersecurity, or Information Technology."
-            ]
-        },
-        {
-            "tag": "why_choose_BSCS",
-            "patterns": [
-                "Why should I choose BSCS as my undergraduate degree?",
-                "What are the advantages of taking BSCS?"
-            ],
-            "responses": [
-                "BSCS is a highly in-demand program that offers various career opportunities. It teaches students theories, concepts, and innovative computing solutions that cater to the needs of different industries."
-            ]
-        },
-        {
-            "tag": "bsit_program",
-            "patterns": [
-                "What is the Bachelor of Science in Information Technology (BSIT) program?"
-            ],
-            "responses": [
-                "The Bachelor of Science in Information Technology (BSIT) is a four-year trimestral undergraduate degree program that aims to prepare students to solve business, societal, and industry problems using IT as a tool."
-            ]
-        },
-        {
-            "tag": "bsit_duration",
-            "patterns": [
-                "What is the duration of the BSIT program?"
-            ],
-            "responses": [
-                "The BSIT program is a four-year undergraduate degree program."
-            ]
-        },
-        {
-            "tag": "bsit_objective",
-            "patterns": [
-                "What is the objective of the BSIT program?"
-            ],
-            "responses": [
-                "The goal of the BSIT program is to gear up students in becoming 'information technologists' who can assist individuals, organizations, and society in solving problems using relevant IT tools and techniques."
-            ]
-        },
-        {
-            "tag": "bsit_career",
-            "patterns": [
-                "What are the career prospects after completing the BSIT program?"
-            ],
-            "responses": [
-                "After completing the BSIT program, students can pursue careers in various fields such as software development, web development, database administration, network administration, and many more."
-            ]
-        },
-        {
-            "tag": "bsit_courses",
-            "patterns": [
-                "Can you provide more information about the courses offered in the BSIT program?"
-            ],
-            "responses": [
-                "The BSIT program offers courses in areas such as systems analysis and design, IT services, advanced hardware support, mobile and web application development, game development, and several programming languages."
-            ]
-        },
-        {
-            "tag": "bsit_admission",
-            "patterns": [
-                "Are there any prerequisites or admission requirements for the BSIT program?"
-            ],
-            "responses": [
-                "Admission requirements for the BSIT program may vary depending on the institution, but typically include a high school diploma or equivalent and passing the entrance exam."
-            ]
-        },
-        {
-            "tag": "bsit_mobile",
-            "patterns": [
-                "Can you tell me more about the mobile and web application development courses offered in the BSIT program?"
-            ],
-            "responses": [
-                "The mobile and web application development courses offered in the BSIT program provide students with the knowledge and skills needed to develop applications for mobile devices and the web."
-            ]
-        },
-        {
-            "tag": "bsit_experience",
-            "patterns": [
-                "Are there any opportunities for hands-on experience or internships during the BSIT program?"
-            ],
-            "responses": [
-                "Many institutions offer opportunities for hands-on experience or internships during the BSIT program to provide students with real-world experience."
-            ]
-        },
-        {
-            "tag": "barch_program",
-            "patterns": [
-                "What is the Bachelor of Architecture (B. Arch) program at APC?"
-            ],
-            "responses": [
-                "The Bachelor of Architecture (B. Arch) program in APC is a four-year and one-term, trimestral professional degree program that aims to graduate future-ready architects with the necessary skills and abilities to utilize technology to generate trailblazing architectural solutions to present and future built-environment challenges."
-            ]
-        },
-        {
-            "tag": "College admission requirements",
-            "patterns": [
-                "What are the admission requirements"
-            ],
-            "responses": [
-                "Admission requirements for the B. Arch program may vary depending on the institution, but typically include a high school diploma or equivalent and passing the entrance exam."
-            ]
-        },
+       
         {
             "tag": "GEN food prices",
             "patterns": [
@@ -671,7 +358,7 @@
             ]
         },
         {
-            "tag": "SPC credits",
+            "tag": "credits",
             "patterns": [
                 "Who made you",
                 " who developed you",
@@ -680,6 +367,66 @@
             ],
             "responses": [
                 "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
+            ]
+        },
+        {
+            "tag": "GEN food",
+            "patterns": [
+                "what food is available in the cafeteria",
+                "what food is available in the canteen",
+                "what food is available in the cafeteria",
+                "what food is available in the canteen"
+            ],
+            "responses": [
+                "The cafeteria offers a variety of food and drinks. You can choose from a selection of rice meals, sandwiches, pasta, and snacks. They also have a variety of drinks and desserts."
+            ]
+        },
+        {
+            "tag": "GEN food hours",
+            "patterns": [
+                "what time does the cafeteria open",
+                "what time does the canteen open",
+                "what time does the cafeteria close",
+                "what time does the canteen close"
+            ],
+            "responses": [
+                "The cafeteria is open from 7:00 AM to 7:00 PM."
+            ]
+        },
+        {
+            "tag": "GEN food menu",
+            "patterns": [
+                "what food is available in the cafeteria",
+                "what food is available in the canteen",
+                "what food is available in the cafeteria",
+                "what food is available in the canteen"
+            ],
+            "responses": [
+                "The cafeteria offers a variety of food and drinks. You can choose from a selection of rice meals, sandwiches, pasta, and snacks. They also have a variety of drinks and desserts."
+            ]
+        },
+        {
+            "tag": "GEN food hours",
+            "patterns": [
+                "what time does the cafeteria open",
+                "what time does the canteen open",
+                "what time does the cafeteria close",
+                "what time does the canteen close"
+            ],
+            "responses": [
+                "The cafeteria is open from 7:00 AM to 7:00 PM."
+            ]
+        },
+        {
+            "tag": "GEN food menu",
+            "patterns": [
+                "what food is available in the cafeteria",
+                "what food is available in the canteen",
+                "what food is available in the cafeteria",
+                "what food is available in the canteen"
+            ],
+            "responses": [
+                "The cafeteria offers a variety of food and drinks. You can choose from a selection of rice meals, sandwiches, pasta, and snacks. They also have a variety of drinks and desserts."
             ]
         },
         {
@@ -705,44 +452,193 @@
             ]
         },
         {
-            "tag": "APC address",
-            "patterns": [
-                "what is the address of APC",
-                "what is the address of asia pacific college",
-                "apc located"
-            ],
-            "responses": [
-                "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
-            ]
-        },
-        {
-            "tag": "end presentation DELETE",
-            "patterns": [
-                "presentation"
-            ],
-            "responses": [
-                "Thank you for listening to our presentation! any suggestions and recommendations are highly appreciated!"
-            ]
-        },
-        {
-            "tag": "chatbot process DELETE",
-            "patterns": [
-                "chatbot work",
-                "explain the process chatbot"
-            ],
-            "responses": [
-                "So, for the chatbot feature, text input from the user is preprocessed by means of tokenization which splits up raw text into individual words, and is then normalized using lemmatization which converts the word into its base form. The next step is the removal of stop words or words that provide little to no semantic value. This helps remove noise in the data and helps me to focus more on the meaningful words. Once the text has been preprocessed it is converted into a bag of words representation so that the pre-trained model can analyze and predict the probability of each vector and output the response with the highest probability. "
-            ]
-        },
-        {
-            "tag": "ECE what is ECE",
-            "patterns": [
-                "what is electronics engineering",
-                " what is ece"
-            ],
-            "responses": [
-                "The Bachelor of Science in Electronics Engineering (BS ECE) is a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
-            ]
-        }
+            "tag": "schedule",
+            "patterns": ["What is the schedule?", "What are the events?", "What's happening on November 23, 2023?"],
+            "responses": ["The schedule for November 23, 2023 includes registration, keynote speech, opening remarks, a talk on navigating the digital frontier, panel discussions, and breakout sessions. For more details, please refer to the official event schedule."]
+          },
+          {
+            "tag": "event_location",
+            "patterns": ["Where is the event?",
+                         "Where is the event taking place?",
+                         "Where is the chedx event happening?"],
+            "responses": ["The event is taking place at SM Megatrade Halls 2&3."]
+          },
+          {
+            "tag": "registration_location",
+            "patterns": ["Where is the registration?",
+                         "where can i register?"],
+            "responses": ["The registration booths are at SM Megatrade Halls 2&3."]
+          },
+          {
+            "tag": "keynote_speech_location",
+            "patterns": ["Where is the keynote speech?"],
+            "responses": ["The keynote speech will be held in the Plenary Hall (Hall 2)."]
+          },
+          {
+            "tag": "opening_remarks_location",
+            "patterns": ["Where are the opening remarks?"],
+            "responses": ["The opening remarks will be held in the Plenary Hall (Hall 2)."]
+          },
+          {
+            "tag": "talk_location",
+            "patterns": ["Where is the talk on navigating the digital frontier?"],
+            "responses": ["The talk on navigating the digital frontier will be in the Plenary Hall (Hall 2)."]
+          },
+          {
+            "tag": "panel_discussion_location",
+            "patterns": ["Where are the panel discussions?"],
+            "responses": ["The panel discussions will be in the Plenary Hall (Hall 2)."]
+          },
+          {
+            "tag": "breakout_sessions_location",
+            "patterns": ["Where are the breakout sessions?"],
+            "responses": ["The breakout sessions will be in the Function Rooms (Hall 3)."]
+          },
+          {
+            "tag": "registration_time",
+            "patterns": ["What time is the registration?", "When is the registration?"],
+            "responses": ["The registration is from 8:00 AM to 9:00 AM."]
+          },
+          {
+            "tag": "keynote_speech_time",
+            "patterns": ["What time is the keynote speech?", "When is the keynote speech?"],
+            "responses": ["The keynote speech is from 9:00 AM to 9:30 AM."]
+          },
+          {
+            "tag": "opening_remarks_time",
+            "patterns": ["What time are the opening remarks?", "When are the opening remarks?"],
+            "responses": ["The opening remarks are from 9:30 AM to 9:45 AM."]
+          },
+          {
+            "tag": "talk_time",
+            "patterns": ["What time is the talk on navigating the digital frontier?", "When is the talk on navigating the digital frontier?"],
+            "responses": ["The talk on navigating the digital frontier is from 9:45 AM to 10:15 AM."]
+          },
+          {
+            "tag": "panel_discussion_time",
+            "patterns": ["What time are the panel discussions?", "When are the panel discussions?"],
+            "responses": ["The panel discussions are from 10:15 AM to 11:15 AM."]
+          },
+          {
+            "tag": "breakout_sessions_time",
+            "patterns": ["What time are the breakout sessions?", "When are the breakout sessions?"],
+            "responses": ["The breakout sessions are from 11:15 AM to 12:00 PM."]
+          },
+          {
+            "tag": "registration_date",
+            "patterns": ["What date is the registration?", "When is the registration?"],
+            "responses": ["The registration is on November 23, 2023."]
+          },
+          {
+            "tag": "keynote_speech_date",
+            "patterns": ["What date is the keynote speech?", "When is the keynote speech?"],
+            "responses": ["The keynote speech is on November 23, 2023."]
+          },
+          {
+            "tag": "opening_remarks_date",
+            "patterns": ["What date are the opening remarks?", "When are the opening remarks?"],
+            "responses": ["The opening remarks are on November 23, 2023."]
+          },
+          {
+            "tag": "talk_date",
+            "patterns": ["What date is the talk on navigating the digital frontier?", "When is the talk on navigating the digital frontier?"],
+            "responses": ["The talk on navigating the digital frontier is on November 23, 2023."]
+          },
+          {
+            "tag": "panel_discussion_date",
+            "patterns": ["What date are the panel discussions?", "When are the panel discussions?"],
+            "responses": ["The panel discussions are on November 23, 2023."]
+          },
+          {
+            "tag": "breakout_sessions_date",
+            "patterns": ["What date are the breakout sessions?", "When are the breakout sessions?"],
+            "responses": ["The breakout sessions are on November 23, 2023."]
+          },
+          {
+            "tag": "registration",
+            "patterns": ["What is the registration?", "What happens during the registration?"],
+            "responses": ["The registration is the process of checking in and getting your ID and other materials for the event."]
+          },
+          {
+            "tag": "keynote_speech",
+            "patterns": ["What is the keynote speech?", "What happens during the keynote speech?"],
+            "responses": ["The keynote speech is a talk given by a keynote speaker to set the underlying tone and summarize the core message or most important revelation of the event."]
+          },
+          {
+            "tag": "breakout_sessions",
+            "patterns": ["What are the breakout sessions?", "Who are the speakers in the breakout sessions?"],
+            "responses": ["There are several breakout sessions on topics like Tech Trends in Cybersecurity, IBM SkillsBuild session, Tech Trends in Audit and Finance, and more. The speakers include Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          },
+          {
+            "tag": "panel_discussions",
+            "patterns": ["What are the panel discussions?", "Who are the speakers in the panel discussions?"],
+            "responses": ["There are several panel discussions on topics like Tech Trends in Cybersecurity, IBM SkillsBuild session, Tech Trends in Audit and Finance, and more. The speakers include Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          },
+          {
+            "tag": "talk",
+            "patterns": ["What is the talk on navigating the digital frontier?", "Who are the speakers in the talk on navigating the digital frontier?"],
+            "responses": ["The talk on navigating the digital frontier is a talk given by a keynote speaker to set the underlying tone and summarize the core message or most important revelation of the event."]
+          },
+          {
+            "tag": "opening_remarks",
+            "patterns": ["What are the opening remarks?"],
+            "responses": ["The opening remarks are a talk given by a keynote speaker to set the underlying tone and summarize the core message or most important revelation of the event."]
+          },
+          {
+            "tag": "event",
+            "patterns": ["What is the event?", "What happens during the event?"],
+            "responses": ["The event is a conference on the latest trends in technology."]
+          },
+          {
+            "tag": "goodbye",
+            "patterns": ["Bye", "See you later", "Goodbye"],
+            "responses": ["See you later, thanks for visiting", "Have a nice day", "Bye! Come back again soon."]
+          },
+          {
+            "tag": "thanks",
+            "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks for the help"],
+            "responses": ["Happy to help!", "Any time!", "My pleasure"]
+          },
+          {
+            "tag": "options",
+            "patterns": ["How can I get to the venue?", "How do I get to the venue?", "How do I get to the event?", "How can I get to the event?", "How do I get to the venue?", "How can I get to the venue?", "How do I get to the venue?", "How can I get to the venue?", "How do I get to the venue?", "How can I get to the venue?", "How do I get to the venue?", "How can I get to the venue?", "How do I get to the venue?", "How can I get to the venue?", "How do I get to the venue?"],
+            "responses": ["You can get to the venue by taking the MRT and getting off at the Ortigas station. From there, you can walk to SM Megamall and take the walkway to SM Megatrade Halls 2&3."]
+          },
+          {
+            "tag": "breakout_sessions_speakers",
+            "patterns": ["Who are the speakers in the breakout sessions?", "Who are the speakers?"],
+            "responses": ["The speakers include Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          },
+          {
+            "tag": "panel_discussions_speakers",
+            "patterns": ["Who are the speakers in the panel discussions?", "Who are the speakers?"],
+            "responses": ["The speakers include Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          },
+          {
+            "tag": "talk_speakers",
+            "patterns": ["Who are the speakers in the talk on navigating the digital frontier?", "Who are the speakers?"],
+            "responses": ["The speakers are Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          },
+          {
+            "tag": "opening_remarks_speakers",
+            "patterns": ["Who are the speakers in the opening remarks?", "Who are the speakers?"],
+            "responses": ["The speakers are Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          },
+          {
+            "tag": "event_speakers",
+            "patterns": ["Who are the speakers?", "Who are the speakers?"],
+            "responses": ["The speakers are Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          },
+          {
+            "tag": "keynote_speakers",
+            "patterns": ["Who are the keynote speakers?", "Who are the speakers?"],
+            "responses": ["The keynote speakers are Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          },
+          {
+            "tag": "breakout_sessions_speakers",
+            "patterns": ["Who are the speakers in the breakout sessions?", "Who are the speakers?"],
+            "responses": ["The speakers include Carlos Tingson, Yean Feng Yue, Christine Kempeneers, and others."]
+          }
+      
     ]
 }
