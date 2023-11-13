@@ -1,83 +1,104 @@
-FloatLayout:
-    orientation: 'horizontal'
-
-    MDFloatLayout:
-        size_hint: 0.5, 1
-        pos_hint: {'x': 0}
-        md_bg_color: 1, 1, 1, 1
-
-        MDLabel:
-            text: 'RamiBot'
-            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
-            font_size: "40sp"
-            padding: 20, 20
+MDScreen:
+    name: 'demo'
 
 
-        MDLabel:
-            text: 'Hi! I am Rami, APCs very own Robotic Assistant. I can help you with a variety of tasks, from answering questions to helping you find your way around campus. What would you like to do?'
-            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
-            font_size: "20sp"
-            padding: 20, 20
+    FloatLayout:
+        orientation: 'horizontal'
 
-    MDFloatLayout:
-        size_hint: 0.5, 1
-        pos_hint: {'x': 0.5}
-        md_bg_color: 1,1,1,1
+        MDFloatLayout:
+            size_hint: 0.5, 1
+            pos_hint: {'x': 0}
+            md_bg_color: .1, .1, .1, 1
 
-        MDGridLayout:
-            cols: 2
-            rows: 2
-            spacing: 10
-            padding: 10
-            size_hint: 0.8, 0.7
-            pos_hint: {'center_x': .5, 'center_y': .5}  # Adjust x and y values based on your layout
-            md_bg_color: 1, 1, 1, 1
+            MDLabel:
+                text: 'RamiBot'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+                font_size: "40sp"
+                padding: 20, 20
+                font_name: 'Poppins'
+                color: 1, 1, 1, 1
 
-            MDCard:
-                orientation: "vertical"
-                size_hint: 1,1
-                md_bg_color: 0.2, 0.2, 0.2, 1
 
-                MDRaisedButton:
-                    text: 'Chat bot'
-                    color: 0,0,0, 1
-                    pos_hint: {'center_x': .5, 'center_y': .5}
-                    size_hint: 1, 1
+            MDLabel:
+                text: 'Hi! I am Rami, APCs very own Robotic Assistant. I can help you with a variety of tasks, from answering questions to helping you find your way around campus. What would you like to do?'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+                font_size: "20sp"
+                padding: 20, 20
+                font_name: 'Poppins'
+                font_size: "25sp"
+                color: 1, 1, 1, 1
 
-            MDCard:
-                orientation: "vertical"
-                size_hint: 1, 1
-                md_bg_color: 0.2, 0.2, 0.5, 1
+        MDFloatLayout:
+            size_hint: 0.5, 1
+            pos_hint: {'x': 0.5}
+            md_bg_color: .1,.1,.1,1
 
-                MDRaisedButton:
-                    text: 'Voice bot'
-                    pos_hint: {'center_x': .5, 'center_y': .5}
+            MDGridLayout:
+                cols: 2
+                rows: 2
+                spacing: 10
+                padding: 10
+                size_hint: 0.8, 0.7
+                pos_hint: {'center_x': .5, 'center_y': .5}  # Adjust x and y values based on your layout
+                md_bg_color: .1, .1, .1, 1
+
+                MDCard:
+                    orientation: "vertical"
                     size_hint: 1,1
-            MDCard:
-                orientation: "vertical"
-                size_hint: 1, 1
-                md_bg_color: 0.2, 0.2, 0.2, 1
-                MDRaisedButton:
-                    text: 'Face Recognition'
-                    pos_hint: {'center_x': .5, 'center_y': .5}
-                    size_hint: .9,.9
+                    md_bg_color: 0.2, 0.2, 0.2, 1
 
-            MDCard:
-                orientation: "vertical"
-                size_hint: 1,1
-                md_bg_color: 0.2, 0.2, 0.2, 1
+                    MDRaisedButton:
+                        text: 'Chat bot'
+                        color: 0,0,0, 1
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint: 1, 1
+                        font_name: 'Poppins'
+                        font_size: "25sp"
+                        on_release: root.manager.current = 'ChatGUI'
 
-                MDRaisedButton:
-                    text: 'Info Console'
-                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+                MDCard:
+                    orientation: "vertical"
                     size_hint: 1, 1
+                    md_bg_color: 0.2, 0.2, 0.5, 1
 
+                    MDRaisedButton:
+                        text: 'Voice bot'
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint: 1,1
+                        font_name: 'Poppins'
+                        font_size: "25sp"
 
+                MDCard:
+                    orientation: "vertical"
+                    size_hint: 1, 1
+                    md_bg_color: 0.2, 0.2, 0.2, 1
+                    MDRaisedButton:
+                        text: 'Face Recognition'
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint: 1,1
+                        font_name: 'Poppins'
+                        font_size: "25sp"
 
-        MDLabel:
-            text: 'Demo Features'
-            pos_hint: {'center_x': .5 , 'center_y': 0.9}  # Center the GridLayout
-            font_size: "30sp"
-            color: 1, 1, 1, 1
-            padding: 20, 20
+                MDCard:
+                    orientation: "vertical"
+                    size_hint: 1,1
+                    md_bg_color: 0.2, 0.2, 0.2, 1
+
+                    MDRaisedButton:
+                        text: 'Info Console'
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        size_hint: 1, 1
+                        font_name: 'Poppins'
+                        font_size: "25sp"
+                        on_release: root.manager.current = 'mypo'
+
+            MDLabel:
+                text: 'Demo Features'
+                pos_hint: {'center_x': 1 , 'center_y': 0.9}  # Center the GridLayout
+                font_size: "30sp"
+                color: .95, .95, .95, 1
+                padding: 20, 20
+                font_name: 'Poppins'
+
 
