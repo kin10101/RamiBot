@@ -51,6 +51,15 @@ MDScreen:
                 font_name: "Poppins"
                 theme_text_color: "Custom"
                 text_color: 0, 0, 0, 1
+            MDRoundFlatButton:
+                text: "Back"
+                pos_hint: {"center_x": .1, "center_y": .5}
+                font_size: "18sp"
+                font_name: "Poppins"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                on_release: root.manager.current = 'demo'
+                transition: "fade"
 
         ScrollView:
             size_hint_y: .77

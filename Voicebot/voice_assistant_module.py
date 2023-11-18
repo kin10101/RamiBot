@@ -1,4 +1,5 @@
 import sys
+import time
 
 import speech_recognition as sr
 
@@ -24,7 +25,8 @@ WAKE_WORD_VARIATIONS = [
     "jeremy",
     "hi rami",
     "hi ronnie",
-    "hello remy"
+    "hello remy",
+    "hey siri"
 ]
 
 
@@ -51,6 +53,7 @@ def get_wake_word():
 
 
 def test_assistant():
+
     context = [""]
 
     while True:
@@ -62,7 +65,7 @@ def test_assistant():
             with sr.Microphone() as source:
                 r = sr.Recognizer()
                 r.pause_threshold = 0.8
-                r.energy_threshold = 9000
+                r.energy_threshold = 2000
                 r.operation_timeout = 5000
                 r.dynamic_energy_threshold = True
 
@@ -78,19 +81,20 @@ def test_assistant():
                 # check wake word
                 if any(variation in text for variation in WAKE_WORD_VARIATIONS):
                     wakeword_detected = True
-                    wake_word_response = voicebotengine.get_from_json("GEN hello")
+                    wake_word_response = voicebotengine.get_from_json("GEN_hello")
 
-                    tts(wake_word_response, lang='en')
+                    # tts(wake_word_response, 'en')
+
                     # ts.speak(wake_word_response)
 
                     print('Wake word detected. Now listening...')
                     ts.playAudioFile('audio/activate.wav')
 
-                    serialModule.sendSerialMessage('2')
+                    # serialModule.sendSerialMessage('2')
 
 
                     # listen for the command after wake word is detected
-                    audio = r.listen(source=source, timeout=5, phrase_time_limit=8)
+                    audio = r.listen(source=source, timeout=12, phrase_time_limit=8)
                     text = r.recognize_google(audio, language='english')
                     text = text.lower()
                     print("Recieved command: " + text)
@@ -102,7 +106,7 @@ def test_assistant():
                         # ts.speak(response)
 
                     ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
-                    serialModule.sendSerialMessage('1')
+                    # serialModule.sendSerialMessage('1')
 
 
         except sr.RequestError:
