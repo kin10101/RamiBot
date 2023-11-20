@@ -6,11 +6,14 @@ from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.label import MDLabel
 from kivy.properties import StringProperty, NumericProperty
 from Chatbot.chatbot import handle_request
+from kivy.config import Config
 
 # Import and reference ChatBotGUI classes
 from chatbotGUI import ChatScreen, Command, Response
 
 Window.size = (1920, 1080)
+Window.softinput_mode = "below_target"
+Config.set('kivy','keyboard_mode','dock')
 
 class MainWindow(MDApp):
 
@@ -20,7 +23,7 @@ class MainWindow(MDApp):
         # ADD ALL SCREENS HERE
         screen_manager.add_widget(Builder.load_file('my.kv'))
         screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
-        screen_manager.add_widget(Builder.load_file('mypo.kv'))
+        #screen_manager.add_widget(Builder.load_file('mypo.kv'))
         screen_manager.add_widget(Builder.load_file('voice.kv'))
         screen_manager.add_widget(ChatScreen())
 
