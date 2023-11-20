@@ -7,14 +7,38 @@ from kivymd.uix.label import MDLabel
 from kivy.properties import StringProperty, NumericProperty
 from Chatbot.chatbot import handle_request
 from kivy.config import Config
-
+from kivy.uix.textinput import TextInput
 # Import and reference ChatBotGUI classes
 from chatbotGUI import ChatScreen, Command, Response
 
 Window.size = (1920, 1080)
+Window.keyboard_anim_args = {'d': .2, 't': 'in_out_expo'}
 Window.softinput_mode = "below_target"
-Config.set('kivy','keyboard_mode','dock')
+Config.set('kivy','keyboard_mode','multi_touch')
 
+
+class CustomTextInput(TextInput):
+    def __init__(self, **kwargs):
+        super(CustomTextInput, self).__init__(**kwargs)
+        #self.bind(focus=self.on_focus)
+
+    def on_focus(self, *args):
+        self.setup_keyboard()
+        print("focus")
+
+    def setup_keyboard(self):
+        kb = Window.request_keyboard(self._keyboard_close, self)
+        if kb.widget:
+            kb.widget.layout = 'qwerty.json'
+            kb.widget.height = 200
+            kb.widget.width = 800
+            kb.font_size = 20
+            kb.widget.background_color = (1, 1, 1, 1)
+
+    def _keyboard_close(self):
+        print("keyboard close")
+        #self.focus = False
+        pass
 class MainWindow(MDApp):
 
     def build(self):
