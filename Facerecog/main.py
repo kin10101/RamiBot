@@ -1,15 +1,17 @@
+import random
 import mysql.connector
 import datetime
 import pyttsx3
 import re
 from Voicebot import pygtts
+import array as ar
 
 RamiDB = mysql.connector.connect(
     host = "192.168.80.4",
     user = "marj",
     passwd = 'RAMIcpe211',
     database = "ramibot",
-    port = "3306",
+    #port = "1000",
     autocommit  = True
     )
 
@@ -88,15 +90,9 @@ def get_time_of_day_greeting():
     else:
         return "Good evening!"
 
-def greeted_users_timestamp(user_id):
-    try:
-        cur.execute('INSERT INTO greeted_users (ID_Number) VALUES (?)', (user_id))
+def greet_new_user():
+    random_num = random.randint(1,5)
 
-        RamiDB.commit()
-        print(f"User ID {user_id} added to greeted_users database")
+def time_stamp():
 
-    except Exception as e:
-        print(f"Error adding user to the greeted_user database: {e}")
 
-    finally:
-        RamiDB.close()

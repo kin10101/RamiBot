@@ -20,7 +20,7 @@ class MainWindow(MDApp):
         # ADD ALL SCREENS HERE
         screen_manager.add_widget(Builder.load_file('my.kv'))
         screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
-        screen_manager.add_widget(Builder.load_file('mypo.kv'))
+        #screen_manager.add_widget(Builder.load_file('mypo.kv'))
         screen_manager.add_widget(Builder.load_file('voice.kv'))
         screen_manager.add_widget(ChatScreen())
 
