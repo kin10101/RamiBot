@@ -123,13 +123,20 @@ def time_stamp(ID_Num, result_text):
         cur.execute(user_query)
         results = cur.fetchall()
 
-        for result in results:
-            last_update = result[0]
-            time_difference = current_time - last_update
-            if time_difference.total_seconds() > 3600:
-                pygtts.text_to_speech(result_text)
-            else:
-                print("already greeted an hour ago")
+        if results:
+            if all(len(result) >= 2 for result in results):
+                # Sort the results based on the timestamp in descending order
+                sorted_results = sorted(results, key=lambda x: x[1], reverse=True)
+
+                most_recent_increment = sorted_results[0]
+                last_update = most_recent_increment[1]
+                time_difference = current_time - last_update
+                if time_difference.total_seconds() > 3600:
+                    pygtts.text_to_speech(result_text)
+                else:
+                    print("already greeted an hour ago")
+        else:
+            print("Each result tuple should have at least two elements.")
     else:
         print("user not in db")
 
