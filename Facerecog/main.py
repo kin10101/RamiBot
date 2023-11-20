@@ -73,9 +73,12 @@ def returnName1(ID_Num,result):
         # Convert the recognition result to text
         if result > threshold:
             result_text = f"'{greeting}', '{name}'"
-            pygtts.text_to_speech(result_text)
-            time_stamp(ID_Num)
             print(f"Recognized: {name} (ID: {ID_Num})")
+            time_stamp(ID_Num, result_text)
+            if name == "None":
+                greet_new_user()
+            else:
+                pass
         else:
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
@@ -96,9 +99,41 @@ def get_time_of_day_greeting():
 
 def greet_new_user():
     random_num = random.randint(1,5)
+    if random_num == 1:
+        return "Hello, I'm Ramibot!"
+    elif random_num == 2:
+        return "Kamusta, Ako si Ramibot!"
+    elif random_num == 3:
+        return "Hi, I'm Ramibot!"
+    elif random_num == 4:
+        return "What up, I'm Ramibot!"
+    elif random_num == 5:
+        return "Whatcha doin, I'm Ramibot!"
 
-def time_stamp(ID_Num):
+def time_stamp(ID_Num, result_text):
     new_user = f"INSERT INTO greeted_user (user_id) VALUES ({ID_Num})"
     cur.execute(new_user)
-    print(cur.rowcount, "Upload to DB")
+    uploaded = cur.rowcount
+    current_time = datetime.datetime.now()
+    print(uploaded, "timestamp uploaded to db")
+
+    if uploaded == 1:
+        #check if timestamp is greater than 30
+        user_query = f"SELECT time_stamp FROM greeted_user WHERE user_id = {ID_Num}"
+        cur.execute(user_query)
+        result = cur.fetchone()
+
+        if result:
+            last_update = result[0]
+            time_difference = current_time - last_update
+            if time_difference.total_seconds() > 3600:
+                pygtts.text_to_speech(result_text)
+            else:
+                print("already greeted an hour ago")
+    else:
+        print("user not in db")
+
+    cur.close()
+
+
 

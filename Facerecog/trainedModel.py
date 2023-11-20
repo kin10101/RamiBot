@@ -20,21 +20,13 @@ while True:
 
         if conf > 70:
 
-            count = count + 1
-
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y - 40), (x + w, y), (50, 50, 255), -1)
 
-            if count == 1:
-                    m.returnName1(str(serial), conf)
-                    if serial == currentID:
-                        count = 0
-                        currentID = 0
-                    else:
-                        continue
-            else:
-                continue
+            #greet user with voice
+            m.returnName1(str(serial), conf)
+
         else:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
