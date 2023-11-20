@@ -23,8 +23,10 @@ MDScreen:
                 font_name: "Poppins"
                 theme_text_color: "Custom"
                 text_color: 0, 0, 0, 1
-                on_release: root.manager.current = 'demo'
-                transition: "fade"
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.manager.current = 'demo'
+
 
             MDIconButton:
                 icon: "microphone"
