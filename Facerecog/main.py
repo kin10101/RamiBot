@@ -121,9 +121,9 @@ def time_stamp(ID_Num, result_text):
         #check if timestamp is greater than 30
         user_query = f"SELECT time_stamp FROM greeted_user WHERE user_id = {ID_Num}"
         cur.execute(user_query)
-        result = cur.fetchone()
+        results = cur.fetchall()
 
-        if result:
+        for result in results:
             last_update = result[0]
             time_difference = current_time - last_update
             if time_difference.total_seconds() > 3600:
@@ -133,7 +133,7 @@ def time_stamp(ID_Num, result_text):
     else:
         print("user not in db")
 
-    cur.close()
+
 
 
 
