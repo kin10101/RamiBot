@@ -68,6 +68,8 @@ MDScreen:
                         size_hint: 1,1
                         font_name: 'Poppins'
                         font_size: "25sp"
+                        on_release: root.manager.current = 'voice'
+                        on_release: root.manager.transition.direction = 'left'
 
                 MDCard:
                     orientation: "vertical"
@@ -92,6 +94,8 @@ MDScreen:
                         font_name: 'Poppins'
                         font_size: "25sp"
                         on_release: root.manager.current = 'mypo'
+                        on_release: root.manager.transition.direction = 'left'
+
 
             MDLabel:
                 text: 'Demo Features'
