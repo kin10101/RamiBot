@@ -6,11 +6,14 @@ from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.label import MDLabel
 from kivy.properties import StringProperty, NumericProperty
 from Chatbot.chatbot import handle_request
+from kivy.config import Config
 
 # Import and reference ChatBotGUI classes
 from chatbotGUI import ChatScreen, Command, Response
 
 Window.size = (1920, 1080)
+Window.softinput_mode = "below_target"
+Config.set('kivy','keyboard_mode','dock')
 
 class MainWindow(MDApp):
 
