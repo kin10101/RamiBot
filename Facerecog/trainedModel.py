@@ -1,5 +1,3 @@
-import time
-
 import cv2
 import main as m
 
@@ -30,7 +28,6 @@ while True:
 
             if count == 1:
                     m.returnName1(str(serial), conf)
-                    #m.greeted_users_timestamp(str(serial))
                     if serial == currentID:
                         count = 0
                         currentID = 0

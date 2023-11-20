@@ -4,25 +4,24 @@ import datetime
 import pyttsx3
 import re
 from Voicebot import pygtts
-import array as ar
-
-RamiDB = mysql.connector.connect(
-    host = "192.168.80.4",
-    user = "marj",
-    passwd = 'RAMIcpe211',
-    database = "ramibot",
-    #port = "1000",
-    autocommit  = True
-    )
 
 #RamiDB = mysql.connector.connect(
-    #host = "localhost",
-    #user = "root",
-    #passwd = '',
+    #host = "192.168.80.4",
+    #user = "marj",
+    #passwd = 'RAMIcpe211',
     #database = "ramibot",
-    #port = "3306",
+    #port = "1000",
     #autocommit  = True
     #)
+
+RamiDB = mysql.connector.connect(
+    host = "localhost",
+    user = "root",
+    passwd = '',
+    database = "ramibot",
+    port = "3306",
+    autocommit  = True
+    )
 
 cur = RamiDB.cursor()
 engine = pyttsx3.init()
@@ -65,12 +64,17 @@ def returnName1(ID_Num,result):
         name = name[0][0] if name else ""
 
         # Remove non-alphabetic characters from the name using regex
-        name = re.sub(r'[^a-zA-Z\s]', '', name)
+        if isinstance(name, str):
+            name = re.sub(r'[^a-zA-Z\s]', '', name)
+        else:
+            # Handle the case where name is not a string (e.g., raise an exception or handle it appropriately)
+            pass
 
         # Convert the recognition result to text
         if result > threshold:
             result_text = f"'{greeting}', '{name}'"
             pygtts.text_to_speech(result_text)
+            time_stamp(ID_Num)
             print(f"Recognized: {name} (ID: {ID_Num})")
         else:
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
@@ -93,6 +97,8 @@ def get_time_of_day_greeting():
 def greet_new_user():
     random_num = random.randint(1,5)
 
-def time_stamp():
-
+def time_stamp(ID_Num):
+    new_user = f"INSERT INTO greeted_user (user_id) VALUES ({ID_Num})"
+    cur.execute(new_user)
+    print(cur.rowcount, "Upload to DB")
 
