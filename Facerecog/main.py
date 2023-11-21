@@ -25,6 +25,7 @@ RamiDB = mysql.connector.connect(
 
 cur = RamiDB.cursor()
 engine = pyttsx3.init()
+
 def insertToDB(ID_Num):
     # Check if the user with the given ID_Num already exists in the database
     user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = {ID_Num}"
@@ -48,6 +49,7 @@ def returnName1(ID_Num,result):
     cur.execute(check_id)
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
+    unknown_user = greet_new_user()
     threshold = 70
 
     temp = False
@@ -75,7 +77,8 @@ def returnName1(ID_Num,result):
             print(f"Recognized: {name} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
             if name == "None":
-                greet_new_user()
+                unknown = f"{unknown_user}"
+                pygtts.text_to_speech(unknown)
             else:
                 pass
         else:
