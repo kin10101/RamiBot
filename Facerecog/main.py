@@ -1,31 +1,30 @@
 import random
 import mysql.connector
-import datetime
+from datetime import datetime, timedelta
 import pyttsx3
 import re
 from Voicebot import pygtts
 
-#RamiDB = mysql.connector.connect(
-    #host = "192.168.80.4",
-    #user = "marj",
-    #passwd = 'RAMIcpe211',
-    #database = "ramibot",
-    #port = "1000",
-    #autocommit  = True
-    #)
-
 RamiDB = mysql.connector.connect(
-    host = "localhost",
-    user = "root",
-    passwd = '',
+    host = "192.168.80.4",
+    user = "marj",
+    passwd = 'RAMIcpe211',
     database = "ramibot",
-    port = "3306",
+    #port = "1000",
     autocommit  = True
     )
 
+#RamiDB = mysql.connector.connect(
+    #host = "localhost",
+    #user = "root",
+    #passwd = '',
+    #database = "ramibot",
+    #port = "3306",
+    #autocommit  = True
+    #)
+
 cur = RamiDB.cursor()
 engine = pyttsx3.init()
-
 def insertToDB(ID_Num):
     # Check if the user with the given ID_Num already exists in the database
     user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = {ID_Num}"
@@ -87,7 +86,7 @@ def returnName1(ID_Num,result):
 
 def get_time_of_day_greeting():
     # Get the current hour
-    current_hour = datetime.datetime.now().hour
+    current_hour = datetime.now().hour
 
     # Determine the time of day and return a greeting message
     if 6 <= current_hour < 12:
@@ -111,34 +110,31 @@ def greet_new_user():
         return "Whatcha doin, I'm Ramibot!"
 
 def time_stamp(ID_Num, result_text):
-    new_user = f"INSERT INTO greeted_user (user_id) VALUES ({ID_Num})"
+    new_user = f"INSERT INTO greeted_users (ID_Number) VALUES ({ID_Num})"
     cur.execute(new_user)
     uploaded = cur.rowcount
-    current_time = datetime.datetime.now()
-    print(uploaded, "timestamp uploaded to db")
+    current_time = datetime.now()
+    print(uploaded, f"timestamp uploaded to db with cur_time {current_time}")
 
     if uploaded == 1:
         #check if timestamp is greater than 30
-        user_query = f"SELECT time_stamp FROM greeted_user WHERE user_id = {ID_Num}"
+        user_query = f"SELECT time_stamp FROM greeted_users WHERE ID_Number = {ID_Num} ORDER BY id LIMIT 1"
         cur.execute(user_query)
-        results = cur.fetchall()
-
-        if results:
-            if all(len(result) >= 2 for result in results):
-                # Sort the results based on the timestamp in descending order
-                sorted_results = sorted(results, key=lambda x: x[1], reverse=True)
-
-                most_recent_increment = sorted_results[0]
-                last_update = most_recent_increment[1]
-                time_difference = current_time - last_update
-                if time_difference.total_seconds() > 3600:
+        last_update = cur.fetchone()
+        print(f"last update: {last_update}")
+        if last_update:
+                last_update = last_update[0]
+                time_difference = (current_time-last_update).total_seconds()
+                print(f"time difference: {time_difference}")
+                if time_difference > 3600:
                     pygtts.text_to_speech(result_text)
+                    cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
                     print("already greeted an hour ago")
-        else:
-            print("Each result tuple should have at least two elements.")
     else:
         print("user not in db")
+
+
 
 
 
