@@ -22,4 +22,4 @@ def playAudioFile(file):
     pygame.quit()
 
 
-playAudioFile("audio/activate.wav")
+playAudioFile("/home/kin/PycharmProjects/RamiBot/audio/activate.wav")

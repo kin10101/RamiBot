@@ -28,14 +28,17 @@ MDScreen:
                     root.manager.current = 'demo'
 
 
-            MDIconButton:
-                icon: "microphone"
-                pos_hint: {"center_x": .9, "center_y": .5}
-                user_font_size: "40sp"
-                theme_text_color: "Custom"
-                text_color: 0, 0, 0, 1
-                on_release: root.manager.current = 'voice'
-                transition: "fade"
+        MDIconButton:
+            icon: "microphone"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint: .3, .3
+
+            user_font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            on_release: app.voice()
+
+
 
 
 
