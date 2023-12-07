@@ -6,22 +6,13 @@ import re
 from Voicebot import pygtts
 
 RamiDB = mysql.connector.connect(
-    host = "192.168.80.4",
+    host = "airhub-soe.apc.edu.ph",
     user = "marj",
     passwd = 'RAMIcpe211',
     database = "ramibot",
     #port = "1000",
     autocommit  = True
     )
-
-#RamiDB = mysql.connector.connect(
-    #host = "localhost",
-    #user = "root",
-    #passwd = '',
-    #database = "ramibot",
-    #port = "3306",
-    #autocommit  = True
-    #)
 
 cur = RamiDB.cursor()
 engine = pyttsx3.init()
