@@ -1,8 +1,8 @@
-import voicebotengine
-import mimictts as tts
+import Voicebot.voicebotengine as voicebotengine
+import Voicebot.mimictts as tts
 import datetime
 from datetime import datetime
-import vb_train_model
+import Voicebot.vb_train_model as vb_train_model
 
 def sing():
     print("singing")
