@@ -7,7 +7,7 @@ from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.text import LabelBase
 from kivy.config import Config
-from chatbot import handle_request
+from Chatbot.chatbot import handle_request
 from kivy.uix.vkeyboard import VKeyboard
 
 os.environ['MESA_LOADER_DRIVER_OVERRIDE'] = 'i965 ./kiwix-desktop'

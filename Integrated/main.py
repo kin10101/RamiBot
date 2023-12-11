@@ -9,7 +9,7 @@ from Chatbot.chatbot import handle_request
 from kivy.config import Config
 
 # Import and reference ChatBotGUI classes
-from chatbotGUI import ChatScreen, Command, Response
+from Chatbot.chatbotGUI import ChatScreen, Command, Response
 from Voicebot.voice_assistant_module import listenWithoutWakeword
 
 Window.size = (1920, 1080)
@@ -25,11 +25,10 @@ class MainWindow(MDApp):
         global screen_manager
         screen_manager = ScreenManager()
         # ADD ALL SCREENS HERE
-        screen_manager.add_widget(Builder.load_file('my.kv'))
-        screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
-        #screen_manager.add_widget(Builder.load_file('mypo.kv'))
-        screen_manager.add_widget(Builder.load_file('voice.kv'))
-        screen_manager.add_widget(ChatScreen())
+        screen_manager.add_widget(Builder.load_file('my.kv'))  # main screen
+        screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))  # chatbot screen
+        screen_manager.add_widget(Builder.load_file('voice.kv'))  # voice screen
+        screen_manager.add_widget(ChatScreen())  #
 
         return screen_manager
 

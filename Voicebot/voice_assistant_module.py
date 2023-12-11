@@ -124,10 +124,10 @@ def listenWithoutWakeword():
             r = sr.Recognizer()
             r.pause_threshold = 0.8
             r.energy_threshold = 2000
-            r.operation_timeout = 5000
+            r.operation_timeout = 8000
             r.dynamic_energy_threshold = True
 
-            audio = r.listen(source=source, timeout=5, phrase_time_limit=8)
+            audio = r.listen(source=source)
             print("listening now")
             ts.playAudioFile("/home/kin/PycharmProjects/RamiBot/audio/activate.wav")
             # transcribe audio input
@@ -148,14 +148,20 @@ def listenWithoutWakeword():
     except sr.RequestError:
         print("Could not request results from google Speech Recognition service")
     except sr.UnknownValueError:
-        ts.playAudioFile('audio/deactivate.wav')  # sound to indicate that the wake word was not detected
-        print("Wake word detected but")
+        ts.playAudioFile('/home/kin/PycharmProjects/RamiBot/audio/deactivate.wav')  # sound to indicate that the wake word was not detected
+        print("Wake word detected but unable to recognize speech")
         print("Unable to recognize speech")
     except sr.WaitTimeoutError:
         print("Timeout error while waiting for speech input")
     except KeyboardInterrupt:
         ts.speak("Goodbye")
         sys.exit()
+
+def buttonWithoutGUI():
+    a = 'a'
+    if input("Press enter to start listening") == a:
+        listenWithoutWakeword()
+
 
 def test_assistant():
 

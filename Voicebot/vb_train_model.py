@@ -64,7 +64,7 @@ def train_bot():
     train_x = list(training[:, 0])
     train_y = list(training[:, 1])
 
-    # Split the dataset into training, validation, and test sets
+    # Split the dataset into training, validation, and test.py sets
     split_ratio = 0.8
     num_samples = len(training)
     train_size = int(split_ratio * num_samples)
@@ -109,7 +109,7 @@ def train_bot():
     plot_history(hist)
     visualize_model(model)
 
-    # Evaluate the model with test data
+    # Evaluate the model with test.py data
     test_loss, test_accuracy = model.evaluate(np.array(test_x), np.array(test_y), verbose=0)
     print(f'Test Loss: {test_loss}, Test Accuracy: {test_accuracy}')
 
