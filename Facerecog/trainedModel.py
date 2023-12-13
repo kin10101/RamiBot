@@ -1,7 +1,7 @@
 import cv2
 import main as m
 
-video = cv2.VideoCapture(0)
+video = cv2.VideoCapture(1)
 
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
@@ -36,7 +36,7 @@ while True:
             cv2.rectangle(frame, (x, y - 40), (x + w, y), (50, 50, 255), -1)
 
 
-    #frame = cv2.resize(frame, (640, 480))
+    frame = cv2.resize(frame, (640, 480))
     faceBg[180:180 + 480, 650:650 + 640] = frame
     cv2.imshow('frame', faceBg)
 
