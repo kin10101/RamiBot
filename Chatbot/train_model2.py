@@ -87,3 +87,4 @@ def train_bot():
 
 
 
+train_bot()

@@ -3,9 +3,9 @@ import time
 
 
 def sendSerialMessage(command):
-    ser.write(command.encode('utf-8'))
+    serial.write(command.encode('utf-8'))
 
-
+'''
 try:
     ser = serial.Serial("/dev/ttyACM0", 9600, timeout=1)
 
@@ -19,3 +19,4 @@ try:
 
 except serial.SerialException as e:
     print(f"An error occurred: {e}")
+'''
