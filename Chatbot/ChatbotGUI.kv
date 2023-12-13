@@ -27,6 +27,8 @@
             size: self.width, self.height
             pos: self.pos
             radius: [23, 23, 23, 0]
+
+
 MDScreen:
     bot_name: bot_name
     text_input: text_input
@@ -49,6 +51,18 @@ MDScreen:
                 font_name: "Poppins"
                 theme_text_color: "Custom"
                 text_color: 0, 0, 0, 1
+            MDRoundFlatButton:
+                text: "Back"
+                pos_hint: {"center_x": .1, "center_y": .5}
+                font_size: "18sp"
+                font_name: "Poppins"
+                background_color: 0, 170/255, 23/255, 1
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = 'demo'
+
 
         ScrollView:
             size_hint_y: .77
@@ -105,4 +119,6 @@ MDScreen:
                 text_color: 1, 1, 1, 1
                 md_bg_color: 0, 170/255, 23/255, 1
                 on_release: app.send_message()
+
+
 

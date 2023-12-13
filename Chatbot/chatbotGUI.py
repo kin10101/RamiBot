@@ -7,13 +7,14 @@ from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.text import LabelBase
 from kivy.config import Config
-from chatbot import handle_request
+from Chatbot.chatbot import handle_request
+from kivy.uix.vkeyboard import VKeyboard
 
 os.environ['MESA_LOADER_DRIVER_OVERRIDE'] = 'i965 ./kiwix-desktop'
 
-Window.size = (500, 600)
-Config.set('graphics', 'borderless', 1)  # 0 being off 1 being on as in true/false
-
+Window.size = (1920, 1080)
+Config.set('graphics', 'borderless', 0)  # 0 being off 1 being on as in true/false
+Config.set('kivy','keyboard_mode','dock')
 
 class ChatBubble(MDLabel):
     pass
@@ -53,7 +54,6 @@ class ChatBot(MDApp):
 
     def send_message(self):
         global size, halign, value
-
         # Get the text from the text input
         self.input_text = screen_manager.get_screen("ChatGUI").text_input.text.strip()
 
@@ -94,14 +94,6 @@ class ChatBot(MDApp):
         response = ""
         context = [""]
         response = handle_request(self.input_text.lower(), context)
-        # if response is not None:
-        #     screen_manager.get_screen("ChatGUI").chat_list.add_widget(
-        #         Response(text=response, size_hint_x=.75, halign=halign))
-        # else:
-        #     # Handle the case where the response is None (e.g., no valid response from the chatbot)
-        #     screen_manager.get_screen("ChatGUI").chat_list.add_widget(
-        #         Response(text="I'm sorry, I couldn't understand that.", size_hint_x=.75, halign=halign))
-
         screen_manager.get_screen("ChatGUI").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
 

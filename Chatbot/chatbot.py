@@ -7,7 +7,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from keras.models import load_model
 
-import command_functions
+from . import command_functions
 
 # Load data
 lemmatizer = WordNetLemmatizer()

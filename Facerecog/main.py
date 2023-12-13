@@ -1,26 +1,18 @@
+import random
 import mysql.connector
-import datetime
+from datetime import datetime, timedelta
 import pyttsx3
 import re
 from Voicebot import pygtts
 
 RamiDB = mysql.connector.connect(
-    host = "192.168.80.4",
+    host = "airhub-soe.apc.edu.ph",
     user = "marj",
     passwd = 'RAMIcpe211',
     database = "ramibot",
-    port = "3306",
+    #port = "1000",
     autocommit  = True
     )
-
-#RamiDB = mysql.connector.connect(
-    #host = "localhost",
-    #user = "root",
-    #passwd = '',
-    #database = "ramibot",
-    #port = "3306",
-    #autocommit  = True
-    #)
 
 cur = RamiDB.cursor()
 engine = pyttsx3.init()
@@ -48,6 +40,7 @@ def returnName1(ID_Num,result):
     cur.execute(check_id)
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
+    unknown_user = greet_new_user()
     threshold = 70
 
     temp = False
@@ -63,13 +56,22 @@ def returnName1(ID_Num,result):
         name = name[0][0] if name else ""
 
         # Remove non-alphabetic characters from the name using regex
-        name = re.sub(r'[^a-zA-Z\s]', '', name)
+        if isinstance(name, str):
+            name = re.sub(r'[^a-zA-Z\s]', '', name)
+        else:
+            # Handle the case where name is not a string (e.g., raise an exception or handle it appropriately)
+            pass
 
         # Convert the recognition result to text
         if result > threshold:
             result_text = f"'{greeting}', '{name}'"
-            pygtts.text_to_speech(result_text)
             print(f"Recognized: {name} (ID: {ID_Num})")
+            time_stamp(ID_Num, result_text)
+            if name == "None":
+                unknown = f"{unknown_user}"
+                pygtts.text_to_speech(unknown)
+            else:
+                pass
         else:
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
@@ -78,7 +80,7 @@ def returnName1(ID_Num,result):
 
 def get_time_of_day_greeting():
     # Get the current hour
-    current_hour = datetime.datetime.now().hour
+    current_hour = datetime.now().hour
 
     # Determine the time of day and return a greeting message
     if 6 <= current_hour < 12:
@@ -88,15 +90,47 @@ def get_time_of_day_greeting():
     else:
         return "Good evening!"
 
-def greeted_users_timestamp(user_id):
-    try:
-        cur.execute('INSERT INTO greeted_users (ID_Number) VALUES (?)', (user_id))
+def greet_new_user():
+    random_num = random.randint(1,5)
+    if random_num == 1:
+        return "Hello, I'm Ramibot!"
+    elif random_num == 2:
+        return "Kamusta, Ako si Ramibot!"
+    elif random_num == 3:
+        return "Hi, I'm Ramibot!"
+    elif random_num == 4:
+        return "What up, I'm Ramibot!"
+    elif random_num == 5:
+        return "Whatcha doin, I'm Ramibot!"
 
-        RamiDB.commit()
-        print(f"User ID {user_id} added to greeted_users database")
+def time_stamp(ID_Num, result_text):
+    new_user = f"INSERT INTO greeted_users (ID_Number) VALUES ({ID_Num})"
+    cur.execute(new_user)
+    uploaded = cur.rowcount
+    current_time = datetime.now()
+    print(uploaded, f"timestamp uploaded to db with cur_time {current_time}")
 
-    except Exception as e:
-        print(f"Error adding user to the greeted_user database: {e}")
+    if uploaded == 1:
+        #check if timestamp is greater than 30
+        user_query = f"SELECT time_stamp FROM greeted_users WHERE ID_Number = {ID_Num} ORDER BY id LIMIT 1"
+        cur.execute(user_query)
+        last_update = cur.fetchone()
+        print(f"last update: {last_update}")
+        if last_update:
+                last_update = last_update[0]
+                time_difference = (current_time-last_update).total_seconds()
+                print(f"time difference: {time_difference}")
+                if time_difference > 3600:
+                    pygtts.text_to_speech(result_text)
+                    cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
+                else:
+                    print("already greeted an hour ago")
+    else:
+        print("user not in db")
 
-    finally:
-        RamiDB.close()
+
+
+
+
+
+

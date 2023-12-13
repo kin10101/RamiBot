@@ -7,11 +7,12 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from keras.models import load_model
 
-import voicecommand_functions
+import Voicebot.voicecommand_functions
+from Voicebot import voicecommand_functions
 
 # Load data
 lemmatizer = WordNetLemmatizer()
-intents = json.loads(open('eventintents.json').read())
+intents = json.loads(open('/home/kin/PycharmProjects/RamiBot/Voicebot/eventintents.json').read())
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 model = load_model('chatbot_model.h5')
