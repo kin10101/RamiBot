@@ -35,7 +35,7 @@ while True:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y - 40), (x + w, y), (50, 50, 255), -1)
 
-
+     #hi
     frame = cv2.resize(frame, (640, 480))
     faceBg[180:180 + 480, 650:650 + 640] = frame
     cv2.imshow('frame', faceBg)
