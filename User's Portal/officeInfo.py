@@ -4,7 +4,7 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
 
 
-class MainWindow(Screen):
+class OfficesMain(Screen):
     pass
 class SchedulesWindow(Screen):
     pass
