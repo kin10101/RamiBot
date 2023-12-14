@@ -8,8 +8,20 @@ class OfficesMain(Screen):
     pass
 class SchedulesWindow(Screen):
     pass
-class AdmissionsWindow(Screen):
+class Admissions(Screen):
     pass
+class Registrar(Screen):
+    pass
+class Finance(Screen):
+    pass
+class ITRO(Screen):
+    pass
+class BMO(Screen):
+    pass
+class Logistics(Screen):
+    pass
+class DO(Screen):
+    passx
 class FloorMapsWindow(Screen):
     pass
 class FirstFloor(Screen):

@@ -2,6 +2,13 @@ WindowManager:
     OfficesMain:
 
     SchedulesWindow:
+    Admissions:
+    Registrar:
+    Finance:
+    ITRO:
+    BMO:
+    Logistics:
+    DO:
 
     FloorMapsWindow:
     FirstFloor:
@@ -67,92 +74,170 @@ WindowManager:
                 root.manager.transition.direction = "right"
     GridLayout:
         cols: 2
-        rows: 4
-        size_hint: (0.8, 0.8)
-        pos_hint: {"x":0.10, "y":0.155}
-        Label:
-            text: "ADMISSION'S OFFICE"
+        size_hint: (0.7, 0.7)
+        pos_hint: {"x":0.15, "y":0.15}
+        Button:
+            text: "Admission's Office"
             size_hint:(1.2, 0.4)
             font_size: 25
-            bold: True
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Label:
-            text: "ACCOUNTING AND FINANCE OFFICE"
+            on_release:
+                app.root.current = "admissions"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Office of the Registrar"
             size_hint:(1.2, 0.4)
             font_size: 25
-            bold: True
             background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Label:
-            text: "REGISTRAR'S OFFICE"
+            on_release:
+                app.root.current = "registrar"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Accounting and Finance Office"
             size_hint:(1.2, 0.4)
             font_size: 25
-            bold: True
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "finance"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "IT Resources Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "itro"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Building Management Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "bmo"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Logistics Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "logistics"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Discipline Office"
+            size_hint:(1.2, 0.4)
+            font_size: 25
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "do"
+                root.manager.transition.direction = "left"
 
-        Label:
-            text: "IT RESOURCES OFFICE"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            bold: True
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Label:
-            text: "BUILDING MANAGEMENT OFFICE"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            bold: True
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Label:
-            text: "DISCIPLINE OFFICE"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            bold: True
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-        Label:
-            text: "GUIDANCE OFFICE"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            bold: True
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+<Admissions>:
+    name: "admissions"
+    Image:
+        source: 'o.admissions.png'
+        allow_stretch: True
+        keep_ratio: False
 
-    GridLayout:
-        cols: 2
-        rows: 4
-        size_hint: (0.8, 0.8)
-        pos_hint: {"x": 0.10, "y": 0.085}
-        Label:
-            text: "Open Hours: \n8:00am to 5:00pm (Mondays-Saturdays)"
-            size_hint: (1.2, 0.4)
-            font_size: 25
-            halign: "left"
-        Label:
-            text: "Open Hours: \n7:00am to 6:00pm (Mondays-Fridays)\n7:00am to 5:00pm (Saturdays)"
-            size_hint: (1.2, 0.4)
-            font_size: 25
-            halign: "left"
-        Label:
-            text: "Transaction Hours: \n8:00am to 5:00pm (Monday-Saturday)"
-            size_hint: (1.2, 0.4)
-            font_size: 25
-            halign: "left"
-        Label:
-            text: "Open Hours: \n7:00am to 5:00pm (Mondays-Fridays)\n7:00am to 4:00pm (Saturdays)"
-            size_hint: (1.2, 0.4)
-            font_size: 25
-            halign: "left"
-        Label:
-            text: "Open Hours: \n8:00am to 7:00pm (Mondays-Fridays)\n8:00am to 6:00pm (Saturdays)"
-            size_hint: (1.2, 0.4)
-            font_size: 25
-            halign: "left"
-        Label:
-            text: "\nDiscipline Officer's Schedule \n(Mondays-Fridays): \n8:00am to 12:00m (Room 509)\n1:00pm to 5:00pm (Room 1009)"
-            size_hint: (1.2, 0.4)
-            font_size: 25
-            halign: "left"
-        Label:
-            text: "Open Hours: \n"
-            size_hint: (1.2, 0.4)
-            font_size: 25
-            halign: "left"
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "scheds"
+                root.manager.transition.direction = "right"
+<Registrar>:
+    name: "registrar"
+    Image:
+        source: 'o.registrars.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "scheds"
+                root.manager.transition.direction = "right"
+<Finance>:
+    name: "finance"
+    Image:
+        source: 'o.finance.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "scheds"
+                root.manager.transition.direction = "right"
+<ITRO>:
+    name: "itro"
+    Image:
+        source: 'o.itro.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "scheds"
+                root.manager.transition.direction = "right"
+<BMO>:
+    name: "bmo"
+    Image:
+        source: 'o.bmo.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "scheds"
+                root.manager.transition.direction = "right"
+<Logistics>:
+    name: "logistics"
+    Image:
+        source: 'o.logistics.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "scheds"
+                root.manager.transition.direction = "right"
+<DO>:
+    name: "do"
+    Image:
+        source: 'o.do.png'
+        allow_stretch: True
+        keep_ratio: False
+
+        Button:
+            text: "back"
+            size_hint:(1.2, 0.2)
+            pos_hint:(0.2, 0.2)
+            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            on_release:
+                app.root.current = "scheds"
+                root.manager.transition.direction = "right"
 
 <FloorMapsWindow>:
     name: "floor"
@@ -169,58 +254,58 @@ WindowManager:
                 app.root.current = "first"
                 root.manager.transition.direction = "right"
     GridLayout:
-        cols: 2
-        size_hint: (0.7, 0.7)
-        pos_hint: {"x":0.15, "y":0.15}
-        Button:
-            text: "1st Floor"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "1st"
-                root.manager.transition.direction = "left"
-        Button:
-            text: "2nd Floor"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "2nd"
-                root.manager.transition.direction = "left"
-        Button:
-            text: "3rd Floor"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "3rd"
-                root.manager.transition.direction = "left"
-        Button:
-            text: "4th Floor"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "4th"
-                root.manager.transition.direction = "left"
-        Button:
-            text: "5th Floor"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "5th"
-                root.manager.transition.direction = "left"
-        Button:
-            text: "6th Floor"
-            size_hint:(1.2, 0.4)
-            font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
-            on_release:
-                app.root.current = "6th"
-                root.manager.transition.direction = "left"
-        Button:
+            cols: 2
+            size_hint: (0.7, 0.7)
+            pos_hint: {"x":0.15, "y":0.15}
+            Button:
+                text: "1st Floor"
+                size_hint:(1.2, 0.4)
+                font_size: 25
+                background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+                on_release:
+                    app.root.current = "1st"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "2nd Floor"
+                size_hint:(1.2, 0.4)
+                font_size: 25
+                background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+                on_release:
+                    app.root.current = "2nd"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "3rd Floor"
+                size_hint:(1.2, 0.4)
+                font_size: 25
+                background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+                on_release:
+                    app.root.current = "3rd"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "4th Floor"
+                size_hint:(1.2, 0.4)
+                font_size: 25
+                background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+                on_release:
+                    app.root.current = "4th"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "5th Floor"
+                size_hint:(1.2, 0.4)
+                font_size: 25
+                background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+                on_release:
+                    app.root.current = "5th"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "6th Floor"
+                size_hint:(1.2, 0.4)
+                font_size: 25
+                background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+                on_release:
+                    app.root.current = "6th"
+                    root.manager.transition.direction = "left"
+            Button:
             text: "7th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
