@@ -21,7 +21,8 @@ class BMO(Screen):
 class Logistics(Screen):
     pass
 class DO(Screen):
-    passx
+    pass
+
 class FloorMapsWindow(Screen):
     pass
 class FirstFloor(Screen):
@@ -52,7 +53,7 @@ class WindowManager(ScreenManager):
     pass
 
 Window.size = (1920,1080)
-kv2 = Builder.load_file("myoh.kv")
+kv2 = Builder.load_file("offices.kv")
 
 class Main(MDApp):
     def build (self):
