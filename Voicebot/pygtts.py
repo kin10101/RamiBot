@@ -18,7 +18,7 @@ def text_to_speech(text, lang='en'):
     pygame.time.delay(int(sound.get_length() * 1000))
     pygame.quit()
 
-
+print("imported from pyggts") #track imports
 # Example usage:
-text_input = "Rammy voice feature activated!"
-text_to_speech(text_input)
+# text_input = "Rammy voice feature activated!"
+# text_to_speech(text_input)

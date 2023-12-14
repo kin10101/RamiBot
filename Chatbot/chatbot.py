@@ -1,3 +1,4 @@
+import os
 import random
 import json
 import pickle
@@ -11,14 +12,26 @@ from . import command_functions
 
 # Load data
 lemmatizer = WordNetLemmatizer()
-intents = json.loads(open('chatbotintents.json').read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbot_model.h5')
 
+# Use os.path.join to construct file paths
+intents_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chatbotintents.json')
+words_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'words.pkl')
+classes_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'classes.pkl')
+model_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chatbot_model.h5')
+
+with open(intents_file_path, 'r') as file:
+    intents = json.load(file)
+
+with open(words_file_path, 'rb') as file:
+    words = pickle.load(file)
+
+with open(classes_file_path, 'rb') as file:
+    classes = pickle.load(file)
+
+model = load_model(model_file_path)
+print(model_file_path)
 # Get dict command mappings
 intent_methods = command_functions.command_mappings
-
 
 def clean_up_sentence(sentence):
     """Tokenize and lemmatize the sentence."""
@@ -104,7 +117,7 @@ def handle_request(message, context):
 
 def get_from_json(tag):
     """Get wake word response."""
-    with open('chatbotintents.json') as file:  # change file name when necessary
+    with open(intents_file_path) as file:  # change file name when necessary
         intents_json = json.load(file)
 
     list_of_intents = intents_json['intents']
@@ -119,6 +132,7 @@ def get_from_json(tag):
 def get_tag(message):
     tag = predict_class(message)
     return tag
+
 
 
 def run_chatbot():
@@ -140,5 +154,5 @@ def run_chatbot():
                 print(response)
 
         except Exception as e:
-            response = e
-            pass
+            response = str(e)  # Convert exception to string
+            print(response)  # Print the error message
