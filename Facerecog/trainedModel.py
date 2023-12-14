@@ -1,7 +1,7 @@
 import cv2
 import main as m
 
-video = cv2.VideoCapture(0)
+video = cv2.VideoCapture(1)
 
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
@@ -9,6 +9,8 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read("Trainer.yml")
 count = 0
 currentID = 0
+voiceTrigger = False
+faceBg = cv2.imread("faceRecogbg.png")
 
 while True:
     ret, frame = video.read()
@@ -26,6 +28,7 @@ while True:
 
             #greet user with voice
             m.returnName1(str(serial), conf)
+            voiceTrigger = True
 
         else:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
@@ -34,7 +37,8 @@ while True:
 
 
     frame = cv2.resize(frame, (640, 480))
-    cv2.imshow('frame', frame)
+    faceBg[180:180 + 480, 650:650 + 640] = frame
+    cv2.imshow('frame', faceBg)
 
     k = cv2.waitKey(1)
 

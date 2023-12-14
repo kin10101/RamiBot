@@ -3,25 +3,16 @@ import mysql.connector
 from datetime import datetime, timedelta
 import pyttsx3
 import re
-from Voicebot import pygtts
+#from Voicebot import pygtts
 
 RamiDB = mysql.connector.connect(
-    host = "192.168.80.4",
+    host = "airhub-soe.apc.edu.ph",
     user = "marj",
     passwd = 'RAMIcpe211',
     database = "ramibot",
     #port = "1000",
     autocommit  = True
     )
-
-#RamiDB = mysql.connector.connect(
-    #host = "localhost",
-    #user = "root",
-    #passwd = '',
-    #database = "ramibot",
-    #port = "3306",
-    #autocommit  = True
-    #)
 
 cur = RamiDB.cursor()
 engine = pyttsx3.init()
@@ -78,7 +69,8 @@ def returnName1(ID_Num,result):
             time_stamp(ID_Num, result_text)
             if name == "None":
                 unknown = f"{unknown_user}"
-                pygtts.text_to_speech(unknown)
+                #pygtts.text_to_speech(unknown)
+                engine.say(unknown)
             else:
                 pass
         else:
@@ -130,7 +122,8 @@ def time_stamp(ID_Num, result_text):
                 time_difference = (current_time-last_update).total_seconds()
                 print(f"time difference: {time_difference}")
                 if time_difference > 3600:
-                    pygtts.text_to_speech(result_text)
+                    #pygtts.text_to_speech(result_text)
+                    engine.say(result_text)
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
                     print("already greeted an hour ago")
