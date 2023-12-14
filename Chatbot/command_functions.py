@@ -1,7 +1,6 @@
 
 import datetime
 from datetime import datetime
-import cb_train_model
 
 def sendImage():
     pass
