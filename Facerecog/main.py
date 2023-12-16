@@ -10,7 +10,6 @@ RamiDB = mysql.connector.connect(
     user = "marj",
     passwd = 'RAMIcpe211',
     database = "ramibot",
-    #port = "1000",
     autocommit  = True
     )
 

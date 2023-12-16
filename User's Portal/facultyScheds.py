@@ -25,7 +25,7 @@ class WindowManager(ScreenManager):
     pass
 
 
-kvfs = Builder.load_file("myfs.kv")
+kvfs = Builder.load_file("faculty.kv")
 Window.size = (1920, 1080)
 Window.fullscreen = True
 class Main(MDApp):

@@ -1,56 +1,88 @@
+from kivy.app import App
+from kivy.core.window import Window
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.image import Image as KivyImage
+from kivy.graphics.texture import Texture
+from kivy.clock import Clock
 import cv2
 import os
 import main as m
 
-# Create a directory for storing the face images
-dataset_dir = "datasets"
-if not os.path.exists(dataset_dir):
-    os.makedirs(dataset_dir)
+background = KivyImage(source='face3.png', allow_stretch=True, keep_ratio=False)
+Window.add_widget(background)
 
-# Open a video capture object
-video = cv2.VideoCapture(0)
+# Initialize count as a global variable
+count = 0
 
-# Load a Haar Cascade Classifier for face detection
-detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+class MainWindow(App):
+    def build(self):
+        Window.size = (1920, 1080)
+        Window.fullscreen = True
 
-id = input("Enter user ID (e.g. 2021140544): ")
-m.insertToDB(id)
-user_dir = os.path.join(dataset_dir, id)
+        self.window = GridLayout()
+        self.window.cols = 1
+        self.background_color = '#213b9a'
+        self.window.size_hint = (0.8, 0.65)
+        self.window.pos_hint = {"center_x": 0.5, "center_y": 0.55}
 
-# Check if the user directory already exists
-if os.path.exists(user_dir):
-    # Find the maximum existing image number in the directory
-    existing_images = [f for f in os.listdir(user_dir) if f.endswith(".jpg")]
-    if existing_images:
-        existing_numbers = [int(image.split(".")[2]) for image in existing_images]
-        count = max(existing_numbers) + 1
-    else:
-        count = 101
-else:
-    os.makedirs(user_dir)
-    count = 1
+        capture_width, capture_height = 640, 480
 
-while True:
-    ret, frame = video.read()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = detect.detectMultiScale(gray, 1.3, 5)
+        # Create an Image widget to display the video feed
+        self.video_image = KivyImage(allow_stretch=True, keep_ratio=False)
+        self.window.add_widget(self.video_image)
 
-    for (x, y, w, h) in faces:
-        # Increment the count for each detected face
-        count += 1
+        # Start the OpenCV video capture with the specified size
+        self.capture = cv2.VideoCapture(0)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
 
-        face_image = gray[y:y + h, x:x + w]
-        image_path = os.path.join(user_dir, f"User.{id}.{count}.jpg")
-        cv2.imwrite(image_path, face_image)
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 1)
+        Clock.schedule_interval(self.update, 1.0 / 30.0)
+        return self.window
 
-    cv2.imshow("Frame", frame)
+    def update(self, dt):
+        global count  # Declare count as a global variable
 
-    k = cv2.waitKey(1)
+        # Read a frame from the camera
+        ret, frame = self.capture.read()
 
-    if count > 200:  # You can adjust this number as needed
-        break
+        # Customize the video capture size (width, height)
+        capture_width, capture_height = 640, 480
+        frame = cv2.resize(frame, (capture_width, capture_height))
 
-video.release()
-cv2.destroyAllWindows()
-print("Dataset Collection Done..................")
+        # Convert the OpenCV frame to a Kivy texture
+        buffer = cv2.flip(frame, 0).tostring()
+        texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
+        texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
+
+        # Update the texture of the video Image widget
+        self.video_image.texture = texture
+
+        # Perform face detection and data collection
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = detect.detectMultiScale(gray, 1.3, 5)
+
+        for (x, y, w, h) in faces:
+            # Increment the count for each detected face
+            count += 1
+
+            face_image = gray[y:y + h, x:x + w]
+            image_path = os.path.join(user_dir, f"User.{id}.{count}.jpg")
+            cv2.imwrite(image_path, face_image)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 1)
+
+            # Call the insertToDB function to insert user information into the database
+            m.insertToDB(id)
+
+if __name__ == "__main__":
+    # Load a Haar Cascade Classifier for face detection
+    detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+
+    id = input("Enter user ID (e.g., 2021140544): ")
+    m.insertToDB(id)
+    user_dir = os.path.join("datasets", id)
+
+    # Check if the user directory already exists
+    if not os.path.exists(user_dir):
+        os.makedirs(user_dir)
+
+    MainWindow().run()

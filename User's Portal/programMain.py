@@ -74,7 +74,7 @@ class WindowManager(ScreenManager):
     pass
 
 Window.size = (1920,1080)
-kv = Builder.load_file("mypo.kv")
+kv = Builder.load_file("programs.kv")
 
 class Main(MDApp):
     def build (self):
