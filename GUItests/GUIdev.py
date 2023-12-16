@@ -4,8 +4,8 @@ from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
 
-
-'''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED'''
+'''DEVELOPMENT CODE FOR GUI'''
+'''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED PACKAGE'''
 
 Window.size = (1920, 1080)
 

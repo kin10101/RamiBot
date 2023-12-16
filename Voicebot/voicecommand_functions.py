@@ -36,12 +36,15 @@ def train_bot():
     tts.speak("please restart for the changes to take effect")
     return running is False
 
+def navigateToFaceScanning():
+    print("navigating to face scanning")
 
 command_mappings = {
     "FN_sing": sing,
     "FN_current_time": get_time,
     "FN_current_date": get_date,
     "FN_update": train_bot,
+    "FN_nav_to_face_scanning": navigateToFaceScanning
 
 
 }
