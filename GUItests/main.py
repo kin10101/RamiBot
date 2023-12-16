@@ -10,6 +10,8 @@ from Chatbot.chatbot import handle_request
 # Import and reference ChatBotGUI classes
 from chatbotGUI import ChatScreen, Command, Response
 
+'''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED'''
+
 Window.size = (1920, 1080)
 
 class MainWindow(MDApp):
