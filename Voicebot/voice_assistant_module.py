@@ -1,14 +1,8 @@
 import sys
-import time
-
 import speech_recognition as sr
-
-import Voicebot.serialModule
 import Voicebot.voicebotengine as voicebotengine
 import Voicebot.mimictts as ts
 from Voicebot.pygtts import text_to_speech as tts
-
-
 
 WAKE_WORD = 'hello rami'
 WAKE_WORD_VARIATIONS = [
@@ -44,7 +38,7 @@ def get_wake_word():
     with sr.Microphone() as source:
         r = sr.Recognizer()
         r.pause_threshold = 0.8
-        r.energy_threshold = 10000
+        r.energy_threshold = 2000
         r.dynamic_energy_threshold = True
 
         audio = r.listen(source)
@@ -156,11 +150,6 @@ def listenWithoutWakeword():
     except KeyboardInterrupt:
         ts.speak("Goodbye")
         sys.exit()
-
-def buttonWithoutGUI():
-    a = 'a'
-    if input("Press enter to start listening") == a:
-        listenWithoutWakeword()
 
 
 def test_assistant():

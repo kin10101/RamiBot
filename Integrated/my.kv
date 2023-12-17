@@ -1,15 +1,22 @@
 MDScreen:
     name: 'demo'
 
-    FloatLayout:
-        orientation: 'horizontal'
 
-        MDFloatLayout:
+    FloatLayout: # This is the root widget
+        orientation: 'horizontal'
+        Image:
+            source: 'main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+
+
+        MDFloatLayout: # This is the left side layout
             size_hint: 0.5, 1
             pos_hint: {'x': 0}
-            md_bg_color: 1, 1, 1, 1
 
-            MDLabel:
+
+
+            MDLabel: # This is the title
                 text: 'RamiBot'
                 pos_hint: {'center_x': 0.5, 'center_y': 0.9}
                 font_size: "40sp"
@@ -18,7 +25,7 @@ MDScreen:
                 color: 0, 0, 0, 1
 
 
-            MDLabel:
+            MDLabel: # This is the subtitle
                 text: 'Hi! I am Rami, APCs very own Robotic Assistant. I can help you with a variety of tasks, from answering questions to helping you find your way around campus. What would you like to do?'
                 pos_hint: {'center_x': 0.5, 'center_y': 0.75}
                 font_size: "20sp"
@@ -27,12 +34,11 @@ MDScreen:
                 font_size: "25sp"
                 color: 0, 0, 0, 1
 
-        MDFloatLayout:
+        MDFloatLayout: # This is the right side layout
             size_hint: 0.5, 1
             pos_hint: {'x': 0.5}
-            md_bg_color: 1,1,1,1
 
-            MDGridLayout:
+            MDGridLayout: # This is the grid for the buttons
                 cols: 2
                 rows: 2
                 spacing: 10
@@ -83,7 +89,7 @@ MDScreen:
                         root.manager.transition.direction = "left"
                         root.manager.current = 'mypo'
 
-            MDLabel:
+            MDLabel: # This is the title
                 text: 'Demo Features'
                 pos_hint: {'center_x': 1 , 'center_y': 0.9}  # Center the GridLayout
                 font_size: "30sp"

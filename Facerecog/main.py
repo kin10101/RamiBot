@@ -122,7 +122,7 @@ def time_stamp(ID_Num, result_text):
                 print(f"time difference: {time_difference}")
                 if time_difference > 3600:
                     #pygtts.text_to_speech(result_text)
-                    engine.say(reslut_text)
+                    engine.say(result_text)
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
                     print("already greeted an hour ago")
