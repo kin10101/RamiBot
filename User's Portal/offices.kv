@@ -26,7 +26,6 @@ WindowManager:
 
 <OfficesMain>:
     name: "first"
-
     Image:
         source: 'bg.png'
         allow_stretch: True
@@ -35,17 +34,18 @@ WindowManager:
         text: "Offices and Floor Maps"
         font_size: 70
         bold: True
-        pos_hint: {"x":0.01, "y":0.27}
+        pos_hint: {"x":0.01, "y":0.29}
+        color: 1/255.0, 50/255.0, 77/255.0, 1
 
     GridLayout:
         cols: 1
-        size_hint: (0.7, 0.25)
+        size_hint: (0.7, 0.30)
         pos_hint: {"x":0.15, "y":0.40}
         Button:
             text: "Office Schedules"
             size_hint:(1.2, 0.4)
             font_size: 45
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "scheds"
                 root.manager.transition.direction = "left"
@@ -53,7 +53,7 @@ WindowManager:
             text: "Floor Maps"
             size_hint:(1.2, 0.4)
             font_size: 45
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "floor"
                 root.manager.transition.direction = "left"
@@ -81,7 +81,7 @@ WindowManager:
             text: "Admission's Office"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "admissions"
                 root.manager.transition.direction = "left"
@@ -89,7 +89,7 @@ WindowManager:
             text: "Office of the Registrar"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "registrar"
                 root.manager.transition.direction = "left"
@@ -97,7 +97,7 @@ WindowManager:
             text: "Accounting and Finance Office"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "finance"
                 root.manager.transition.direction = "left"
@@ -105,7 +105,7 @@ WindowManager:
             text: "IT Resources Office"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "itro"
                 root.manager.transition.direction = "left"
@@ -113,7 +113,7 @@ WindowManager:
             text: "Building Management Office"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "bmo"
                 root.manager.transition.direction = "left"
@@ -121,7 +121,7 @@ WindowManager:
             text: "Logistics Office"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "logistics"
                 root.manager.transition.direction = "left"
@@ -129,7 +129,7 @@ WindowManager:
             text: "Discipline Office"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "do"
                 root.manager.transition.direction = "left"
@@ -262,7 +262,7 @@ WindowManager:
             text: "1st Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "1st"
                 root.manager.transition.direction = "left"
@@ -270,7 +270,7 @@ WindowManager:
             text: "2nd Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "2nd"
                 root.manager.transition.direction = "left"
@@ -278,7 +278,7 @@ WindowManager:
             text: "3rd Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "3rd"
                 root.manager.transition.direction = "left"
@@ -286,7 +286,7 @@ WindowManager:
             text: "4th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "4th"
                 root.manager.transition.direction = "left"
@@ -294,7 +294,7 @@ WindowManager:
             text: "5th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "5th"
                 root.manager.transition.direction = "left"
@@ -302,7 +302,7 @@ WindowManager:
             text: "6th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "6th"
                 root.manager.transition.direction = "left"
@@ -310,7 +310,7 @@ WindowManager:
             text: "7th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "7th"
                 root.manager.transition.direction = "left"
@@ -318,7 +318,7 @@ WindowManager:
             text: "8th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "8th"
                 root.manager.transition.direction = "left"
@@ -326,7 +326,7 @@ WindowManager:
             text: "9th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "9th"
                 root.manager.transition.direction = "left"
@@ -334,7 +334,7 @@ WindowManager:
             text: "10th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "10th"
                 root.manager.transition.direction = "left"
@@ -342,7 +342,7 @@ WindowManager:
             text: "11th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "11th"
                 root.manager.transition.direction = "left"
@@ -350,7 +350,7 @@ WindowManager:
             text: "12th Floor"
             size_hint:(1.2, 0.4)
             font_size: 25
-            background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            background_color: 3/255.0, 167/255.0, 255/255.0, 1
             on_release:
                 app.root.current = "12th"
                 root.manager.transition.direction = "left"
