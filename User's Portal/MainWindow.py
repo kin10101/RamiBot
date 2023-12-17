@@ -25,7 +25,7 @@ class MainWindow(App):
             text="Hello, I'm RamiBot!",
             font_size=75,
             bold=True,
-            color='#FFFFFF'
+            color='#01324d'
         )
         self.window.add_widget(self.label)  #to call
 
@@ -33,7 +33,7 @@ class MainWindow(App):
             text="Programs Offered",
             size_hint=(1.2, 0.5),
             font_size=30,
-            background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
+            background_color=(1/255.0, 50/255.0, 77/255.0, 1),
             background_normal = ""  #to copy exact color
         )
         self.window.add_widget(self.po)
@@ -42,7 +42,7 @@ class MainWindow(App):
             text="Faculty Scheduless",
             size_hint=(1.2, 0.5),
             font_size=30,
-            background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
+            background_color=(1/255.0, 50/255.0, 77/255.0, 1),
             background_normal = ""
         )
         self.window.add_widget(self.fs)
@@ -51,7 +51,7 @@ class MainWindow(App):
             text="Offices and Floor Maps",
             size_hint=(1.2, 0.5),
             font_size=30,
-            background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
+            background_color=(1/255.0, 50/255.0, 77/255.0, 1),
             background_normal = ""
         )
         self.window.add_widget(self.offices)
@@ -60,7 +60,7 @@ class MainWindow(App):
             text="Announcements",
             size_hint=(1.2, 0.5),
             font_size=30,
-            background_color=(6/255.0, 38/255.0, 201/255.0, 0.5),
+            background_color=(1/255.0, 50/255.0, 77/255.0, 1),
             background_normal = ""
         )
         self.window.add_widget(self.announce)
