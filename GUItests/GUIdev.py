@@ -8,6 +8,7 @@ from kivy.uix.screenmanager import ScreenManager
 '''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED PACKAGE'''
 
 Window.size = (1920, 1080)
+Window.fullscreen = True
 
 class MainWindow(MDApp):
 
@@ -16,7 +17,12 @@ class MainWindow(MDApp):
         screen_manager = ScreenManager()
 
         # ADD ALL SCREENS TO BE USED HERE
-        screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
+        #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
+        screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
+        screen_manager.add_widget(Builder.load_file('officehours.kv'))
+        screen_manager.add_widget(Builder.load_file('floormaps.kv'))
+        screen_manager.add_widget(Builder.load_file('programsoffered.kv'))
+
 
         return screen_manager
 

@@ -1,9 +1,7 @@
 MDScreen:
-    name: 'mainmenu'
+    name: 'officehours'
 
     MDFloatLayout: # main layout
-
-
         orientation: 'vertical'
 
         Image: # Background image
@@ -17,7 +15,9 @@ MDScreen:
             icon: 'arrow-left'
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
-            on_press: root.manager.current = 'login'
+            on_press:
+                root.manager.current = 'mainmenu'
+                root.manager.transition.direction = 'right'
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
@@ -28,7 +28,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'What can I help you with?'
+                text: 'Office Hours'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -39,29 +39,16 @@ MDScreen:
             MDScrollView: # ScrollView for Buttons
                 do_scroll_x: False
 
-                MDBoxLayout: # Layout for Buttons
+                MDBoxLayout: # Buttons
                     orientation: 'vertical'
                     padding: 10
                     spacing: 25
                     size_hint_y: None
                     height: self.minimum_height
 
-                    MDFillRoundFlatButton:
-                        text: 'Office Hours'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release: root.manager.current = 'officehours'
-                        transition: 'fade'
-
 
                     MDFillRoundFlatButton:
-                        text: 'Announcements'
+                        text: 'Admissions Office'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -71,8 +58,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
 
+
                     MDFillRoundFlatButton:
-                        text: 'Faculty Schedules'
+                        text: 'Accounting and Finance Office'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -83,7 +71,7 @@ MDScreen:
                         padding: 30
 
                     MDFillRoundFlatButton:
-                        text: 'Programs Offered'
+                        text: 'Office of the Registrar'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -92,11 +80,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_release: root.manager.current = 'programsoffered'
-                        transition: 'fade'
 
                     MDFillRoundFlatButton:
-                        text: 'Floor Map and Directory'
+                        text: 'IT Resources Office'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -105,6 +91,36 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_release: root.manager.current = 'floormaps'
-                        transition: 'fade'
 
+                    MDFillRoundFlatButton:
+                        text: 'Building Management Office'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+
+                    MDFillRoundFlatButton:
+                        text: 'Logistics Office'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+
+                    MDFillRoundFlatButton:
+                        text: 'Discipline Office'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
