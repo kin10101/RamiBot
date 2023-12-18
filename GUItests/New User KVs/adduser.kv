@@ -1,9 +1,8 @@
+# go here if user wants to be added in the system
 MDScreen:
-    name: 'mainmenu'
+    name: 'adduser'
 
     MDFloatLayout: # main layout
-
-
         orientation: 'vertical'
 
         Image: # Background image
@@ -17,7 +16,7 @@ MDScreen:
             icon: 'arrow-left'
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
-            on_press: root.manager.current = 'newuser'
+            on_press: root.manager.current = 'login'
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
@@ -28,7 +27,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'What can I help you with?'
+                text: 'Please provide the needed information:'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -40,29 +39,79 @@ MDScreen:
             MDScrollView: # ScrollView for Buttons
                 do_scroll_x: False
 
-                MDBoxLayout: # Layout for Buttons
-                    orientation: 'vertical'
+                MDGridLayout: # Layout for Buttons
+                    cols: 2
                     padding: 10
                     spacing: 25
                     size_hint_y: None
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                     height: self.minimum_height
 
-                    MDFillRoundFlatButton:
-                        text: 'Office Hours'
+                    Label:
+                        text: 'Enter your school id:'
                         font_name: 'Poppins'
-                        font_size: "24sp"
+                        font_size: "34sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release:
-                            root.manager.current = 'officehours'
-                            root.manager.transition.direction = 'left'
+
+                    TextInput:
+                        id: school_id
+                        multiline: False  # Set to True if you want a multi-line input
+                        hint_text: 'Type here...'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        on_text: app.on_text_input_change(self.text)
+
+                    Label:
+                        text: 'Enter your full name:'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+
+                    TextInput:
+                        id: full_name
+                        multiline: False  # Set to True if you want a multi-line input
+                        hint_text: 'Type here...'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        on_text: app.on_text_input_change(self.text)
+
+                    Label:
+                        text: 'Enter your nickname:'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+
+                    TextInput:
+                        id: nickname
+                        multiline: False  # Set to True if you want a multi-line input
+                        hint_text: 'Type here...'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        on_text: app.on_text_input_change(self.text)
 
                     MDFillRoundFlatButton:
-                        text: 'Faculty Schedules'
+                        text: 'Cancel'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -72,11 +121,11 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'facultyscheds'
-                            root.manager.transition.direction = 'left'
+                            root.manager.current = 'newuser'
+                            root.manager.transition.direction = 'right'
 
                     MDFillRoundFlatButton:
-                        text: 'Programs Offered'
+                        text: 'Enter'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -86,33 +135,5 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'programsoffered'
-                            root.manager.transition.direction = 'left'
-
-                    MDFillRoundFlatButton:
-                        text: 'Floor Map and Directory'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release:
-                            root.manager.current = 'floormaps'
-                            root.manager.transition.direction = 'left'
-
-                    MDFillRoundFlatButton:
-                        text: 'School Information and Announcements'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release:
-                            root.manager.current = 'announcements'
+                            root.manager.current = 'mainmenu'
                             root.manager.transition.direction = 'left'

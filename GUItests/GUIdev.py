@@ -17,7 +17,9 @@ class MainWindow(MDApp):
         screen_manager = ScreenManager()
 
         # ADD ALL SCREENS TO BE USED HERE
-        #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
+        #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))1
+        screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
+        screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('officehours.kv'))
         screen_manager.add_widget(Builder.load_file('floormaps.kv'))
