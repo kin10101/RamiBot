@@ -1,5 +1,5 @@
 MDScreen:
-    name: 'officehours'
+    name: 'soe'
 
     MDFloatLayout: # main layout
         orientation: 'vertical'
@@ -16,7 +16,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                root.manager.current = 'mainmenu'
+                root.manager.current = 'programsoffered'
                 root.manager.transition.direction = 'right'
 
         MDBoxLayout: # Square transparent container
@@ -28,7 +28,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'Office Hours'
+                text: 'School of Engineering'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -49,19 +49,7 @@ MDScreen:
 
 
                     MDFillRoundFlatButton:
-                        text: 'Admissions Office'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-
-
-                    MDFillRoundFlatButton:
-                        text: 'Accounting and Finance Office'
+                        text: 'Bachelor of Science in Civil Engineering'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -72,7 +60,7 @@ MDScreen:
                         padding: 30
 
                     MDFillRoundFlatButton:
-                        text: 'Office of the Registrar'
+                        text: 'Bachelor of Science in Computer Engineering'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -83,40 +71,7 @@ MDScreen:
                         padding: 30
 
                     MDFillRoundFlatButton:
-                        text: 'IT Resources Office'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-
-                    MDFillRoundFlatButton:
-                        text: 'Building Management Office'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-
-                    MDFillRoundFlatButton:
-                        text: 'Logistics Office'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-
-                    MDFillRoundFlatButton:
-                        text: 'Discipline Office'
+                        text: 'Bachelor of Science in Electronics Engineering'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'

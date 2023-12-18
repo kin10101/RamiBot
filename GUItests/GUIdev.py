@@ -22,6 +22,13 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('officehours.kv'))
         screen_manager.add_widget(Builder.load_file('floormaps.kv'))
         screen_manager.add_widget(Builder.load_file('programsoffered.kv'))
+        screen_manager.add_widget(Builder.load_file('announcements.kv'))
+        screen_manager.add_widget(Builder.load_file('faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/soe.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/som.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/soma.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/socit.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/gradschool.kv'))
 
 
         return screen_manager

@@ -35,6 +35,7 @@ MDScreen:
                 text_color: 1, 1, 1, 1
                 pos_hint: {"x": 0, "y": .85}
                 size_hint: 1, .2
+                bold: True
 
             MDScrollView: # ScrollView for Buttons
                 do_scroll_x: False
@@ -67,6 +68,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'soe'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'School of Architecutre'
@@ -89,6 +93,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'som'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'School of Multimedia and Arts'
@@ -100,6 +107,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'soma'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'School of Computing and Information Technology'
@@ -111,6 +121,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'socit'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'Graduate Schools'
@@ -122,3 +135,6 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'gradschool'
+                            root.manager.transition.direction = 'left'

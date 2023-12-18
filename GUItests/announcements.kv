@@ -1,7 +1,9 @@
 MDScreen:
-    name: 'officehours'
+    name: 'announcements'
 
     MDFloatLayout: # main layout
+
+
         orientation: 'vertical'
 
         Image: # Background image
@@ -28,7 +30,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'Office Hours'
+                text: 'School Information and Announcements'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -40,28 +42,15 @@ MDScreen:
             MDScrollView: # ScrollView for Buttons
                 do_scroll_x: False
 
-                MDBoxLayout: # Buttons
+                MDBoxLayout: # Layout for Buttons
                     orientation: 'vertical'
                     padding: 10
                     spacing: 25
                     size_hint_y: None
                     height: self.minimum_height
 
-
                     MDFillRoundFlatButton:
-                        text: 'Admissions Office'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-
-
-                    MDFillRoundFlatButton:
-                        text: 'Accounting and Finance Office'
+                        text: 'School Events'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -72,7 +61,7 @@ MDScreen:
                         padding: 30
 
                     MDFillRoundFlatButton:
-                        text: 'Office of the Registrar'
+                        text: 'School Calendar'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -83,7 +72,7 @@ MDScreen:
                         padding: 30
 
                     MDFillRoundFlatButton:
-                        text: 'IT Resources Office'
+                        text: 'School Organizations'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -94,7 +83,7 @@ MDScreen:
                         padding: 30
 
                     MDFillRoundFlatButton:
-                        text: 'Building Management Office'
+                        text: 'Tuition Fee and Scholarships'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -105,18 +94,7 @@ MDScreen:
                         padding: 30
 
                     MDFillRoundFlatButton:
-                        text: 'Logistics Office'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-
-                    MDFillRoundFlatButton:
-                        text: 'Discipline Office'
+                        text: 'About Asia Pacific College'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
