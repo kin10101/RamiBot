@@ -1,4 +1,4 @@
-from ovos_tts_plugin_mimic3 import Mimic3TTSPlugin
+#from ovos_tts_plugin_mimic3 import Mimic3TTSPlugin
 import pygame
 
 cfg = "en_US/cmu-arctic_low" #"en_UK/apope_low"  # select voice etc here

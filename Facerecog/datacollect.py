@@ -63,7 +63,7 @@ class MainWindow(App):
 
         for (x, y, w, h) in faces:
             # Increment the count for each detected face
-            count += 1
+            self.count += 1
 
             face_image = gray[y:y + h, x:x + w]
             image_path = os.path.join(user_dir, f"User.{id}.{count}.jpg")
@@ -78,7 +78,13 @@ if __name__ == "__main__":
     detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
     id = input("Enter user ID (e.g., 2021140544): ")
-    m.insertToDB(id)
+    nickname = input("nickname: ")
+    Last_name = input("last name: ")
+    Given_name = input("given name: ")
+    MI = input("middle initial: ")
+    proffesion = input("profession (e.g. student/faculty: ")
+    m.insertToDB(id, nickname, Last_name, Given_name, MI, proffesion)
+
     user_dir = os.path.join("datasets", id)
 
     # Check if the user directory already exists
