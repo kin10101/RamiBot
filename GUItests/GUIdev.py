@@ -58,6 +58,9 @@ class MainWindow(MDApp):
             print("Source not found")
             pass
 
+    def navigateToPreviousScreen(self):
+        screen_manager.current = screen_manager.previous()
+
 
 
 if __name__ == "__main__":
