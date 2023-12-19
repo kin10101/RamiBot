@@ -1,3 +1,4 @@
 import voice_assistant_module as va
 
-va.test_assistant()
+#va.activate_on_click()
+va.activate_on_wake_word()

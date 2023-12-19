@@ -1,5 +1,4 @@
 # need sudo to run this script
-
 import RPi.GPIO as GPIO
 import time
 

@@ -1,8 +1,16 @@
 import sys
 import speech_recognition as sr
 import Voicebot.voicebotengine as voicebotengine
-import Voicebot.mimictts as ts
-from Voicebot.pygtts import text_to_speech as tts
+import Voicebot.pygtts as ts
+
+
+# Constants
+PAUSE_THRESHOLD = 0.8
+ENERGY_THRESHOLD = 2000
+OPERATION_TIMEOUT = 5000
+DYNAMIC_ENERGY_THRESHOLD = True
+LISTEN_TIMEOUT = 5
+PHRASE_TIME_LIMIT = 8
 
 WAKE_WORD = 'hello rami'
 WAKE_WORD_VARIATIONS = [
@@ -23,6 +31,10 @@ WAKE_WORD_VARIATIONS = [
     "hey siri"
 ]
 
+def listen_to_command(recognizer, source):
+    audio = recognizer.listen(source=source, timeout=LISTEN_TIMEOUT, phrase_time_limit=PHRASE_TIME_LIMIT)
+    text = recognizer.recognize_google(audio)
+    return text.lower()
 
 def handle_command(text, context):
     try:
@@ -34,117 +46,68 @@ def handle_command(text, context):
         pass
 
 
-def get_wake_word():
-    with sr.Microphone() as source:
-        r = sr.Recognizer()
-        r.pause_threshold = 0.8
-        r.energy_threshold = 2000
-        r.dynamic_energy_threshold = True
-
-        audio = r.listen(source)
-        text = r.recognize_google(audio)
-        return text.lower()
-
-def listenWithWakeword():
+def activate_on_wake_word():
     context = [""]
+    recognizer = sr.Recognizer()
+
     try:
         print('speak now')
-        # record audio from microphone
         with sr.Microphone() as source:
-            r = sr.Recognizer()
-            r.pause_threshold = 0.8
-            r.energy_threshold = 2000
-            r.operation_timeout = 5000
-            r.dynamic_energy_threshold = True
-
-            audio = r.listen(source=source, timeout=5, phrase_time_limit=8)
-            print("listening now")
+            print("listening for wake word")
 
             # transcribe audio input
-            text = r.recognize_google(audio)
-            text = text.lower()
+            text = listen_to_command(recognizer, source)
             print("Audio received to text: " + text)
 
             # check wake word
             if any(variation in text for variation in WAKE_WORD_VARIATIONS):
-                wakeword_detected = True
-                wake_word_response = voicebotengine.get_from_json("GEN_hello")
-
-                # tts(wake_word_response, 'en')
-                # ts.speak(wake_word_response)
-
                 print('Wake word detected. Now listening...')
                 ts.playAudioFile('audio/activate.wav')
 
-                # serialModule.sendSerialMessage('2')
-
                 # listen for the command after wake word is detected
-                audio = r.listen(source=source, timeout=12, phrase_time_limit=8)
-                text = r.recognize_google(audio, language='english')
-                text = text.lower()
-                print("Recieved command: " + text)
+                text = listen_to_command(recognizer, source)
+                print("Received command: " + text)
 
-                # generate a response from the chatbot
                 response = handle_command(text, context)
                 if response:
-                    tts(response, lang='en')
-                    # ts.speak(response)
+                    ts.speak(response, lang='en')
 
                 ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
-                # serialModule.sendSerialMessage('1')
-
 
     except sr.RequestError:
         print("Could not request results from google Speech Recognition service")
     except sr.UnknownValueError:
-        if wakeword_detected is True:
-            ts.playAudioFile('audio/deactivate.wav')  # sound to indicate that the wake word was not detected
-            print("Wake word detected but")
-
-        print("Unable to recognize speech")
+        print("Wake word detected but unable to recognize speech")
     except sr.WaitTimeoutError:
         print("Timeout error while waiting for speech input")
     except KeyboardInterrupt:
         ts.speak("Goodbye")
         sys.exit()
 
-
-def listenWithoutWakeword():
+def activate_on_click():
     context = [""]
+    recognizer = sr.Recognizer()
+
     try:
         print('speak now')
-        # record audio from microphone
+        ts.playAudioFile('audio/activate.wav')
         with sr.Microphone() as source:
-            r = sr.Recognizer()
-            r.pause_threshold = 0.8
-            r.energy_threshold = 2000
-            r.operation_timeout = 8000
-            r.dynamic_energy_threshold = True
-
-            audio = r.listen(source=source)
             print("listening now")
-            ts.playAudioFile("/home/kin/PycharmProjects/RamiBot/audio/activate.wav")
+
             # transcribe audio input
-            text = r.recognize_google(audio)
-            text = text.lower()
+            text = listen_to_command(recognizer, source)
             print("Audio received to text: " + text)
 
-            # generate a response from the chatbot
             response = handle_command(text, context)
             if response:
-                tts(response, lang='en')
-                # ts.speak(response)
+                ts.speak(response, lang='en')
 
             ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
-            # serialModule.sendSerialMessage('1')
-
 
     except sr.RequestError:
         print("Could not request results from google Speech Recognition service")
     except sr.UnknownValueError:
-        ts.playAudioFile('/home/kin/PycharmProjects/RamiBot/audio/deactivate.wav')  # sound to indicate that the wake word was not detected
-        print("Wake word detected but unable to recognize speech")
-        print("Unable to recognize speech")
+            print("Wake word detected but unable to recognize speech")
     except sr.WaitTimeoutError:
         print("Timeout error while waiting for speech input")
     except KeyboardInterrupt:
@@ -152,39 +115,36 @@ def listenWithoutWakeword():
         sys.exit()
 
 
-def test_assistant():
-
+def voice_assistant_loop():
+    '''continuously listen for wake word and commands'''
     context = [""]
+
+    recognizer = sr.Recognizer()
+    recognizer.pause_threshold = PAUSE_THRESHOLD
+    recognizer.energy_threshold = ENERGY_THRESHOLD
+    recognizer.operation_timeout = OPERATION_TIMEOUT
+    recognizer.dynamic_energy_threshold = DYNAMIC_ENERGY_THRESHOLD
+
 
     while True:
         wakeword_detected = False
+
         try:
             print('speak now')
 
-            # record audio from microphone
             with sr.Microphone() as source:
-                r = sr.Recognizer()
-                r.pause_threshold = 0.8
-                r.energy_threshold = 2000
-                r.operation_timeout = 5000
-                r.dynamic_energy_threshold = True
-
-                audio = r.listen(source=source, timeout=5, phrase_time_limit=8)
                 print("listening now")
 
                 # transcribe audio input
-                text = r.recognize_google(audio)
-                text = text.lower()
+                text = listen_to_command(recognizer, source)
                 print("Audio received to text: " + text)
-
 
                 # check wake word
                 if any(variation in text for variation in WAKE_WORD_VARIATIONS):
                     wakeword_detected = True
+
                     wake_word_response = voicebotengine.get_from_json("GEN_hello")
-
                     # tts(wake_word_response, 'en')
-
                     # ts.speak(wake_word_response)
 
                     print('Wake word detected. Now listening...')
@@ -192,31 +152,25 @@ def test_assistant():
 
                     # serialModule.sendSerialMessage('2')
 
-
                     # listen for the command after wake word is detected
-                    audio = r.listen(source=source, timeout=12, phrase_time_limit=8)
-                    text = r.recognize_google(audio, language='english')
-                    text = text.lower()
-                    print("Recieved command: " + text)
+                    text = listen_to_command(recognizer, source)
+                    print("Received command: " + text)
+
 
                     # generate a response from the chatbot
                     response = handle_command(text, context)
                     if response:
-                        tts(response, lang='en')
-                        # ts.speak(response)
+                        ts.speak(response, lang='en')
 
                     ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
                     # serialModule.sendSerialMessage('1')
-
 
         except sr.RequestError:
             print("Could not request results from google Speech Recognition service")
         except sr.UnknownValueError:
             if wakeword_detected is True:
-                ts.playAudioFile('audio/deactivate.wav') #sound to indicate that the wake word was not detected
-                print("Wake word detected but")
-
-            print("Unable to recognize speech")
+                ts.playAudioFile('audio/deactivate.wav')  # sound to indicate that the wake word was not detected
+                print("Wake word detected but unable to recognize speech")
         except sr.WaitTimeoutError:
             print("Timeout error while waiting for speech input")
         except KeyboardInterrupt:

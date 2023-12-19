@@ -55,7 +55,7 @@ class MainWindow(MDApp):
             label = screen_name.ids[id]
             label.source = source
         except:
-            print("Label not found")
+            print("Source not found")
             pass
 
 
