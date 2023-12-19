@@ -38,21 +38,27 @@ class MainWindow(MDApp):
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
-    def update_labels(self, screen_name, title, description, floor, schedule, image):
+    def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
-        screen_name = self.root.get_screen('mapscreen')
+        screen_name = self.root.get_screen(screen_name)
+        try:
+            label = screen_name.ids[id]
+            label.text = text
+        except:
+            print("Label not found")
+            pass
 
-        title_label = screen_name.ids.title
-        descr_label = screen_name.ids.descr
-        floor_label = screen_name.ids.floor
-        sched_label = screen_name.ids.sched
-        image_label = screen_name.ids.bg_img
+    def update_image(self, screen_name, id, source):
+        '''Update image sources in mapscreen'''
+        screen_name = self.root.get_screen(screen_name)
+        try:
+            label = screen_name.ids[id]
+            label.source = source
+        except:
+            print("Label not found")
+            pass
 
-        image_label.source = "Assets/" + image
-        descr_label.text = description
-        floor_label.text = floor
-        sched_label.text = schedule
-        title_label.text = title
+
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app

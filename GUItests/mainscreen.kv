@@ -7,6 +7,7 @@ MDScreen:
         orientation: 'vertical'
 
         Image: # Background image
+            id: bg
             source: 'Assets/main_bg.png'
             allow_stretch: True
             keep_ratio: False
@@ -17,7 +18,8 @@ MDScreen:
             icon: 'arrow-left'
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
-            on_press: root.manager.current = 'newuser'
+            on_release: app.update_image('mainmenu', 'bg', 'Assets/bg.png')
+
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
@@ -74,6 +76,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'facultyscheds'
                             root.manager.transition.direction = 'left'
+
 
                     MDFillRoundFlatButton:
                         text: 'Programs Offered'
