@@ -11,10 +11,10 @@ import main as m
 background = KivyImage(source='face3.png', allow_stretch=True, keep_ratio=False)
 Window.add_widget(background)
 
-# Initialize count as a global variable
-count = 0
-
 class MainWindow(App):
+    # Initialize count as a class variable
+    count = 0
+
     def build(self):
         Window.size = (1920, 1080)
         Window.fullscreen = True
@@ -40,8 +40,6 @@ class MainWindow(App):
         return self.window
 
     def update(self, dt):
-        global count  # Declare count as a global variable
-
         # Read a frame from the camera
         ret, frame = self.capture.read()
 
@@ -50,7 +48,7 @@ class MainWindow(App):
         frame = cv2.resize(frame, (capture_width, capture_height))
 
         # Convert the OpenCV frame to a Kivy texture
-        buffer = cv2.flip(frame, 0).tostring()
+        buffer = cv2.flip(frame, 0).tobytes()
         texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
         texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
 
@@ -63,15 +61,23 @@ class MainWindow(App):
 
         for (x, y, w, h) in faces:
             # Increment the count for each detected face
-            self.count += 1
+            MainWindow.count += 1
 
             face_image = gray[y:y + h, x:x + w]
-            image_path = os.path.join(user_dir, f"User.{id}.{count}.jpg")
+            image_path = os.path.join(user_dir, f"User.{id}.{MainWindow.count}.jpg")
             cv2.imwrite(image_path, face_image)
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 1)
+
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
+            cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
             # Call the insertToDB function to insert user information into the database
-            m.insertToDB(id)
+            m.insertToDB(id, nickname, Last_name, Given_name, MI, profession)
+
+            if MainWindow.count >= 50:
+                # Release the video capture and exit the application
+                self.capture.release()
+                App.get_running_app().stop()
 
 if __name__ == "__main__":
     # Load a Haar Cascade Classifier for face detection
@@ -82,8 +88,9 @@ if __name__ == "__main__":
     Last_name = input("last name: ")
     Given_name = input("given name: ")
     MI = input("middle initial: ")
-    proffesion = input("profession (e.g. student/faculty: ")
-    m.insertToDB(id, nickname, Last_name, Given_name, MI, proffesion)
+    profession = input("profession (e.g., student/faculty): ")
+    m.insertToDB(id, nickname, Last_name, Given_name, MI, profession)
+
 
     user_dir = os.path.join("datasets", id)
 

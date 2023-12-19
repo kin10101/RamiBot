@@ -18,40 +18,34 @@ voiceTrig = 0
 motorTrig = 0
 
 
-def nicknameToDB(nickname):
-    # Check if the user with the given ID_Num already exists in the database
-    user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = {nickname}"
-    cur.execute(user_query)
-    existing_user = cur.fetchone()
+def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
-    if existing_user:
-        print("User already in the database")
+    try:
+        # Check if the user with the given ID_Num already exists in the database
+        user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = {ID_Num}"
+        cur.execute(user_query)
+        existing_user = cur.fetchone()
 
-    else:
-        # User doesn't exist, so insert the new record
-        new_user = f"INSERT INTO ramibot_faces (ID_Number,nickname,Last_Name, Given_Name, MI) VALUES ({nickname},NULL,NULL, NULL, NULL)"
-        cur.execute(new_user)
-        print(cur.rowcount, "Upload to DB")
+        if existing_user:
+            print("User already in the database")
 
-    cur.close()
+        else:
+            # User doesn't exist, so insert the new record
+            new_user = "INSERT INTO ramibot_faces (ID_Number, nickname, Last_Name, Given_Name, MI, Profession) VALUES (%s, %s, %s, %s, %s, %s)"
+            values = (ID_Num, nickname, Last_Name, Given_name, MI, Proffesion)
+            cur.execute(new_user, values)
+            RamiDB.commit()
+            print(cur.rowcount, "Upload to DB")
 
-def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Profession):
-    # Check if the user with the given ID_Num already exists in the database
-    user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = {ID_Num}"
-    cur.execute(user_query)
-    existing_user = cur.fetchone()
+    except Exception as e:
+        print(f"Error: {e}")
 
-    if existing_user:
-        print("User already in the database")
-
-    else:
-        # User doesn't exist, so insert the new record
-        new_user = "INSERT INTO ramibot_faces (ID_Number, nickname, Last_Name, Given_Name, MI, Profession) VALUES (%s, %s, %s, %s, %s, %s)"
-        values = (ID_Num, nickname, Last_Name, Given_name, MI, Profession)
-        cur.execute(new_user, values)
-        print(cur.rowcount, "Upload to DB")
-
-    cur.close()
+    finally:
+        # Close the cursor and connection
+        if cur:
+            cur.close()
+        if RamiDB:
+            RamiDB.close()
 
 
 def returnName1(ID_Num,result):
