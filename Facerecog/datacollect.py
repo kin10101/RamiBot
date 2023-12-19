@@ -8,7 +8,7 @@ import cv2
 import os
 import main as m
 
-background = KivyImage(source='face3.png', allow_stretch=True, keep_ratio=False)
+background = KivyImage(source='facerecogbg.png', allow_stretch=True, keep_ratio=False)
 Window.add_widget(background)
 
 class MainWindow(App):
