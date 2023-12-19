@@ -17,7 +17,7 @@ class MainWindow(MDApp):
         screen_manager = ScreenManager()
 
         # ADD ALL SCREENS TO BE USED HERE
-        #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))1
+        #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
@@ -38,23 +38,21 @@ class MainWindow(MDApp):
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
-    def update_labels(self):
+    def update_labels(self, screen_name, title, description, floor, schedule, image):
         '''Update labels in mapscreen'''
-        mapscreen = self.root.get_screen('mapscreen')
-        main_layout = mapscreen.ids.main_layout
-        info_layout = mapscreen.ids.info_layout  # Correct way to access info_layout
+        screen_name = self.root.get_screen('mapscreen')
 
-        title_label = mapscreen.ids.title
-        descr_label = mapscreen.ids.descr
-        floor_label = mapscreen.ids.floor
-        sched_label = mapscreen.ids.sched
-        image = mapscreen.ids.bg_img
+        title_label = screen_name.ids.title
+        descr_label = screen_name.ids.descr
+        floor_label = screen_name.ids.floor
+        sched_label = screen_name.ids.sched
+        image_label = screen_name.ids.bg_img
 
-        image.source = "Assets/bg.png"
-        descr_label.text = "dummy text"
-        floor_label.text = "dummy text"
-        sched_label.text = "dummy text"
-        title_label.text = "dummy text"
+        image_label.source = "Assets/" + image
+        descr_label.text = description
+        floor_label.text = floor
+        sched_label.text = schedule
+        title_label.text = title
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app
