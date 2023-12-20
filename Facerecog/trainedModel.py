@@ -1,7 +1,7 @@
 import cv2
 import main as m
 
-video = cv2.VideoCapture(0)
+video = cv2.VideoCapture(1)
 
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
@@ -18,7 +18,7 @@ while True:
         serial, conf = recognizer.predict(gray[y:y + h, x:x + w])
         currentID = serial
 
-        if conf > 70:
+        if conf > 80:
 
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)

@@ -54,7 +54,7 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 70
+    threshold = 80
 
     temp = False
     for x in res:

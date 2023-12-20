@@ -32,7 +32,6 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/socit.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/gradschool.kv'))
 
-
         return screen_manager
 
     def change_screen(self, screen_name):
@@ -60,8 +59,6 @@ class MainWindow(MDApp):
 
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
-
-
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app
