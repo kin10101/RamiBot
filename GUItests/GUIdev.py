@@ -58,6 +58,18 @@ class MainWindow(MDApp):
             print("Source not found")
             pass
 
+    def get_text(self, screen_name, id):
+        '''Get text from textinput in newuser screen'''
+        screen_name = self.root.get_screen(screen_name)
+
+        try:
+            text = screen_name.ids[id]
+            return text.text
+
+        except:
+            print("Text not found")
+            pass
+
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
 

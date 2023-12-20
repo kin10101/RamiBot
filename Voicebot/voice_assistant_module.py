@@ -2,15 +2,18 @@ import sys
 import speech_recognition as sr
 import Voicebot.voicebotengine as voicebotengine
 import Voicebot.pygtts as ts
+import Voicebot.gpio as gpio
+
 
 class VoiceAssistant:
     def __init__(self):
-        self.pause_threshold = 0.8
+        self.pause_threshold = 0.6
         self.energy_threshold = 2000
         self.operation_timeout = 5000
         self.dynamic_energy_threshold = True
         self.listen_timeout = 5
         self.phrase_time_limit = 8
+        self.gpio_pin = 17
         self.wake_word_variations = [
             "hello ram",
             "hello mommy",
