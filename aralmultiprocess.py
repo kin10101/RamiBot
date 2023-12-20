@@ -25,6 +25,7 @@ process1 = Process()
 process2 = Process()
 
 while True:
+
     button = input("Press 1 to run process 1, press 2 to run process 2, press q to quit: ")
     if button == "1":
         process2.stop()
