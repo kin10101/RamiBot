@@ -58,6 +58,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'admissions'
+                            root.manager.transition.direction = 'left'
 
 
                     MDFillRoundFlatButton:
@@ -70,6 +73,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'finance'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'Office of the Registrar'
@@ -81,6 +87,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'registrar'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'IT Resources Office'
@@ -92,6 +101,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'itro'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'Building Management Office'
@@ -103,6 +115,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'bmo'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'Logistics Office'
@@ -114,6 +129,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'logistics'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'Discipline Office'
@@ -125,3 +143,6 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_release:
+                            root.manager.current = 'do'
+                            root.manager.transition.direction = 'left'
