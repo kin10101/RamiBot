@@ -11,7 +11,12 @@ from kivy.config import Config
 # Chatbot imports
 from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import ChatScreen, Command, Response
-from Voicebot.voice_assistant_module import listenWithoutWakeword
+
+
+# Voicebot imports
+from Voicebot.voice_assistant_module import VoiceAssistant as va
+va = va()
+
 
 # Global variables
 Window.size = (1920, 1080)
@@ -93,7 +98,7 @@ class MainWindow(MDApp):
 
     def voice(self):
         """Start listening for voice commands."""
-        listenWithoutWakeword()
+        va.activate_on_button_press()
 
 def main():
     """Main function to run the application."""
