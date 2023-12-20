@@ -1,3 +1,5 @@
 import voice_assistant_module as va
 
-va.test_assistant()
+va = va.VoiceAssistant()
+
+va.voice_assistant_loop()

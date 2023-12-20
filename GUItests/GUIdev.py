@@ -17,7 +17,7 @@ class MainWindow(MDApp):
         screen_manager = ScreenManager()
 
         # ADD ALL SCREENS TO BE USED HERE
-        #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))1
+        #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
@@ -58,23 +58,40 @@ class MainWindow(MDApp):
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
-    def update_labels(self):
+    def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
-        mapscreen = self.root.get_screen('mapscreen')
-        main_layout = mapscreen.ids.main_layout
-        info_layout = mapscreen.ids.info_layout  # Correct way to access info_layout
+        screen_name = self.root.get_screen(screen_name)
+        try:
+            label = screen_name.ids[id]
+            label.text = text
+        except:
+            print("Label not found")
+            pass
 
-        title_label = mapscreen.ids.title
-        descr_label = mapscreen.ids.descr
-        floor_label = mapscreen.ids.floor
-        sched_label = mapscreen.ids.sched
-        image = mapscreen.ids.bg_img
+    def update_image(self, screen_name, id, source):
+        '''Update image sources in mapscreen'''
+        screen_name = self.root.get_screen(screen_name)
+        try:
+            label = screen_name.ids[id]
+            label.source = source
+        except:
+            print("Source not found")
+            pass
 
-        image.source = "Assets/bg.png"
-        descr_label.text = "dummy text"
-        floor_label.text = "dummy text"
-        sched_label.text = "dummy text"
-        title_label.text = "dummy text"
+    def get_text(self, screen_name, id):
+        '''Get text from textinput in newuser screen'''
+        screen_name = self.root.get_screen(screen_name)
+
+        try:
+            text = screen_name.ids[id]
+            return text.text
+
+        except:
+            print("Text not found")
+            pass
+
+    def navigateToPreviousScreen(self):
+        screen_manager.current = screen_manager.previous()
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app

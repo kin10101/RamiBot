@@ -3,7 +3,6 @@ import mysql.connector
 from datetime import datetime, timedelta
 import pyttsx3
 import re
-#from Voicebot import pygtts
 
 RamiDB = mysql.connector.connect(
     host = "airhub-soe.apc.edu.ph",
@@ -15,23 +14,38 @@ RamiDB = mysql.connector.connect(
 
 cur = RamiDB.cursor()
 engine = pyttsx3.init()
+voiceTrig = 0
+motorTrig = 0
 
-def insertToDB(ID_Num):
-    # Check if the user with the given ID_Num already exists in the database
-    user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = {ID_Num}"
-    cur.execute(user_query)
-    existing_user = cur.fetchone()
 
-    if existing_user:
-        print("User already in the database")
+def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
-    else:
-        # User doesn't exist, so insert the new record
-        new_user = f"INSERT INTO ramibot_faces (ID_Number, Last_Name, Given_Name, MI) VALUES ({ID_Num}, NULL, NULL, NULL)"
-        cur.execute(new_user)
-        print(cur.rowcount, "Upload to DB")
+    try:
+        # Check if the user with the given ID_Num already exists in the database
+        user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = {ID_Num}"
+        cur.execute(user_query)
+        existing_user = cur.fetchone()
 
-    cur.close()
+        if existing_user:
+            print("User already in the database")
+
+        else:
+            # User doesn't exist, so insert the new record
+            new_user = "INSERT INTO ramibot_faces (ID_Number, nickname, Last_Name, Given_Name, MI, Profession) VALUES (%s, %s, %s, %s, %s, %s)"
+            values = (ID_Num, nickname, Last_Name, Given_name, MI, Proffesion)
+            cur.execute(new_user, values)
+            RamiDB.commit()
+            print(cur.rowcount, "Upload to DB")
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+    finally:
+        # Close the cursor and connection
+        if cur:
+            cur.close()
+        if RamiDB:
+            RamiDB.close()
 
 
 def returnName1(ID_Num,result):
@@ -40,42 +54,40 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 70
+    threshold = 80
 
     temp = False
     for x in res:
         if ID_Num in x:
-            check_name = f"SELECT Given_Name FROM ramibot_faces WHERE ID_Number = '{ID_Num}'"
+            check_name = f"SELECT nickname FROM ramibot_faces WHERE ID_Number = '{ID_Num}'"
             cur.execute(check_name)
-            name = cur.fetchmany()
+            nickname = cur.fetchmany()
             temp = True
 
     if temp:
         # Extract the name from the fetched result
-        name = name[0][0] if name else ""
+        nickname = nickname[0][0] if nickname else ""
 
         # Remove non-alphabetic characters from the name using regex
-        if isinstance(name, str):
-            name = re.sub(r'[^a-zA-Z\s]', '', name)
+        if isinstance(nickname, str):
+            nickname = re.sub(r'[^a-zA-Z\s]', '', nickname)
         else:
             # Handle the case where name is not a string (e.g., raise an exception or handle it appropriately)
             pass
 
         # Convert the recognition result to text
         if result > threshold:
-            result_text = f"'{greeting}', '{name}'"
-            print(f"Recognized: {name} (ID: {ID_Num})")
+            result_text = f"'{greeting}', '{nickname}'"
+            print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
-            if name == "None":
-                unknown = f"{unknown_user}"
-                #pygtts.text_to_speech(unknown)
-                engine.say(unknown)
-            else:
-                pass
+            voiceTrig = 1
+            motorTrig = 1
         else:
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
     else:
+        engine.say(unknown_user)
+        engine.runAndWait()
         print("User not exist")
 
 def get_time_of_day_greeting():
@@ -120,9 +132,9 @@ def time_stamp(ID_Num, result_text):
                 last_update = last_update[0]
                 time_difference = (current_time-last_update).total_seconds()
                 print(f"time difference: {time_difference}")
-                if time_difference > 3600:
-                    #pygtts.text_to_speech(result_text)
+                if time_difference > 500:
                     engine.say(result_text)
+                    engine.runAndWait()
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
                     print("already greeted an hour ago")

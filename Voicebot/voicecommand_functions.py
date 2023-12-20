@@ -1,5 +1,5 @@
 import Voicebot.voicebotengine as voicebotengine
-import Voicebot.mimictts as tts
+import Voicebot.pygtts as tts
 import datetime
 from datetime import datetime
 import Voicebot.vb_train_model as vb_train_model

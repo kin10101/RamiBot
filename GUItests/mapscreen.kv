@@ -66,6 +66,8 @@ MDScreen:
                 pos_hint: {'center_x': 0.1, 'center_y': 0.9}
                 on_press:
                     app.update_labels()
+                    root.manager.current = 'main'
+                    root.manager.transition.direction = 'right'
 
 
             MDLabel: # Title Label

@@ -1,7 +1,7 @@
 from gtts import gTTS
 import pygame
 
-def text_to_speech(text, lang='en'):
+def speak(text, lang='en'):
     # Create a gTTS object
     tts = gTTS(text, lang=lang)
 
@@ -19,6 +19,10 @@ def text_to_speech(text, lang='en'):
     pygame.quit()
 
 print("imported from pyggts") #track imports
-# Example usage:
-# text_input = "Rammy voice feature activated!"
-# text_to_speech(text_input)
+
+def playAudioFile(file):
+    pygame.mixer.init()
+    sound = pygame.mixer.Sound(file)
+    sound.play()
+    pygame.time.delay(int(sound.get_length() * 1000))
+    pygame.quit()
