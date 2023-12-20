@@ -12,7 +12,7 @@ from Voicebot import voicecommand_functions
 
 # Load data
 lemmatizer = WordNetLemmatizer()
-intents = json.loads(open('/home/kin/PycharmProjects/RamiBot/Voicebot/eventintents.json').read())
+intents = json.loads(open('/home/kin/PycharmProjects/RamiBot/Voicebot/voicebotintents.json').read())
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 model = load_model('chatbot_model.h5')
@@ -55,7 +55,7 @@ def predict_class(sentence):
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
 
     if not return_list:
-        return_list.append({'intent': 'FB Unknown', 'probability': '1'})
+        return_list.append({'intent': 'Fallback unknown', 'probability': '1'})
 
     return return_list
 
