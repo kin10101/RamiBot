@@ -4,6 +4,7 @@ from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
 import Facerecog.main as m #importing main.py from facerecog
+import os
 
 '''DEVELOPMENT CODE FOR GUI'''
 '''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED PACKAGE'''
@@ -23,6 +24,9 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser2.kv'))
+        screen_manager.add_widget(Builder.load_file('New User KVs/datacollect.kv'))
+
+
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/admissions.kv'))
@@ -105,6 +109,11 @@ class MainWindow(MDApp):
             profession = self.get_text('adduser', 'profession')
 
             m.insertToDB(school_id, nickname, last_name, given_name, middle_initial, profession)
+            user_dir = os.path.join("datasets", school_id)
+
+            # Check if the user directory already exists
+            if not os.path.exists(user_dir):
+                os.makedirs(user_dir)
         except:
             print("error in uploading to db")
             pass
@@ -121,6 +130,11 @@ class MainWindow(MDApp):
             profession = self.get_text('adduser2', 'profession')
 
             m.insertToDB(id,nickname, last_name, given_name, middle_initial, profession)
+            user_dir = os.path.join("datasets", id)
+
+            # Check if the user directory already exists
+            if not os.path.exists(user_dir):
+                os.makedirs(user_dir)
         except:
             print("error in uploading to db")
             pass

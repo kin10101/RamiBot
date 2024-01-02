@@ -14,7 +14,6 @@ Window.add_widget(background)
 class MainWindow(App):
     # Initialize count as a class variable
     count = 0
-
     def build(self):
         Window.size = (1920, 1080)
         Window.fullscreen = True
@@ -39,7 +38,7 @@ class MainWindow(App):
         Clock.schedule_interval(self.update, 1.0 / 30.0)
         return self.window
 
-    def update(self, dt):
+    def update(self, user_dir):
         # Read a frame from the camera
         ret, frame = self.capture.read()
 
@@ -71,75 +70,16 @@ class MainWindow(App):
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-            # Call the insertToDB function to insert user information into the database
-            m.insertToDB(id, nickname, last_name, given_name, MI, profession)
-
-            if MainWindow.count >= 50:
+            '''if MainWindow.count >= 50:
                 # Release the video capture and exit the application
                 self.capture.release()
-                App.get_running_app().stop()
+                App.get_running_app().stop()'''
 
 if __name__ == "__main__":
     # Load a Haar Cascade Classifier for face detection
     detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-
-while True:
-    id = input("Enter user ID (e.g., 2021140544): ")
-    if id.isdigit():
-        print("ID entered:", id)
-    else:
-        print("Error: Please enter a proper ID.")
-        continue
-
-    nickname = input("Nickname: ")
-    if nickname.isdigit():
-        print("Error: Please enter letters for the nickname.")
-        continue
-    else:
-        print("Nickname:", nickname)
-
-    last_name = input("Last name: ")
-    if last_name.isdigit():
-        print("Error: Please enter letters for the last name.")
-        continue
-    else:
-        print("Last name:", last_name)
-
-    given_name = input("Given name: ")
-    if given_name.isdigit():
-        print("Error: Please enter letters for the given name.")
-        continue
-    else:
-        print("Given name:", given_name)
-
-    while True:
-        MI = input("Middle initial: ")
-        if len(MI) == 1 and '.' in MI:
-            print("Middle initial entered:", MI)
-            break  # Break out of the inner loop if a valid middle initial is entered
-        else:
-            print("Error: Please enter a single letter followed by a dot for the middle initial.")
-
-    while True:
-        profession = input("Profession (e.g., student/faculty): ")
-        if profession.lower() in ["student", "faculty"]:
-            print("Profession:", profession)
-            break  # Break out of the inner loop if a valid profession is entered
-        else:
-            print("Error: Please enter 'student' or 'faculty' for the profession.")
-
-
-
-    m.insertToDB(id, nickname, last_name, given_name, MI, profession)
-    user_dir = os.path.join("datasets", id)
-
-    # Check if the user directory already exists
-    if not os.path.exists(user_dir):
-        os.makedirs(user_dir)
-
     MainWindow().run()
-    # If all inputs are valid, break out of the loop
-    break
+
 
 
 
