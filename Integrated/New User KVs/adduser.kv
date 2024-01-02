@@ -192,6 +192,7 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
+                            app.add_APCuser_to_db()
                             root.on_submit_button_press(school_id.text)
                             root.on_submit_button_press(given_name.text)
                             root.on_submit_button_press(middle_initial.text)

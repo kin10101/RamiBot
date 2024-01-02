@@ -93,14 +93,21 @@ class MainWindow(MDApp):
             print("Text not found")
             pass
 
-    def add_user_to_db(self):
+    def add_APCuser_to_db(self):
         '''Add user to database. read text from newuser screen edittexts components, and call
         add_user_to_db() from facerecog.main'''
+        try:
+            school_id = self.get_text('adduser', 'school_id')
+            given_name = self.get_text('adduser', 'given_name')
+            middle_initial = self.get_text('adduser', 'middle_initial')
+            last_name = self.get_text('adduser', 'last_name')
+            nickname = self.get_text('adduser', 'nickname')
+            profession = self.get_text('adduser', 'profession')
 
-        id_num = self.get_text('newuser', 'fname')
-        self.get_text('newuser', 'lname')
-        m.insertToDB(id_num,)
-        pass
+            m.insertToDB(school_id, nickname, last_name, given_name, middle_initial, profession)
+        except:
+            print("error in uploading to db")
+            pass
 
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
