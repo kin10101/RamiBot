@@ -113,13 +113,14 @@ class MainWindow(MDApp):
         '''Add user to database. read text from newuser screen edittexts components, and call
         add_user_to_db() from facerecog.main'''
         try:
+            id = '00000000000'
             given_name = self.get_text('adduser2', 'given_name')
             middle_initial = self.get_text('adduser2', 'middle_initial')
             last_name = self.get_text('adduser2', 'last_name')
             nickname = self.get_text('adduser2', 'nickname')
             profession = self.get_text('adduser2', 'profession')
 
-            m.insertToDB('None', nickname, last_name, given_name, middle_initial, profession)
+            m.insertToDB(id,nickname, last_name, given_name, middle_initial, profession)
         except:
             print("error in uploading to db")
             pass
