@@ -1,6 +1,6 @@
-# go here if user is a student/faculty/staff
+# go here if user is a guest
 MDScreen:
-    name: 'adduser'
+    name: 'adduser2'
 
     MDFloatLayout: # main layout
         orientation: 'vertical'
@@ -46,26 +46,6 @@ MDScreen:
                     size_hint_y: None
                     pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                     height: self.minimum_height
-
-                    Label:
-                        text: 'Enter your school id:'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-
-                    TextInput:
-                        id: school_id
-                        multiline: False
-                        hint_text: 'Type here...'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
 
                     Label:
                         text: 'Enter your given name:'
@@ -159,7 +139,7 @@ MDScreen:
                     TextInput:
                         id: profession
                         multiline: False
-                        hint_text: '(ex: Student/Professor/Staff)'
+                        hint_text: '(ex: Guest/Parent/Visitor)'
                         font_name: 'Poppins'
                         font_size: "34sp"
                         halign: 'center'
@@ -192,7 +172,6 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.on_submit_button_press(school_id.text)
                             root.on_submit_button_press(given_name.text)
                             root.on_submit_button_press(middle_initial.text)
                             root.on_submit_button_press(last_name.text)
