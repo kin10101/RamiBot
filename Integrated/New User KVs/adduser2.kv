@@ -172,6 +172,7 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
+                            app.add_VisitorUser_to_db()
                             root.on_submit_button_press(given_name.text)
                             root.on_submit_button_press(middle_initial.text)
                             root.on_submit_button_press(last_name.text)
