@@ -3,15 +3,19 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
+from kivy.graphics.texture import Texture
+from kivy.uix.image import Image as KivyImage
+from kivy.clock import Clock
 import Facerecog.main as m #importing main.py from facerecog
 import os
+import cv2
 
 '''DEVELOPMENT CODE FOR GUI'''
 '''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED PACKAGE'''
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
-
+user_dir = ''
 class MainWindow(MDApp):
 
     def build(self):
@@ -98,8 +102,7 @@ class MainWindow(MDApp):
             pass
 
     def add_APCuser_to_db(self):
-        '''Add user to database. read text from newuser screen edittexts components, and call
-        add_user_to_db() from facerecog.main'''
+        '''adds APCuser to db and is called when information is submitted'''
         try:
             school_id = self.get_text('adduser', 'school_id')
             given_name = self.get_text('adduser', 'given_name')
@@ -119,18 +122,18 @@ class MainWindow(MDApp):
             pass
 
     def add_VisitorUser_to_db(self):
-        '''Add user to database. read text from newuser screen edittexts components, and call
-        add_user_to_db() from facerecog.main'''
+        '''adds Visitor to db and is called when information is submitted'''
         try:
-            id = '00000000000'
+            visitor_id = '00000000000'
+            print(visitor_id)
             given_name = self.get_text('adduser2', 'given_name')
             middle_initial = self.get_text('adduser2', 'middle_initial')
             last_name = self.get_text('adduser2', 'last_name')
             nickname = self.get_text('adduser2', 'nickname')
             profession = self.get_text('adduser2', 'profession')
 
-            m.insertToDB(id,nickname, last_name, given_name, middle_initial, profession)
-            user_dir = os.path.join("datasets", id)
+            m.insertToDB(visitor_id, nickname, last_name, given_name, middle_initial, profession)
+            user_dir = os.path.join("datasets", visitor_id)
 
             # Check if the user directory already exists
             if not os.path.exists(user_dir):
@@ -138,7 +141,6 @@ class MainWindow(MDApp):
         except:
             print("error in uploading to db")
             pass
-
 
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()

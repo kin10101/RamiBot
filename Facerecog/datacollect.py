@@ -24,9 +24,13 @@ class MainWindow(App):
         self.window.size_hint = (0.8, 0.65)
         self.window.pos_hint = {"center_x": 0.5, "center_y": 0.55}
 
+        return self.window
+
+    def update(self, user_dir):
+        detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+
         capture_width, capture_height = 640, 480
 
-        # Create an Image widget to display the video feed
         self.video_image = KivyImage(allow_stretch=True, keep_ratio=False)
         self.window.add_widget(self.video_image)
 
@@ -36,9 +40,7 @@ class MainWindow(App):
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
 
         Clock.schedule_interval(self.update, 1.0 / 30.0)
-        return self.window
 
-    def update(self, user_dir):
         # Read a frame from the camera
         ret, frame = self.capture.read()
 
@@ -70,14 +72,13 @@ class MainWindow(App):
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-            '''if MainWindow.count >= 50:
+            if MainWindow.count >= 50:
                 # Release the video capture and exit the application
                 self.capture.release()
-                App.get_running_app().stop()'''
+                App.get_running_app().stop()
 
 if __name__ == "__main__":
     # Load a Haar Cascade Classifier for face detection
-    detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
     MainWindow().run()
 
 
