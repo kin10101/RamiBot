@@ -1,0 +1,217 @@
+MDScreen:
+    name: 'floormaps'
+
+    MDFloatLayout: # main layout
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+        #Back Button
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+            user_font_size: "40sp"
+            on_press:
+                root.manager.current = 'mainmenu'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+            MDLabel: # Title
+                text: 'Floor Map and Directory'
+                font_name: 'Poppins'
+                font_size: "34sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                pos_hint: {"x": 0, "y": .85}
+                size_hint: 1, .2
+                bold: True
+
+            MDScrollView: # ScrollView for Buttons
+                do_scroll_x: False
+
+                MDBoxLayout: # Buttons
+                    orientation: 'vertical'
+                    padding: 10
+                    spacing: 25
+                    size_hint_y: None
+                    height: self.minimum_height
+
+
+                    MDFillRoundFlatButton:
+                        text: '1st Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor1'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '2nd Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor2'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '3rd Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor3'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '4th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor4'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '5th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor5'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '6th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor6'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '7th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor7'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '8th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor8'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '9th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor9'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '10th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor10'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '11th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor11'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: '12th Floor'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'floor12'
+                            root.manager.transition.direction = 'left'

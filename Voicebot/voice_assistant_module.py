@@ -5,14 +5,15 @@ import Voicebot.pygtts as ts
 import Voicebot.gpio as gpio
 
 
+
 class VoiceAssistant:
     def __init__(self):
         self.pause_threshold = 0.6
         self.energy_threshold = 2000
         self.operation_timeout = 5000
         self.dynamic_energy_threshold = True
-        self.listen_timeout = 5
-        self.phrase_time_limit = 8
+        self.listen_timeout = 3
+        self.phrase_time_limit = 3
         self.gpio_pin = 17
         self.wake_word_variations = [
             "hello ram",
@@ -150,7 +151,14 @@ class VoiceAssistant:
                         print('Wake word detected. Now listening...')
                         ts.playAudioFile('audio/activate.wav')
 
-                        # serialModule.sendSerialMessage('2')
+                        try:
+                            # set GPIO pin to HIGH to stop the motor wheel from moving
+                            gpio.set_pin(self.gpio_pin, 1)
+
+                        except Exception:
+                            pass
+
+
 
                         # listen for the command after wake word is detected
                         text = self.listen_to_command(recognizer, source)
@@ -163,7 +171,15 @@ class VoiceAssistant:
                             ts.speak(response, lang='en')
 
                         ts.playAudioFile("audio/deactivate.wav")  # sound to indicate that the conversation is over
-                        # serialModule.sendSerialMessage('1')
+
+                        try:
+                            # set GPIO pin to LOW to allow the motor wheel to move again
+                            gpio.set_pin(self.gpio_pin, 0)
+                            # Clean up GPIO on exit
+                            gpio.cleanup()
+
+                        except Exception:
+                            pass
 
             except sr.RequestError:
                 print("Could not request results from google Speech Recognition service")
@@ -176,6 +192,7 @@ class VoiceAssistant:
             except KeyboardInterrupt:
                 ts.speak("Goodbye")
                 sys.exit()
+
 
 if __name__ == "__main__":
     assistant = VoiceAssistant()
