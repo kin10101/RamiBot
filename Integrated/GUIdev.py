@@ -20,7 +20,9 @@ class MainWindow(MDApp):
         # ADD ALL SCREENS TO BE USED HERE
         #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
+        screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
+        screen_manager.add_widget(Builder.load_file('New User KVs/adduser2.kv'))
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/admissions.kv'))

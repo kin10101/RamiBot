@@ -1,6 +1,6 @@
-# go here if new face is detected
+# go here if user wants to be added
 MDScreen:
-    name: 'newuser'
+    name: 'userstatus'
 
     MDFloatLayout: # main layout
 
@@ -18,7 +18,7 @@ MDScreen:
             icon: 'arrow-left'
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
-            on_press: root.manager.current = 'idle'
+            on_press: root.manager.current = 'newuser'
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
@@ -39,7 +39,7 @@ MDScreen:
                 bold: True
 
             MDLabel: # Title
-                text: 'Would you like to be added in our system?'
+                text: 'Are you from Asia Pacific College?'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -69,7 +69,7 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'userstatus'
+                            root.manager.current = 'adduser'
                             root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
@@ -83,5 +83,5 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'mainmenu'
+                            root.manager.current = 'adduser2'
                             root.manager.transition.direction = 'left'
