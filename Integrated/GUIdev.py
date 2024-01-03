@@ -3,7 +3,7 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
-from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.camera import Camera
 import Facerecog.main as m #importing main.py from facerecog
 import os
@@ -142,11 +142,16 @@ class MainWindow(MDApp):
             pass
 
     def videocam(self):
-        layout = BoxLayout(orientation = 'vertical')
+        layout = GridLayout(orientation = 'vertical')
         camera = Camera(play = True, index = 0)
         layout.add_widget(camera)
-        return layout
 
+        detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+
+        '''# Perform face detection and data collection
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = detect.detectMultiScale(gray, 1.3, 5)'''
+        return layout
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
 
