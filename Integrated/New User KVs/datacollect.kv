@@ -20,3 +20,18 @@ MDScreen:
                 size_hint: (1, 0.9)  # Adjust the size_hint as needed
                 size: (self.width, self.width / 1.5)
 
+        MDFillRoundFlatButton:
+            text: 'Finish'
+            font_name: 'Poppins'
+            font_size: "24sp"
+            halign: 'center'
+            text_color: 1, 1, 1, 1
+            md_bg_color: .003, .4, .6, 1
+            size_hint: .7, None
+            pos_hint: {'center_x': 0.5}
+            padding: 30
+            on_release:
+                app.add_APCuser_to_db()
+                root.manager.current = 'mainmenu'
+                root.manager.transition.direction = 'left'
+
