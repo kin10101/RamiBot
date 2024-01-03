@@ -3,9 +3,8 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
-from kivy.graphics.texture import Texture
-from kivy.uix.image import Image as KivyImage
-from kivy.clock import Clock
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.camera import Camera
 import Facerecog.main as m #importing main.py from facerecog
 import os
 import cv2
@@ -141,6 +140,12 @@ class MainWindow(MDApp):
         except:
             print("error in uploading to db")
             pass
+
+    def videocam(self):
+        layout = BoxLayout(orientation = 'vertical')
+        camera = Camera(play = True, index = 0)
+        layout.add_widget(camera)
+        return layout
 
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
