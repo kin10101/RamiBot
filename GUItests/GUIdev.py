@@ -19,6 +19,7 @@ class MainWindow(MDApp):
         # ADD ALL SCREENS TO BE USED HERE
         #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
         screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
+        screen_manager.add_widget(Builder.load_file('greetWindow.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
@@ -40,18 +41,7 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('faculty.kv'))
 
         screen_manager.add_widget(Builder.load_file('Floors KVs/floormaps.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor1.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor2.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor3.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor4.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor5.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor6.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor7.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor8.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor9.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor10.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor11.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor12.kv'))
+        screen_manager.add_widget(Builder.load_file('Floors KVs/floor.kv'))
 
         screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/soe.kv'))
@@ -75,6 +65,7 @@ class MainWindow(MDApp):
             print("Label not found")
             pass
 
+  #app.update_label("main",)
     def update_image(self, screen_name, id, source):
         '''Update image sources in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
