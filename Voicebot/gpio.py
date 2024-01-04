@@ -3,6 +3,7 @@ try:
 except RuntimeError:
     import fake_rpigpio.RPi as GPIO
 
+
 def set_gpio_pin(pin, state):
     # Set mode and pin
     GPIO.setmode(GPIO.BCM)
