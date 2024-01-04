@@ -44,11 +44,7 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('Floors KVs/floor.kv'))
 
         screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/soe.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/som.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/soma.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/socit.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/gradschool.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
 
         return screen_manager
 
