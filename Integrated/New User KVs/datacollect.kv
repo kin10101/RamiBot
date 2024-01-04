@@ -11,14 +11,11 @@ MDScreen:
             keep_ratio: False
             size_hint: 1, 1
 
-
         GridLayout:
             cols: 1
             Camera:
                 play: True
                 index: 0
-                size_hint: (1, 0.9)  # Adjust the size_hint as needed
-                size: (self.width, self.width / 1.5)
 
         MDFillRoundFlatButton:
             text: 'Finish'
@@ -31,7 +28,7 @@ MDScreen:
             pos_hint: {'center_x': 0.5}
             padding: 30
             on_release:
-                app.add_APCuser_to_db()
+                app.videocam()
                 root.manager.current = 'mainmenu'
                 root.manager.transition.direction = 'left'
 

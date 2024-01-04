@@ -1,0 +1,399 @@
+MDScreen:
+    name: 'acadsOrg'
+
+    MDFloatLayout: # main layout
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+        #Back Button
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+            user_font_size: "40sp"
+            on_press:
+                root.manager.current = 'orgs'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+            MDLabel: # Title
+                id: orgLabel1
+                text: ' '
+                font_name: 'Poppins'
+                font_size: "34sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                pos_hint: {"x": 0, "y": .85}
+                size_hint: 1, .2
+                bold: True
+
+            MDScrollView: # ScrollView for Buttons
+                do_scroll_x: False
+
+                MDGridLayout: # Layout for Buttons
+                    cols: 1
+                    padding: 10
+                    spacing: 25
+                    size_hint_y: None
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    height: self.minimum_height
+
+                    Label:
+                        text: 'School of Computing and Information Technology'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        bold: True
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, 1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: 'APC Junior Information Systems Security Association (APC-JISSA)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Image: # Background image
+                        source: 'Announcements KVs/JISSA.png'
+                        allow_stretch: False
+                        keep_ratio: False
+                        size_hint: .5, .6
+                    Label:
+                        text: 'APC Junior Philippine Computer Society (APC-JPCS)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Image: # Background image
+                        source: 'Announcements KVs/JPCS.png'
+                        allow_stretch: False
+                        keep_ratio: False
+                        size_hint: .5, .6
+                    Label:
+                        text: 'Asia Pacific College - Microsoft Community (APC-MSC)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Image: # Background image
+                        source: 'Announcements KVs/MSC.png'
+                        allow_stretch: False
+                        keep_ratio: False
+                        size_hint: .5, .6
+                    Label:
+                        text: 'Gaming Genesis (GG)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Image: # Background image
+                        source: 'Announcements KVs/GG.png'
+                        allow_stretch: False
+                        keep_ratio: False
+                        size_hint: .5, .6
+
+                    Label:
+                        text: 'School of Engineering'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        bold: True
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, 1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: 'Society of Electronics Engineering Students’ (SEES)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: 'APC Association of Computer Engineering Students (APC-ACES)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: 'APC Robotics Organization (APC-ROB ORG)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text:  'Founding Organization for Civil Engineering Students (FOrCES)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        text: 'School of Management'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        bold: True
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, 1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: 'APC Junior Marketing Association (APJMA)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text:  'APC Junior Philippine Institute of Accountants (JPIA)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: 'Business Management Group-Junior People Management Association of the Philippine APC'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text:  'Tourism Management Society (TM SOC)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text:  'APC Junior Financial Executives'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        text: 'School of Multimedia and Arts'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        bold: True
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, 1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: 'APC Psychological Society (PSYCH SOC)'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text:  'Bahay Bombilya'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text:  'CINEMASOMA'
+                        font_name: 'Poppins'
+                        font_size: "34sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        #label background
+                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: .003, .4, .6, .5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+

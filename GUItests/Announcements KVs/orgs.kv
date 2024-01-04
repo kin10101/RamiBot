@@ -1,5 +1,5 @@
 MDScreen:
-    name: 'mainmenu'
+    name: 'orgs'
 
     MDFloatLayout: # main layout
 
@@ -7,7 +7,6 @@ MDScreen:
         orientation: 'vertical'
 
         Image: # Background image
-            id: bg
             source: 'Assets/main_bg.png'
             allow_stretch: True
             keep_ratio: False
@@ -18,8 +17,9 @@ MDScreen:
             icon: 'arrow-left'
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
-            on_press: root.manager.current = 'idleWindow'
-
+            on_press:
+                root.manager.current = 'announcements'
+                root.manager.transition.direction = 'right'
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
@@ -30,7 +30,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'What can I help you with?'
+                text: 'School Information and Announcements'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -50,7 +50,7 @@ MDScreen:
                     height: self.minimum_height
 
                     MDFillRoundFlatButton:
-                        text: 'Office Hours'
+                        text: 'Academic Organizations'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -59,12 +59,13 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_release:
-                            root.manager.current = 'officehours'
+                        on_press:
+                            root.manager.current = 'acadsOrg'
                             root.manager.transition.direction = 'left'
+                            app.update_label("acadsOrg", "orgLabel1", "Academic Organizations")
 
                     MDFillRoundFlatButton:
-                        text: 'Faculty Schedules'
+                        text: 'Performing Arts Group'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -73,27 +74,13 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_release:
-                            root.manager.current = 'facultyscheds'
+                        on_press:
+                            root.manager.current = 'pagOrg'
                             root.manager.transition.direction = 'left'
-
-
-                    MDFillRoundFlatButton:
-                        text: 'Programs Offered'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release:
-                            root.manager.current = 'programsoffered'
-                            root.manager.transition.direction = 'left'
+                            app.update_label("pagOrg", "orgLabel2", "Performing Arts Group")
 
                     MDFillRoundFlatButton:
-                        text: 'Floor Map and Directory'
+                        text: 'Socio-Civic Organizations'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -102,12 +89,13 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_release:
-                            root.manager.current = 'floormaps'
+                        on_press:
+                            root.manager.current = 'socioOrg'
                             root.manager.transition.direction = 'left'
+                            app.update_label("socioOrg", "orgLabel3", "Socio-Civic Organizations")
 
                     MDFillRoundFlatButton:
-                        text: 'School Information and Announcements'
+                        text: 'Special Interest Organizations'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -116,6 +104,8 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_release:
-                            root.manager.current = 'announcements'
+                        on_press:
+                            root.manager.current = 'specialOrg'
                             root.manager.transition.direction = 'left'
+                            app.update_label("specialOrg", "orgLabel4", "Special Interest Organizations")
+
