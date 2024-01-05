@@ -176,7 +176,7 @@ class MainWindow(MDApp):
             cv2.rectangle(camera, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(camera, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
-
+            #
             if MainWindow.count >= 50:
                 # Release the video capture and exit the application
                 self.capture.release()
