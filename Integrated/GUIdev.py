@@ -15,9 +15,12 @@ import cv2
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
-user_dir = ''
 class MainWindow(MDApp):
-
+    count = 0
+    user_dir = ''
+    id = ''
+    school_id = ''
+    add = 0
     def build(self):
         global screen_manager
         screen_manager = ScreenManager()
@@ -31,6 +34,7 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser2.kv'))
+        screen_manager.add_widget(Builder.load_file('New User KVs/datacollect.kv'))
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
 
@@ -91,17 +95,44 @@ class MainWindow(MDApp):
             pass
 
     def add_APCuser_to_db(self):
+        MainWindow.add = 1
         '''Add user to database. read text from newuser screen edittexts components, and call
         add_user_to_db() from facerecog.main'''
         try:
-            school_id = self.get_text('adduser', 'school_id')
+            MainWindow.school_id = self.get_text('adduser', 'school_id')
             given_name = self.get_text('adduser', 'given_name')
             middle_initial = self.get_text('adduser', 'middle_initial')
             last_name = self.get_text('adduser', 'last_name')
             nickname = self.get_text('adduser', 'nickname')
             profession = self.get_text('adduser', 'profession')
 
-            m.insertToDB(school_id, nickname, last_name, given_name, middle_initial, profession)
+            m.insertToDB(MainWindow.school_id, nickname, last_name, given_name, middle_initial, profession)
+            MainWindow.user_dir = os.path.join("datasets", MainWindow.school_id)
+            # Check if the user directory already exists
+            if not os.path.exists(MainWindow.user_dir):
+                os.makedirs(MainWindow.user_dir)
+        except:
+            print("error in uploading to db")
+            pass
+
+    def add_VisitorUser_to_db(self):
+        MainWindow.add = 2
+        '''Add user to database. read text from newuser screen edittexts components, and call
+        add_user_to_db() from facerecog.main'''
+        try:
+            MainWindow.id = '00000000000'
+            given_name = self.get_text('adduser2', 'given_name')
+            middle_initial = self.get_text('adduser2', 'middle_initial')
+            last_name = self.get_text('adduser2', 'last_name')
+            nickname = self.get_text('adduser2', 'nickname')
+            profession = self.get_text('adduser2', 'profession')
+
+            m.insertToDB(MainWindow.id , nickname, last_name, given_name, middle_initial, profession)
+            MainWindow.user_dir = os.path.join("datasets", MainWindow.id )
+
+            # Check if the user directory already exists
+            if not os.path.exists(MainWindow.user_dir):
+                os.makedirs(MainWindow.user_dir)
         except:
             print("error in uploading to db")
             pass
@@ -134,17 +165,24 @@ class MainWindow(MDApp):
             MainWindow.count += 1
 
             face_image = gray[y:y + h, x:x + w]
-            image_path = os.path.join(user_dir, f"User.{id}.{MainWindow.count}.jpg")
-            cv2.imwrite(image_path, face_image)
+
+            if MainWindow.add == 1:
+                image_path1 = os.path.join(MainWindow.user_dir, f"User.{MainWindow.school_id}.{MainWindow.count}.jpg")
+                cv2.imwrite(image_path1, face_image)
+                MainWindow.add = 0
+            if MainWindow.add == 2:
+                image_path2 = os.path.join(MainWindow.user_dir, f"User.{MainWindow.id}.{MainWindow.count}.jpg")
+                cv2.imwrite(image_path2, face_image)
+                MainWindow.add = 0
 
             cv2.rectangle(camera, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(camera, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
-            #
+
             if MainWindow.count >= 50:
                 # Release the video capture and exit the application
                 self.capture.release()
-        return layout
+
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
 

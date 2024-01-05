@@ -17,7 +17,6 @@ MDScreen:
                 play: True
                 index: 0
 
-
         MDFillRoundFlatButton:
             text: 'Finish'
             font_name: 'Poppins'
@@ -29,7 +28,7 @@ MDScreen:
             pos_hint: {'center_x': 0.5}
             padding: 30
             on_release:
-                app.add_APCuser_to_db()
+                app.videocam()
                 root.manager.current = 'mainmenu'
                 root.manager.transition.direction = 'left'
 
