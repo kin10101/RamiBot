@@ -193,5 +193,11 @@ MDScreen:
                         padding: 30
                         on_release:
                             app.add_APCuser_to_db()
+                            root.on_submit_button_press(school_id.text)
+                            root.on_submit_button_press(given_name.text)
+                            root.on_submit_button_press(middle_initial.text)
+                            root.on_submit_button_press(last_name.text)
+                            root.on_submit_button_press(nickname.text)
+                            root.on_submit_button_press(profession.text)
                             root.manager.current = 'datacollect'
                             root.manager.transition.direction = 'left'

@@ -24,14 +24,16 @@ class MainWindow(MDApp):
 
         # ADD ALL SCREENS TO BE USED HERE
         #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
+        screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
+        screen_manager.add_widget(Builder.load_file('greetWindow.kv'))
+
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser2.kv'))
-        screen_manager.add_widget(Builder.load_file('New User KVs/datacollect.kv'))
-
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
+
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/admissions.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/finance.kv'))
@@ -41,28 +43,15 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('Office KVs/logitics.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/do.kv'))
 
-        screen_manager.add_widget(Builder.load_file('announcements.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
         screen_manager.add_widget(Builder.load_file('faculty.kv'))
+
         screen_manager.add_widget(Builder.load_file('Floors KVs/floormaps.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor1.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor2.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor3.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor4.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor5.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor6.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor7.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor8.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor9.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor10.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor11.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor12.kv'))
+        screen_manager.add_widget(Builder.load_file('Floors KVs/floor.kv'))
+
 
         screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/soe.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/som.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/soma.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/socit.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/gradschool.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
 
         return screen_manager
 
@@ -102,7 +91,8 @@ class MainWindow(MDApp):
             pass
 
     def add_APCuser_to_db(self):
-        '''adds APCuser to db and is called when information is submitted'''
+        '''Add user to database. read text from newuser screen edittexts components, and call
+        add_user_to_db() from facerecog.main'''
         try:
             school_id = self.get_text('adduser', 'school_id')
             given_name = self.get_text('adduser', 'given_name')
@@ -112,32 +102,6 @@ class MainWindow(MDApp):
             profession = self.get_text('adduser', 'profession')
 
             m.insertToDB(school_id, nickname, last_name, given_name, middle_initial, profession)
-            user_dir = os.path.join("datasets", school_id)
-
-            # Check if the user directory already exists
-            if not os.path.exists(user_dir):
-                os.makedirs(user_dir)
-        except:
-            print("error in uploading to db")
-            pass
-
-    def add_VisitorUser_to_db(self):
-        '''adds Visitor to db and is called when information is submitted'''
-        try:
-            visitor_id = '00000000000'
-            print(visitor_id)
-            given_name = self.get_text('adduser2', 'given_name')
-            middle_initial = self.get_text('adduser2', 'middle_initial')
-            last_name = self.get_text('adduser2', 'last_name')
-            nickname = self.get_text('adduser2', 'nickname')
-            profession = self.get_text('adduser2', 'profession')
-
-            m.insertToDB(visitor_id, nickname, last_name, given_name, middle_initial, profession)
-            user_dir = os.path.join("datasets", visitor_id)
-
-            # Check if the user directory already exists
-            if not os.path.exists(user_dir):
-                os.makedirs(user_dir)
         except:
             print("error in uploading to db")
             pass

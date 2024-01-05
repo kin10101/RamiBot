@@ -2,7 +2,7 @@ import sys
 import speech_recognition as sr
 import Voicebot.voicebotengine as voicebotengine
 import Voicebot.pygtts as ts
-import Voicebot.gpio as gpio
+import gpio as gpio
 
 
 
