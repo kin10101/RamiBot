@@ -7,26 +7,25 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.graphics.texture import Texture
 from kivy.uix.image import Image as KivyImage
 from kivy.clock import Clock
-import Facerecog.main as m #importing main.py from facerecog
+import Facerecog.main as m  # importing main.py from facerecog
 import os
 import cv2
-
-'''DEVELOPMENT CODE FOR GUI'''
-'''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED PACKAGE'''
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
 
-class MainWindow(MDApp):
-    global user_dir
-    global ID
-    count = 0
+class MainApp(MDApp):
+    face_count = 0
+    user_directory = ''
+    user_id = ''
+    school_id = ''
+    add_user_flag = 0
+
     def build(self):
         global screen_manager
         screen_manager = ScreenManager()
 
         # ADD ALL SCREENS TO BE USED HERE
-        #screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
         screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
         screen_manager.add_widget(Builder.load_file('greetWindow.kv'))
 
@@ -53,20 +52,22 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('Floors KVs/floormaps.kv'))
         screen_manager.add_widget(Builder.load_file('Floors KVs/floor.kv'))
 
-
         screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
 
         return screen_manager
 
+    def navigate_to_previous_screen(self):
+        screen_manager.current = screen_manager.previous()
+
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
-    def update_label(self, screen_name, ID, text):
+    def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
         try:
-            label = screen_name.ids[ID]
+            label = screen_name.ids[id]
             label.text = text
         except:
             print("Label not found")
@@ -94,114 +95,90 @@ class MainWindow(MDApp):
             print("Text not found")
             pass
 
-    def add_APCuser_to_db(self):
-        MainWindow.add = 1
-        '''Add user to database. read text from newuser screen edittexts components, and call
-        add_user_to_db() from facerecog.main'''
+    def add_apc_user_to_db(self):
+        MainApp.add_user_flag = 1
         try:
-            school_id = self.get_text('adduser', 'school_id')
+            MainApp.school_id = self.get_text('adduser', 'school_id')
             given_name = self.get_text('adduser', 'given_name')
             middle_initial = self.get_text('adduser', 'middle_initial')
             last_name = self.get_text('adduser', 'last_name')
             nickname = self.get_text('adduser', 'nickname')
             profession = self.get_text('adduser', 'profession')
 
-            m.insertToDB(school_id, nickname, last_name, given_name, middle_initial, profession)
-            user_dir = os.path.join("datasets", school_id)
+            m.insertToDB(MainApp.school_id, nickname, last_name, given_name, middle_initial, profession)
+            MainApp.user_directory = os.path.join("datasets", MainApp.school_id)
 
-            # Check if the user directory already exists
-            if not os.path.exists(user_dir):
-                os.makedirs(user_dir)
+            if not os.path.exists(MainApp.user_directory):
+                os.makedirs(MainApp.user_directory)
+        except:
+            print("Error in uploading to db")
 
-        except Exception as e:
-            print(f"Error in uploading to db: {e}")
-            pass
-
-    def add_VisitorUser_to_db(self):
-        MainWindow.add = 2
-        '''Add user to database. read text from newuser screen edittexts components, and call
-        add_user_to_db() from facerecog.main'''
+    def add_visitor_user_to_db(self):
+        MainApp.add_user_flag = 2
         try:
-            ID = '00000000000'
+            MainApp.user_id = '00000000000'
             given_name = self.get_text('adduser2', 'given_name')
             middle_initial = self.get_text('adduser2', 'middle_initial')
             last_name = self.get_text('adduser2', 'last_name')
             nickname = self.get_text('adduser2', 'nickname')
             profession = self.get_text('adduser2', 'profession')
 
-            m.insertToDB(ID, nickname, last_name, given_name, middle_initial, profession)
-            user_dir = os.path.join("datasets", ID)
-            # Check if the user directory already exists
-            if not os.path.exists(user_dir):
-                os.makedirs(user_dir)
+            m.insertToDB(MainApp.user_id, nickname, last_name, given_name, middle_initial, profession)
+            MainApp.user_directory = os.path.join("datasets", MainApp.user_id)
 
-        except Exception as e:
-            print(f"Error in uploading to db: {e}")
-            pass
+            if not os.path.exists(MainApp.user_directory):
+                os.makedirs(MainApp.user_directory)
+        except:
+            print("Error in uploading to db")
 
-    def videocam(self, dt):
+    def videocam(self):
+        layout = GridLayout(orientation='vertical')
+        self.video_image = KivyImage(allow_stretch=True, keep_ratio=False)
+        layout.add_widget(self.video_image)
 
-        print("Entering videocam method")
-
-        detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+        face_detector = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
         capture_width, capture_height = 640, 480
-
-        self.video_image = KivyImage(allow_stretch=True, keep_ratio=False)
-
-        # Start the OpenCV video capture with the specified size
         self.capture = cv2.VideoCapture(0)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
 
-        Clock.schedule_interval(self.videocam(ID, user_dir), 1.0 / 30.0)
+        Clock.schedule_interval(self.videocam, 1.0 / 30.0)
 
-        print("Before entering capture loop")
-
-        # Read a frame from the camera
         ret, frame = self.capture.read()
-
-        print("After capturing the first frame")
-
-        # Customize the video capture size (width, height)
         capture_width, capture_height = 640, 480
         frame = cv2.resize(frame, (capture_width, capture_height))
 
-        # Convert the OpenCV frame to a Kivy texture
         buffer = cv2.flip(frame, 0).tobytes()
         texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
         texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
 
-        # Update the texture of the video Image widget
         self.video_image.texture = texture
 
-        # Perform face detection and data collection
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = detect.detectMultiScale(gray, 1.3, 5)
+        faces = face_detector.detectMultiScale(gray, 1.3, 5)
 
         for (x, y, w, h) in faces:
-            print("Detected a face")
-            # Increment the count for each detected face
-            MainWindow.count += 1
-
+            MainApp.face_count += 1
             face_image = gray[y:y + h, x:x + w]
-            image_path = os.path.join(user_dir, f"User.{ID}.{MainWindow.count}.jpg")
-            cv2.imwrite(image_path, face_image)
+
+            if MainApp.add_user_flag == 1:
+                image_path1 = os.path.join(MainApp.user_directory, f"User.{MainApp.school_id}.{MainApp.face_count}.jpg")
+                cv2.imwrite(image_path1, face_image)
+                MainApp.add_user_flag = 0
+            if MainApp.add_user_flag == 2:
+                image_path2 = os.path.join(MainApp.user_directory, f"User.{MainApp.user_id}.{MainApp.face_count}.jpg")
+                cv2.imwrite(image_path2, face_image)
+                MainApp.add_user_flag = 0
 
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-            if MainWindow.count >= 50:
-                print("Captured 50 faces, releasing the video capture")
-                # Release the video capture and exit the application
+            if MainApp.face_count >= 50:
                 self.capture.release()
-                Clock.unschedule(self.videocam)
-                break
 
-    def navigateToPreviousScreen(self):
-        screen_manager.current = screen_manager.previous()
 
 if __name__ == "__main__":
-    LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app
-    MainWindow().run()
+    LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
+    MainApp().run()
