@@ -16,12 +16,11 @@ import cv2
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
+
 class MainWindow(MDApp):
+    global user_dir
+    global ID
     count = 0
-    user_dir = ''
-    id = ''
-    school_id = ''
-    add = 0
     def build(self):
         global screen_manager
         screen_manager = ScreenManager()
@@ -63,11 +62,11 @@ class MainWindow(MDApp):
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
-    def update_label(self, screen_name, id, text):
+    def update_label(self, screen_name, ID, text):
         '''Update labels in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
         try:
-            label = screen_name.ids[id]
+            label = screen_name.ids[ID]
             label.text = text
         except:
             print("Label not found")
@@ -100,20 +99,22 @@ class MainWindow(MDApp):
         '''Add user to database. read text from newuser screen edittexts components, and call
         add_user_to_db() from facerecog.main'''
         try:
-            MainWindow.school_id = self.get_text('adduser', 'school_id')
+            school_id = self.get_text('adduser', 'school_id')
             given_name = self.get_text('adduser', 'given_name')
             middle_initial = self.get_text('adduser', 'middle_initial')
             last_name = self.get_text('adduser', 'last_name')
             nickname = self.get_text('adduser', 'nickname')
             profession = self.get_text('adduser', 'profession')
 
-            m.insertToDB(MainWindow.school_id, nickname, last_name, given_name, middle_initial, profession)
-            MainWindow.user_dir = os.path.join("datasets", MainWindow.school_id)
+            m.insertToDB(school_id, nickname, last_name, given_name, middle_initial, profession)
+            user_dir = os.path.join("datasets", school_id)
+
             # Check if the user directory already exists
-            if not os.path.exists(MainWindow.user_dir):
-                os.makedirs(MainWindow.user_dir)
-        except:
-            print("error in uploading to db")
+            if not os.path.exists(user_dir):
+                os.makedirs(user_dir)
+
+        except Exception as e:
+            print(f"Error in uploading to db: {e}")
             pass
 
     def add_VisitorUser_to_db(self):
@@ -121,41 +122,46 @@ class MainWindow(MDApp):
         '''Add user to database. read text from newuser screen edittexts components, and call
         add_user_to_db() from facerecog.main'''
         try:
-            MainWindow.id = '00000000000'
+            ID = '00000000000'
             given_name = self.get_text('adduser2', 'given_name')
             middle_initial = self.get_text('adduser2', 'middle_initial')
             last_name = self.get_text('adduser2', 'last_name')
             nickname = self.get_text('adduser2', 'nickname')
             profession = self.get_text('adduser2', 'profession')
 
-            m.insertToDB(MainWindow.id , nickname, last_name, given_name, middle_initial, profession)
-            MainWindow.user_dir = os.path.join("datasets", MainWindow.id )
-
+            m.insertToDB(ID, nickname, last_name, given_name, middle_initial, profession)
+            user_dir = os.path.join("datasets", ID)
             # Check if the user directory already exists
-            if not os.path.exists(MainWindow.user_dir):
-                os.makedirs(MainWindow.user_dir)
-        except:
-            print("error in uploading to db")
+            if not os.path.exists(user_dir):
+                os.makedirs(user_dir)
+
+        except Exception as e:
+            print(f"Error in uploading to db: {e}")
             pass
 
-    def videocam(self):
-        layout = GridLayout(orientation = 'vertical')
+    def videocam(self, dt):
 
-        self.video_image = KivyImage(allow_stretch=True, keep_ratio=False)
-        layout.add_widget(self.video_image)
+        print("Entering videocam method")
 
         detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
         capture_width, capture_height = 640, 480
+
+        self.video_image = KivyImage(allow_stretch=True, keep_ratio=False)
+
         # Start the OpenCV video capture with the specified size
         self.capture = cv2.VideoCapture(0)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
 
-        Clock.schedule_interval(self.videocam(), 1.0 / 30.0)
+        Clock.schedule_interval(self.videocam(ID, user_dir), 1.0 / 30.0)
+
+        print("Before entering capture loop")
 
         # Read a frame from the camera
         ret, frame = self.capture.read()
+
+        print("After capturing the first frame")
 
         # Customize the video capture size (width, height)
         capture_width, capture_height = 640, 480
@@ -174,27 +180,24 @@ class MainWindow(MDApp):
         faces = detect.detectMultiScale(gray, 1.3, 5)
 
         for (x, y, w, h) in faces:
+            print("Detected a face")
             # Increment the count for each detected face
             MainWindow.count += 1
 
             face_image = gray[y:y + h, x:x + w]
-
-            if MainWindow.add == 1:
-                image_path1 = os.path.join(MainWindow.user_dir, f"User.{MainWindow.school_id}.{MainWindow.count}.jpg")
-                cv2.imwrite(image_path1, face_image)
-                MainWindow.add = 0
-            if MainWindow.add == 2:
-                image_path2 = os.path.join(MainWindow.user_dir, f"User.{MainWindow.id}.{MainWindow.count}.jpg")
-                cv2.imwrite(image_path2, face_image)
-                MainWindow.add = 0
+            image_path = os.path.join(user_dir, f"User.{ID}.{MainWindow.count}.jpg")
+            cv2.imwrite(image_path, face_image)
 
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
             if MainWindow.count >= 50:
+                print("Captured 50 faces, releasing the video capture")
                 # Release the video capture and exit the application
                 self.capture.release()
+                Clock.unschedule(self.videocam)
+                break
 
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
