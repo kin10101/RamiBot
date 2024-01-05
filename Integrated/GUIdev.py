@@ -5,6 +5,7 @@ from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.camera import Camera
+from kivy.clock import Clock
 import Facerecog.main as m #importing main.py from facerecog
 import os
 import cv2
@@ -148,9 +149,37 @@ class MainWindow(MDApp):
 
         detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
-        '''# Perform face detection and data collection
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = detect.detectMultiScale(gray, 1.3, 5)'''
+        capture_width, capture_height = 640, 480
+        # Start the OpenCV video capture with the specified size
+        self.capture = camera
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
+
+        Clock.schedule_interval(self.videocam(), 1.0 / 30.0)
+
+        # Customize the video capture size (width, height)
+        capture_width, capture_height = 640, 480
+        frame = cv2.resize(camera, (capture_width, capture_height))
+
+        # Perform face detection and data collection
+        gray = cv2.cvtColor(camera, cv2.COLOR_BGR2GRAY)
+        faces = detect.detectMultiScale(gray, 1.3, 5)
+
+        for (x, y, w, h) in faces:
+            # Increment the count for each detected face
+            MainWindow.count += 1
+
+            face_image = gray[y:y + h, x:x + w]
+            image_path = os.path.join(user_dir, f"User.{id}.{MainWindow.count}.jpg")
+            cv2.imwrite(image_path, face_image)
+
+            cv2.rectangle(camera, (x, y), (x + w, y + h), (0, 0, 255), 1)
+            cv2.rectangle(camera, (x, y), (x + w, y + h), (50, 50, 255), 2)
+            cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
+
+            if MainWindow.count >= 50:
+                # Release the video capture and exit the application
+                self.capture.release()
         return layout
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
