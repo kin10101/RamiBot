@@ -4,7 +4,8 @@ from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.camera import Camera
+from kivy.graphics.texture import Texture
+from kivy.uix.image import Image as KivyImage
 from kivy.clock import Clock
 import Facerecog.main as m #importing main.py from facerecog
 import os
@@ -139,25 +140,37 @@ class MainWindow(MDApp):
 
     def videocam(self):
         layout = GridLayout(orientation = 'vertical')
-        camera = Camera(play = True, index = 0)
-        layout.add_widget(camera)
+
+        self.video_image = KivyImage(allow_stretch=True, keep_ratio=False)
+        layout.add_widget(self.video_image)
 
         detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
         capture_width, capture_height = 640, 480
         # Start the OpenCV video capture with the specified size
-        self.capture = camera
+        self.capture = cv2.VideoCapture(0)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
 
         Clock.schedule_interval(self.videocam(), 1.0 / 30.0)
 
+        # Read a frame from the camera
+        ret, frame = self.capture.read()
+
         # Customize the video capture size (width, height)
         capture_width, capture_height = 640, 480
-        frame = cv2.resize(camera, (capture_width, capture_height))
+        frame = cv2.resize(frame, (capture_width, capture_height))
+
+        # Convert the OpenCV frame to a Kivy texture
+        buffer = cv2.flip(frame, 0).tobytes()
+        texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
+        texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
+
+        # Update the texture of the video Image widget
+        self.video_image.texture = texture
 
         # Perform face detection and data collection
-        gray = cv2.cvtColor(camera, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = detect.detectMultiScale(gray, 1.3, 5)
 
         for (x, y, w, h) in faces:
@@ -175,8 +188,8 @@ class MainWindow(MDApp):
                 cv2.imwrite(image_path2, face_image)
                 MainWindow.add = 0
 
-            cv2.rectangle(camera, (x, y), (x + w, y + h), (0, 0, 255), 1)
-            cv2.rectangle(camera, (x, y), (x + w, y + h), (50, 50, 255), 2)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
             if MainWindow.count >= 50:
