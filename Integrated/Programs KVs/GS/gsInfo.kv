@@ -1,0 +1,35 @@
+MDScreen:
+    name: 'gsInfo'
+
+    MDFloatLayout: # main layout
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+        #Back Button
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+            user_font_size: "40sp"
+            on_press:
+                root.manager.current = 'gradschools'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+            Image: # Background image
+                id: programImage
+                source: ' '
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: 1, 1
