@@ -1,5 +1,5 @@
 MDScreen:
-    name: 'programsoffered'
+    name: 'gradschools'
 
     MDFloatLayout: # main layout
         orientation: 'vertical'
@@ -16,7 +16,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                root.manager.current = 'mainmenu'
+                root.manager.current = 'programsoffered'
                 root.manager.transition.direction = 'right'
 
         MDBoxLayout: # Square transparent container
@@ -28,7 +28,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'Programs Offered'
+                text: 'Graduate Schools'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -48,7 +48,7 @@ MDScreen:
                     height: self.minimum_height
 
                     MDFillRoundFlatButton:
-                        text: 'Senior High School'
+                        text: 'Master in Management'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -58,12 +58,12 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'programs'
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/shs.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mm.png")
 
                     MDFillRoundFlatButton:
-                        text: 'School of Engineering'
+                        text: 'Master in Game Design'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -73,12 +73,12 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'programs'
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/soe.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mgd.png")
 
                     MDFillRoundFlatButton:
-                        text: 'School of Architecutre'
+                        text: 'Master in Information Systems'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -88,12 +88,12 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'programs'
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/soa.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mis.png")
 
                     MDFillRoundFlatButton:
-                        text: 'School of Management'
+                        text: 'Master in Information Technology'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -103,12 +103,12 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'programs'
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/som.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mit.png")
 
                     MDFillRoundFlatButton:
-                        text: 'School of Multimedia and Arts'
+                        text: 'Master of Science in Computer Science'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -118,12 +118,12 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'programs'
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/soma.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mscs.png")
 
                     MDFillRoundFlatButton:
-                        text: 'School of Computing and Information Technology'
+                        text: 'Master of Engineering Major in Computer Engineering'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -133,20 +133,6 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'programs'
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/socit.png")
-
-                    MDFillRoundFlatButton:
-                        text: 'Graduate Schools'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release:
-                            root.manager.current = 'gradschools'
-                            root.manager.transition.direction = 'left'
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mecpe.png")

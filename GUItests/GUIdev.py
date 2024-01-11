@@ -42,7 +42,6 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('Announcements KVs/acadsOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/pagOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/socioOrg.kv'))
-        #screen_manager.add_widget(Builder.load_file('Announcements KVs/orgInfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('faculty.kv'))
 
@@ -51,6 +50,8 @@ class MainWindow(MDApp):
 
         screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
         return screen_manager
 
