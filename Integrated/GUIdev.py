@@ -54,6 +54,8 @@ class MainApp(MDApp):
 
         screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
+        screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
         return screen_manager
 
