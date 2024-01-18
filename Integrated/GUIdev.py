@@ -1,25 +1,36 @@
+import cv2
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
-from kivy.uix.gridlayout import GridLayout
-from kivy.graphics.texture import Texture
-from kivy.uix.image import Image as KivyImage
-from kivy.clock import Clock
-import Facerecog.main as m  # importing main.py from facerecog
+import Facerecog.datacollect as DataCollector
 import os
-import cv2
+from kivy.graphics.texture import Texture
+from kivy.uix.image import Image
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
+detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+
+
 
 class MainApp(MDApp):
     face_count = 0
-    user_directory = ''
-    user_id = ''
-    school_id = ''
     add_user_flag = 0
+    global user_ID
+    global start
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.texture = None
+        self.camera = None
+        self.frame_count = None
+        self.frame_rate = None
+        self.num_images_to_capture = 50
+        self.current_image_count = 0
+        self.detect = None
+        self.image = None
 
     def build(self):
         global screen_manager
@@ -56,6 +67,10 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
+
+        self.frame_rate = 10
+        self.frame_count = 50
+        self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
 
         return screen_manager
 
@@ -98,89 +113,90 @@ class MainApp(MDApp):
             pass
 
     def add_apc_user_to_db(self):
+        global user_ID
         MainApp.add_user_flag = 1
         try:
-            MainApp.school_id = self.get_text('adduser', 'school_id')
+            user_ID = self.get_text('adduser', 'school_id')
             given_name = self.get_text('adduser', 'given_name')
             middle_initial = self.get_text('adduser', 'middle_initial')
             last_name = self.get_text('adduser', 'last_name')
             nickname = self.get_text('adduser', 'nickname')
             profession = self.get_text('adduser', 'profession')
 
-            m.insertToDB(MainApp.school_id, nickname, last_name, given_name, middle_initial, profession)
-            MainApp.user_directory = os.path.join("datasets", MainApp.school_id)
+            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, profession)
 
-            if not os.path.exists(MainApp.user_directory):
-                os.makedirs(MainApp.user_directory)
-        except:
-            print("Error in uploading to db")
+        except Exception as e:
+            print(f"Error in uploading to db: {e}")
 
     def add_visitor_user_to_db(self):
+        global user_ID
         MainApp.add_user_flag = 2
         try:
-            MainApp.user_id = '00000000000'
+            user_ID = DataCollector.generate_visitor_id()
             given_name = self.get_text('adduser2', 'given_name')
             middle_initial = self.get_text('adduser2', 'middle_initial')
             last_name = self.get_text('adduser2', 'last_name')
             nickname = self.get_text('adduser2', 'nickname')
             profession = self.get_text('adduser2', 'profession')
 
-            m.insertToDB(MainApp.user_id, nickname, last_name, given_name, middle_initial, profession)
-            MainApp.user_directory = os.path.join("datasets", MainApp.user_id)
+            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, profession)
+        except Exception as e:
+            print(f"Error in uploading to db: {e}")
 
-            if not os.path.exists(MainApp.user_directory):
-                os.makedirs(MainApp.user_directory)
-        except:
-            print("Error in uploading to db")
+    def captures(self):
+        global start
 
-    def videocam(self):
-        layout = GridLayout(orientation='vertical')
-        self.video_image = KivyImage(allow_stretch=True, keep_ratio=False)
-        layout.add_widget(self.video_image)
+        user_dir = DataCollector.user_dir
+        user_id = DataCollector.user_id
 
-        face_detector = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+        count = 0
+
+        self.image = Image(texture=self.texture)
+        screen_manager.ids.camera = self.texture
+
+        self.camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
         capture_width, capture_height = 640, 480
-        self.capture = cv2.VideoCapture(0)
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
-        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
 
-        Clock.schedule_interval(self.videocam, 1.0 / 30.0)
+        self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
+        self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
 
-        ret, frame = self.capture.read()
-        capture_width, capture_height = 640, 480
-        frame = cv2.resize(frame, (capture_width, capture_height))
+        while True:
+            ret, frame = self.camera.read()
+            if not ret:
+                print("Error reading frame from video source.")
+                break
 
-        buffer = cv2.flip(frame, 0).tobytes()
-        texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
-        texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
+            frame = cv2.resize(frame, (capture_width, capture_height))
 
-        self.video_image.texture = texture
+            buffer = cv2.flip(frame, 0).tobytes()
+            texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
+            texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
 
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = face_detector.detectMultiScale(gray, 1.3, 5)
+            self.image.texture = texture
 
-        for (x, y, w, h) in faces:
-            MainApp.face_count += 1
-            face_image = gray[y:y + h, x:x + w]
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            faces = detect.detectMultiScale(gray, 1.3, 5)
 
-            if MainApp.add_user_flag == 1:
-                image_path1 = os.path.join(MainApp.user_directory, f"User.{MainApp.school_id}.{MainApp.face_count}.jpg")
-                cv2.imwrite(image_path1, face_image)
-                MainApp.add_user_flag = 0
-            if MainApp.add_user_flag == 2:
-                image_path2 = os.path.join(MainApp.user_directory, f"User.{MainApp.user_id}.{MainApp.face_count}.jpg")
-                cv2.imwrite(image_path2, face_image)
-                MainApp.add_user_flag = 0
+            for (x, y, w, h) in faces:
+                # Increment the count for each detected face
+                count += 1
 
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
-            cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
+                face_image = gray[y:y + h, x:x + w]
+                image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")
+                cv2.imwrite(image_path, face_image)
 
-            if MainApp.face_count >= 50:
-                self.capture.release()
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
+                cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
+
+                if count >= 50:
+                    # Release the video capture and exit the application
+                    self.camera.release()
+                    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
     MainApp().run()
+

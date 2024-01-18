@@ -172,6 +172,7 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            app.add_VisitorUser_to_db()
+                            app.add_visitor_user_to_db()
                             root.manager.current = 'datacollect'
                             root.manager.transition.direction = 'left'
+                            app.captures()

@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 import os
 
-recognizer = cv2.face_LBPHFaceRecognizer.create()
+recognizer = cv2.face.LBPHFaceRecognizer()
 
 # Specify the base directory where user-specific folders are located
 base_path = "datasets"
