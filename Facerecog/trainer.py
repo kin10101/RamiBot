@@ -32,7 +32,12 @@ def getImageID(base_path):
 
 
 IDs, facedata = getImageID(base_path)
-recognizer.train(facedata, np.array(IDs))
+try:
+    recognizer.train(facedata, np.array(IDs))
+except cv2.error as e:
+    print(f"OpenCV error: {e}")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
 recognizer.write("Trainer.yml")
 cv2.destroyAllWindows()
 print("Training Completed............")

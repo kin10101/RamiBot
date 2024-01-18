@@ -154,7 +154,7 @@ class MainApp(MDApp):
         self.image = Image(texture=self.texture)
         screen_manager.ids.camera = self.texture
 
-        self.camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        self.camera = cv2.VideoCapture(1)
 
         capture_width, capture_height = 640, 480
 
@@ -169,7 +169,7 @@ class MainApp(MDApp):
 
             frame = cv2.resize(frame, (capture_width, capture_height))
 
-            buffer = cv2.flip(frame, 0).tobytes()
+            buffer = cv2.flip(frame, 1).tobytes()
             texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
             texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
 
