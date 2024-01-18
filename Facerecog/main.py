@@ -1,13 +1,12 @@
 import random
 import mysql.connector
-from datetime import datetime, timedelta
+from datetime import datetime
 import pyttsx3
 import re
 
 RamiDB = mysql.connector.connect(
     host = "airhub-soe.apc.edu.ph",
     user = "marj",
-    port = 1000,
     passwd = 'RAMIcpe211',
     database = "ramibot",
     autocommit  = True
@@ -17,7 +16,6 @@ cur = RamiDB.cursor()
 engine = pyttsx3.init()
 voiceTrig = 0
 motorTrig = 0
-
 
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 

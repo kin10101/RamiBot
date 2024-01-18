@@ -1,7 +1,7 @@
 import queue
 import time
 
-from Facerecog import trainedModel
+from Facerecog.trainedModel import face_recognition
 
 from Voicebot.voice_assistant_module import VoiceAssistant
 import Voicebot.pygtts as pygtts
@@ -96,7 +96,7 @@ class MainApp(MDApp):
 
         return screen_manager
 
-    def update_label(self, screen_name, id, text):
+    def update_label(self, screen_name, id , text):
         '''Update labels in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
         try:
@@ -219,8 +219,8 @@ class MainApp(MDApp):
         except Empty:
             pass
 
-    def on_start(self):
-        Clock.schedule_interval(self.check_queue,1)
+    '''def on_start(self):
+        Clock.schedule_interval(self.check_queue,1)'''
 
     def await_change_screen(self, dt):
         try:
@@ -244,7 +244,7 @@ class MainApp(MDApp):
 
     def face_recognition_module(self):
         self.camera = cv2.VideoCapture(0)
-        trainedModel.face_recognition(self.camera)
+        face_recognition(self.camera)
 
 
 def navigate_to_previous_screen():
@@ -267,7 +267,7 @@ def get_from_queue(queue):
         return None
 
 
-def gpio(seconds):
+def GPIO(seconds):
     gpio.set_gpio_pin(17, 1)
     time.sleep(seconds)
 

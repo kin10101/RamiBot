@@ -12,8 +12,7 @@ from Voicebot import voicecommand_functions
 
 # Load data
 lemmatizer = WordNetLemmatizer()
-intents = json.loads(open('/RamiBot Project/RamibotReal/Voicebot/voicebotintents.json').read())
-#"D:\RamiBot Project\RamibotReal\Voicebot\voicebotintents.json"
+intents = json.loads(open('/home/rami/PycharmProjects/RamiBot/Voicebot/voicebotintents.json').read())
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 model = load_model('chatbot_model.h5')
