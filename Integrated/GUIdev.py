@@ -1,3 +1,6 @@
+import queue
+import time
+
 import cv2
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -8,11 +11,20 @@ import Facerecog.datacollect as DataCollector
 import os
 from kivy.graphics.texture import Texture
 from kivy.uix.image import Image
+from kivy.clock import Clock
+
+
+import threading
+from queue import Queue, Empty
+
+import gpio
+from Voicebot.voice_assistant_module import VoiceAssistant
+import Voicebot.pygtts as pygtts
+
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-
 
 
 class MainApp(MDApp):
@@ -73,12 +85,6 @@ class MainApp(MDApp):
         self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
 
         return screen_manager
-
-    def navigate_to_previous_screen(self):
-        screen_manager.current = screen_manager.previous()
-
-    def change_screen(self, screen_name):
-        screen_manager.current = screen_name
 
     def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
@@ -195,8 +201,91 @@ class MainApp(MDApp):
                     self.camera.release()
                     cv2.destroyAllWindows()
 
+    def check_queue(self, queue, dt):
+        try:
+            item = queue.get_nowait()
+            print(item)
+            self.update_image('mainmenu', 'bg', item)
+        except Empty:
+            pass
+
+    def on_start(self):
+        Clock.schedule_interval(self.check_queue,1)
+
+    def await_change_screen(self, dt):
+        try:
+            item = screen_queue.get_nowait()
+            print(item)
+            change_screen(item)
+        except Empty:
+            pass
+
+    def await_change_state(self, dt):
+        try:
+            item = event_queue.get_nowait()
+            print(item)
+
+            if item == "":
+                pass
+            if item =="":
+        except Empty:
+            pass
+
+
+
+
+def navigate_to_previous_screen():
+    screen_manager.current = screen_manager.previous()
+
+
+def change_screen(screen_name):
+    screen_manager.current = screen_name
+
+
+def put_in_queue(queue, item):
+    queue.put(item)
+    print("placed")
+
+
+def get_from_queue(queue):
+    try:
+        return queue.get_nowait()
+    except Empty:
+        return None
+
+def gpio(seconds):
+    gpio.set_gpio_pin(17, 1)
+    time.sleep(seconds)
+
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
-    MainApp().run()
+    # Queues
+    event_queue = Queue()
+    data_queue = Queue()
+    screen_queue = Queue()
+    # inter thread communication
+    # a clocked function checks and gets the items in the queue periodically
+
+    # Classes
+    voicebot = VoiceAssistant()
+    app = MainApp()
+
+    # Threads
+    voice_thread = threading.Thread()
+    face_thread = threading.Thread()
+    # processes running in the background indefinitely
+
+    # face_thread identifies what the user wants and sends an item
+    # in the change screen queue to change the current screen
+
+    # Event States
+    voice_scanning = threading.Event()
+    face_scanning = threading.Event()
+    motor_stopping = threading.Event()
+    # set events to stop thread processes and clear event to resume
+
+    app.run()
+
+
 
