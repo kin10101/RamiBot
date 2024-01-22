@@ -70,6 +70,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_press:
+                            root.manager.current = 'calendars'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'School Organizations'
@@ -81,6 +84,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_press:
+                            root.manager.current = 'orgs'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'Tuition Fee and Scholarships'

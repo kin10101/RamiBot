@@ -47,6 +47,14 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Office KVs/do.kv'))
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/orgs.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/specialOrg.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/acadsOrg.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/pagOrg.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/socioOrg.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/calendars.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/calendarInfo.kv'))
+
         screen_manager.add_widget(Builder.load_file('faculty.kv'))
 
         screen_manager.add_widget(Builder.load_file('Floors KVs/floormaps.kv'))

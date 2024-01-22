@@ -1,5 +1,5 @@
 MDScreen:
-    name: 'pagOrg'
+    name: 'socioOrg'
 
     MDFloatLayout: # main layout
         orientation: 'vertical'
@@ -28,8 +28,8 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                id: orgLabel3
-                text: 'Performing Arts Group'
+                id: orgLabel2
+                text: 'Socio-Civic Organizations'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -50,7 +50,7 @@ MDScreen:
                     height: self.minimum_height
 
                     Label:
-                        text: 'APC Band'
+                        text: 'Rotaract Club of Asia Pacific College'
                         font_name: 'Poppins'
                         font_size: "34sp"
                         halign: 'center'
@@ -67,7 +67,7 @@ MDScreen:
                                 size: self.size
 
                     Label:
-                        text: 'APC Strings'
+                        text: 'Student Organization Association of Regents (SOAR)'
                         font_name: 'Poppins'
                         font_size: "34sp"
                         halign: 'center'
@@ -83,52 +83,3 @@ MDScreen:
                                 pos: self.pos
                                 size: self.size
 
-                    Label:
-                        text: 'Teatro Phileo'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        text: 'APC Chorale'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-
-                    Label:
-                        text: 'APC Dance Company (APC-DC)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
