@@ -5,7 +5,7 @@ video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
-recognizer = cv2.face.LBPHFaceRecognizer()
+recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read("Trainer.yml")
 count = 0
 currentID = 0

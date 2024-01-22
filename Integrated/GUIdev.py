@@ -236,6 +236,8 @@ class MainApp(MDApp):
             if item == "":
                 pass
             if item =="":
+                #pansamantala kasi may error
+                pass
         except Empty:
             pass
 
