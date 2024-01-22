@@ -1,11 +1,11 @@
 import cv2
 import main as m
 
-video = cv2.VideoCapture(1)
+video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
-recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer = cv2.face.LBPHFaceRecognizer()
 recognizer.read("Trainer.yml")
 count = 0
 currentID = 0
@@ -33,7 +33,6 @@ while True:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
             cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-     #hi
     frame = cv2.resize(frame, (640, 480))
     cv2.imshow('frame', frame)
 

@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 import os
 
-recognizer = cv2.face_LBPHFaceRecognizer.create()
+recognizer = cv2.face.LBPHFaceRecognizer()
 
 # Specify the base directory where user-specific folders are located
 base_path = "datasets"
@@ -32,7 +32,12 @@ def getImageID(base_path):
 
 
 IDs, facedata = getImageID(base_path)
-recognizer.train(facedata, np.array(IDs))
+try:
+    recognizer.train(facedata, np.array(IDs))
+except cv2.error as e:
+    print(f"OpenCV error: {e}")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
 recognizer.write("Trainer.yml")
 cv2.destroyAllWindows()
 print("Training Completed............")
