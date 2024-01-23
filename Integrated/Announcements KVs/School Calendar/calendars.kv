@@ -43,7 +43,7 @@ MDScreen:
                 MDBoxLayout: # Buttons
                     orientation: 'vertical'
                     padding: 10
-                    spacing: 25
+                    spacing: 30
                     size_hint_y: None
                     height: self.minimum_height
 
@@ -53,7 +53,7 @@ MDScreen:
                         font_size: "34sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
-                        pos_hint: {"x": 0, "y": .80}
+                        pos_hint: {"x": 0, "y": .85}
                         size_hint: 1, .2
                         bold: True
                         #label background
@@ -160,8 +160,8 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            #app.update_label("floor", "floorLabel", "1ST FLOOR")
-                            app.update_image("calendarInfo", "calendarImage", "Announcements KVs/shs1.png")
+                            app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: Term 1, A.Y. 2023-2024")
+                            app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/csc_t1ay20232024.png")
 
                     MDFillRoundFlatButton:
                         text: 'Collegiate Calendar: Term 2, A.Y. 2023-2024'
@@ -176,8 +176,8 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            #app.update_label("floor", "floorLabel", "1ST FLOOR")
-                            app.update_image("calendarInfo", "calendarImage", "Announcements KVs/shs1.png")
+                            app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: Term 2, A.Y. 2023-2024")
+                            app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/csc_t2ay20232024.png")
 
                     MDLabel: # Title
                         text: 'Graduate School Academic Calendar'
