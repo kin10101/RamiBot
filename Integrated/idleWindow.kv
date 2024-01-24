@@ -10,12 +10,6 @@ MDScreen:
             keep_ratio: False
             size_hint: 1, 1
 
-        Image:
-            source: 'Assets/logo.png'
-            allow_stretch: True
-            keep_ratio: False
-            size_hint: .3, .35
-            pos_hint: {'center_x': 0.25, 'center_y': 0.82}
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
@@ -26,7 +20,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'Hi, I am RamiBot! \n How may I help you?'
+                text: 'Hi, I am RamiBot!\nHow may I help you?'
                 font_name: 'Poppins'
                 font_size: "70sp"
                 halign: 'center'
@@ -37,37 +31,40 @@ MDScreen:
 
 # IF USER DETECTS A FACE
 #will remove after face detection is connected
-                MDBoxLayout: # Layout for Buttons
-                    orientation: 'horizontal'
-                    padding: 10
-                    spacing: 25
-                    size_hint_y: None
-                    height: self.minimum_height
+            MDBoxLayout: # Layout for Buttons
+                orientation: 'horizontal'
+                padding: 10
+                spacing: 25
+                size_hint_y: None
+                pos_hint: {'center_y': 0.5}
 
-                    MDFillRoundFlatButton:
-                        text: 'recognized'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release:
-                            root.manager.current = 'greetings'
-                            root.manager.transition.direction = 'left'
 
-                    MDFillRoundFlatButton:
-                        text: 'unrecognized'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release:
-                            root.manager.current = 'newuser'
-                            root.manager.transition.direction = 'left'
+                height: self.minimum_height
+
+                MDFillRoundFlatButton:
+                    text: 'recognized'
+                    font_name: 'Poppins'
+                    font_size: "24sp"
+                    halign: 'center'
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: .003, .4, .6, 1
+                    size_hint: .7, None
+                    pos_hint: {'center_x': 0.5}
+                    padding: 30
+                    on_release:
+                        root.manager.current = 'greetings'
+                        root.manager.transition.direction = 'left'
+
+                MDFillRoundFlatButton:
+                    text: 'unrecognized'
+                    font_name: 'Poppins'
+                    font_size: "24sp"
+                    halign: 'center'
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: .003, .4, .6, 1
+                    size_hint: .7, None
+                    pos_hint: {'center_x': 0.5}
+                    padding: 30
+                    on_release:
+                        root.manager.current = 'newuser'
+                        root.manager.transition.direction = 'left'
