@@ -1,6 +1,13 @@
 import queue
 import time
 
+from Facerecog import trainedModel
+
+from Voicebot.voice_assistant_module import VoiceAssistant
+import Voicebot.pygtts as pygtts
+
+import gpio
+
 import cv2
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -13,13 +20,8 @@ from kivy.graphics.texture import Texture
 from kivy.uix.image import Image
 from kivy.clock import Clock
 
-
 import threading
 from queue import Queue, Empty
-
-import gpio
-from Voicebot.voice_assistant_module import VoiceAssistant
-import Voicebot.pygtts as pygtts
 
 
 Window.size = (1920, 1080)
@@ -168,7 +170,7 @@ class MainApp(MDApp):
         self.image = Image(texture=self.texture)
         screen_manager.ids.camera = self.texture
 
-        self.camera = cv2.VideoCapture(1)
+        self.camera = cv2.VideoCapture(0)
 
         capture_width, capture_height = 640, 480
 
@@ -241,7 +243,9 @@ class MainApp(MDApp):
         except Empty:
             pass
 
-
+    def face_recognition_module(self):
+        self.camera = cv2.VideoCapture(0)
+        trainedModel.face_recognition(self.camera)
 
 
 def navigate_to_previous_screen():
@@ -262,6 +266,7 @@ def get_from_queue(queue):
         return queue.get_nowait()
     except Empty:
         return None
+
 
 def gpio(seconds):
     gpio.set_gpio_pin(17, 1)

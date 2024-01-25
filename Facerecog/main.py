@@ -7,6 +7,7 @@ import re
 RamiDB = mysql.connector.connect(
     host = "airhub-soe.apc.edu.ph",
     user = "marj",
+    port = 1000,
     passwd = 'RAMIcpe211',
     database = "ramibot",
     autocommit  = True
