@@ -1,3 +1,5 @@
+import queue
+
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.core.window import Window
@@ -9,6 +11,8 @@ from kivy.uix.screenmanager import ScreenManager
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
+
+
 
 class MainWindow(MDApp):
 

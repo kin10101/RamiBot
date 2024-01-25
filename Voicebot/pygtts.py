@@ -20,7 +20,7 @@ def speak(text, lang='en'):
 
 print("imported from pyggts") #track imports
 
-def playAudioFile(file):
+def play_audio_file(file):
     pygame.mixer.init()
     sound = pygame.mixer.Sound(file)
     sound.play()

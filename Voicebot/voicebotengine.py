@@ -12,6 +12,7 @@ from Voicebot import voicecommand_functions
 
 # Load data
 lemmatizer = WordNetLemmatizer()
+path = './RamiBot/Voicebot/'
 intents = json.loads(open('/home/kin/PycharmProjects/RamiBot/Voicebot/voicebotintents.json').read())
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
@@ -43,14 +44,15 @@ def bag_of_words(sentence):
     return np.array(bag)
 
 
-def predict_class(sentence):
+def predict_class(sentence, error_threshold=0.7):
     """Predict the intent of the sentence."""
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]
-    error_threshold = 0.7  # Acceptable limit to output the response. Adjust if necessary
+
     results = [[i, r] for i, r in enumerate(res) if r > error_threshold]
     results.sort(key=lambda x: x[1], reverse=True)  # sort by strength of probability
     return_list = []
+
     for r in results:
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
 
@@ -105,20 +107,25 @@ def get_tag(message):
     return tag
 
 
-def get_from_json(tag):
-    """Get wake word response."""
-    with open('eventintents.json') as file:  # change file name when necessary
-        intents_json = json.load(file)
+def get_from_json(tag, filename='voicebotintents.json'):
+    """Get response from JSON file based on the provided tag."""
+    try:
+        with open(filename) as file:
+            intents_json = json.load(file)
 
-    list_of_intents = intents_json['intents']
-    js = None
+        list_of_intents = intents_json.get('intents', [])
 
-    for intent in list_of_intents:
-        if intent['tag'] == tag:
-            js = random.choice(intent['responses'])
-            break
+        for intent in list_of_intents:
+            if intent.get('tag') == tag:
+                responses = intent.get('responses', [])
+                return random.choice(responses)
 
-    return js
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON file: {e}")
+
+    return None
 
 
 def run_chatbot():

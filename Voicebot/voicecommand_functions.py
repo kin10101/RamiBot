@@ -6,7 +6,7 @@ import Voicebot.vb_train_model as vb_train_model
 
 def sing():
     print("singing")
-    tts.playAudioFile("audio/Asia Pacific College - Alma Mater Hymn Short Ver.wav")
+    tts.play_audio_file("audio/Asia Pacific College - Alma Mater Hymn Short Ver.wav")
 
 
 def run_func():
