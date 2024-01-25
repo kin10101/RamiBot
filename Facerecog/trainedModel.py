@@ -7,9 +7,10 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read("/home/rami/PycharmProjects/RamiBot/Facerecog/Trainer.yml")
 count = 0
 currentID = 0
-global user_id_detected
+global confidence_result
 
 def face_recognition(video):
+    global confidence_result
     while True:
         ret, frame = video.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -17,7 +18,7 @@ def face_recognition(video):
         for (x, y, w, h) in faces:
             serial, conf = recognizer.predict(gray[y:y + h, x:x + w])
             currentID = serial
-
+            confidence_result = conf
             if conf > 80:
 
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
@@ -26,7 +27,7 @@ def face_recognition(video):
 
                 #greet user with voice
                 m.returnName1(str(serial), conf)
-                user_id_detected = str(serial)
+
 
             else:
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)

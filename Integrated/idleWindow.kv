@@ -9,6 +9,7 @@ MDScreen:
             allow_stretch: True
             keep_ratio: False
             size_hint: 1, 1
+            on_touch_down: app.face_recognition_module()
 
 
         MDBoxLayout: # Square transparent container
@@ -28,43 +29,3 @@ MDScreen:
                 text_color: 1, 1, 1, 1
                 size_hint: 1, .2
                 bold: True
-
-# IF USER DETECTS A FACE
-#will remove after face detection is connected
-            MDBoxLayout: # Layout for Buttons
-                orientation: 'horizontal'
-                padding: 10
-                spacing: 25
-                size_hint_y: None
-                pos_hint: {'center_y': 0.5}
-
-
-                height: self.minimum_height
-
-                MDFillRoundFlatButton:
-                    text: 'recognized'
-                    font_name: 'Poppins'
-                    font_size: "24sp"
-                    halign: 'center'
-                    text_color: 1, 1, 1, 1
-                    md_bg_color: .003, .4, .6, 1
-                    size_hint: .7, None
-                    pos_hint: {'center_x': 0.5}
-                    padding: 30
-                    on_release:
-                        root.manager.current = 'greetings'
-                        root.manager.transition.direction = 'left'
-
-                MDFillRoundFlatButton:
-                    text: 'unrecognized'
-                    font_name: 'Poppins'
-                    font_size: "24sp"
-                    halign: 'center'
-                    text_color: 1, 1, 1, 1
-                    md_bg_color: .003, .4, .6, 1
-                    size_hint: .7, None
-                    pos_hint: {'center_x': 0.5}
-                    padding: 30
-                    on_release:
-                        root.manager.current = 'newuser'
-                        root.manager.transition.direction = 'left'

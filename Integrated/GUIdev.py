@@ -1,7 +1,8 @@
 import queue
 import time
 
-from Facerecog.trainedModel import face_recognition
+from Facerecog import trainedModel
+from Facerecog import main
 
 from Voicebot.voice_assistant_module import VoiceAssistant
 import Voicebot.pygtts as pygtts
@@ -219,8 +220,9 @@ class MainApp(MDApp):
         except Empty:
             pass
 
-    '''def on_start(self):
-        Clock.schedule_interval(self.check_queue,1)'''
+    def on_start(self):
+        Clock.schedule_interval(self.await_change_screen,1)
+
 
     def await_change_screen(self, dt):
         try:
@@ -244,7 +246,14 @@ class MainApp(MDApp):
 
     def face_recognition_module(self):
         self.camera = cv2.VideoCapture(0)
-        face_recognition(self.camera)
+        trainedModel.face_recognition(self.camera)
+        # change the name in GUI
+        conf = trainedModel.confidence_result
+        if conf < 80:
+            put_in_queue(screen_queue,'')
+            screen_manager.ids.greet_user.text = f'Good Day, {main.user_nickname}'
+        else:
+            change_screen('newuser')
 
 
 def navigate_to_previous_screen():
