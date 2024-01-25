@@ -4,7 +4,7 @@ from kivy.lang import Builder
 
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
-recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer = cv2.face.LBPHFaceRecognizer()
 recognizer.read("Trainer.yml")
 count = 0
 currentID = 0
