@@ -1,6 +1,6 @@
 import random
 import mysql.connector
-from datetime import datetime, timedelta
+from datetime import datetime
 import pyttsx3
 import re
 
@@ -16,7 +16,8 @@ cur = RamiDB.cursor()
 engine = pyttsx3.init()
 voiceTrig = 0
 motorTrig = 0
-
+global user_nickname
+global unknown_user
 
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
@@ -49,6 +50,8 @@ def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
 
 def returnName1(ID_Num,result):
+    global user_nickname
+    global unknown_user
     check_id = "SELECT * FROM ramibot_faces"
     cur.execute(check_id)
     res = cur.fetchall()
@@ -78,6 +81,7 @@ def returnName1(ID_Num,result):
         # Convert the recognition result to text
         if result > threshold:
             result_text = f"'{greeting}', '{nickname}'"
+            user_nickname = nickname
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
             voiceTrig = 1

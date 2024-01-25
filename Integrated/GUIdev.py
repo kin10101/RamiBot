@@ -1,6 +1,14 @@
 import queue
 import time
 
+from Facerecog import trainedModel
+from Facerecog import main
+
+from Voicebot.voice_assistant_module import VoiceAssistant
+import Voicebot.pygtts as pygtts
+
+import gpio
+
 import cv2
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -13,13 +21,8 @@ from kivy.graphics.texture import Texture
 from kivy.uix.image import Image
 from kivy.clock import Clock
 
-
 import threading
 from queue import Queue, Empty
-
-import gpio
-from Voicebot.voice_assistant_module import VoiceAssistant
-import Voicebot.pygtts as pygtts
 
 
 Window.size = (1920, 1080)
@@ -70,13 +73,13 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Office KVs/do.kv'))
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/orgs.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/specialOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/acadsOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/pagOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/socioOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/calendars.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/calendarInfo.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendars.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('faculty.kv'))
 
@@ -94,7 +97,7 @@ class MainApp(MDApp):
 
         return screen_manager
 
-    def update_label(self, screen_name, id, text):
+    def update_label(self, screen_name, id , text):
         '''Update labels in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
         try:
@@ -168,7 +171,7 @@ class MainApp(MDApp):
         self.image = Image(texture=self.texture)
         screen_manager.ids.camera = self.texture
 
-        self.camera = cv2.VideoCapture(1)
+        self.camera = cv2.VideoCapture(0)
 
         capture_width, capture_height = 640, 480
 
@@ -218,7 +221,8 @@ class MainApp(MDApp):
             pass
 
     def on_start(self):
-        Clock.schedule_interval(self.check_queue,1)
+        Clock.schedule_interval(self.await_change_screen,1)
+
 
     def await_change_screen(self, dt):
         try:
@@ -235,13 +239,21 @@ class MainApp(MDApp):
 
             if item == "":
                 pass
-            if item =="":
-                #pansamantala kasi may error
+            if item == "":
                 pass
         except Empty:
             pass
 
-
+    def face_recognition_module(self):
+        self.camera = cv2.VideoCapture(0)
+        trainedModel.face_recognition(self.camera)
+        # change the name in GUI
+        conf = trainedModel.confidence_result
+        if conf < 80:
+            put_in_queue(screen_queue,'')
+            screen_manager.ids.greet_user.text = f'Good Day, {main.user_nickname}'
+        else:
+            change_screen('newuser')
 
 
 def navigate_to_previous_screen():
@@ -263,7 +275,8 @@ def get_from_queue(queue):
     except Empty:
         return None
 
-def gpio(seconds):
+
+def GPIO(seconds):
     gpio.set_gpio_pin(17, 1)
     time.sleep(seconds)
 
