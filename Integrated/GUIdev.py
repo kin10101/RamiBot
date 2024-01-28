@@ -6,7 +6,7 @@ from Facerecog import main
 
 from Voicebot.voice_assistant_module import VoiceAssistant
 import Voicebot.pygtts as pygtts
-
+# gg
 import gpio
 
 import cv2
@@ -23,7 +23,6 @@ from kivy.clock import Clock
 
 import threading
 from queue import Queue, Empty
-
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
@@ -97,7 +96,7 @@ class MainApp(MDApp):
 
         return screen_manager
 
-    def update_label(self, screen_name, id , text):
+    def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
         try:
@@ -212,11 +211,33 @@ class MainApp(MDApp):
                     self.camera.release()
                     cv2.destroyAllWindows()
 
+    def face_recognition_module(self):
+        self.camera = cv2.VideoCapture(0)
+        trainedModel.face_recognition(self.camera)
+        # change the name in GUI
+        conf = trainedModel.confidence_result
+        if conf < 80:
+            put_in_queue(event_queue, 'stop face')  # stop face scanning thread
+            put_in_queue(screen_queue, 'greetings')  # navigate to greetings
+            screen_manager.ids.greet_user.text = f'Good Day, {main.user_nickname}'
+        else:
+            put_in_queue(event_queue, 'stop face')  # stop face scanning thread
+            put_in_queue(screen_queue, 'newuser')  # navigate to greetings
+            change_screen('newuser')
+
     def on_start(self):
-        Clock.schedule_interval(self.await_change_screen,1)
+        #initial states
+        stop_voice.set()
+
+        Clock.schedule_interval(self.await_change_screen, 1)
+        Clock.schedule_interval(self.await_change_state, .5)
+
+
 
 
     def await_change_screen(self, dt):
+        """periodically check if an item is in queue and change screen according to the screen name corresponding to
+        the item in queue"""
         try:
             item = screen_queue.get_nowait()
             print(item)
@@ -225,27 +246,32 @@ class MainApp(MDApp):
             pass
 
     def await_change_state(self, dt):
+        """ periodically check if an item is in queue and set or clear an event"""
         try:
             item = event_queue.get_nowait()
             print(item)
 
-            if item == "":
-                pass
-            if item == "":
-                pass
+            if item == 'stop face':
+                stop_face.set()
+
+            if item == "run face":
+                stop_face.clear()
+
+            if item == 'stop voice':
+                stop_voice.set()
+
+            if item == "run voice":
+                stop_voice.clear()
+
+            if item == 'stop motor': #experimental
+                stop_motor.set()
+
+            if item == "run motor":
+                stop_motor.clear()
+
+
         except Empty:
             pass
-
-    def face_recognition_module(self):
-        self.camera = cv2.VideoCapture(0)
-        trainedModel.face_recognition(self.camera)
-        # change the name in GUI
-        conf = trainedModel.confidence_result
-        if conf < 80:
-            put_in_queue(screen_queue,'')
-            screen_manager.ids.greet_user.text = f'Good Day, {main.user_nickname}'
-        else:
-            change_screen('newuser')
 
 
 def navigate_to_previous_screen():
@@ -256,22 +282,53 @@ def change_screen(screen_name):
     screen_manager.current = screen_name
 
 
-def put_in_queue(queue, item):
-    queue.put(item)
+def put_in_queue(myqueue, item):
+    myqueue.put(item)
     print("placed")
 
 
-def get_from_queue(queue):
+def get_from_queue(myqueue):
     try:
-        return queue.get_nowait()
+        return myqueue.get_nowait()
     except Empty:
         return None
 
 
-def GPIO(seconds):
+def on_gpio(seconds):
     gpio.set_gpio_pin(17, 1)
     time.sleep(seconds)
 
+
+def voice_thread():
+    print("voice thread active")
+    while True:
+        if not stop_voice.is_set():
+            voicebot.activate_on_button_press()
+        else:
+            pass
+
+
+def face_thread():
+    print("face thread active")
+    while True:
+        if not stop_face.is_set():
+            app.face_recognition_module()
+        else:
+            pass
+
+def static_motor_thread():
+    while True:
+        if stop_motor.is_set():
+            on_gpio(30)
+        else:
+            pass
+
+def dynamic_motor_thread():
+    while True:
+        if stop_motor.is_set():
+            on_gpio(30)
+        else:
+            pass
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
@@ -287,20 +344,22 @@ if __name__ == "__main__":
     app = MainApp()
 
     # Threads
-    voice_thread = threading.Thread()
-    face_thread = threading.Thread()
+    voice_thread = threading.Thread(target=voice_thread)
+    face_thread = threading.Thread(target=face_thread)
+    voice_thread.daemon = True
+    face_thread.daemon = True
     # processes running in the background indefinitely
 
     # face_thread identifies what the user wants and sends an item
     # in the change screen queue to change the current screen
 
     # Event States
-    voice_scanning = threading.Event()
-    face_scanning = threading.Event()
-    motor_stopping = threading.Event()
+    stop_voice = threading.Event()
+    stop_face = threading.Event()
+    stop_motor = threading.Event()
     # set events to stop thread processes and clear event to resume
 
+    voice_thread.start()
+    face_thread.start()
+
     app.run()
-
-
-
