@@ -3,6 +3,10 @@ import speech_recognition as sr
 import Voicebot.voicebotengine as voicebotengine
 import Voicebot.pygtts as ts
 import gpio as gpio
+import Integrated.GUIdev as gui
+from queue import Queue, Empty
+
+# gui.put_in_queue(gui.event_queue, "stop motor")
 
 
 class VoiceAssistant:
@@ -50,7 +54,6 @@ class VoiceAssistant:
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
-
     def listen_to_command(self, recognizer, source):
         audio = recognizer.listen(source=source, timeout=self.listen_timeout, phrase_time_limit=self.phrase_time_limit)
         text = recognizer.recognize_google(audio)
@@ -64,7 +67,6 @@ class VoiceAssistant:
                     return response
         except Exception as e:
             print(f"Error handling command: {e}")
-
 
     def activate_on_wake_word(self):
         context = [""]
@@ -111,7 +113,6 @@ class VoiceAssistant:
             ts.speak("Goodbye")
             sys.exit()
 
-
     def activate_on_wake_word(self):
         context = [""]
         recognizer = sr.Recognizer()
@@ -150,8 +151,6 @@ class VoiceAssistant:
             ts.speak("Goodbye")
             sys.exit()
 
-
-
     def activate_on_button_press(self):
         '''activate when button is pressed in the GUI'''
         context = [""]
@@ -182,7 +181,6 @@ class VoiceAssistant:
         except KeyboardInterrupt:
             ts.speak("Goodbye")
             sys.exit()
-
 
     def voice_assistant_loop(self):
         '''continuously listen for wake word and commands'''
@@ -225,12 +223,9 @@ class VoiceAssistant:
                         except Exception:
                             pass
 
-
-
                         # listen for the command after wake word is detected
                         text = self.listen_to_command(recognizer, source)
                         print("Received command: " + text)
-
 
                         # generate a response from the chatbot
                         response = self.handle_command(text, context)
