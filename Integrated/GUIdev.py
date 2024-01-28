@@ -212,14 +212,6 @@ class MainApp(MDApp):
                     self.camera.release()
                     cv2.destroyAllWindows()
 
-    def check_queue(self, queue, dt):
-        try:
-            item = queue.get_nowait()
-            print(item)
-            self.update_image('mainmenu', 'bg', item)
-        except Empty:
-            pass
-
     def on_start(self):
         Clock.schedule_interval(self.await_change_screen,1)
 
