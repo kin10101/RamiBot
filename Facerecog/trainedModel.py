@@ -11,7 +11,9 @@ global confidence_result
 
 def face_recognition(video):
     global confidence_result
-    while True:
+    global running
+    running = True
+    while running:
         ret, frame = video.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = facedetect.detectMultiScale(gray, 1.3, 5)
@@ -27,6 +29,10 @@ def face_recognition(video):
 
                 #greet user with voice
                 m.returnName1(str(serial), conf)
+                running = False
+                return confidence_result
+
+
 
 
             else:
@@ -44,4 +50,6 @@ def face_recognition(video):
 
     video.release()
     #cv2.destroyAllWindows()n
+
+
 

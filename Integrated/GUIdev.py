@@ -212,22 +212,17 @@ class MainApp(MDApp):
                     cv2.destroyAllWindows()
 
     def face_recognition_module(self):
+        print('ACTIVE FACE SCANNING')
         self.camera = cv2.VideoCapture(0)
-        trainedModel.face_recognition(self.camera)
-        # change the name in GUI
-        conf = trainedModel.confidence_result
-        if conf > 80:
+        conf = trainedModel.face_recognition(self.camera)
+        if conf is not None:
             put_in_queue(screen_queue, 'greetings')
-            screen_manager.ids.greet_user.text = f'Good Day, {main.user_nickname}'
-        else:
-            change_screen('newuser')
+            self.update_label('greetings', 'greet_user_label',f'Good Day, {main.user_nickname}')
+
 
     def on_start(self):
-        #initial states
-        stop_voice.set()
-
         Clock.schedule_interval(self.await_change_screen, 1)
-        Clock.schedule_interval(self.await_change_state, .5)
+
 
 
 
@@ -241,6 +236,8 @@ class MainApp(MDApp):
             change_screen(item)
         except Empty:
             pass
+    def face_thread(self):
+        face_thread.start()
 
     def await_change_state(self, dt):
         """ periodically check if an item is in queue and set or clear an event"""
@@ -281,7 +278,7 @@ def change_screen(screen_name):
 
 def put_in_queue(myqueue, item):
     myqueue.put(item)
-    print("placed")
+    print("placed" + item)
 
 
 def get_from_queue(myqueue):
@@ -307,11 +304,8 @@ def voice_thread():
 
 def face_thread():
     print("face thread active")
-    while True:
-        if not stop_face.is_set():
-            app.face_recognition_module()
-        else:
-            pass
+    if not stop_face.is_set():
+        app.face_recognition_module()
 
 def static_motor_thread():
     while True:
@@ -330,10 +324,11 @@ def dynamic_motor_thread():
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
     # Queues
-    event_queue = Queue()
-    data_queue = Queue()
+    # event_queue = Queue()
+    # data_queue = Queue()
     screen_queue = Queue()
     # inter thread communication
+
     # a clocked function checks and gets the items in the queue periodically
 
     # Classes
@@ -342,9 +337,9 @@ if __name__ == "__main__":
 
     # Threads
     voice_thread = threading.Thread(target=voice_thread)
-    # face_thread = threading.Thread(target=face_thread)
+    face_thread = threading.Thread(target=face_thread)
     voice_thread.daemon = True
-    # face_thread.daemon = True
+    face_thread.daemon = True
     # processes running in the background indefinitely
 
     # face_thread identifies what the user wants and sends an item
@@ -356,7 +351,9 @@ if __name__ == "__main__":
     stop_motor = threading.Event()
     # set events to stop thread processes and clear event to resume
 
-    voice_thread.start()
-    face_thread.start()
+    #voice_thread.start()
+
 
     app.run()
+
+

@@ -3,7 +3,6 @@ import speech_recognition as sr
 import Voicebot.voicebotengine as voicebotengine
 import Voicebot.pygtts as ts
 import gpio as gpio
-import Integrated.GUIdev as gui
 from queue import Queue, Empty
 
 
