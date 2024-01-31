@@ -6,7 +6,6 @@ import gpio as gpio
 import Integrated.GUIdev as gui
 from queue import Queue, Empty
 
-# gui.put_in_queue(gui.event_queue, "stop motor")
 
 
 class VoiceAssistant:
@@ -35,24 +34,6 @@ class VoiceAssistant:
             "hello remy",
             "hey siri"
         ]
-
-    def voice_input(self):
-        # get speech
-        r = sr.Recognizer()
-        microphone = sr.Microphone()
-        # boiler plate code to filter out ambient noise noise from mic
-        with microphone as source:
-            r.adjust_for_ambient_noise(source, duration=1)
-            print("Say something!")
-            audio = r.listen(source)
-        # test example taken from Speech Recognition docs
-        try:
-            print("Google Speech Recognition thinks you said " + r.recognize_google(audio))
-            return r.recognize_google(audio)
-        except sr.UnknownValueError:
-            print("Google Speech Recognition could not understand audio")
-        except sr.RequestError as e:
-            print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
     def listen_to_command(self, recognizer, source):
         audio = recognizer.listen(source=source, timeout=self.listen_timeout, phrase_time_limit=self.phrase_time_limit)
@@ -83,11 +64,13 @@ class VoiceAssistant:
 
                 # check wake word
                 if any(variation in text for variation in self.wake_word_variations):
+
+                    source.stop()  # stop recording to close the microphone
+
                     print('Wake word detected. Now listening...')
                     ts.play_audio_file('audio/activate.wav')
 
-                    # stop recording to close the microphone
-                    source.stop()
+
 
                     # open a new instance of the microphone
                     with sr.Microphone() as source:
@@ -113,43 +96,43 @@ class VoiceAssistant:
             ts.speak("Goodbye")
             sys.exit()
 
-    def activate_on_wake_word(self):
-        context = [""]
-        recognizer = sr.Recognizer()
-
-        try:
-            print('speak now')
-            with sr.Microphone() as source:
-                print("listening for wake word")
-
-                # transcribe audio input
-                text = self.listen_to_command(recognizer, source)
-                print("Audio received to text: " + text)
-
-                # check wake word
-                if any(variation in text for variation in self.wake_word_variations):
-                    print('Wake word detected. Now listening...')
-                    ts.play_audio_file('audio/activate.wav')
-
-                    # listen for the command after wake word is detected
-                    text = self.listen_to_command(recognizer, source)
-                    print("Received command: " + text)
-
-                    response = self.handle_command(text, context)
-                    if response:
-                        ts.speak(response, lang='en')
-
-                    ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
-
-        except sr.RequestError:
-            print("Could not request results from google Speech Recognition service")
-        except sr.UnknownValueError:
-            print("Wake word detected but unable to recognize speech")
-        except sr.WaitTimeoutError:
-            print("Timeout error while waiting for speech input")
-        except KeyboardInterrupt:
-            ts.speak("Goodbye")
-            sys.exit()
+    # def activate_on_wake_word(self):
+    #     context = [""]
+    #     recognizer = sr.Recognizer()
+    #
+    #     try:
+    #         print('speak now')
+    #         with sr.Microphone() as source:
+    #             print("listening for wake word")
+    #
+    #             # transcribe audio input
+    #             text = self.listen_to_command(recognizer, source)
+    #             print("Audio received to text: " + text)
+    #
+    #             # check wake word
+    #             if any(variation in text for variation in self.wake_word_variations):
+    #                 print('Wake word detected. Now listening...')
+    #                 ts.play_audio_file('audio/activate.wav')
+    #
+    #                 # listen for the command after wake word is detected
+    #                 text = self.listen_to_command(recognizer, source)
+    #                 print("Received command: " + text)
+    #
+    #                 response = self.handle_command(text, context)
+    #                 if response:
+    #                     ts.speak(response, lang='en')
+    #
+    #                 ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
+    #
+    #     except sr.RequestError:
+    #         print("Could not request results from google Speech Recognition service")
+    #     except sr.UnknownValueError:
+    #         print("Wake word detected but unable to recognize speech")
+    #     except sr.WaitTimeoutError:
+    #         print("Timeout error while waiting for speech input")
+    #     except KeyboardInterrupt:
+    #         ts.speak("Goodbye")
+    #         sys.exit()
 
     def activate_on_button_press(self):
         '''activate when button is pressed in the GUI'''

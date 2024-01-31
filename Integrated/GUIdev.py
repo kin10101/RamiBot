@@ -216,13 +216,10 @@ class MainApp(MDApp):
         trainedModel.face_recognition(self.camera)
         # change the name in GUI
         conf = trainedModel.confidence_result
-        if conf < 80:
-            put_in_queue(event_queue, 'stop face')  # stop face scanning thread
-            put_in_queue(screen_queue, 'greetings')  # navigate to greetings
+        if conf > 80:
+            put_in_queue(screen_queue, 'greetings')
             screen_manager.ids.greet_user.text = f'Good Day, {main.user_nickname}'
         else:
-            put_in_queue(event_queue, 'stop face')  # stop face scanning thread
-            put_in_queue(screen_queue, 'newuser')  # navigate to greetings
             change_screen('newuser')
 
     def on_start(self):
@@ -345,9 +342,9 @@ if __name__ == "__main__":
 
     # Threads
     voice_thread = threading.Thread(target=voice_thread)
-    face_thread = threading.Thread(target=face_thread)
+    # face_thread = threading.Thread(target=face_thread)
     voice_thread.daemon = True
-    face_thread.daemon = True
+    # face_thread.daemon = True
     # processes running in the background indefinitely
 
     # face_thread identifies what the user wants and sends an item
