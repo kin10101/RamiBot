@@ -1,4 +1,3 @@
-import queue
 import time
 
 from Facerecog import trainedModel
@@ -6,7 +5,6 @@ from Facerecog import main
 
 from Voicebot.voice_assistant_module import VoiceAssistant
 import Voicebot.pygtts as pygtts
-# gg
 import gpio
 
 import cv2
@@ -20,6 +18,7 @@ import os
 from kivy.graphics.texture import Texture
 from kivy.uix.image import Image
 from kivy.clock import Clock
+from kivy.uix.screenmanager import NoTransition
 
 import threading
 from queue import Queue, Empty
@@ -27,6 +26,7 @@ from queue import Queue, Empty
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+global count
 
 
 class MainApp(MDApp):
@@ -48,7 +48,7 @@ class MainApp(MDApp):
 
     def build(self):
         global screen_manager
-        screen_manager = ScreenManager()
+        screen_manager = ScreenManager(transition=NoTransition())
 
         # ADD ALL SCREENS TO BE USED HERE
         screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
@@ -217,15 +217,11 @@ class MainApp(MDApp):
         conf = trainedModel.face_recognition(self.camera)
         if conf is not None:
             put_in_queue(screen_queue, 'greetings')
-            self.update_label('greetings', 'greet_user_label',f'Good Day, {main.user_nickname}')
-
+            self.update_label('greetings', 'greet_user_label', f'Good Day, {main.user_nickname}')
+            gpio.set_gpio_pin(4, 1)
 
     def on_start(self):
-        Clock.schedule_interval(self.await_change_screen, 1)
-
-
-
-
+        Clock.schedule_interval(self.await_change_screen, .5)
 
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
@@ -236,8 +232,6 @@ class MainApp(MDApp):
             change_screen(item)
         except Empty:
             pass
-    def face_thread(self):
-        face_thread.start()
 
     def await_change_state(self, dt):
         """ periodically check if an item is in queue and set or clear an event"""
@@ -257,7 +251,7 @@ class MainApp(MDApp):
             if item == "run voice":
                 stop_voice.clear()
 
-            if item == 'stop motor': #experimental
+            if item == 'stop motor':  # experimental
                 stop_motor.set()
 
             if item == "run motor":
@@ -266,6 +260,14 @@ class MainApp(MDApp):
 
         except Empty:
             pass
+
+    def face_thread(self):
+        face_thread.start()
+
+    def on_led(self, dt):
+        gpio.set_gpio_pin(4, 1)
+        time.sleep(1)
+        gpio.GPIO.cleanup()
 
 
 def navigate_to_previous_screen():
@@ -289,8 +291,9 @@ def get_from_queue(myqueue):
 
 
 def on_gpio(seconds):
-    gpio.set_gpio_pin(17, 1)
+    gpio.set_gpio_pin(4, 1)
     time.sleep(seconds)
+    gpio.GPIO.cleanup()
 
 
 def voice_thread():
@@ -307,43 +310,37 @@ def face_thread():
     if not stop_face.is_set():
         app.face_recognition_module()
 
-def static_motor_thread():
-    while True:
-        if stop_motor.is_set():
-            on_gpio(30)
-        else:
-            pass
 
-def dynamic_motor_thread():
-    while True:
-        if stop_motor.is_set():
-            on_gpio(30)
-        else:
-            pass
+def timeout_counter(dt):
+    global count
+    count = count + 1
+    if count == 30:
+        change_screen('idlescreen')
+        gpio.GPIO.cleanup()
+
+def reset_timeout():
+    global count
+    count = 0
+
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
+    count = 0
     # Queues
-    # event_queue = Queue()
-    # data_queue = Queue()
+    event_queue = Queue()
     screen_queue = Queue()
     # inter thread communication
-
     # a clocked function checks and gets the items in the queue periodically
 
     # Classes
     voicebot = VoiceAssistant()
     app = MainApp()
 
-    # Threads
+    # Thread initialization
     voice_thread = threading.Thread(target=voice_thread)
     face_thread = threading.Thread(target=face_thread)
     voice_thread.daemon = True
     face_thread.daemon = True
-    # processes running in the background indefinitely
-
-    # face_thread identifies what the user wants and sends an item
-    # in the change screen queue to change the current screen
 
     # Event States
     stop_voice = threading.Event()
@@ -351,9 +348,6 @@ if __name__ == "__main__":
     stop_motor = threading.Event()
     # set events to stop thread processes and clear event to resume
 
-    #voice_thread.start()
-
+    # voice_thread.start()
 
     app.run()
-
-

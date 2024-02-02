@@ -21,7 +21,7 @@ def face_recognition(video):
             serial, conf = recognizer.predict(gray[y:y + h, x:x + w])
             currentID = serial
             confidence_result = conf
-            if conf > 80:
+            if conf > 70:
 
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
@@ -29,7 +29,9 @@ def face_recognition(video):
 
                 #greet user with voice
                 m.returnName1(str(serial), conf)
+                video.release()
                 running = False
+
                 return confidence_result
 
 
