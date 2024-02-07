@@ -10,6 +10,12 @@ MDScreen:
             keep_ratio: False
             size_hint: 1, 1
 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0.5  # Adjust the opacity here (0.5 for 50% opacity)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
         #Back Button
         MDIconButton:
             icon: 'arrow-left'
@@ -27,20 +33,20 @@ MDScreen:
             padding: 10
             radius: [15]
 
-            MDLabel: # Title
-                id: calendarLabel
-                text: ' '
-                font_name: 'Poppins'
-                font_size: "34sp"
-                halign: 'center'
-                text_color: 1, 1, 1, 1
-                pos_hint: {"x": 0, "y": .85}
-                size_hint: 1, .2
-                bold: True
-
             Image: # Background image
                 id: calendarImage
                 source: ' '
                 allow_stretch: True
                 keep_ratio: False
                 size_hint: 1, 1
+
+        MDLabel: # Title
+            id: calendarLabel
+            text: ' '
+            font_name: 'Poppins'
+            font_size: "34sp"
+            halign: 'center'
+            text_color: 1, 1, 1, 1
+            pos_hint: {"x": 0, "y": .75}
+            size_hint: 1, .2
+            bold: True
