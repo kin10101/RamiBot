@@ -6,6 +6,7 @@ from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
 
+
 '''DEVELOPMENT CODE FOR GUI'''
 '''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED PACKAGE'''
 
