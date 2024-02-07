@@ -216,9 +216,10 @@ class MainApp(MDApp):
         self.camera = cv2.VideoCapture(0)
         conf = trainedModel.face_recognition(self.camera)
         if conf is not None:
+            gpio.set_gpio_pin(4, 1)
             put_in_queue(screen_queue, 'greetings')
             self.update_label('greetings', 'greet_user_label', f'Good Day, {main.user_nickname}')
-            gpio.set_gpio_pin(4, 1)
+            
 
     def on_start(self):
         Clock.schedule_interval(self.await_change_screen, .5)
@@ -264,10 +265,6 @@ class MainApp(MDApp):
     def face_thread(self):
         face_thread.start()
 
-    def on_led(self, dt):
-        gpio.set_gpio_pin(4, 1)
-        time.sleep(1)
-        gpio.GPIO.cleanup()
 
 
 def navigate_to_previous_screen():
@@ -288,12 +285,6 @@ def get_from_queue(myqueue):
         return myqueue.get_nowait()
     except Empty:
         return None
-
-
-def on_gpio(seconds):
-    gpio.set_gpio_pin(4, 1)
-    time.sleep(seconds)
-    gpio.GPIO.cleanup()
 
 
 def voice_thread():
