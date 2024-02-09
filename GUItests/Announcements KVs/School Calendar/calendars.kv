@@ -47,20 +47,20 @@ MDScreen:
                     size_hint_y: None
                     height: self.minimum_height
 
-                    MDLabel: # Title
+                    Label: # Title
                         text: 'Senior High School Academic Calendar'
                         font_name: 'Poppins'
                         font_size: "34sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
-                        pos_hint: {"x": 0, "y": .85}
-                        size_hint: 1, .2
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
                         bold: True
                         #label background
                         size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
                         canvas.before:
                             Color:
-                                rgba: .003, .4, .6, .5
+                                rgba: .1, .1, .1, .2
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
@@ -113,20 +113,20 @@ MDScreen:
                             app.update_label("calendarInfo", "calendarLabel", "Senior High School Calendar: Term 2, A.Y. 2023-2024")
                             app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/shsc_t2ay20232024.png")
 
-                    MDLabel: # Title
+                    Label: # Title
                         text: 'Collegiate Academic Calendar'
                         font_name: 'Poppins'
                         font_size: "34sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
-                        pos_hint: {"x": 0, "y": .85}
-                        size_hint: 1, .2
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
                         bold: True
                         #label background
                         size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
                         canvas.before:
                             Color:
-                                rgba: .003, .4, .6, .5
+                                rgba: .1, .1, .1, .2
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
@@ -179,20 +179,20 @@ MDScreen:
                             app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: Term 2, A.Y. 2023-2024")
                             app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/csc_t2ay20232024.png")
 
-                    MDLabel: # Title
+                    Label: # Title
                         text: 'Graduate School Academic Calendar'
                         font_name: 'Poppins'
                         font_size: "34sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
-                        pos_hint: {"x": 0, "y": .85}
-                        size_hint: 1, .2
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
                         bold: True
                         #label background
                         size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
                         canvas.before:
                             Color:
-                                rgba: .003, .4, .6, .5
+                                rgba: .1, .1, .1, .2
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
@@ -228,3 +228,12 @@ MDScreen:
                             root.manager.transition.direction = 'left'
                             app.update_label("calendarInfo", "calendarLabel", "Graduate School Calendar: Term 2, A.Y. 2023-2024")
                             app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/gc_t2ay20232024.png")
+
+        Button:
+            size_hint: None, None
+            size: 250, 80
+            background_normal: 'Assets/chatbot icon.png'
+            background_color: 208/255,233/255,245/255,1
+            pos_hint: {'center_x': 0.9, 'center_y': 0.062}
+            background_scale: 'fit'
+            border_radius: [100]
