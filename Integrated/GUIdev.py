@@ -333,6 +333,7 @@ class MainApp(MDApp):
             gpio.set_gpio_pin(4, 1)
             put_in_queue(screen_queue, 'greetings')
             self.update_label('greetings', 'greet_user_label', f'Good Day, {main.user_nickname}')
+            pygtts.speak(f'Good Day, {main.user_nickname}')
 
     def gpio_cleanup(self):
         print('cleared pin values')
