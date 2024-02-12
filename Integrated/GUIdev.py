@@ -351,7 +351,13 @@ class MainApp(MDApp):
         self.start_timer()
 
     def timeout_reset(self, dt):
+        gpio.set_gpio_pin(4, 0)
         change_screen('idlescreen')
+
+    def start_thread(self, thread_obj):
+        thread = thread_obj()
+        thread.start()
+        return thread
 
     def on_touch_down(self, touch, *args):
         self.reset_timer()
@@ -397,7 +403,10 @@ class MainApp(MDApp):
             pass
 
     def face_thread(self):
-        face_thread.start()
+
+        face = threading.Thread(target=face_thread)
+        face.daemon = True
+        face.start()
 
 
 def navigate_to_previous_screen():
@@ -463,9 +472,9 @@ if __name__ == "__main__":
 
     # Thread initialization
     voice_thread = threading.Thread(target=voice_thread)
-    face_thread = threading.Thread(target=face_thread)
+
     voice_thread.daemon = True
-    face_thread.daemon = True
+
 
     # Event States
     stop_voice = threading.Event()
