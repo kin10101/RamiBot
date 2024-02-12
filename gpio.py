@@ -10,6 +10,7 @@ def set_gpio_pin(pin, state):
     GPIO.setup(pin, GPIO.OUT)
     # Set the pin to the specified state
     GPIO.output(pin, state)
+    print('set gpio pin '+ str(pin), 'to'+ str(state))
 
 
 #Usage

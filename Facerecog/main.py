@@ -87,6 +87,7 @@ def returnName1(ID_Num,result):
             voiceTrig = 1
             motorTrig = 1
         else:
+            user_nickname = 'Bitch'
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
     else:
