@@ -89,7 +89,7 @@ MDScreen:
                             root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
-                        text: 'Tuition Fee and Scholarships'
+                        text: 'Scholarship Grants and Financial Aid'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -98,6 +98,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_press:
+                            root.manager.current = 'scholarships'
+                            root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
                         text: 'About Asia Pacific College'

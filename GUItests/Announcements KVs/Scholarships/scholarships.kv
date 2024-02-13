@@ -1,0 +1,277 @@
+MDScreen:
+    name: 'scholarships'
+
+    MDFloatLayout: # main layout
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+        #Back Button
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+            user_font_size: "40sp"
+            on_press:
+                root.manager.current = 'announcements'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .45
+            pos_hint: {"x":0.1, "y":0.52}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+            Label: # Title
+                text: 'Scholarship Grants'
+                font_name: 'Poppins'
+                font_size: "34sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: .8, None
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                bold: True
+                #label background
+                size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                canvas.before:
+                    Color:
+                        rgba: .1, .1, .1, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            MDScrollView: # ScrollView for Buttons
+                do_scroll_x: False
+
+                MDBoxLayout: # Buttons
+                    orientation: 'vertical'
+                    padding: 10
+                    spacing: 30
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MDFillRoundFlatButton:
+                        text: 'SM Group of Companies'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'IBM Scholarship Program'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'SM Foundation Scholar (SMF)'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'For Active Uniformed Philippine National Police (PNP)'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Entrance Academic Scholar (for new high school graduates only)'
+                        font_name: 'Poppins'
+                        font_size: "22sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Armed Forces of the Philippines-Educational Benefit System (AFP-EBS)'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Armed Forces of the Philippines Officers Ladies Club Scholarship (AFPOLC)'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .45
+            pos_hint: {"x":0.1, "y":0.05}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+            Label: # Title
+                text: 'Financial Aid'
+                font_name: 'Poppins'
+                font_size: "34sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: .8, None
+                pos_hint: {'center_x': 0.5}
+                bold: True
+                #label background
+                size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                canvas.before:
+                    Color:
+                        rgba: .1, .1, .1, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            MDScrollView: # ScrollView for Buttons
+                do_scroll_x: False
+
+                MDBoxLayout: # Buttons
+                    orientation: 'vertical'
+                    padding: 10
+                    spacing: 30
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MDFillRoundFlatButton:
+                        text: 'Family Discount'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Socialized Financial Assistance'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Public School Graduates Financial Assistance'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'MaPSA or Parish School Graduate Financial Assistance'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+
+        Button:
+            size_hint: None, None
+            size: 250, 80
+            background_normal: 'Assets/chatbot icon.png'
+            background_color: 208/255,233/255,245/255,1
+            pos_hint: {'center_x': 0.9, 'center_y': 0.062}
+            background_scale: 'fit'
+            border_radius: [100]
