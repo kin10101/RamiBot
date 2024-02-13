@@ -18,6 +18,7 @@ voiceTrig = 0
 motorTrig = 0
 global user_nickname
 global unknown_user
+global result_text
 
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
@@ -52,6 +53,7 @@ def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 def returnName1(ID_Num,result):
     global user_nickname
     global unknown_user
+    global result_text
     check_id = "SELECT * FROM ramibot_faces"
     cur.execute(check_id)
     res = cur.fetchall()
@@ -80,19 +82,21 @@ def returnName1(ID_Num,result):
 
         # Convert the recognition result to text
         if result > threshold:
-            result_text = f"'{greeting}', '{nickname}'"
+            result_text = f"{greeting}, {nickname}!"
             user_nickname = nickname
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
             voiceTrig = 1
             motorTrig = 1
         else:
-            user_nickname = 'Bitch'
+            #user_nickname = 'Bitch'
+            result_text = greet_new_user()
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
     else:
-        engine.say(unknown_user)
-        engine.runAndWait()
+        #engine.say(unknown_user)
+        #engine.runAndWait()
+        result_text = greet_new_user()
         print("User not exist")
 
 def get_time_of_day_greeting():
@@ -101,24 +105,24 @@ def get_time_of_day_greeting():
 
     # Determine the time of day and return a greeting message
     if 6 <= current_hour < 12:
-        return "Good morning!"
+        return "Good morning"
     elif 12 <= current_hour < 18:
-        return "Good afternoon!"
+        return "Good afternoon"
     else:
-        return "Good evening!"
+        return "Good evening"
 
 def greet_new_user():
     random_num = random.randint(1,5)
     if random_num == 1:
-        return "Hello, I'm Ramibot!"
+        return "Hello new user, I'm Ramibot!"
     elif random_num == 2:
-        return "Kamusta, Ako si Ramibot!"
+        return "Kamusta kaibigan, ako si Ramibot!"
     elif random_num == 3:
-        return "Hi, I'm Ramibot!"
+        return "Hi new user, I'm Ramibot!"
     elif random_num == 4:
-        return "What up, I'm Ramibot!"
+        return "What up new user, I'm Ramibot!"
     elif random_num == 5:
-        return "Whatcha doin, I'm Ramibot!"
+        return "Whatcha doin new user, I'm Ramibot!"
 
 def time_stamp(ID_Num, result_text):
     new_user = f"INSERT INTO greeted_users (ID_Number) VALUES ({ID_Num})"
