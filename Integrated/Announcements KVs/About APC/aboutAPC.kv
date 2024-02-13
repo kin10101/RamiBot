@@ -57,11 +57,6 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_press:
-                            root.manager.current = 'scholarInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
-                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
 
                     MDFillRoundFlatButton:
                         text: 'Industry Partners'
@@ -73,11 +68,22 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+
+                    MDFillRoundFlatButton:
+                        text: 'Vision, Mission, and Values'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
                         on_press:
-                            root.manager.current = 'scholarInfo'
+                            root.manager.current = 'APCinfo'
                             root.manager.transition.direction = 'left'
-                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
-                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
+                            app.update_label("APCinfo", "infoLabel", " ")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/vmv.png")
 
                     MDFillRoundFlatButton:
                         text: 'Accreditations & Certifications'
@@ -92,22 +98,6 @@ MDScreen:
                         on_press:
                             root.manager.current = 'accreds'
                             root.manager.transition.direction = 'left'
-
-                    MDFillRoundFlatButton:
-                        text: 'Vision, Mission, and Values'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'scholarInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("scholarInfo", "scholarLabel", "Senior High School Calendar: A.Y. 2023-2024")
-                            app.update_image("scholarInfo", "scholarImage", "Announcements KVs/School Calendar/apc_shs_ay20232024.png")
 
         Button:
             size_hint: None, None
