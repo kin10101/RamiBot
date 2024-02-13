@@ -335,7 +335,7 @@ class MainApp(MDApp):
         if conf is not None:
             gpio.set_gpio_pin(4, 1)
             put_in_queue(screen_queue, 'greetings')
-            self.update_label('greetings', 'greet_user_label', f'Good Day, {main.user_nickname}')
+            self.update_label('greetings', 'greet_user_label', f'Good Day, {main.result_text}')
 
     def on_start(self):
         Clock.schedule_interval(self.await_change_screen, .5)

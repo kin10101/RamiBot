@@ -18,6 +18,7 @@ voiceTrig = 0
 motorTrig = 0
 global user_nickname
 global unknown_user
+global result_text
 
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
@@ -52,6 +53,7 @@ def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 def returnName1(ID_Num,result):
     global user_nickname
     global unknown_user
+    global result_text
     check_id = "SELECT * FROM ramibot_faces"
     cur.execute(check_id)
     res = cur.fetchall()
@@ -90,8 +92,9 @@ def returnName1(ID_Num,result):
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
     else:
-        engine.say(unknown_user)
-        engine.runAndWait()
+        #engine.say(unknown_user)
+        #engine.runAndWait()
+        result_text = greet_new_user()
         print("User not exist")
 
 def get_time_of_day_greeting():
