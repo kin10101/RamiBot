@@ -154,6 +154,7 @@ class MainApp(MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.timeout = None
         self.texture = None
         self.camera = None
         self.frame_count = None
@@ -180,13 +181,7 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
 
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/admissions.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/finance.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/registrar.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/itro.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/bmo.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/logitics.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/do.kv'))
+        screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
@@ -210,6 +205,8 @@ class MainApp(MDApp):
         self.frame_rate = 10
         self.frame_count = 50
         self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
+
+        Window.bind(on_touch_down=self.on_touch_down)
 
         return screen_manager
 
@@ -335,10 +332,38 @@ class MainApp(MDApp):
         if conf is not None:
             gpio.set_gpio_pin(4, 1)
             put_in_queue(screen_queue, 'greetings')
-            self.update_label('greetings', 'greet_user_label', f'Good Day, {main.result_text}')
+            self.update_label('greetings', 'greet_user_label', f'Good Day, {main.user_nickname}')
+            pygtts.speak(f'Good Day, {main.user_nickname}')
 
+    def gpio_cleanup(self):
+        print('cleared pin values')
+        gpio.set_gpio_pin(4, 0)
+        gpio.GPIO.cleanup()
     def on_start(self):
         Clock.schedule_interval(self.await_change_screen, .5)
+
+
+    def start_timer(self):
+        self.timeout = Clock.schedule_once(self.timeout_reset, 30)
+
+
+    def reset_timer(self):
+        self.timeout.cancel()
+        self.start_timer()
+
+    def timeout_reset(self, dt):
+        gpio.set_gpio_pin(4, 0)
+        change_screen('idlescreen')
+
+    def start_thread(self, thread_obj):
+        thread = thread_obj()
+        thread.start()
+        return thread
+
+    def on_touch_down(self, touch, *args):
+        self.reset_timer()
+
+
 
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
@@ -379,7 +404,10 @@ class MainApp(MDApp):
             pass
 
     def face_thread(self):
-        face_thread.start()
+
+        face = threading.Thread(target=face_thread)
+        face.daemon = True
+        face.start()
 
 
 def navigate_to_previous_screen():
@@ -445,9 +473,9 @@ if __name__ == "__main__":
 
     # Thread initialization
     voice_thread = threading.Thread(target=voice_thread)
-    face_thread = threading.Thread(target=face_thread)
+
     voice_thread.daemon = True
-    face_thread.daemon = True
+
 
     # Event States
     stop_voice = threading.Event()
@@ -458,3 +486,5 @@ if __name__ == "__main__":
     # voice_thread.start()
 
     app.run()
+
+

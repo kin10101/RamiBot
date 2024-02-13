@@ -1,5 +1,7 @@
 MDScreen:
     name: 'officehours'
+    on_enter:
+        print('entered office hours')
 
     MDFloatLayout: # main layout
         orientation: 'vertical'
@@ -59,8 +61,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'admissions'
+                            root.manager.current = 'officeInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_image("officeInfo", "officeImage", "Office KVs/admissions.png")
 
 
                     MDFillRoundFlatButton:
@@ -74,8 +77,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'finance'
+                            root.manager.current = 'officeInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_image("officeInfo", "officeImage", "Office KVs/finance.png")
 
                     MDFillRoundFlatButton:
                         text: 'Office of the Registrar'
@@ -88,8 +92,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'registrar'
+                            root.manager.current = 'officeInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_image("officeInfo", "officeImage", "Office KVs/registrar.png")
 
                     MDFillRoundFlatButton:
                         text: 'IT Resources Office'
@@ -102,8 +107,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'itro'
+                            root.manager.current = 'officeInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_image("officeInfo", "officeImage", "Office KVs/itro.png")
 
                     MDFillRoundFlatButton:
                         text: 'Building Management Office'
@@ -116,8 +122,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'bmo'
+                            root.manager.current = 'officeInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_image("officeInfo", "officeImage", "Office KVs/bmo.png")
 
                     MDFillRoundFlatButton:
                         text: 'Logistics Office'
@@ -130,8 +137,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'logistics'
+                            root.manager.current = 'officeInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_image("officeInfo", "officeImage", "Office KVs/logistics.png")
 
                     MDFillRoundFlatButton:
                         text: 'Discipline Office'
@@ -144,5 +152,15 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'do'
+                            root.manager.current = 'officeInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_image("officeInfo", "officeImage", "Office KVs/do.png")
+
+        Button:
+            size_hint: None, None
+            size: 250, 80
+            background_normal: 'Assets/chatbot icon.png'
+            background_color: 208/255,233/255,245/255,1
+            pos_hint: {'center_x': 0.9, 'center_y': 0.062}
+            background_scale: 'fit'
+            border_radius: [100]

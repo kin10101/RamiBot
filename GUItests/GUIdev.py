@@ -7,6 +7,7 @@ from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
 
 
+
 '''DEVELOPMENT CODE FOR GUI'''
 '''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED PACKAGE'''
 
@@ -33,13 +34,7 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
 
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/admissions.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/finance.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/registrar.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/itro.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/bmo.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/logitics.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/do.kv'))
+        screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
