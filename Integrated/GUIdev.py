@@ -23,6 +23,8 @@ from kivy.uix.screenmanager import NoTransition
 import threading
 from queue import Queue, Empty
 
+from Voicebot import voicebotengine
+
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
@@ -482,7 +484,7 @@ if __name__ == "__main__":
     count = 0
     # Queues
     event_queue = Queue()
-    screen_queue = Queue()
+    screen_queue = voicebotengine.Speech_Queue
     # inter thread communication
     # a clocked function checks and gets the items in the queue periodically
 
