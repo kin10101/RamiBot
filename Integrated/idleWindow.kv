@@ -1,7 +1,10 @@
 MDScreen:
     name: 'idlescreen'
-    on_enter: app.face_thread()
-    on_pre_leave: app.start_timer()
+    on_enter:
+        app.face_thread()
+        app.start_timer()
+    on_pre_leave:
+
 
 
     MDFloatLayout: # main layout
@@ -14,6 +17,8 @@ MDScreen:
             allow_stretch: True
             keep_ratio: False
             size_hint: 1, 1
+            on_touch_down: app.root.current = 'mainmenu'
+
 
         Image:
             source: 'Assets/logo.png'
