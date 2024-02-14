@@ -12,8 +12,23 @@ def set_gpio_pin(pin, state):
     GPIO.output(pin, state)
     print('set gpio pin '+ str(pin), 'to'+ str(state))
 
+def read_gpio_pin(pin):
+    # Set mode and pin
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin, GPIO.IN)
+    # Read the state of the pin
+    state = GPIO.input(pin)
+    print('Read state of GPIO pin', pin, ':', state)
+    return state
 
-#Usage
+'''
+int = read_gpio_pin(7)
+if int != 1:
+    pass
+    else:
+'''
+
+
 
 '''
 set_gpio_pin(4, GPIO.HIGH)
