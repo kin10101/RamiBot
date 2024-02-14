@@ -450,6 +450,10 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
+def start_voice_thread():
+    voice_thread = threading.Thread(target=voice_thread)
+    voice_thread.daemon = True
+    voice_thread.start()
 
 def voice_thread():
     print("voice thread active")
@@ -493,9 +497,9 @@ if __name__ == "__main__":
     app = MainApp()
 
     # Thread initialization
-    voice_thread = threading.Thread(target=voice_thread)
 
-    voice_thread.daemon = True
+    start_voice_thread()
+
 
 
     # Event States
