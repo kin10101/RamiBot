@@ -3,8 +3,6 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.image import AsyncImage, Image
 import mysql.connector
-
-
 class MyApp(App):
     def build(self):
         # Connect to the MySQL database (replace with your database connection details)

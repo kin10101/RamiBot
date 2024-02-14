@@ -112,6 +112,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_press:
+                            root.manager.current = 'aboutAPC'
+                            root.manager.transition.direction = 'left'
 
         Button:
             size_hint: None, None

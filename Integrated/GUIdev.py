@@ -194,6 +194,9 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarInfo.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/aboutAPC.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/Accreditations.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/APCinfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('faculty.kv'))
 
