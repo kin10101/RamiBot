@@ -41,45 +41,40 @@ MDScreen:
             MDScrollView: # ScrollView for Buttons
                 do_scroll_x: False
 
-                MDGridLayout: # Layout for Buttons
-                    cols: 1
+                MDBoxLayout: # Buttons
+                    orientation: 'vertical'
                     padding: 10
                     spacing: 25
                     size_hint_y: None
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                     height: self.minimum_height
 
-                    Label:
+                    MDFillRoundFlatButton:
                         text: 'Rotaract Club of Asia Pacific College'
                         font_name: 'Poppins'
-                        font_size: "34sp"
+                        font_size: "24sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Rotaract Club of Asia Pacific College")
 
-                    Label:
+                    MDFillRoundFlatButton:
                         text: 'Student Organization Association of Regents (SOAR)'
                         font_name: 'Poppins'
-                        font_size: "34sp"
+                        font_size: "24sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Student Organization Association of Regents (SOAR)")
 

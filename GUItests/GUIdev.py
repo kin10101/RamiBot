@@ -38,6 +38,7 @@ class MainWindow(MDApp):
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))

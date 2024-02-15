@@ -30,7 +30,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'School Information and Announcements'
+                text: 'School Organizations'
                 font_name: 'Poppins'
                 font_size: "34sp"
                 halign: 'center'
@@ -75,7 +75,7 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_press:
-                            root.manager.current = 'pagOrg'
+                            root.manager.current = 'pagOrgs'
                             root.manager.transition.direction = 'left'
                             app.update_label("pagOrg", "orgLabel2", "Performing Arts Group")
 
