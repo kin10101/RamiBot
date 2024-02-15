@@ -44,16 +44,24 @@ MDScreen:
             id: officeLabel
             text: ' '
             font_name: 'Poppins'
-            font_size: "48sp"
-        #    halign: 'center'
+            font_size: "45sp"
+            halign: 'center'
             text_color: 1, 1, 1, 1
-            pos_hint: {"x": 0.15, "y": .75}
-            size_hint: 1, .2
+            pos_hint: {"x": 0.1075, "y": .81}
+            size_hint: 0.785, None
             bold: True
+            #label background
+            size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+            canvas.before:
+                Color:
+                    rgba: .003, .4, .6, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
         Image:
             source: 'Assets/logo.png'
             allow_stretch: True
             keep_ratio: False
             size_hint: .21, .18
-            pos_hint: {'center_x': 0.805, 'center_y': 0.87}
+            pos_hint: {'center_x': 0.805, 'center_y': 0.09}
