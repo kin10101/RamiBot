@@ -30,7 +30,7 @@ MDScreen:
             MDLabel: # Title
                 text: 'About Asia Pacific College'
                 font_name: 'Poppins'
-                font_size: "34sp"
+                font_size: "48sp"
                 halign: 'center'
                 text_color: 1, 1, 1, 1
                 pos_hint: {"x": 0, "y": .85}
@@ -57,6 +57,11 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_press:
+                            root.manager.current = 'APCinfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("APCinfo", "infoLabel", " ")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/apc.png")
 
                     MDFillRoundFlatButton:
                         text: 'Quality Policy'
@@ -72,7 +77,7 @@ MDScreen:
                             root.manager.current = 'APCinfo'
                             root.manager.transition.direction = 'left'
                             app.update_label("APCinfo", "infoLabel", " ")
-                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/policy1.png")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/policy.png")
 
                     MDFillRoundFlatButton:
                         text: 'Industry Partners'
@@ -88,7 +93,7 @@ MDScreen:
                             root.manager.current = 'APCinfo'
                             root.manager.transition.direction = 'left'
                             app.update_label("APCinfo", "infoLabel", "Some of APC's industry partners")
-                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/partners1.png")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/partners.png")
 
                     MDFillRoundFlatButton:
                         text: 'Vision, Mission, and Values'
@@ -104,7 +109,7 @@ MDScreen:
                             root.manager.current = 'APCinfo'
                             root.manager.transition.direction = 'left'
                             app.update_label("APCinfo", "infoLabel", " ")
-                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/vmv1.png")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/vmv.png")
 
                     MDFillRoundFlatButton:
                         text: 'Accreditations & Certifications'
