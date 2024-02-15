@@ -40,13 +40,20 @@ MDScreen:
                 keep_ratio: False
                 size_hint: 1, 1
 
-  #      MDLabel: # Title
-  #         id: officeLabel
-  #          text: ' '
-   #         font_name: 'Poppins'
-   #         font_size: "34sp"
-   #         halign: 'center'
-   #         text_color: 1, 1, 1, 1
-    #        pos_hint: {"x": 0, "y": .75}
-    #        size_hint: 1, .2
-    #        bold: True
+        MDLabel: # Title
+            id: officeLabel
+            text: ' '
+            font_name: 'Poppins'
+            font_size: "48sp"
+        #    halign: 'center'
+            text_color: 1, 1, 1, 1
+            pos_hint: {"x": 0.15, "y": .75}
+            size_hint: 1, .2
+            bold: True
+
+        Image:
+            source: 'Assets/logo.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: .21, .18
+            pos_hint: {'center_x': 0.805, 'center_y': 0.87}
