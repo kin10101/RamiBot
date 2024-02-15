@@ -50,21 +50,6 @@ MDScreen:
                     height: self.minimum_height
 
                     MDFillRoundFlatButton:
-                        text: 'Academic Organizations'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'acadsOrg'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("acadsOrg", "orgLabel1", "Academic Organizations")
-
-                    MDFillRoundFlatButton:
                         text: 'Performing Arts Group'
                         font_name: 'Poppins'
                         font_size: "24sp"
@@ -78,6 +63,21 @@ MDScreen:
                             root.manager.current = 'pagOrg'
                             root.manager.transition.direction = 'left'
                             app.update_label("pagOrg", "orgLabel2", "Performing Arts Group")
+
+                    MDFillRoundFlatButton:
+                        text: 'Academic Organizations'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'acadsOrg'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("acadsOrg", "orgLabel1", "Academic Organizations")
 
                     MDFillRoundFlatButton:
                         text: 'Socio-Civic Organizations'
