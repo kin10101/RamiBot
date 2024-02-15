@@ -19,6 +19,8 @@ motorTrig = 0
 global user_nickname
 global unknown_user
 global result_text
+global lower_conf
+lower_conf = False
 
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
@@ -54,6 +56,7 @@ def returnName1(ID_Num,result):
     global user_nickname
     global unknown_user
     global result_text
+    global lower_conf
     check_id = "SELECT * FROM ramibot_faces"
     cur.execute(check_id)
     res = cur.fetchall()
@@ -89,14 +92,16 @@ def returnName1(ID_Num,result):
             voiceTrig = 1
             motorTrig = 1
         else:
-            #user_nickname = 'Bitch'
+
             result_text = greet_new_user()
+            lower_conf = True
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
     else:
         #engine.say(unknown_user)
         #engine.runAndWait()
         result_text = greet_new_user()
+        lower_conf = True
         print("User not exist")
 
 def get_time_of_day_greeting():
@@ -142,8 +147,8 @@ def time_stamp(ID_Num, result_text):
                 time_difference = (current_time-last_update).total_seconds()
                 print(f"time difference: {time_difference}")
                 if time_difference > 500:
-                    engine.say(result_text)
-                    engine.runAndWait()
+                    #engine.say(result_text)
+                    #engine.runAndWait()
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
                     print("already greeted an hour ago")

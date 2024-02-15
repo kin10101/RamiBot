@@ -1,5 +1,6 @@
 import time
 
+import Facerecog.main
 from Facerecog import trainedModel
 from Facerecog import main
 
@@ -335,11 +336,24 @@ class MainApp(MDApp):
         print('ACTIVE FACE SCANNING')
         self.camera = cv2.VideoCapture(0)
         conf = trainedModel.face_recognition(self.camera)
+        lower_conf = main.lower_conf
         if conf is not None:
-            gpio.set_gpio_pin(4, 1)
-            put_in_queue(screen_queue, 'greetings')
-            self.update_label('greetings', 'greet_user_label', f'{main.result_text}')
-            pygtts.speak(f'{main.result_text}')
+                gpio.set_gpio_pin(4, 1)
+                put_in_queue(screen_queue, 'greetings')
+                self.update_label('greetings', 'greet_user_label', f'{main.result_text}')
+                pygtts.speak(f'{main.result_text}')
+
+    def is_face_recognized(self):
+        lower_conf = main.lower_conf
+        if lower_conf is True:
+            change_screen('adduserscreen')
+
+        if lower_conf is False:
+            change_screen('mainmenu')
+
+
+
+
 
     def gpio_cleanup(self):
         print('cleared pin values')
