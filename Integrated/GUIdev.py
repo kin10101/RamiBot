@@ -23,6 +23,8 @@ from kivy.uix.screenmanager import NoTransition
 import threading
 from queue import Queue, Empty
 
+from Voicebot import voicebotengine
+
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
@@ -171,7 +173,7 @@ class MainApp(MDApp):
 
         # ADD ALL SCREENS TO BE USED HERE
         screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
-        screen_manager.add_widget(Builder.load_file('greetWindow.kv'))
+        screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
 
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
@@ -336,11 +338,11 @@ class MainApp(MDApp):
         print('ACTIVE FACE SCANNING')
         self.camera = cv2.VideoCapture(0)
         conf = trainedModel.face_recognition(self.camera)
-        lower_conf = main.lower_conf
+
         if conf is not None:
                 gpio.set_gpio_pin(4, 1)
-                put_in_queue(screen_queue, 'greetings')
-                self.update_label('greetings', 'greet_user_label', f'{main.result_text}')
+                put_in_queue(screen_queue, 'greetscreen')
+                self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
                 pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
@@ -352,13 +354,12 @@ class MainApp(MDApp):
             change_screen('mainmenu')
 
 
-
-
-
     def gpio_cleanup(self):
         print('cleared pin values')
         gpio.set_gpio_pin(4, 0)
         gpio.GPIO.cleanup()
+
+
     def on_start(self):
         Clock.schedule_interval(self.await_change_screen, .5)
 
@@ -449,6 +450,10 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
+def start_voice_thread():
+    voice_thread = threading.Thread(target=voice_thread)
+    voice_thread.daemon = True
+    voice_thread.start()
 
 def voice_thread():
     print("voice thread active")
@@ -483,7 +488,7 @@ if __name__ == "__main__":
     count = 0
     # Queues
     event_queue = Queue()
-    screen_queue = Queue()
+    screen_queue = voicebotengine.Speech_Queue
     # inter thread communication
     # a clocked function checks and gets the items in the queue periodically
 
@@ -492,9 +497,9 @@ if __name__ == "__main__":
     app = MainApp()
 
     # Thread initialization
-    voice_thread = threading.Thread(target=voice_thread)
 
-    voice_thread.daemon = True
+    start_voice_thread()
+
 
 
     # Event States
