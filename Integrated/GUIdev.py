@@ -72,7 +72,7 @@ class VoiceAssistant:
         except Exception as e:
             print(f"Error handling command: {e}")
 
-    def activate_on_wake_word(self):
+    '''def activate_on_wake_word(self):
         context = [""]
         recognizer = sr.Recognizer()
 
@@ -118,7 +118,7 @@ class VoiceAssistant:
             sys.exit()
 
     def activate_on_button_press(self):
-        '''activate when button is pressed in the GUI'''
+        ''''''activate when button is pressed in the GUI''''''
         context = [""]
         recognizer = sr.Recognizer()
 
@@ -146,7 +146,7 @@ class VoiceAssistant:
             print("Timeout error while waiting for speech input")
         except KeyboardInterrupt:
             ts.speak("Goodbye")
-            sys.exit()
+            sys.exit()'''
 
 
 class MainApp(MDApp):
@@ -260,9 +260,9 @@ class MainApp(MDApp):
             middle_initial = self.get_text('adduser', 'middle_initial')
             last_name = self.get_text('adduser', 'last_name')
             nickname = self.get_text('adduser', 'nickname')
-            profession = self.get_text('adduser', 'profession')
+            role = self.get_text('adduser', 'role')
 
-            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, profession)
+            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
 
         except Exception as e:
             print(f"Error in uploading to db: {e}")
@@ -276,9 +276,9 @@ class MainApp(MDApp):
             middle_initial = self.get_text('adduser2', 'middle_initial')
             last_name = self.get_text('adduser2', 'last_name')
             nickname = self.get_text('adduser2', 'nickname')
-            profession = self.get_text('adduser2', 'profession')
+            role = self.get_text('adduser2', 'role')
 
-            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, profession)
+            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
         except Exception as e:
             print(f"Error in uploading to db: {e}")
 
@@ -348,7 +348,7 @@ class MainApp(MDApp):
     def is_face_recognized(self):
         lower_conf = main.lower_conf
         if lower_conf is True:
-            change_screen('adduserscreen')
+            change_screen('newuser')
 
         if lower_conf is False:
             change_screen('mainmenu')
@@ -450,8 +450,8 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
-def start_voice_thread():
-    voice_thread = threading.Thread(target=voice_thread)
+'''def start_voice_thread():
+    voice_thread = threading.Thread(target= voice_thread)
     voice_thread.daemon = True
     voice_thread.start()
 
@@ -461,7 +461,7 @@ def voice_thread():
         if not stop_voice.is_set():
             voicebot.activate_on_button_press()
         else:
-            pass
+            pass'''
 
 
 def face_thread():
@@ -498,7 +498,7 @@ if __name__ == "__main__":
 
     # Thread initialization
 
-    start_voice_thread()
+    #start_voice_thread()
 
 
 

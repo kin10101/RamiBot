@@ -65,6 +65,7 @@ def returnName1(ID_Num,result):
     threshold = 80
 
     temp = False
+    lower_conf = False
     for x in res:
         if ID_Num in x:
             check_name = f"SELECT nickname FROM ramibot_faces WHERE ID_Number = '{ID_Num}'"
@@ -92,9 +93,9 @@ def returnName1(ID_Num,result):
             voiceTrig = 1
             motorTrig = 1
         else:
-
             result_text = greet_new_user()
             lower_conf = True
+            print(f"lower_conf: {lower_conf}")
             print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
 
     else:
@@ -102,6 +103,7 @@ def returnName1(ID_Num,result):
         #engine.runAndWait()
         result_text = greet_new_user()
         lower_conf = True
+        print(f"lower_conf: {lower_conf}")
         print("User not exist")
 
 def get_time_of_day_greeting():
