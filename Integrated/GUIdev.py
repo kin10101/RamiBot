@@ -255,12 +255,12 @@ class MainApp(MDApp):
         global user_ID
         MainApp.add_user_flag = 1
         try:
-            user_ID = self.get_text('adduser', 'school_id')
-            given_name = self.get_text('adduser', 'given_name')
-            middle_initial = self.get_text('adduser', 'middle_initial')
-            last_name = self.get_text('adduser', 'last_name')
-            nickname = self.get_text('adduser', 'nickname')
-            role = self.get_text('adduser', 'role')
+            user_ID = self.get_text('adduserscreen', 'school_id')
+            given_name = self.get_text('adduserscreen', 'given_name')
+            middle_initial = self.get_text('adduserscreen', 'middle_initial')
+            last_name = self.get_text('adduserscreen', 'last_name')
+            nickname = self.get_text('adduserscreen', 'nickname')
+            role = self.get_text('adduserscreen', 'role')
 
             DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
 
