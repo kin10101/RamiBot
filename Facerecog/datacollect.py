@@ -9,6 +9,7 @@ from main import cur
 global user_id
 global user_dir
 global increment
+increment = 0
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 
@@ -29,22 +30,26 @@ def add_to_db(id_num, nickname, last_name, given_name, middle_initial, professio
 
 
 def generate_visitor_id():
-    global increment
-    # Get the current year
     current_year = datetime.datetime.now().year
 
-    increment = increment + 1
+    # Initialize the increment counter
+    increment = 0
 
-    # Create the visitor ID by combining the components
-    visitor_id = f'{current_year}9{increment:05d}'
+    while True:
+        # Increment the counter
+        increment += 1
 
-    user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = {visitor_id}"
-    cur.execute(user_query)
-    existing_user = cur.fetchone()
-
-    if existing_user:
-        increment = increment + 1
+        # Generate the visitor ID
         visitor_id = f'{current_year}9{increment:05d}'
+
+        # Check if the visitor ID exists in the database
+        user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = '{visitor_id}'"
+        cur.execute(user_query)
+        existing_user = cur.fetchone()
+
+        # If the visitor ID does not exist, break out of the loop
+        if existing_user is None:
+            break
 
     return visitor_id
 
