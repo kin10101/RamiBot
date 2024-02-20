@@ -55,7 +55,7 @@ class ChatBot(MDApp):
     def send_message(self):
         global size, halign, value
         # Get the text from the text input
-        self.input_text = screen_manager.get_screen("ChatGUI").text_input.text.strip()
+        self.input_text = screen_manager.get_screen("chatscreen").text_input.text.strip()
 
         # Check if the input text is not empty
         if self.input_text:
@@ -80,10 +80,10 @@ class ChatBot(MDApp):
                 halign = "left"
 
             # Add the message to the chat list
-            screen_manager.get_screen("ChatGUI").chat_list.add_widget(
+            screen_manager.get_screen("chatscreen").chat_list.add_widget(
                 Command(text=value, size_hint_x=size, halign=halign))
         # Clear the text input
-        screen_manager.get_screen("ChatGUI").text_input.text = ""
+        screen_manager.get_screen("chatscreen").text_input.text = ""
         self.get_text_input()
         self.response()
 
@@ -94,7 +94,7 @@ class ChatBot(MDApp):
         response = ""
         context = [""]
         response = handle_request(self.input_text.lower(), context)
-        screen_manager.get_screen("ChatGUI").chat_list.add_widget(
+        screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
 
 

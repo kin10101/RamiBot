@@ -4,6 +4,11 @@ import Facerecog.main
 from Facerecog import trainedModel
 from Facerecog import main
 
+# Chatbot imports
+from Chatbot.chatbot import handle_request
+from Chatbot.chatbotGUI import ChatScreen, Command, Response
+
+
 import Voicebot.pygtts as pygtts
 import gpio
 
@@ -55,7 +60,7 @@ class MainApp(MDApp):
         screen_manager = ScreenManager(transition=NoTransition())
 
         # ADD ALL SCREENS TO BE USED HERE
-        screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
+        screen_manager.add_widget(Builder.load_file('idlescreen.kv'))
         screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
 
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
@@ -65,6 +70,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('New User KVs/datacollect.kv'))
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
+        screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
+    #ALISIN TONGCOMMENT
 
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
@@ -94,9 +101,13 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
-        Window.bind(on_touch_down=self.on_touch_down)
 
+        Window.bind(on_touch_down=self.on_touch_down)
+        print("built")
         return screen_manager
+
+    def on_touch_down(self, touch, *args):
+        self.reset_timer()
 
     def on_start(self):
 
@@ -137,6 +148,9 @@ class MainApp(MDApp):
         except:
             print("Text not found")
             pass
+
+    def navigate_to_previous_screen(self):
+        screen_manager.current = screen_manager.previous()
 
     def add_apc_user_to_db(self):
         global user_ID
@@ -235,10 +249,62 @@ class MainApp(MDApp):
     def is_face_recognized(self):
         lower_conf = main.lower_conf
         if lower_conf is True:
-            change_screen('newuser')
+            self.change_screen('newuser')
 
         if lower_conf is False:
-            change_screen('mainmenu')
+            self.change_screen('mainmenu')
+
+
+    def send_message(self):
+        """Send a message."""
+        self.input_text = screen_manager.get_screen("chatscreen").text_input.text.strip()
+        if self.input_text:
+            self.add_message_to_chat()
+        screen_manager.get_screen("chatscreen").text_input.text = ""
+        self.get_text_input()
+        self.response()
+
+    def add_message_to_chat(self):
+        """Add the message to the chat list."""
+        global size, halign, value
+        value = self.input_text
+        self.set_message_size_and_alignment()
+        screen_manager.get_screen("chatscreen").chat_list.add_widget(
+            Command(text=value, size_hint_x=size, halign=halign))
+
+    def set_message_size_and_alignment(self):
+        """Set the size and alignment of the message based on its length."""
+        global size, halign
+        if len(value) < 6:
+            size = .22
+            halign = "center"
+        elif len(value) < 11:
+            size = .32
+            halign = "center"
+        elif len(value) < 16:
+            size = .45
+            halign = "center"
+        elif len(value) < 21:
+            size = .58
+            halign = "center"
+        elif len(value) < 26:
+            size = .71
+            halign = "center"
+        else:
+            size = .85
+            halign = "left"
+
+    def get_text_input(self):
+        """Print the input text."""
+        print("Input text:", self.input_text)
+
+    def response(self, *args):
+        """Generate and display a response."""
+        response = ""
+        context = [""]
+        response = handle_request(self.input_text.lower(), context)
+        screen_manager.get_screen("chatscreen").chat_list.add_widget(
+            Response(text=response, size_hint_x=.75, halign=halign))
 
     def gpio_cleanup(self):
         print('cleared pin values')
@@ -254,15 +320,16 @@ class MainApp(MDApp):
 
     def timeout_reset(self, dt):
         gpio.set_gpio_pin(4, 0)
-        change_screen('idlescreen')
+        self.change_screen('idlescreen')
 
     def start_thread(self, thread_obj):
         thread = thread_obj()
         thread.start()
         return thread
 
-    def on_touch_down(self, touch, *args):
-        self.reset_timer()
+    def change_screen(self, screen_name):
+        screen_manager.current = screen_name
+
 
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
@@ -270,7 +337,7 @@ class MainApp(MDApp):
         try:
             item = screen_queue.get_nowait()
             print(item)
-            change_screen(item)
+            self.change_screen(item)
         except Empty:
             pass
 
@@ -301,18 +368,18 @@ class MainApp(MDApp):
         except Empty:
             pass
 
-    def face_thread(self):
+
+    def start_face_thread(self):
         face = threading.Thread(target=face_thread)
         face.daemon = True
         face.start()
 
 
-def navigate_to_previous_screen():
+def navigate_to_previous_screen(self):
     screen_manager.current = screen_manager.previous()
 
 
-def change_screen(screen_name):
-    screen_manager.current = screen_name
+
 
 
 def put_in_queue(myqueue, item):
@@ -326,8 +393,11 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
-
-def voice():
+def face_thread():
+    print("face thread active")
+    if not stop_face.is_set():
+        app.face_recognition_module()
+def voice_thread():
     print("voice thread active")
     while True:
         if not stop_voice.is_set():
@@ -337,33 +407,21 @@ def voice():
 
 
 def start_voice_thread():
-    voice_thread = threading.Thread(target=voice)
-    voice_thread.daemon = True
-    voice_thread.start()
+    voice = threading.Thread(target=voice_thread)
+    voice.daemon = True
+    voice.start()
 
 
-def face_thread():
-    print("face thread active")
-    if not stop_face.is_set():
-        app.face_recognition_module()
 
 
-def timeout_counter(dt):
-    global count
-    count = count + 1
-    if count == 30:
-        change_screen('idlescreen')
-        gpio.GPIO.cleanup()
 
 
-def reset_timeout():
-    global count
-    count = 0
+
 
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
-    count = 0
+
     # Queues
     event_queue = Queue()
     screen_queue = voicebotengine.Speech_Queue
@@ -383,7 +441,5 @@ if __name__ == "__main__":
     stop_face = threading.Event()
     stop_motor = threading.Event()
     # set events to stop thread processes and clear event to resume
-
-    # voice_thread.start()
 
     app.run()
