@@ -106,6 +106,7 @@ def returnName1(ID_Num,result):
         print(f"lower_conf: {lower_conf}")
         print("User not exist")
 
+
 def get_time_of_day_greeting():
     # Get the current hour
     current_hour = datetime.now().hour
@@ -117,6 +118,7 @@ def get_time_of_day_greeting():
         return "Good afternoon"
     else:
         return "Good evening"
+
 
 def greet_new_user():
     random_num = random.randint(1,5)
@@ -130,6 +132,7 @@ def greet_new_user():
         return "What up new user, I'm Ramibot!"
     elif random_num == 5:
         return "Whatcha doin new user, I'm Ramibot!"
+
 
 def time_stamp(ID_Num, result_text):
     new_user = f"INSERT INTO greeted_users (ID_Number) VALUES ({ID_Num})"

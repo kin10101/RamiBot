@@ -24,129 +24,12 @@ import threading
 from queue import Queue, Empty
 
 from Voicebot import voicebotengine
+from Voicebot.voice_assistant_module import VoiceAssistant
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
-
-
-class VoiceAssistant:
-    def __init__(self):
-        self.pause_threshold = .8
-        self.energy_threshold = 2000
-        self.operation_timeout = 5000
-        self.dynamic_energy_threshold = True
-        self.listen_timeout = 3
-        self.phrase_time_limit = 5
-        self.gpio_pin = 17
-        self.wake_word_variations = [
-            "hello ram",
-            "hello mommy",
-            "hello romy",
-            "hello run",
-            "hello robi",
-            "hello ron",
-            "hiram",
-            "hey rami",
-            "rami",
-            "hey ronnie",
-            "jeremy",
-            "hi rami",
-            "hi ronnie",
-            "hello remy",
-            "hey siri"
-        ]
-
-    def listen_to_command(self, recognizer, source):
-        audio = recognizer.listen(source=source, timeout=self.listen_timeout, phrase_time_limit=self.phrase_time_limit)
-        text = recognizer.recognize_google(audio)
-        return text.lower()
-
-    def handle_command(self, text, context):
-        try:
-            if text is not None:
-                response = voicebotengine.handle_request(text, context)
-                if response is not None:
-                    return response
-        except Exception as e:
-            print(f"Error handling command: {e}")
-
-    '''def activate_on_wake_word(self):
-        context = [""]
-        recognizer = sr.Recognizer()
-
-        try:
-            print('speak now')
-            with sr.Microphone() as source:
-                print("listening for wake word")
-
-                # transcribe audio input
-                text = self.listen_to_command(recognizer, source)
-                print("Audio received to text: " + text)
-
-                # check wake word
-                if any(variation in text for variation in self.wake_word_variations):
-
-                    source.stop()  # stop recording to close the microphone
-
-                    print('Wake word detected. Now listening...')
-                    ts.play_audio_file('audio/activate.wav')
-
-                    # open a new instance of the microphone
-                    with sr.Microphone() as source:
-                        print("Microphone reopened. Listening for command after wake word...")
-
-                        # listen for the command after wake word is detected
-                        text = self.listen_to_command(recognizer, source)
-                        print("Received command: " + text)
-
-                        response = self.handle_command(text, context)
-                        if response:
-                            ts.speak(response, lang='en')
-
-                        ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
-
-        except sr.RequestError as e:
-            print(f"Could not request results from Google Speech Recognition service: {e}")
-        except sr.UnknownValueError:
-            print("Wake word detected but unable to recognize speech")
-        except sr.WaitTimeoutError:
-            print("Timeout error while waiting for speech input")
-        except KeyboardInterrupt:
-            ts.speak("Goodbye")
-            sys.exit()
-
-    def activate_on_button_press(self):
-        ''''''activate when button is pressed in the GUI''''''
-        context = [""]
-        recognizer = sr.Recognizer()
-
-        try:
-            print('speak now')
-            with sr.Microphone() as source:
-                print("listening for command")
-                # ts.playAudioFile('audio/activate.wav')
-
-                # listen for the command
-                text = self.listen_to_command(recognizer, source)
-                print("Received command: " + text)
-
-                response = self.handle_command(text, context)
-                if response:
-                    ts.speak(response, lang='en')
-
-                ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
-
-        except sr.RequestError:
-            print("Could not request results from google Speech Recognition service")
-        except sr.UnknownValueError:
-            print("Wake word detected but unable to recognize speech")
-        except sr.WaitTimeoutError:
-            print("Timeout error while waiting for speech input")
-        except KeyboardInterrupt:
-            ts.speak("Goodbye")
-            sys.exit()'''
 
 
 class MainApp(MDApp):
@@ -211,13 +94,17 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
+        Window.bind(on_touch_down=self.on_touch_down)
+
+        return screen_manager
+
+    def on_start(self):
+
         self.frame_rate = 10
         self.frame_count = 50
         self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
 
-        Window.bind(on_touch_down=self.on_touch_down)
-
-        return screen_manager
+        Clock.schedule_interval(self.await_change_screen, .5)
 
     def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
@@ -340,10 +227,10 @@ class MainApp(MDApp):
         conf = trainedModel.face_recognition(self.camera)
 
         if conf is not None:
-                gpio.set_gpio_pin(4, 1)
-                put_in_queue(screen_queue, 'greetscreen')
-                self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
-                pygtts.speak(f'{main.result_text}')
+            gpio.set_gpio_pin(4, 1)
+            put_in_queue(screen_queue, 'greetscreen')
+            self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
+            pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
@@ -353,20 +240,13 @@ class MainApp(MDApp):
         if lower_conf is False:
             change_screen('mainmenu')
 
-
     def gpio_cleanup(self):
         print('cleared pin values')
         gpio.set_gpio_pin(4, 0)
         gpio.GPIO.cleanup()
 
-
-    def on_start(self):
-        Clock.schedule_interval(self.await_change_screen, .5)
-
-
     def start_timer(self):
         self.timeout = Clock.schedule_once(self.timeout_reset, 30)
-
 
     def reset_timer(self):
         self.timeout.cancel()
@@ -383,8 +263,6 @@ class MainApp(MDApp):
 
     def on_touch_down(self, touch, *args):
         self.reset_timer()
-
-
 
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
@@ -420,12 +298,10 @@ class MainApp(MDApp):
             if item == "run motor":
                 stop_motor.clear()
 
-
         except Empty:
             pass
 
     def face_thread(self):
-
         face = threading.Thread(target=face_thread)
         face.daemon = True
         face.start()
@@ -450,18 +326,20 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
-'''def start_voice_thread():
-    voice_thread = threading.Thread(target= voice_thread)
-    voice_thread.daemon = True
-    voice_thread.start()
 
-def voice_thread():
+def voice():
     print("voice thread active")
     while True:
         if not stop_voice.is_set():
             voicebot.activate_on_button_press()
         else:
-            pass'''
+            pass
+
+
+def start_voice_thread():
+    voice_thread = threading.Thread(target=voice)
+    voice_thread.daemon = True
+    voice_thread.start()
 
 
 def face_thread():
@@ -498,9 +376,7 @@ if __name__ == "__main__":
 
     # Thread initialization
 
-    #start_voice_thread()
-
-
+    start_voice_thread()
 
     # Event States
     stop_voice = threading.Event()
@@ -511,5 +387,3 @@ if __name__ == "__main__":
     # voice_thread.start()
 
     app.run()
-
-

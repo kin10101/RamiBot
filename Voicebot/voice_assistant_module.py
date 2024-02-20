@@ -6,7 +6,6 @@ import gpio as gpio
 from queue import Queue, Empty
 
 
-
 class VoiceAssistant:
     def __init__(self):
         self.pause_threshold = .8

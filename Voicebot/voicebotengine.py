@@ -132,6 +132,7 @@ def get_from_json(tag, filename='voicebotintents.json'):
 
     return None
 
+
 def peek(queue):
     if not queue.empty():
         # Get the item at the front of the queue
@@ -139,6 +140,7 @@ def peek(queue):
         print("Item at front of queue:", item)
     else:
         print("Queue is empty")
+
 
 def run_chatbot():
     """Run chatbot by using the command line."""
@@ -162,6 +164,7 @@ def run_chatbot():
         except Exception as e:
             response = e
             pass
+
 
 if __name__ == "__main__":
     run_chatbot()
