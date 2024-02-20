@@ -1,7 +1,10 @@
 import speech_recognition as sr
 
-# Function to handle the recognized speech
-def handle_speech(recognizer, audio):
+# Create a recognizer instance
+recognizer = sr.Recognizer()
+
+# Callback function to handle recognized speech
+def callback(recognizer, audio):
     try:
         # Recognize speech using Google Speech Recognition
         text = recognizer.recognize_google(audio)
@@ -11,15 +14,17 @@ def handle_speech(recognizer, audio):
     except sr.RequestError as e:
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
-# Create a recognizer instance
-recognizer = sr.Recognizer()
+# Function to start listening in the background
+def listen_in_background():
+    with sr.Microphone() as source:
+        print("Please speak something...")
 
-# Create a microphone instance
-microphone = sr.Microphone()
+        # Start listening in the background
+        stop_listening = recognizer.listen_in_background(source, callback)
 
-# Start listening in the background
-stop_listening = recognizer.listen_in_background(microphone, handle_speech)
+        # Keep the program running
+        while True:
+            pass
 
-# Keep the program running indefinitely
-while True:
-    pass
+# Call the function to start listening in the background
+listen_in_background()
