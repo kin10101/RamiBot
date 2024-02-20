@@ -62,7 +62,7 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 80
+    threshold = 70
 
     temp = False
     lower_conf = False
@@ -96,7 +96,7 @@ def returnName1(ID_Num,result):
             result_text = greet_new_user()
             lower_conf = True
             print(f"lower_conf: {lower_conf}")
-            print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
+            print(f"Recognition confidence ({result}) is below the threshold. Unknown. name : {nickname}")
 
     else:
         #engine.say(unknown_user)
@@ -123,15 +123,15 @@ def get_time_of_day_greeting():
 def greet_new_user():
     random_num = random.randint(1,5)
     if random_num == 1:
-        return "Hello new user, I'm Ramibot!"
+        return "Hello there, I'm Rami bot!"
     elif random_num == 2:
-        return "Kamusta kaibigan, ako si Ramibot!"
+        return "Hello friend! my name is Rami bot!"
     elif random_num == 3:
-        return "Hi new user, I'm Ramibot!"
+        return "Good day, I'm Rami bot!"
     elif random_num == 4:
-        return "What up new user, I'm Ramibot!"
+        return "Hi there, I'm Rami bot!"
     elif random_num == 5:
-        return "Whatcha doin new user, I'm Ramibot!"
+        return "Greetings, I'm Rami bot!"
 
 
 def time_stamp(ID_Num, result_text):
