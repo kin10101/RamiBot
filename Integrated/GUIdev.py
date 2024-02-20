@@ -216,7 +216,7 @@ class MainApp(MDApp):
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
                 cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-                if count >= 50:
+                if count >= 1000:
                     # Release the video capture and exit the application
                     self.camera.release()
                     cv2.destroyAllWindows()
