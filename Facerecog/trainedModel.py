@@ -34,9 +34,6 @@ def face_recognition(video):
 
                 return confidence_result
 
-
-
-
             else:
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
