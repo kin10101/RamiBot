@@ -1,0 +1,74 @@
+MDScreen:
+    name: 'scholarInfo'
+
+    MDFloatLayout: # main layout
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0.5  # Adjust the opacity here (0.5 for 50% opacity)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        #Back Button
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+            user_font_size: "40sp"
+            on_press:
+                root.manager.current = 'scholarships'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+        MDLabel: # Title
+            id: scholarLabel
+            text: ' '
+            font_name: 'Poppins'
+            font_size: "48sp"
+            halign: 'center'
+            text_color: 1, 1, 1, 1
+            pos_hint: {"x": 0, "y": .75}
+            size_hint: 1, .2
+            bold: True
+
+        GridLayout:
+            cols: 3
+            size_hint: (0.8, 0.7)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            Label:
+                text: "SUBSIDY"
+                size_hint:(1.2, 0.5)
+                font_size: "25sp"
+                font_name: 'Poppins'
+                #label background
+                size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+                canvas.before:
+                    Color:
+                        rgba: .1, .1, .1, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            Label:
+                text: "WHO MAY APPLY"
+                size_hint:(1.2, 0.5)
+                font_size: 25
+            Label:
+                text: "DOCUMENTS TO BE SUBMITTED"
+                size_hint:(1.2, 0.5)
+                font_size: 25
+                background_color: 6/255.0, 38/255.0, 201/255.0, 0.5

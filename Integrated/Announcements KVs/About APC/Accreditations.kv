@@ -1,0 +1,98 @@
+MDScreen:
+    name: 'accreds'
+
+    MDFloatLayout: # main layout
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0.5  # Adjust the opacity here (0.5 for 50% opacity)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        #Back Button
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+            user_font_size: "40sp"
+            on_press:
+                root.manager.current = 'aboutAPC'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+            MDLabel: # Title
+                text: 'Accreditations and Certification'
+                font_name: 'Poppins'
+                font_size: "48sp"
+                #halign: 'center'
+                text_color: 1, 1, 1, 1
+                pos_hint: {"x": 0.05, "y": .75}
+                size_hint: 1, .2
+                bold: True
+
+            MDGridLayout: # GridLayout for images
+                cols: 4
+                size_hint: (0.8, 0.9)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                Image:
+                    id: accredImage1
+                    source: 'Announcements KVs/About APC/accreds/accred01.png'
+                    allow_stretch: False
+                    keep_ratio: True
+                    size_hint: 1, 1
+
+                Image:
+                    id: accredImage2
+                    source: 'Announcements KVs/About APC/accreds/accred02.png'
+                    allow_stretch: False
+                    keep_ratio: True
+                    size_hint: 1, 1
+
+                Image:
+                    id: accredImage3
+                    source: 'Announcements KVs/About APC/accreds/accred03.png'
+                    allow_stretch: False
+                    keep_ratio: True
+                    size_hint: 1, 1
+
+                Image:
+                    id: accredImage4
+                    source: 'Announcements KVs/About APC/accreds/accred04.png'
+                    allow_stretch: False
+                    keep_ratio: True
+                    size_hint: 1, 1
+
+                Image:
+                    id: accredImage5
+                    source: 'Announcements KVs/About APC/accreds/accred05.png'
+                    allow_stretch: False
+                    keep_ratio: True
+                    size_hint: 1, 1
+
+                Image:
+                    id: accredImage6
+                    source: 'Announcements KVs/About APC/accreds/accred06.png'
+                    allow_stretch: False
+                    keep_ratio: True
+                    size_hint: 1, 1
+
+        Image:
+            source: 'Assets/logo.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: .21, .18
+            pos_hint: {'center_x': 0.81, 'center_y': 0.083}

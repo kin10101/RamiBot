@@ -30,9 +30,9 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'School Information and Announcements'
+                text: 'School Information'
                 font_name: 'Poppins'
-                font_size: "34sp"
+                font_size: "48sp"
                 halign: 'center'
                 text_color: 1, 1, 1, 1
                 pos_hint: {"x": 0, "y": .85}
@@ -48,17 +48,6 @@ MDScreen:
                     spacing: 25
                     size_hint_y: None
                     height: self.minimum_height
-
-                    MDFillRoundFlatButton:
-                        text: 'School Events'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
 
                     MDFillRoundFlatButton:
                         text: 'School Calendar'
@@ -89,17 +78,6 @@ MDScreen:
                             root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
-                        text: 'Tuition Fee and Scholarships'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-
-                    MDFillRoundFlatButton:
                         text: 'About Asia Pacific College'
                         font_name: 'Poppins'
                         font_size: "24sp"
@@ -109,6 +87,23 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
+                        on_press:
+                            root.manager.current = 'aboutAPC'
+                            root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: 'Scholarship Grants and Financial Aid'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'scholarships'
+                            root.manager.transition.direction = 'left'
 
         Button:
             size_hint: None, None

@@ -38,12 +38,18 @@ class MainWindow(MDApp):
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendars.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarInfo.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/aboutAPC.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/Accreditations.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/APCinfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('faculty.kv'))
 

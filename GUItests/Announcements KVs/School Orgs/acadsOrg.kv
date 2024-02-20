@@ -31,7 +31,7 @@ MDScreen:
                 id: orgLabel1
                 text: ' '
                 font_name: 'Poppins'
-                font_size: "34sp"
+                font_size: "48sp"
                 halign: 'center'
                 text_color: 1, 1, 1, 1
                 pos_hint: {"x": 0, "y": .85}
@@ -41,182 +41,12 @@ MDScreen:
             MDScrollView: # ScrollView for Buttons
                 do_scroll_x: False
 
-                MDGridLayout: # Layout for Buttons
-                    cols: 1
+                MDBoxLayout: # Layout for Buttons
+                    orientation: 'vertical'
                     padding: 10
                     spacing: 25
                     size_hint_y: None
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                     height: self.minimum_height
-
-                    Label:
-                        text: 'School of Computing and Information Technology'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        bold: True
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, 1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        text: 'Gaming Genesis (GG)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        text: 'APC Junior Philippine Computer Society (APC-JPCS)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-
-                    Label:
-                        text: 'Asia Pacific College - Microsoft Community (APC-MSC)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-
-                    Label:
-                        text: 'APC Junior Information Systems Security Association (APC-JISSA)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-
-                    Label:
-                        text: 'School of Engineering'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        bold: True
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, 1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-
-                    Label:
-                        text: 'Society of Electronics Engineering Students’ (SEES)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-
-                    Label:
-                        text: 'APC Association of Computer Engineering Students (APC-ACES)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-
-                    Label:
-                        text: 'APC Robotics Organization (APC-ROB ORG)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        text:  'Founding Organization for Civil Engineering Students (FOrCES)'
-                        font_name: 'Poppins'
-                        font_size: "34sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
 
                     Label:
                         text: 'School of Management'
@@ -231,90 +61,163 @@ MDScreen:
                         size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
                         canvas.before:
                             Color:
-                                rgba: .003, .4, .6, 1
+                                rgba: .1, .1, .1, .2
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
-                    Label:
+
+                    MDFillRoundFlatButton:
+                        text: 'APC Junior Financial Executives'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "APC Junior Financial Executives")
+
+                    MDFillRoundFlatButton:
+                        text: 'Tourism Management Society (TM SOC)'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Tourism Management Society (TM SOC)")
+
+                    MDFillRoundFlatButton:
                         text: 'APC Junior Marketing Association (APJMA)'
                         font_name: 'Poppins'
-                        font_size: "34sp"
+                        font_size: "24sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "APC Junior Marketing Association (APJMA)")
+
+                    MDFillRoundFlatButton:
+                        text: 'APC Junior Philippine Institute of Accountants (JPIA)'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "APC Junior Philippine Institute of Accountants (JPIA)")
+
+                    MDFillRoundFlatButton:
+                        text: 'Junior People Management Association of the Philippine APC'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Junior People Management Association of the Philippine APC")
+
                     Label:
-                        text:  'APC Junior Philippine Institute of Accountants (JPIA)'
+                        text: 'School of Engineering'
                         font_name: 'Poppins'
                         font_size: "34sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
+                        bold: True
                         #label background
                         size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
                         canvas.before:
                             Color:
-                                rgba: .003, .4, .6, .5
+                                rgba: .1, .1, .1, .2
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
-                    Label:
-                        text: 'Business Management Group-Junior People Management Association of the Philippine APC'
+
+                    MDFillRoundFlatButton:
+                        text: 'APC Robotics Organization (APC-ROB ORG)'
                         font_name: 'Poppins'
-                        font_size: "30sp"
+                        font_size: "24sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        text:  'Tourism Management Society (TM SOC)'
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "APC Robotics Organization (APC-ROB ORG)")
+
+                    MDFillRoundFlatButton:
+                        text: 'Society of Electronics Engineering Students’ (SEES)'
                         font_name: 'Poppins'
-                        font_size: "34sp"
+                        font_size: "24sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    Label:
-                        text:  'APC Junior Financial Executives'
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Society of Electronics Engineering Students’ (SEES)")
+
+                    MDFillRoundFlatButton:
+                        text: 'Founding Organization for Civil Engineering Students (FOrCES)'
                         font_name: 'Poppins'
-                        font_size: "34sp"
+                        font_size: "24sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Founding Organization for Civil Engineering Students (FOrCES)")
+
+                    MDFillRoundFlatButton:
+                        text: 'APC Association of Computer Engineering Students (APC-ACES)'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "APC Association of Computer Engineering Students (APC-ACES)")
 
                     Label:
                         text: 'School of Multimedia and Arts'
@@ -329,58 +232,132 @@ MDScreen:
                         size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
                         canvas.before:
                             Color:
-                                rgba: .003, .4, .6, 1
+                                rgba: .1, .1, .1, .2
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
-                    Label:
+
+                    MDFillRoundFlatButton:
+                        text: 'CINEMASOMA'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "CINEMASOMA")
+
+                    MDFillRoundFlatButton:
+                        text: 'Bahay Bombilya'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Bahay Bombilya")
+
+                    MDFillRoundFlatButton:
                         text: 'APC Psychological Society (PSYCH SOC)'
                         font_name: 'Poppins'
-                        font_size: "34sp"
+                        font_size: "24sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "APC Psychological Society (PSYCH SOC)")
+
                     Label:
-                        text:  'Bahay Bombilya'
+                        text: 'School of Computing and Information Technology'
                         font_name: 'Poppins'
-                        font_size: "34sp"
+                        font_size: "32sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
+                        bold: True
                         #label background
                         size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
                         canvas.before:
                             Color:
-                                rgba: .003, .4, .6, .5
+                                rgba: .1, .1, .1, .2
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
-                    Label:
-                        text:  'CINEMASOMA'
+                    MDFillRoundFlatButton:
+                        text: 'Gaming Genesis (GG)'
                         font_name: 'Poppins'
-                        font_size: "34sp"
+                        font_size: "24sp"
                         halign: 'center'
                         text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
-                        #label background
-                        size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                        canvas.before:
-                            Color:
-                                rgba: .003, .4, .6, .5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Gaming Genesis (GG)")
+
+                    MDFillRoundFlatButton:
+                        text: 'APC Junior Philippine Computer Society (APC-JPCS)'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "APC Junior Philippine Computer Society (APC-JPCS)")
+
+                    MDFillRoundFlatButton:
+                        text: 'Asia Pacific College - Microsoft Community (APC-MSC)'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "Asia Pacific College - Microsoft Community (APC-MSC)")
+
+                    MDFillRoundFlatButton:
+                        text: 'APC Junior Information Systems Security Association (APC-JISSA)'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'orgsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgsLabel", "APC Junior Information Systems Security Association (APC-JISSA)")
 
         Button:
             size_hint: None, None

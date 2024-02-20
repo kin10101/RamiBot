@@ -1,0 +1,43 @@
+MDScreen:
+    name: 'greetscreen'
+    MDFloatLayout: # main layout
+
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+            on_touch_down:
+                app.is_face_recognized()
+
+#        Image:
+#            source: 'Assets/logo.png'
+#            allow_stretch: True
+#            keep_ratio: False
+#            size_hint: .3, .35
+#            pos_hint: {'center_x': 0.25, 'center_y': 0.82}
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 2
+            radius: [15]
+
+            MDLabel: # Title
+                id: greet_user_label
+                text: 'Good Day, [username]!'
+                font_name: 'Poppins'
+                font_size: "70sp"
+                halign: 'center'
+                valign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 1, .2
+                bold: True
+
+# IF USER DETECTS A FACE
+#will remove after face detection is connected
+

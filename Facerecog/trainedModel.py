@@ -48,7 +48,7 @@ def face_recognition(video):
             break
 
     video.release()
-    #cv2.destroyAllWindows()n
+    #cv2.destroyAllWindows()
 
 
 

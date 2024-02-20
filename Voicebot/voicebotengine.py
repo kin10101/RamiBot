@@ -9,7 +9,9 @@ from keras.models import load_model
 
 import Voicebot.voicecommand_functions
 from Voicebot import voicecommand_functions
+from queue import Queue, Empty
 
+Speech_Queue = Queue()
 # Load data
 lemmatizer = WordNetLemmatizer()
 path = './RamiBot/Voicebot/'
@@ -82,6 +84,9 @@ def get_response(intents_list, intents_json, context):
                 # refactor to use intent_methods
                 break
 
+            if 'navigate_to' in i:
+                Speech_Queue.put(i['navigate_to'])
+
             if 'responses' in i and i['responses']:
                 result = random.choice(i['responses'])  # Gets a random response from the given list
                 break
@@ -127,6 +132,13 @@ def get_from_json(tag, filename='voicebotintents.json'):
 
     return None
 
+def peek(queue):
+    if not queue.empty():
+        # Get the item at the front of the queue
+        item = queue.queue[0]
+        print("Item at front of queue:", item)
+    else:
+        print("Queue is empty")
 
 def run_chatbot():
     """Run chatbot by using the command line."""
@@ -135,6 +147,7 @@ def run_chatbot():
     running = True
     while running:
         print(context)
+        peek(Speech_Queue)
 
         try:
             message = input("")  # get input
@@ -149,3 +162,6 @@ def run_chatbot():
         except Exception as e:
             response = e
             pass
+
+if __name__ == "__main__":
+    run_chatbot()

@@ -30,7 +30,7 @@ MDScreen:
             MDLabel: # Title
                 text: 'Floor Map and Directory'
                 font_name: 'Poppins'
-                font_size: "34sp"
+                font_size: "48sp"
                 halign: 'center'
                 text_color: 1, 1, 1, 1
                 pos_hint: {"x": 0, "y": .85}
@@ -205,7 +205,7 @@ MDScreen:
                         on_press:
                             root.manager.current = 'floor'
                             root.manager.transition.direction = 'left'
-                     #       app.update_label("floor", "floorLabel", "10TH FLOOR")
+                    #        app.update_label("floor", "floorLabel", "10TH FLOOR")
                             app.update_image("floor", "floorImage", "Floors KVs/map10.png")
 
                     MDFillRoundFlatButton:
@@ -221,7 +221,7 @@ MDScreen:
                         on_press:
                             root.manager.current = 'floor'
                             root.manager.transition.direction = 'left'
-                    #        app.update_label("floor", "floorLabel", "11TH FLOOR")
+                      #      app.update_label("floor", "floorLabel", "11TH FLOOR")
                             app.update_image("floor", "floorImage", "Floors KVs/map11.png")
 
                     MDFillRoundFlatButton:

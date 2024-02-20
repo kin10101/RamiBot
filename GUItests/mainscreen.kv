@@ -13,14 +13,6 @@ MDScreen:
             keep_ratio: False
             size_hint: 1, 1
 
-        #Back Button
-        MDIconButton:
-            icon: 'arrow-left'
-            pos_hint: {'center_x': 0.1, 'center_y': 0.9}
-            user_font_size: "40sp"
-            on_press: root.manager.current = 'idle'
-
-
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
             size_hint: .8, .9
@@ -32,7 +24,7 @@ MDScreen:
             MDLabel: # Title
                 text: 'What can I help you with?'
                 font_name: 'Poppins'
-                font_size: "34sp"
+                font_size: "48sp"
                 halign: 'center'
                 text_color: 1, 1, 1, 1
                 pos_hint: {"x": 0, "y": .85}
@@ -76,7 +68,6 @@ MDScreen:
                         on_release:
                             root.manager.current = 'facultyscheds'
                             root.manager.transition.direction = 'left'
-
 
                     MDFillRoundFlatButton:
                         text: 'Programs Offered'

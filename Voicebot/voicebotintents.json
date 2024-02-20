@@ -228,7 +228,8 @@
             ],
             "responses": [
                 "it is located here at the 1st floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC second floor location",
@@ -251,7 +252,8 @@
             ],
             "responses": [
                 "it is located at the 2nd floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC third floor location",
@@ -274,7 +276,8 @@
             ],
             "responses": [
                 "it is located at the 3rd floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC fourth floor location",
@@ -296,7 +299,8 @@
             ],
             "responses": [
                 "it is located at the 4th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC fifth floor location",
@@ -330,7 +334,8 @@
             ],
             "responses": [
                 "it is located at the 5th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC sixth floor location",
@@ -352,7 +357,8 @@
             ],
             "responses": [
                 "it is located at the 6th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC seventh floor location",
@@ -369,7 +375,8 @@
             ],
             "responses": [
                 "it is located at the 7th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC eighth floor location",
@@ -398,7 +405,8 @@
             ],
             "responses": [
                 "it is located at the 8th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC ninth floor location",
@@ -417,7 +425,8 @@
             ],
             "responses": [
                 "it is located at the 9th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC tenth floor location",
@@ -444,7 +453,8 @@
             ],
             "responses": [
                 "it is located at the 10th floor "
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC eleventh floor location",
@@ -465,7 +475,8 @@
             ],
             "responses": [
                 "it is located on the 11th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC twelfth floor location",
