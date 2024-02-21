@@ -66,8 +66,6 @@ class VoiceAssistant:
                     print('Wake word detected. Now listening...')
                     ts.play_audio_file('audio/activate.wav')
 
-
-
                     # open a new instance of the microphone
             with sr.Microphone() as source:
                 print("Microphone reopened. Listening for command after wake word...")
@@ -164,6 +162,7 @@ class VoiceAssistant:
 
     def voice_assistant_loop(self):
         '''continuously listen for wake word and commands'''
+        global wakeword_detected
         context = [""]
 
         recognizer = sr.Recognizer()
@@ -173,8 +172,6 @@ class VoiceAssistant:
         recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
 
         while True:
-            wakeword_detected = False
-
             try:
                 with sr.Microphone() as source:
                     print('speak now')
@@ -204,8 +201,6 @@ class VoiceAssistant:
 
                 with sr.Microphone() as source:
 
-
-
                     gpio.set_gpio_pin(4, 1)  # set GPIO pin to HIGH to stop the motor wheel from moving
                     text2 = None
                     response2 = None
@@ -218,7 +213,6 @@ class VoiceAssistant:
                             text2 = None
                             pass
 
-
                         # generate a response from the chatbot
                         if text2 is not None:
                             try:
@@ -227,16 +221,13 @@ class VoiceAssistant:
                                 response2 = None
                                 pass
 
-
                         if response2 is not None:
                             ts.speak(response2, lang='en')
 
                             wakeword_detected = False
-                            ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
+                            ts.play_audio_file(
+                                "audio/deactivate.wav")  # sound to indicate that the conversation is over
                             break
-
-
-
 
 
 if __name__ == "__main__":
