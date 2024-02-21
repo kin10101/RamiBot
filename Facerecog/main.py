@@ -4,11 +4,20 @@ from datetime import datetime
 import pyttsx3
 import re
 
+# RamiDB = mysql.connector.connect(
+#     host = "airhub-soe.apc.edu.ph",
+#     user = "marj",
+#     passwd = 'RAMIcpe211',
+#     database = "ramibot",
+#     autocommit  = True
+#     )
+
 RamiDB = mysql.connector.connect(
-    host = "airhub-soe.apc.edu.ph",
-    user = "marj",
-    passwd = 'RAMIcpe211',
+    host = "localhost",
+    user = "root",
+    passwd = '',
     database = "ramibot",
+    port = "3306",
     autocommit  = True
     )
 
@@ -62,7 +71,7 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 70
+    threshold = 90
 
     temp = False
     lower_conf = False
@@ -90,8 +99,7 @@ def returnName1(ID_Num,result):
             user_nickname = nickname
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
-            voiceTrig = 1
-            motorTrig = 1
+
         else:
             result_text = greet_new_user()
             lower_conf = True

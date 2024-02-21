@@ -216,13 +216,14 @@ class MainApp(MDApp):
             self.image.texture = texture
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            faces = detect.detectMultiScale(gray, 1.3, 5)
+            gray_eq = cv2.equalizeHist(gray)
+            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(30, 30))
 
             for (x, y, w, h) in faces:
                 # Increment the count for each detected face
                 count += 1
 
-                face_image = gray[y:y + h, x:x + w]
+                face_image = gray_eq[y:y + h, x:x + w]
                 image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")
                 cv2.imwrite(image_path, face_image)
 
