@@ -4,22 +4,22 @@ from datetime import datetime
 import pyttsx3
 import re
 
-# RamiDB = mysql.connector.connect(
-#     host = "airhub-soe.apc.edu.ph",
-#     user = "marj",
-#     passwd = 'RAMIcpe211',
-#     database = "ramibot",
-#     autocommit  = True
-#     )
-
 RamiDB = mysql.connector.connect(
-    host = "localhost",
-    user = "root",
-    passwd = '',
+    host = "airhub-soe.apc.edu.ph",
+    user = "marj",
+    passwd = 'RAMIcpe211',
     database = "ramibot",
-    port = "3306",
     autocommit  = True
     )
+
+# RamiDB = mysql.connector.connect(
+#     host = "localhost",
+#     user = "root",
+#     passwd = '',
+#     database = "ramibot",
+#     port = "3306",
+#     autocommit  = True
+#     )
 
 cur = RamiDB.cursor()
 engine = pyttsx3.init()

@@ -176,11 +176,8 @@ class VoiceAssistant:
             wakeword_detected = False
 
             try:
-                print('speak now')
-
                 with sr.Microphone() as source:
-                    print("listening now")
-
+                    print('speak now')
                     # transcribe audio input
                     text = self.listen_to_command(recognizer, source)
                     print("Audio received to text: " + text)
@@ -189,40 +186,6 @@ class VoiceAssistant:
                     if any(variation in text for variation in self.wake_word_variations):
                         wakeword_detected = True
                         print('Wake word detected. Now listening...')
-                        ts.play_audio_file('audio/activate.wav')
-
-                        wake_word_response = voicebotengine.get_from_json("GEN_hello")
-                        # tts(wake_word_response, 'en')
-                        # ts.speak(wake_word_response)
-
-
-
-                        try:
-                            # set GPIO pin to HIGH to stop the motor wheel from moving
-                            gpio.set_gpio_pin()
-
-                        except Exception:
-                            pass
-
-                        # listen for the command after wake word is detected
-                        text = self.listen_to_command(recognizer, source)
-                        print("Received command: " + text)
-
-                        # generate a response from the chatbot
-                        response = self.handle_command(text, context)
-                        if response:
-                            ts.speak(response, lang='en')
-
-                        ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
-
-                        try:
-                            # set GPIO pin to LOW to allow the motor wheel to move again
-                            gpio.set_pin(self.gpio_pin, 0)
-                            # Clean up GPIO on exit
-                            gpio.cleanup()
-
-                        except Exception:
-                            pass
 
             except sr.RequestError:
                 print("Could not request results from google Speech Recognition service")
@@ -232,9 +195,48 @@ class VoiceAssistant:
                     print("Wake word detected but unable to recognize speech")
             except sr.WaitTimeoutError:
                 print("Timeout error while waiting for speech input")
-            except KeyboardInterrupt:
-                ts.speak("Goodbye")
-                sys.exit()
+
+            if wakeword_detected is True:
+                ts.play_audio_file('audio/activate.wav')
+                wake_word_response = voicebotengine.get_from_json("GEN hello")
+                # tts(wake_word_response, 'en')
+                ts.speak(wake_word_response)
+
+                with sr.Microphone() as source:
+
+
+
+                    gpio.set_gpio_pin(4, 1)  # set GPIO pin to HIGH to stop the motor wheel from moving
+                    text2 = None
+                    response2 = None
+                    while True:
+                        # listen for the command after wake word is detected
+                        try:
+                            text2 = self.listen_to_command(recognizer, source)
+                            print("Received command: " + text2)
+                        except:
+                            text2 = None
+                            pass
+
+
+                        # generate a response from the chatbot
+                        if text2 is not None:
+                            try:
+                                response2 = self.handle_command(text2, context)
+                            except:
+                                response2 = None
+                                pass
+
+
+                        if response2 is not None:
+                            ts.speak(response2, lang='en')
+
+                            wakeword_detected = False
+                            ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
+                            break
+
+
+
 
 
 if __name__ == "__main__":

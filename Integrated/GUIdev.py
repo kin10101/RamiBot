@@ -402,7 +402,7 @@ def voice_thread():
     print("voice thread active")
     while True:
         if not stop_voice.is_set():
-            voicebot.activate_on_button_press()
+            voicebot.voice_assistant_loop()
         else:
             pass
 
