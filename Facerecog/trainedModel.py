@@ -3,7 +3,7 @@ from Facerecog import main as m
 
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
-recognizer = cv2.face.LBPHFaceRecognizer.create()
+recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read("/home/rami/PycharmProjects/RamiBot/Facerecog/Trainer.yml")
 count = 0
 currentID = 0
