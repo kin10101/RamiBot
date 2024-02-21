@@ -217,11 +217,12 @@ class MainApp(MDApp):
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             gray_eq = cv2.equalizeHist(gray)
-            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(30, 30))
+            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 50, minSize=(100, 100))
 
             for (x, y, w, h) in faces:
                 # Increment the count for each detected face
                 count += 1
+
 
                 face_image = gray_eq[y:y + h, x:x + w]
                 image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")

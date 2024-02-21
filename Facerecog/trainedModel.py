@@ -23,12 +23,12 @@ def face_recognition(video):
         ret, frame = video.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray_eq = cv2.equalizeHist(gray)
-        faces = facedetect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(30, 30))
+        faces = facedetect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 60, minSize=(100, 100))
         for (x, y, w, h) in faces:
             serial, conf = recognizer.predict(gray_eq[y:y + h, x:x + w])
             confidence_result = conf
 
-            if conf > 90:
+            if conf > 70:
 
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
