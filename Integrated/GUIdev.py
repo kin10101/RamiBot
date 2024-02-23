@@ -4,6 +4,11 @@ import Facerecog.main
 from Facerecog import trainedModel
 from Facerecog import main
 
+# Chatbot imports
+from Chatbot.chatbot import handle_request
+from Chatbot.chatbotGUI import ChatScreen, Command, Response
+
+
 import Voicebot.pygtts as pygtts
 import gpio
 
@@ -24,129 +29,12 @@ import threading
 from queue import Queue, Empty
 
 from Voicebot import voicebotengine
+from Voicebot.voice_assistant_module import VoiceAssistant
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
-
-
-class VoiceAssistant:
-    def __init__(self):
-        self.pause_threshold = .8
-        self.energy_threshold = 2000
-        self.operation_timeout = 5000
-        self.dynamic_energy_threshold = True
-        self.listen_timeout = 3
-        self.phrase_time_limit = 5
-        self.gpio_pin = 17
-        self.wake_word_variations = [
-            "hello ram",
-            "hello mommy",
-            "hello romy",
-            "hello run",
-            "hello robi",
-            "hello ron",
-            "hiram",
-            "hey rami",
-            "rami",
-            "hey ronnie",
-            "jeremy",
-            "hi rami",
-            "hi ronnie",
-            "hello remy",
-            "hey siri"
-        ]
-
-    def listen_to_command(self, recognizer, source):
-        audio = recognizer.listen(source=source, timeout=self.listen_timeout, phrase_time_limit=self.phrase_time_limit)
-        text = recognizer.recognize_google(audio)
-        return text.lower()
-
-    def handle_command(self, text, context):
-        try:
-            if text is not None:
-                response = voicebotengine.handle_request(text, context)
-                if response is not None:
-                    return response
-        except Exception as e:
-            print(f"Error handling command: {e}")
-
-    def activate_on_wake_word(self):
-        context = [""]
-        recognizer = sr.Recognizer()
-
-        try:
-            print('speak now')
-            with sr.Microphone() as source:
-                print("listening for wake word")
-
-                # transcribe audio input
-                text = self.listen_to_command(recognizer, source)
-                print("Audio received to text: " + text)
-
-                # check wake word
-                if any(variation in text for variation in self.wake_word_variations):
-
-                    source.stop()  # stop recording to close the microphone
-
-                    print('Wake word detected. Now listening...')
-                    ts.play_audio_file('audio/activate.wav')
-
-                    # open a new instance of the microphone
-                    with sr.Microphone() as source:
-                        print("Microphone reopened. Listening for command after wake word...")
-
-                        # listen for the command after wake word is detected
-                        text = self.listen_to_command(recognizer, source)
-                        print("Received command: " + text)
-
-                        response = self.handle_command(text, context)
-                        if response:
-                            ts.speak(response, lang='en')
-
-                        ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
-
-        except sr.RequestError as e:
-            print(f"Could not request results from Google Speech Recognition service: {e}")
-        except sr.UnknownValueError:
-            print("Wake word detected but unable to recognize speech")
-        except sr.WaitTimeoutError:
-            print("Timeout error while waiting for speech input")
-        except KeyboardInterrupt:
-            ts.speak("Goodbye")
-            sys.exit()
-
-    def activate_on_button_press(self):
-        '''activate when button is pressed in the GUI'''
-        context = [""]
-        recognizer = sr.Recognizer()
-
-        try:
-            print('speak now')
-            with sr.Microphone() as source:
-                print("listening for command")
-                # ts.playAudioFile('audio/activate.wav')
-
-                # listen for the command
-                text = self.listen_to_command(recognizer, source)
-                print("Received command: " + text)
-
-                response = self.handle_command(text, context)
-                if response:
-                    ts.speak(response, lang='en')
-
-                ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
-
-        except sr.RequestError:
-            print("Could not request results from google Speech Recognition service")
-        except sr.UnknownValueError:
-            print("Wake word detected but unable to recognize speech")
-        except sr.WaitTimeoutError:
-            print("Timeout error while waiting for speech input")
-        except KeyboardInterrupt:
-            ts.speak("Goodbye")
-            sys.exit()
 
 
 class MainApp(MDApp):
@@ -172,7 +60,7 @@ class MainApp(MDApp):
         screen_manager = ScreenManager(transition=NoTransition())
 
         # ADD ALL SCREENS TO BE USED HERE
-        screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
+        screen_manager.add_widget(Builder.load_file('idlescreen.kv'))
         screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
 
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
@@ -182,6 +70,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('New User KVs/datacollect.kv'))
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
+        screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
+    #ALISIN TONGCOMMENT
 
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
@@ -211,13 +101,21 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
+
+        Window.bind(on_touch_down=self.on_touch_down)
+        print("built")
+        return screen_manager
+
+    def on_touch_down(self, touch, *args):
+        self.reset_timer()
+
+    def on_start(self):
+
         self.frame_rate = 10
         self.frame_count = 50
         self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
 
-        Window.bind(on_touch_down=self.on_touch_down)
-
-        return screen_manager
+        Clock.schedule_interval(self.await_change_screen, .5)
 
     def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
@@ -251,18 +149,21 @@ class MainApp(MDApp):
             print("Text not found")
             pass
 
+    def navigate_to_previous_screen(self):
+        screen_manager.current = screen_manager.previous()
+
     def add_apc_user_to_db(self):
         global user_ID
         MainApp.add_user_flag = 1
         try:
-            user_ID = self.get_text('adduser', 'school_id')
-            given_name = self.get_text('adduser', 'given_name')
-            middle_initial = self.get_text('adduser', 'middle_initial')
-            last_name = self.get_text('adduser', 'last_name')
-            nickname = self.get_text('adduser', 'nickname')
-            profession = self.get_text('adduser', 'profession')
+            user_ID = self.get_text('adduserscreen', 'school_id')
+            given_name = self.get_text('adduserscreen', 'given_name')
+            middle_initial = self.get_text('adduserscreen', 'middle_initial')
+            last_name = self.get_text('adduserscreen', 'last_name')
+            nickname = self.get_text('adduserscreen', 'nickname')
+            role = self.get_text('adduserscreen', 'role')
 
-            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, profession)
+            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
 
         except Exception as e:
             print(f"Error in uploading to db: {e}")
@@ -276,9 +177,9 @@ class MainApp(MDApp):
             middle_initial = self.get_text('adduser2', 'middle_initial')
             last_name = self.get_text('adduser2', 'last_name')
             nickname = self.get_text('adduser2', 'nickname')
-            profession = self.get_text('adduser2', 'profession')
+            role = self.get_text('adduser2', 'role')
 
-            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, profession)
+            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
         except Exception as e:
             print(f"Error in uploading to db: {e}")
 
@@ -315,13 +216,15 @@ class MainApp(MDApp):
             self.image.texture = texture
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            faces = detect.detectMultiScale(gray, 1.3, 5)
+            gray_eq = cv2.equalizeHist(gray)
+            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 50, minSize=(100, 100))
 
             for (x, y, w, h) in faces:
                 # Increment the count for each detected face
                 count += 1
 
-                face_image = gray[y:y + h, x:x + w]
+
+                face_image = gray_eq[y:y + h, x:x + w]
                 image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")
                 cv2.imwrite(image_path, face_image)
 
@@ -329,7 +232,7 @@ class MainApp(MDApp):
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
                 cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-                if count >= 50:
+                if count >= 1000:
                     # Release the video capture and exit the application
                     self.camera.release()
                     cv2.destroyAllWindows()
@@ -340,33 +243,78 @@ class MainApp(MDApp):
         conf = trainedModel.face_recognition(self.camera)
 
         if conf is not None:
-                gpio.set_gpio_pin(4, 1)
-                put_in_queue(screen_queue, 'greetscreen')
-                self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
-                pygtts.speak(f'{main.result_text}')
+            gpio.set_gpio_pin(4, 1)
+            put_in_queue(screen_queue, 'greetscreen')
+            self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
+            pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
         if lower_conf is True:
-            change_screen('adduserscreen')
+            self.change_screen('newuser')
 
         if lower_conf is False:
-            change_screen('mainmenu')
+            self.change_screen('mainmenu')
 
+
+    def send_message(self):
+        """Send a message."""
+        self.input_text = screen_manager.get_screen("chatscreen").text_input.text.strip()
+        if self.input_text:
+            self.add_message_to_chat()
+        screen_manager.get_screen("chatscreen").text_input.text = ""
+        self.get_text_input()
+        self.response()
+
+    def add_message_to_chat(self):
+        """Add the message to the chat list."""
+        global size, halign, value
+        value = self.input_text
+        self.set_message_size_and_alignment()
+        screen_manager.get_screen("chatscreen").chat_list.add_widget(
+            Command(text=value, size_hint_x=size, halign=halign))
+
+    def set_message_size_and_alignment(self):
+        """Set the size and alignment of the message based on its length."""
+        global size, halign
+        if len(value) < 6:
+            size = .22
+            halign = "center"
+        elif len(value) < 11:
+            size = .32
+            halign = "center"
+        elif len(value) < 16:
+            size = .45
+            halign = "center"
+        elif len(value) < 21:
+            size = .58
+            halign = "center"
+        elif len(value) < 26:
+            size = .71
+            halign = "center"
+        else:
+            size = .85
+            halign = "left"
+
+    def get_text_input(self):
+        """Print the input text."""
+        print("Input text:", self.input_text)
+
+    def response(self, *args):
+        """Generate and display a response."""
+        response = ""
+        context = [""]
+        response = handle_request(self.input_text.lower(), context)
+        screen_manager.get_screen("chatscreen").chat_list.add_widget(
+            Response(text=response, size_hint_x=.75, halign=halign))
 
     def gpio_cleanup(self):
         print('cleared pin values')
         gpio.set_gpio_pin(4, 0)
         gpio.GPIO.cleanup()
 
-
-    def on_start(self):
-        Clock.schedule_interval(self.await_change_screen, .5)
-
-
     def start_timer(self):
         self.timeout = Clock.schedule_once(self.timeout_reset, 30)
-
 
     def reset_timer(self):
         self.timeout.cancel()
@@ -374,16 +322,15 @@ class MainApp(MDApp):
 
     def timeout_reset(self, dt):
         gpio.set_gpio_pin(4, 0)
-        change_screen('idlescreen')
+        self.change_screen('idlescreen')
 
     def start_thread(self, thread_obj):
         thread = thread_obj()
         thread.start()
         return thread
 
-    def on_touch_down(self, touch, *args):
-        self.reset_timer()
-
+    def change_screen(self, screen_name):
+        screen_manager.current = screen_name
 
 
     def await_change_screen(self, dt):
@@ -392,7 +339,7 @@ class MainApp(MDApp):
         try:
             item = screen_queue.get_nowait()
             print(item)
-            change_screen(item)
+            self.change_screen(item)
         except Empty:
             pass
 
@@ -420,23 +367,21 @@ class MainApp(MDApp):
             if item == "run motor":
                 stop_motor.clear()
 
-
         except Empty:
             pass
 
-    def face_thread(self):
 
+    def start_face_thread(self):
         face = threading.Thread(target=face_thread)
         face.daemon = True
         face.start()
 
 
-def navigate_to_previous_screen():
+def navigate_to_previous_screen(self):
     screen_manager.current = screen_manager.previous()
 
 
-def change_screen(screen_name):
-    screen_manager.current = screen_name
+
 
 
 def put_in_queue(myqueue, item):
@@ -450,42 +395,35 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
-def start_voice_thread():
-    voice_thread = threading.Thread(target=voice_thread)
-    voice_thread.daemon = True
-    voice_thread.start()
-
-def voice_thread():
-    print("voice thread active")
-    while True:
-        if not stop_voice.is_set():
-            voicebot.activate_on_button_press()
-        else:
-            pass
-
-
 def face_thread():
     print("face thread active")
     if not stop_face.is_set():
         app.face_recognition_module()
+def voice_thread():
+    print("voice thread active")
+    while True:
+        if not stop_voice.is_set():
+            voicebot.voice_assistant_loop()
+        else:
+            pass
 
 
-def timeout_counter(dt):
-    global count
-    count = count + 1
-    if count == 30:
-        change_screen('idlescreen')
-        gpio.GPIO.cleanup()
+def start_voice_thread():
+    voice = threading.Thread(target=voice_thread)
+    voice.daemon = True
+    voice.start()
 
 
-def reset_timeout():
-    global count
-    count = 0
+
+
+
+
+
 
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
-    count = 0
+
     # Queues
     event_queue = Queue()
     screen_queue = voicebotengine.Speech_Queue
@@ -500,16 +438,10 @@ if __name__ == "__main__":
 
     start_voice_thread()
 
-
-
     # Event States
     stop_voice = threading.Event()
     stop_face = threading.Event()
     stop_motor = threading.Event()
     # set events to stop thread processes and clear event to resume
 
-    # voice_thread.start()
-
     app.run()
-
-

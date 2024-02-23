@@ -12,6 +12,15 @@ RamiDB = mysql.connector.connect(
     autocommit  = True
     )
 
+# RamiDB = mysql.connector.connect(
+#     host = "localhost",
+#     user = "root",
+#     passwd = '',
+#     database = "ramibot",
+#     port = "3306",
+#     autocommit  = True
+#     )
+
 cur = RamiDB.cursor()
 engine = pyttsx3.init()
 voiceTrig = 0
@@ -62,9 +71,10 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 80
+    threshold = 90
 
     temp = False
+    lower_conf = False
     for x in res:
         if ID_Num in x:
             check_name = f"SELECT nickname FROM ramibot_faces WHERE ID_Number = '{ID_Num}'"
@@ -89,20 +99,21 @@ def returnName1(ID_Num,result):
             user_nickname = nickname
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
-            voiceTrig = 1
-            motorTrig = 1
-        else:
 
+        else:
             result_text = greet_new_user()
             lower_conf = True
-            print(f"Recognition confidence ({result}) is below the threshold. Unknown.")
+            print(f"lower_conf: {lower_conf}")
+            print(f"Recognition confidence ({result}) is below the threshold. Unknown. name : {nickname}")
 
     else:
         #engine.say(unknown_user)
         #engine.runAndWait()
         result_text = greet_new_user()
         lower_conf = True
+        print(f"lower_conf: {lower_conf}")
         print("User not exist")
+
 
 def get_time_of_day_greeting():
     # Get the current hour
@@ -116,18 +127,20 @@ def get_time_of_day_greeting():
     else:
         return "Good evening"
 
+
 def greet_new_user():
     random_num = random.randint(1,5)
     if random_num == 1:
-        return "Hello new user, I'm Ramibot!"
+        return "Hello there, I'm Rami bot!"
     elif random_num == 2:
-        return "Kamusta kaibigan, ako si Ramibot!"
+        return "Hello friend! my name is Rami bot!"
     elif random_num == 3:
-        return "Hi new user, I'm Ramibot!"
+        return "Good day, I'm Rami bot!"
     elif random_num == 4:
-        return "What up new user, I'm Ramibot!"
+        return "Hi there, I'm Rami bot!"
     elif random_num == 5:
-        return "Whatcha doin new user, I'm Ramibot!"
+        return "Greetings, I'm Rami bot!"
+
 
 def time_stamp(ID_Num, result_text):
     new_user = f"INSERT INTO greeted_users (ID_Number) VALUES ({ID_Num})"
