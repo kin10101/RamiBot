@@ -33,20 +33,43 @@ MDScreen:
             padding: 10
             radius: [15]
 
-            Image: # logo image
-                id: orgsLogo
-                source: ' '
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: 1, 1
-
         MDLabel: # Title
             id: orgsLabel
             text: ' '
             font_name: 'Poppins'
-            font_size: "42sp"
+            font_size: "40sp"
             halign: 'center'
             text_color: 1, 1, 1, 1
-            pos_hint: {"x": 0, "y": .75}
-            size_hint: 1, .2
+            pos_hint: {"x": 0.105, "y": .81}
+            size_hint: 0.79, None
             bold: True
+            #label background
+            size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
+            canvas.before:
+                Color:
+                    rgba: .003, .4, .6, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+#        MDScrollView: # ScrollView for Buttons
+ #           do_scroll_x: False
+        GridLayout:
+            cols: 2
+            rows: 1
+            size_hint: (0.8, 0.4)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            Image: # Background image
+                id: orgsLogo
+                source: ' '
+                allow_stretch: False
+                keep_ratio: True
+                size_hint: 0.2, 0.4
+
+            Label:
+                id: orgText
+                text: " "
+                size_hint:(0.6, 0.4)
+                font_size: "28sp"
+                font_name: 'Poppins'
+                text_color: 1, 1, 1, 1

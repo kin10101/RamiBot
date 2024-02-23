@@ -102,8 +102,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_press:
-                            root.manager.current = 'scholarships'
+                            root.manager.current = 'scholarInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_label("scholarInfo", "scholarLabel", "Scholarship Grants and Financial Aid")
 
         Button:
             size_hint: None, None

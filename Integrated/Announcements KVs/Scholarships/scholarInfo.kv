@@ -22,7 +22,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                root.manager.current = 'scholarships'
+                root.manager.current = 'announcements'
                 root.manager.transition.direction = 'right'
 
         MDBoxLayout: # Square transparent container
@@ -44,31 +44,152 @@ MDScreen:
             size_hint: 1, .2
             bold: True
 
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .75, .6
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
         GridLayout:
-            cols: 3
-            size_hint: (0.8, 0.7)
+            cols: 2
+            rows: 8
+            size_hint: (0.8, 0.5)
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
-            Label:
-                text: "SUBSIDY"
-                size_hint:(1.2, 0.5)
-                font_size: "25sp"
+            MDLabel:
+                text: "100%"
                 font_name: 'Poppins'
-                #label background
-                size: self.texture_size[0] + dp(10), self.texture_size[1] + dp(10)
-                canvas.before:
-                    Color:
-                        rgba: .1, .1, .1, .2
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
+                font_size: "40sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 0.2, 0.4
+                bold: True
+            MDLabel:
+                text: "Subsidy for SM Foundation Scholars"
+                font_name: 'Poppins'
+                font_size: "25sp"
+                text_color: 1, 1, 1, 1
+                size_hint: 0.6, 0.4
 
-            Label:
-                text: "WHO MAY APPLY"
-                size_hint:(1.2, 0.5)
-                font_size: 25
-            Label:
-                text: "DOCUMENTS TO BE SUBMITTED"
-                size_hint:(1.2, 0.5)
-                font_size: 25
-                background_color: 6/255.0, 38/255.0, 201/255.0, 0.5
+            MDLabel:
+                text: "65%"
+                font_name: 'Poppins'
+                font_size: "40sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 0.2, 0.4
+                bold: True
+            MDLabel:
+                text: "Subsidy for students graduating with Highest Honors"
+                font_name: 'Poppins'
+                font_size: "25sp"
+                text_color: 1, 1, 1, 1
+                size_hint: 0.6, 0.4
+
+            MDLabel:
+                text: "60%"
+                font_name: 'Poppins'
+                font_size: "40sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 0.2, 0.4
+                bold: True
+            MDLabel:
+                text: "Subsidy for dependents of active uniformed PNP or AFP Personnel"
+                font_name: 'Poppins'
+                font_size: "25sp"
+                text_color: 1, 1, 1, 1
+                size_hint: 0.6, 0.4
+
+            MDLabel:
+                text: "50%"
+                font_name: 'Poppins'
+                font_size: "40sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 0.2, 0.4
+                bold: True
+            MDLabel:
+                text: "Subsidy for public school graduates"
+                font_name: 'Poppins'
+                font_size: "25sp"
+                text_color: 1, 1, 1, 1
+                size_hint: 0.6, 0.4
+
+            MDLabel:
+                text: "45%"
+                font_name: 'Poppins'
+                font_size: "40sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 0.2, 0.4
+                bold: True
+            MDLabel:
+                text: "Subsidy for students graduating with High Honors"
+                font_name: 'Poppins'
+                font_size: "25sp"
+                text_color: 1, 1, 1, 1
+                size_hint: 0.6, 0.4
+
+            MDLabel:
+                text: "35%"
+                font_name: 'Poppins'
+                font_size: "40sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 0.2, 0.4
+                bold: True
+            MDLabel:
+                text: "Subsidy for graduates coming from MAPSA and Parish schools"
+                font_name: 'Poppins'
+                font_size: "25sp"
+                text_color: 1, 1, 1, 1
+                size_hint: 0.6, 0.4
+
+            MDLabel:
+                text: "35%"
+                font_name: 'Poppins'
+                font_size: "40sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 0.2, 0.4
+                bold: True
+            MDLabel:
+                text: "Subsidy for approved socialized financial assistance"
+                font_name: 'Poppins'
+                font_size: "25sp"
+                text_color: 1, 1, 1, 1
+                size_hint: 0.6, 0.4
+
+            MDLabel:
+                text: "20%"
+                font_name: 'Poppins'
+                font_size: "40sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                size_hint: 0.2, 0.4
+                bold: True
+                #label background
+
+            MDLabel:
+                text: "Subsidy for children of SM regular employees"
+                font_name: 'Poppins'
+                font_size: "25sp"
+                text_color: 1, 1, 1, 1
+                size_hint: 0.6, 0.4
+
+        MDLabel:
+            text: "SM Foundation Scholars in BS Information Technology (BSIT), BS Accountancy (BSA), BS Computer Engineering (BSCpE), \nBS Electronics Engineering and BS Computer Science (BSCS) are eligible to enroll.\n\nVOUCHERS: ESC or DepED Vouchers are accepted for incoming Senior High School Students."
+            size_hint:(0.75, 0.253)
+            font_size: "18sp"
+            font_name: 'Poppins'
+            text_color: 1, 1, 1, 1
+            pos_hint: {'center_x': 0.5, "y": 0.01}
+        Image:
+            source: 'Assets/logo.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: .21, .18
+            pos_hint: {'center_x': 0.81, 'center_y': 0.083}

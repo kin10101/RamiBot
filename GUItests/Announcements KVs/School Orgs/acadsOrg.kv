@@ -313,6 +313,9 @@ MDScreen:
                             root.manager.current = 'orgsInfo'
                             root.manager.transition.direction = 'left'
                             app.update_label("orgsInfo", "orgsLabel", "Gaming Genesis (GG)")
+                            app.update_label("orgsInfo", "orgText", "Gaming Genesis (GG) is an organization built to support game \ndesign and multimedia art students in their projects involving \ngames. It promotes the creativity and talent of students in the \nfield of gaming and game design, with the goal to contribute in \nthe new gaming industry and bring joy to the APC community \nthrough gaming.")
+                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/GG.png")
+
 
                     MDFillRoundFlatButton:
                         text: 'APC Junior Philippine Computer Society (APC-JPCS)'
@@ -327,7 +330,9 @@ MDScreen:
                         on_press:
                             root.manager.current = 'orgsInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgText", "The APC Junior Philippine Computer Society (APC-JPCS) aims to \nprepare its members for their future in the corporate world as an \nICT professional by providing complementary experiences aside \nfrom what they learn in school. It provides an opportunity to \nshare experiences and work with other students from different \nschools, in the pursuit of IT excellence through common projects.")
                             app.update_label("orgsInfo", "orgsLabel", "APC Junior Philippine Computer Society (APC-JPCS)")
+                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/JPCS.png")
 
                     MDFillRoundFlatButton:
                         text: 'Asia Pacific College - Microsoft Community (APC-MSC)'
@@ -342,7 +347,9 @@ MDScreen:
                         on_press:
                             root.manager.current = 'orgsInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgText", "The Asia Pacific College - Microsoft Community (APC-MSC) is an \norganization that aspires to acquaint students with the latest in \ntechnology and software development through various Microsoft \nevents, tools, and technologies. Having Microsoft Student Partners \n(MSPs) in its executive board, the organization is able to obtain \npromotional paraphernalia and hold both official and \nMicrosoft-endorsed events in the school.")
                             app.update_label("orgsInfo", "orgsLabel", "Asia Pacific College - Microsoft Community (APC-MSC)")
+                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/MSC.png")
 
                     MDFillRoundFlatButton:
                         text: 'APC Junior Information Systems Security Association (APC-JISSA)'
@@ -357,8 +364,9 @@ MDScreen:
                         on_press:
                             root.manager.current = 'orgsInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_label("orgsInfo", "orgText", "The Asia Pacific College - Microsoft Community (APC-MSC) is an \norganization that aspires to acquaint students with the latest in \ntechnology and software development through various Microsoft \nevents, tools, and technologies. Having Microsoft Student Partners \n(MSPs) in its executive board, the organization is able to obtain \npromotional paraphernalia and hold both official and \nMicrosoft-endorsed events in the school.")
                             app.update_label("orgsInfo", "orgsLabel", "APC Junior Information Systems Security Association (APC-JISSA)")
-
+                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/JISSA.png")
         Button:
             size_hint: None, None
             size: 250, 80
