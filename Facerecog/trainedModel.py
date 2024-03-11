@@ -28,7 +28,7 @@ def face_recognition(video):
             serial, conf = recognizer.predict(gray_eq[y:y + h, x:x + w])
             confidence_result = conf
 
-            if conf > 70:
+            if conf > 80:
 
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)

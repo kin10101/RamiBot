@@ -246,7 +246,7 @@ class MainApp(MDApp):
             gpio.set_gpio_pin(4, 1)
             put_in_queue(screen_queue, 'greetscreen')
             self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
-            pygtts.speak(f'{main.result_text}')
+            #pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
