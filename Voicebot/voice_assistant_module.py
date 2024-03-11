@@ -172,6 +172,7 @@ class VoiceAssistant:
         recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
 
         while True:
+            wakeword_detected = False
             try:
                 with sr.Microphone() as source:
                     print('speak now')

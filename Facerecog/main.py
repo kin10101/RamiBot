@@ -72,7 +72,7 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 80
+    threshold = 100
 
     temp = False
     lower_conf = False
@@ -100,18 +100,15 @@ def returnName1(ID_Num,result):
             user_nickname = nickname
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
-
         else:
-            result_text = greet_new_user()
             lower_conf = True
+            result_text = greet_new_user()
             print(f"lower_conf: {lower_conf}")
             print(f"Recognition confidence ({result}) is below the threshold. Unknown. name : {nickname}")
 
     else:
-        #engine.say(unknown_user)
-        #engine.runAndWait()
-        result_text = greet_new_user()
         lower_conf = True
+        result_text = greet_new_user()
         print(f"lower_conf: {lower_conf}")
         print("User not exist")
 

@@ -23,12 +23,13 @@ def face_recognition(video):
         ret, frame = video.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray_eq = cv2.equalizeHist(gray)
-        faces = facedetect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 60, minSize=(100, 100))
+        faces = facedetect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 8, minSize=(60, 60))
         for (x, y, w, h) in faces:
             serial, conf = recognizer.predict(gray_eq[y:y + h, x:x + w])
             confidence_result = conf
+            print(f"confidence level: {confidence_result} for id number {str(serial)}")
 
-            if conf > 80:
+            if conf > 100:
 
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
@@ -36,6 +37,7 @@ def face_recognition(video):
 
                 #greet user with voice
                 m.returnName1(str(serial), conf)
+                print(f"{m.returnName1(str(serial), conf)}")
                 video.release()
                 running = False
 

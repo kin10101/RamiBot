@@ -71,7 +71,7 @@ class MainApp(MDApp):
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
-    #ALISIN TONGCOMMENT
+
 
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
@@ -217,12 +217,11 @@ class MainApp(MDApp):
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             gray_eq = cv2.equalizeHist(gray)
-            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 50, minSize=(100, 100))
+            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 8, minSize=(60, 60))
 
             for (x, y, w, h) in faces:
                 # Increment the count for each detected face
                 count += 1
-
 
                 face_image = gray_eq[y:y + h, x:x + w]
                 image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")
@@ -246,6 +245,8 @@ class MainApp(MDApp):
             gpio.set_gpio_pin(4, 1)
             put_in_queue(screen_queue, 'greetscreen')
             self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
+
+            print(f"{main.result_text}")
             #pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
@@ -313,8 +314,11 @@ class MainApp(MDApp):
         gpio.set_gpio_pin(4, 0)
         gpio.GPIO.cleanup()
 
+    def on_gpio(self, pin=4, state=1):
+        gpio.set_gpio_pin(pin, state)
+
     def start_timer(self):
-        self.timeout = Clock.schedule_once(self.timeout_reset, 30)
+        self.timeout = Clock.schedule_once(self.timeout_reset, 10)
 
     def reset_timer(self):
         self.timeout.cancel()
@@ -379,9 +383,6 @@ class MainApp(MDApp):
 
 def navigate_to_previous_screen(self):
     screen_manager.current = screen_manager.previous()
-
-
-
 
 
 def put_in_queue(myqueue, item):
