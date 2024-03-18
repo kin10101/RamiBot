@@ -1,6 +1,7 @@
 import cv2
 from Facerecog import main as m
 
+
 facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 recognizer = cv2.face.LBPHFaceRecognizer.create()
@@ -13,12 +14,12 @@ recognizer.read("/home/rami/PycharmProjects/RamiBot/Facerecog/Trainer.yml")
 count = 0
 currentID = 0
 global confidence_result
-
+global low_conf
 
 def face_recognition(video):
     global confidence_result
     global running
-
+    global low_conf
 
     low_conf = False
     running = True
@@ -44,11 +45,12 @@ def face_recognition(video):
                 video.release()
                 running = False
 
-
                 return confidence_result
 
             else:
-
+                print("unrecognized")
+                low_conf = True
+                m.result_text = m.greet_new_user()
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
                 cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)

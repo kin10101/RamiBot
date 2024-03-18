@@ -3,12 +3,10 @@ MDScreen:
     on_enter:
         app.start_face_thread()
         app.start_timer()
-        root.clear_event(voicebot.active_state)
+        app.is_face_recognized()
+
     on_pre_leave:
         app.on_gpio(4, 1)
-        root.set_event(voicebot.active_state)
-
-
 
 
     MDFloatLayout: # main layout

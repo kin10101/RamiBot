@@ -6,20 +6,20 @@ import re
 import Voicebot.pygtts as pygtts
 
 RamiDB = mysql.connector.connect(
-    host="airhub-soe.apc.edu.ph",
-    user="marj",
-    passwd='RAMIcpe211',
-    database="ramibot",
-    autocommit=True
+    host = "airhub-soe.apc.edu.ph",
+    user = "marj",
+    passwd = 'RAMIcpe211',
+    database = "ramibot",
+    autocommit  = True
     )
 
 # RamiDB = mysql.connector.connect(
-#     host="localhost",
-#     user="root",
-#     passwd='',
-#     database="ramibot",
-#     port="3306",
-#     autocommit=True
+#     host = "localhost",
+#     user = "root",
+#     passwd = '',
+#     database = "ramibot",
+#     port = "3306",
+#     autocommit  = True
 #     )
 
 cur = RamiDB.cursor()
@@ -30,7 +30,7 @@ global user_nickname
 global unknown_user
 global result_text
 global lower_conf
-
+lower_conf = False
 
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
@@ -67,7 +67,6 @@ def returnName1(ID_Num,result):
     global unknown_user
     global result_text
     global lower_conf
-
     check_id = "SELECT * FROM ramibot_faces"
     cur.execute(check_id)
     res = cur.fetchall()
