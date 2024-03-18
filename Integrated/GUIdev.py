@@ -251,11 +251,16 @@ class MainApp(MDApp):
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
+        print(f"lower_conf: {lower_conf}")
+
         if lower_conf is True:
             self.change_screen('newuser')
 
-        if lower_conf is False:
+        elif lower_conf is False:
             self.change_screen('mainmenu')
+
+        else:
+            print("unexpected value of low_conf")
 
 
     def send_message(self):

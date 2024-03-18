@@ -18,6 +18,9 @@ global confidence_result
 def face_recognition(video):
     global confidence_result
     global running
+
+
+    low_conf = False
     running = True
     while running:
         ret, frame = video.read()
@@ -41,9 +44,11 @@ def face_recognition(video):
                 video.release()
                 running = False
 
+
                 return confidence_result
 
             else:
+
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
                 cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
