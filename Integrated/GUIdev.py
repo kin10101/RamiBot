@@ -382,6 +382,14 @@ class MainApp(MDApp):
         face.start()
 
 
+def set_event(event):
+    event.set()
+
+
+def clear_event(event):
+    event.clear()
+
+
 def navigate_to_previous_screen(self):
     screen_manager.current = screen_manager.previous()
 
