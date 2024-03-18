@@ -8,7 +8,6 @@ from Facerecog import main
 from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import ChatScreen, Command, Response
 
-
 import Voicebot.pygtts as pygtts
 import gpio
 
@@ -30,7 +29,6 @@ from queue import Queue, Empty
 
 from Voicebot import voicebotengine
 from Voicebot.voice_assistant_module import VoiceAssistant
-
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
@@ -72,7 +70,6 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
 
-
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
 
@@ -101,7 +98,6 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
-
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
         return screen_manager
@@ -118,7 +114,7 @@ class MainApp(MDApp):
         Clock.schedule_interval(self.await_change_screen, .5)
 
     def update_label(self, screen_name, id, text):
-        '''Update labels in mapscreen'''
+        """Update labels in mapscreen"""
         screen_name = self.root.get_screen(screen_name)
         try:
             label = screen_name.ids[id]
@@ -128,7 +124,7 @@ class MainApp(MDApp):
             pass
 
     def update_image(self, screen_name, id, source):
-        '''Update image sources in mapscreen'''
+        """Update image sources in mapscreen"""
         screen_name = self.root.get_screen(screen_name)
         try:
             label = screen_name.ids[id]
@@ -138,7 +134,7 @@ class MainApp(MDApp):
             pass
 
     def get_text(self, screen_name, id):
-        '''Get text from textinput in newuser screen'''
+        """Get text from textinput in newuser screen"""
         screen_name = self.root.get_screen(screen_name)
 
         try:
@@ -151,6 +147,8 @@ class MainApp(MDApp):
 
     def navigate_to_previous_screen(self):
         screen_manager.current = screen_manager.previous()
+
+    # FACE RECOGNITION -------------------------------------------------------------
 
     def add_apc_user_to_db(self):
         global user_ID
@@ -217,7 +215,7 @@ class MainApp(MDApp):
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             gray_eq = cv2.equalizeHist(gray)
-            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 8, minSize=(60, 60))
+            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(60, 60))
 
             for (x, y, w, h) in faces:
                 # Increment the count for each detected face
@@ -247,7 +245,7 @@ class MainApp(MDApp):
             self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
 
             print(f"{main.result_text}")
-            #pygtts.speak(f'{main.result_text}')
+            # pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
@@ -257,6 +255,7 @@ class MainApp(MDApp):
         if lower_conf is False:
             self.change_screen('mainmenu')
 
+    # CHATBOT ------------------------------------------------
 
     def send_message(self):
         """Send a message."""
@@ -317,6 +316,8 @@ class MainApp(MDApp):
     def on_gpio(self, pin=4, state=1):
         gpio.set_gpio_pin(pin, state)
 
+    # TIMEOUT TO IDLE SCREEN ---------------------------------------------------------
+
     def start_timer(self):
         self.timeout = Clock.schedule_once(self.timeout_reset, 10)
 
@@ -328,14 +329,8 @@ class MainApp(MDApp):
         gpio.set_gpio_pin(4, 0)
         self.change_screen('idlescreen')
 
-    def start_thread(self, thread_obj):
-        thread = thread_obj()
-        thread.start()
-        return thread
-
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
-
 
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
@@ -374,7 +369,6 @@ class MainApp(MDApp):
         except Empty:
             pass
 
-
     def start_face_thread(self):
         face = threading.Thread(target=face_thread)
         face.daemon = True
@@ -396,10 +390,13 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
+
 def face_thread():
     print("face thread active")
     if not stop_face.is_set():
         app.face_recognition_module()
+
+
 def voice_thread():
     print("voice thread active")
     while True:
@@ -413,13 +410,6 @@ def start_voice_thread():
     voice = threading.Thread(target=voice_thread)
     voice.daemon = True
     voice.start()
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
@@ -443,6 +433,8 @@ if __name__ == "__main__":
     stop_voice = threading.Event()
     stop_face = threading.Event()
     stop_motor = threading.Event()
+
+
     # set events to stop thread processes and clear event to resume
 
     app.run()
