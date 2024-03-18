@@ -29,6 +29,7 @@ from queue import Queue, Empty
 
 from Voicebot import voicebotengine
 from Voicebot.voice_assistant_module import VoiceAssistant
+
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
@@ -335,10 +336,16 @@ class MainApp(MDApp):
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
         the item in queue"""
+        current_screen = screen_manager.current
         try:
             item = screen_queue.get_nowait()
             print(item)
-            self.change_screen(item)
+
+            if item != current_screen:
+                self.change_screen(item)
+            else:
+                pass
+
         except Empty:
             pass
 
@@ -433,7 +440,6 @@ if __name__ == "__main__":
     stop_voice = threading.Event()
     stop_face = threading.Event()
     stop_motor = threading.Event()
-
 
     # set events to stop thread processes and clear event to resume
 
