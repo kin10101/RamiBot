@@ -29,7 +29,7 @@ import threading
 from queue import Queue, Empty
 
 from Voicebot import voicebotengine
-from Voicebot.voice_assistant_module import VoiceAssistant
+from Voicebot.voice_assistant_module import VoiceAssistant, active_state
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
@@ -101,7 +101,6 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
-
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
         return screen_manager
@@ -148,6 +147,12 @@ class MainApp(MDApp):
         except:
             print("Text not found")
             pass
+
+
+    def greet(self):
+        wake_word_response = voicebotengine.get_from_json("GEN hello")
+        pygtts.speak(wake_word_response)
+
 
     def navigate_to_previous_screen(self):
         screen_manager.current = screen_manager.previous()
@@ -386,6 +391,15 @@ class MainApp(MDApp):
         face.start()
 
 
+    def set_event(self, event=active_state):
+        event.set()
+        print("set")
+
+    def clear_event(self, event=active_state):
+        event.clear()
+        print("cleared")
+
+
 def navigate_to_previous_screen(self):
     screen_manager.current = screen_manager.previous()
 
@@ -411,6 +425,7 @@ def voice_thread():
         if not stop_voice.is_set():
             voicebot.voice_assistant_loop()
         else:
+            print("VOICE THREAD DISABLED")
             pass
 
 
@@ -418,13 +433,6 @@ def start_voice_thread():
     voice = threading.Thread(target=voice_thread)
     voice.daemon = True
     voice.start()
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
