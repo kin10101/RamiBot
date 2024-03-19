@@ -4,7 +4,7 @@ import Facerecog.main as m
 import datetime
 import shutil
 import time
-from main import cur
+# from main import cur
 
 global user_id
 global user_dir

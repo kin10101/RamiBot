@@ -38,7 +38,7 @@
             "responses": [
                 "Hello there! how can i be of service?",
                 "Greetings! How can I be of service?",
-                "Hello there! I'm all ears and ready to assist.",
+                "Hello there! Heard you loud and clear",
                 "hi! how may i help you?",
                 "hello, what would you like me to do?"
             ]
@@ -228,7 +228,8 @@
             ],
             "responses": [
                 "it is located here at the 1st floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC second floor location",
@@ -251,7 +252,8 @@
             ],
             "responses": [
                 "it is located at the 2nd floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC third floor location",
@@ -274,7 +276,8 @@
             ],
             "responses": [
                 "it is located at the 3rd floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC fourth floor location",
@@ -296,7 +299,8 @@
             ],
             "responses": [
                 "it is located at the 4th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC fifth floor location",
@@ -330,7 +334,8 @@
             ],
             "responses": [
                 "it is located at the 5th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC sixth floor location",
@@ -352,7 +357,8 @@
             ],
             "responses": [
                 "it is located at the 6th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC seventh floor location",
@@ -369,7 +375,8 @@
             ],
             "responses": [
                 "it is located at the 7th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC eighth floor location",
@@ -394,11 +401,16 @@
                 "room 817",
                 "room 818",
                 "eslo",
-                "oslo"
+                "oslo",
+                "air lab",
+                "air hub",
+                "open laboratory",
+                "open lab"
             ],
             "responses": [
                 "it is located at the 8th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC ninth floor location",
@@ -417,7 +429,8 @@
             ],
             "responses": [
                 "it is located at the 9th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC tenth floor location",
@@ -444,7 +457,8 @@
             ],
             "responses": [
                 "it is located at the 10th floor "
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC eleventh floor location",
@@ -465,7 +479,8 @@
             ],
             "responses": [
                 "it is located on the 11th floor"
-            ]
+            ],
+            "navigate_to": "floormaps"
         },
         {
             "tag": "LOC twelfth floor location",
@@ -482,7 +497,8 @@
                 "gym",
                 "workout",
                 "exercise",
-                "dance"
+                "dance",
+                "jim"
             ],
             "responses": [
                 "you can go to the gym at the 10th floor"
@@ -592,19 +608,7 @@
             "context_filter": "apc_programs",
             "context_set": ""
         },
-        {
-            "tag": "PRG professional tracks",
-            "patterns": [
-                "professional tracks",
-                "professional",
-                "tracks"
-            ],
-            "responses": [
-                ""
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
+
         {
             "tag": "FN_sing",
             "patterns": [
@@ -713,7 +717,8 @@
             "tag": "APC tell me more",
             "patterns": [
                 "can you tell me more about a pc",
-                "can you tell me more about apc"
+                "can you tell me more about apc",
+                "can you tell me more about asia pacific college"
             ],
             "responses": [
                 "Sure, which part would you like to know more about?"
@@ -808,15 +813,7 @@
                 "APC graduates are employed in various sectors of businesses and industries."
             ]
         },
-        {
-            "tag": "APC successful alumni",
-            "patterns": [
-                "Can you give me examples of successful APC alumni?"
-            ],
-            "responses": [
-                "Some successful APC alumni include CEOs, entrepreneurs, and leaders in various industries."
-            ]
-        },
+
         {
             "tag": " 4 year program duration",
             "patterns": [
@@ -826,58 +823,7 @@
                 "The program is a four-year undergraduate degree program."
             ]
         },
-        {
-            "tag": "BSCS",
-            "patterns": [
-                "What is the Bachelor of Science in Computer Science",
-                "tell me more about the BSCS program",
-                "What is the BSCS program?"
-            ],
-            "responses": [
-                "The Bachelor of Science in Computer Science (BSCS) is a four-year undergraduate degree program that focuses on theories, concepts, and computing solutions for business, society, and industry."
-            ]
-        },
-        {
-            "tag": "BSCS Curriculum",
-            "patterns": [
-                "What does the BSCS curriculum cover",
-                "what are the topics taught in the computer science program",
-                "What is the objective of the BSCS program"
-            ],
-            "responses": [
-                "The curriculum of the BSCS program highlights theories, concepts, algorithmic foundations, and implementation and application of information, computing and innovative solutions. Its objective is to provide students with a unique learning experience through the appropriate combination of theories, hands-on exercises, teamwork, and guided project work."
-            ]
-        },
-        {
-            "tag": "BSCS-SS",
-            "patterns": [
-                "What is the Bachelor of Science in Computer Science with specialization in Systems Software?",
-                "Can you tell me about the BSCS-SS program?"
-            ],
-            "responses": [
-                "The Bachelor of Science in Computer Science with specialization in Systems Software (BSCS-SS) is a four-year undergraduate degree program that aims to educate students in theories, concepts, and tools for systems software development."
-            ]
-        },
-        {
-            "tag": "BS-SF",
-            "patterns": [
-                "What is the Bachelor of Science in Computer Science with specialization in Security Digital Forensics?",
-                "Can you tell me about the BS-SF program?"
-            ],
-            "responses": [
-                "The Bachelor of Science in Computer Science with specialization in Security Digital Forensics (BS-SF) is a four-year undergraduate degree program that aims to produce IT graduates skilled in digital forensics and computer networking and security."
-            ]
-        },
-        {
-            "tag": "BS-SF Curriculum",
-            "patterns": [
-                "What topics are covered under the BS-SF program?",
-                "What is the objective of the BS-SF program?"
-            ],
-            "responses": [
-                "The topics covered under the BS-SF program include digital forensics investigation stages, principles of investigation, legal studies, evidence handling, operating systems, hardware network protocols, data structures, programming, and scripting languages. Its objective is to produce graduates who are skilled in digital forensics, industry standards, and computer networking and security."
-            ]
-        },
+
         {
             "tag": "about_BSCS",
             "patterns": [
@@ -888,110 +834,14 @@
                 "Bachelor of Science in Computer Science is a four-year undergraduate degree program that teaches theories, concepts, algorithmic foundations, and computing solutions."
             ]
         },
-        {
-            "tag": "about_BSCS_SS",
-            "patterns": [
-                "What is BSCS-SS?",
-                "Can you explain what Bachelor of Science in Computer Science with specialization in Systems Software is?"
-            ],
-            "responses": [
-                "BSCS-SS is a four-year undergraduate degree program that specializes in systems software. It covers programming, systems analysis and design, testing and software engineering."
-            ]
-        },
-        {
-            "tag": "about_BS_SF",
-            "patterns": [
-                "What is BS-SF?",
-                "What is Bachelor of Science in Computer Science with specialization in Security & Digital Forensics?"
-            ],
-            "responses": [
-                "BS-SF is a four-year undergraduate degree program that specializes in security and digital forensics. It covers topics on forensic sciences like Principles of Investigation, Legal Studies and Evidence Handling."
-            ]
-        },
-        {
-            "tag": "career_opportunities",
-            "patterns": [
-                "What career opportunities can I get with a degree in BSCS?",
-                "What jobs can I pursue after graduating from BSCS?"
-            ],
-            "responses": [
-                "As a BSCS graduate, you can work in various industries such as software development, network administration, cybersecurity, and data analytics."
-            ]
-        },
-        {
-            "tag": "requirements",
-            "patterns": [
-                "What are the requirements to enroll in BSCS?",
-                "Can you tell me the admission requirements for BSCS?"
-            ],
-            "responses": [
-                "The admission requirements for BSCS may vary per institution, but generally, you need to have a high school diploma or its equivalent and pass the entrance examination."
-            ]
-        },
-        {
-            "tag": "duration",
-            "patterns": [
-                "How long does it take to complete BSCS?",
-                "What is the duration of BSCS?"
-            ],
-            "responses": [
-                "BSCS is a four-year undergraduate degree program."
-            ]
-        },
-        {
-            "tag": "future_study",
-            "patterns": [
-                "Can I pursue a master's degree after completing BSCS?",
-                "What post-graduate degrees can I pursue after BSCS?"
-            ],
-            "responses": [
-                "Yes, you can pursue a master's degree after completing BSCS. You can choose to pursue a master's degree in Computer Science or related fields such as Data Science, Cybersecurity, or Information Technology."
-            ]
-        },
-        {
-            "tag": "why_choose_BSCS",
-            "patterns": [
-                "Why should I choose BSCS as my undergraduate degree?",
-                "What are the advantages of taking BSCS?"
-            ],
-            "responses": [
-                "BSCS is a highly in-demand program that offers various career opportunities. It teaches students theories, concepts, and innovative computing solutions that cater to the needs of different industries."
-            ]
-        },
+
         {
             "tag": "bsit_program",
             "patterns": [
                 "What is the Bachelor of Science in Information Technology (BSIT) program?"
             ],
             "responses": [
-                "The Bachelor of Science in Information Technology (BSIT) is a four-year trimestral undergraduate degree program that aims to prepare students to solve business, societal, and industry problems using IT as a tool."
-            ]
-        },
-        {
-            "tag": "bsit_duration",
-            "patterns": [
-                "What is the duration of the BSIT program?"
-            ],
-            "responses": [
-                "The BSIT program is a four-year undergraduate degree program."
-            ]
-        },
-        {
-            "tag": "bsit_objective",
-            "patterns": [
-                "What is the objective of the BSIT program?"
-            ],
-            "responses": [
-                "The goal of the BSIT program is to gear up students in becoming 'information technologists' who can assist individuals, organizations, and society in solving problems using relevant IT tools and techniques."
-            ]
-        },
-        {
-            "tag": "bsit_career",
-            "patterns": [
-                "What are the career prospects after completing the BSIT program?"
-            ],
-            "responses": [
-                "After completing the BSIT program, students can pursue careers in various fields such as software development, web development, database administration, network administration, and many more."
+                "The Bachelor of Science in Information Technology is a four-year trimestral undergraduate degree program that aims to prepare students to solve business, societal, and industry problems using IT as a tool."
             ]
         },
         {
@@ -1001,33 +851,6 @@
             ],
             "responses": [
                 "The BSIT program offers courses in areas such as systems analysis and design, IT services, advanced hardware support, mobile and web application development, game development, and several programming languages."
-            ]
-        },
-        {
-            "tag": "bsit_admission",
-            "patterns": [
-                "Are there any prerequisites or admission requirements for the BSIT program?"
-            ],
-            "responses": [
-                "Admission requirements for the BSIT program may vary depending on the institution, but typically include a high school diploma or equivalent and passing the entrance exam."
-            ]
-        },
-        {
-            "tag": "bsit_mobile",
-            "patterns": [
-                "Can you tell me more about the mobile and web application development courses offered in the BSIT program?"
-            ],
-            "responses": [
-                "The mobile and web application development courses offered in the BSIT program provide students with the knowledge and skills needed to develop applications for mobile devices and the web."
-            ]
-        },
-        {
-            "tag": "bsit_experience",
-            "patterns": [
-                "Are there any opportunities for hands-on experience or internships during the BSIT program?"
-            ],
-            "responses": [
-                "Many institutions offer opportunities for hands-on experience or internships during the BSIT program to provide students with real-world experience."
             ]
         },
         {
@@ -1123,29 +946,24 @@
             ]
         },
         {
-            "tag": "end presentation DELETE",
+            "tag": "APC what",
             "patterns": [
-                "presentation"
+                "what is asia pacific college",
+                "apc"
             ],
             "responses": [
-                "Thank you for listening to our presentation! any suggestions and recommendations are highly appreciated!"
+                "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
             ]
         },
-        {
-            "tag": "chatbot process DELETE",
-            "patterns": [
-                "chatbot work",
-                "explain the process chatbot"
-            ],
-            "responses": [
-                "So, for the chatbot feature, text input from the user is preprocessed by means of tokenization which splits up raw text into individual words, and is then normalized using lemmatization which converts the word into its base form. The next step is the removal of stop words or words that provide little to no semantic value. This helps remove noise in the data and helps me to focus more on the meaningful words. Once the text has been preprocessed it is converted into a bag of words representation so that the pre-trained model can analyze and predict the probability of each vector and output the response with the highest probability. "
-            ]
-        },
+
+
         {
             "tag": "ECE what is ECE",
             "patterns": [
                 "what is electronics engineering",
-                " what is ece"
+                "what is ece",
+                "explain ece",
+                "explain electronics engineering"
             ],
             "responses": [
                 "The Bachelor of Science in Electronics Engineering (BS ECE) is a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "

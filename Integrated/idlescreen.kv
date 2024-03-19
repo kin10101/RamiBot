@@ -3,8 +3,10 @@ MDScreen:
     on_enter:
         app.start_face_thread()
         app.start_timer()
-    on_pre_leave:
+        app.clear_event()
 
+    on_pre_leave:
+        app.on_gpio(4, 1)
 
 
 

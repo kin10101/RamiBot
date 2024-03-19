@@ -29,7 +29,7 @@ import threading
 from queue import Queue, Empty
 
 from Voicebot import voicebotengine
-from Voicebot.voice_assistant_module import VoiceAssistant
+from Voicebot.voice_assistant_module import VoiceAssistant, active_state
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
@@ -71,7 +71,7 @@ class MainApp(MDApp):
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
-    #ALISIN TONGCOMMENT
+
 
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
@@ -101,7 +101,6 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
-
 
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
@@ -149,6 +148,12 @@ class MainApp(MDApp):
         except:
             print("Text not found")
             pass
+
+
+    def greet(self):
+        wake_word_response = voicebotengine.get_from_json("GEN hello")
+        pygtts.speak(wake_word_response)
+
 
     def navigate_to_previous_screen(self):
         screen_manager.current = screen_manager.previous()
@@ -218,12 +223,11 @@ class MainApp(MDApp):
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             gray_eq = cv2.equalizeHist(gray)
-            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 50, minSize=(100, 100))
+            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 8, minSize=(60, 60))
 
             for (x, y, w, h) in faces:
                 # Increment the count for each detected face
                 count += 1
-
 
                 face_image = gray_eq[y:y + h, x:x + w]
                 image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")
@@ -247,15 +251,22 @@ class MainApp(MDApp):
             gpio.set_gpio_pin(4, 1)
             put_in_queue(screen_queue, 'greetscreen')
             self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
-            pygtts.speak(f'{main.result_text}')
+
+            print(f"{main.result_text}")
+            #pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
+        print(f"lower_conf: {lower_conf}")
+
         if lower_conf is True:
             self.change_screen('newuser')
 
-        if lower_conf is False:
+        elif lower_conf is False:
             self.change_screen('mainmenu')
+
+        else:
+            print("unexpected value of low_conf")
 
 
     def send_message(self):
@@ -314,8 +325,11 @@ class MainApp(MDApp):
         gpio.set_gpio_pin(4, 0)
         gpio.GPIO.cleanup()
 
+    def on_gpio(self, pin=4, state=1):
+        gpio.set_gpio_pin(pin, state)
+
     def start_timer(self):
-        self.timeout = Clock.schedule_once(self.timeout_reset, 30)
+        self.timeout = Clock.schedule_once(self.timeout_reset, 10)
 
     def reset_timer(self):
         self.timeout.cancel()
@@ -378,11 +392,17 @@ class MainApp(MDApp):
         face.start()
 
 
+    def set_event(self, event=active_state):
+        event.set()
+        print("set")
+
+    def clear_event(self, event=active_state):
+        event.clear()
+        print("cleared")
+
+
 def navigate_to_previous_screen(self):
     screen_manager.current = screen_manager.previous()
-
-
-
 
 
 def put_in_queue(myqueue, item):
@@ -406,6 +426,7 @@ def voice_thread():
         if not stop_voice.is_set():
             voicebot.voice_assistant_loop()
         else:
+            print("VOICE THREAD DISABLED")
             pass
 
 
@@ -413,13 +434,6 @@ def start_voice_thread():
     voice = threading.Thread(target=voice_thread)
     voice.daemon = True
     voice.start()
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":

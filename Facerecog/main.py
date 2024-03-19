@@ -3,6 +3,7 @@ import mysql.connector
 from datetime import datetime
 import pyttsx3
 import re
+import Voicebot.pygtts as pygtts
 
 RamiDB = mysql.connector.connect(
     host = "airhub-soe.apc.edu.ph",
@@ -71,7 +72,7 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 90
+    threshold = 75
 
     temp = False
     lower_conf = False
@@ -99,18 +100,14 @@ def returnName1(ID_Num,result):
             user_nickname = nickname
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
-
         else:
-            result_text = greet_new_user()
             lower_conf = True
-            print(f"lower_conf: {lower_conf}")
+            result_text = greet_new_user()
             print(f"Recognition confidence ({result}) is below the threshold. Unknown. name : {nickname}")
 
     else:
-        #engine.say(unknown_user)
-        #engine.runAndWait()
-        result_text = greet_new_user()
         lower_conf = True
+        result_text = greet_new_user()
         print(f"lower_conf: {lower_conf}")
         print("User not exist")
 
@@ -162,6 +159,7 @@ def time_stamp(ID_Num, result_text):
                 if time_difference > 500:
                     #engine.say(result_text)
                     #engine.runAndWait()
+                    pygtts.speak(f'{result_text}')
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
                     print("already greeted an hour ago")
