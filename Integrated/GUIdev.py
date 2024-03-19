@@ -91,7 +91,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/Accreditations.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/APCinfo.kv'))
 
-        screen_manager.add_widget(Builder.load_file('faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('Faculty Scheds KVs/faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('Faculty Scheds KVs/facultyInfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('Floors KVs/floormaps.kv'))
         screen_manager.add_widget(Builder.load_file('Floors KVs/floor.kv'))
