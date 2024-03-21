@@ -24,6 +24,8 @@ from kivy.uix.image import Image
 from kivy.clock import Clock
 from kivy.uix.screenmanager import NoTransition
 from kivy.uix.popup import Popup
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
 
 import threading
 from queue import Queue, Empty
@@ -37,8 +39,15 @@ detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
 
 
-class Popups(Popup):
-    pass
+class Popups(BoxLayout):
+    def capture_popup(self):
+        content = BoxLayout(orientation='vertical')
+        content.add_widget(Button(text="cancel", on_press=self.close_popup))
+        pop_window = Popup(title="Popup Window", content=content, size_hint=(None, None), size=(200, 200))
+        pop_window.open()
+
+    def close_popup(self, instance):
+        instance.parent.parent.dismiss()
 
 
 class MainApp(MDApp):
@@ -192,10 +201,8 @@ class MainApp(MDApp):
         except Exception as e:
             print(f"Error in uploading to db: {e}")
 
-    def capture_popup(self):
-        pops = Popups
-        pop_window = Popup(title ="Popup Window", content = pops, size_hint=(None, None), size=(200, 200))
-        pop_window.open()
+    def popup_capture(self):
+        return Popups()
 
     def captures(self):
         global start
