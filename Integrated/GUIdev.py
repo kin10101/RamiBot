@@ -8,7 +8,6 @@ from Facerecog import main
 from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import ChatScreen, Command, Response
 
-
 import Voicebot.pygtts as pygtts
 import gpio
 
@@ -71,7 +70,6 @@ class MainApp(MDApp):
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
-
 
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
@@ -149,15 +147,14 @@ class MainApp(MDApp):
             print("Text not found")
             pass
 
-
     def greet(self):
         wake_word_response = voicebotengine.get_from_json("GEN hello")
         pygtts.speak(wake_word_response)
 
-
     def navigate_to_previous_screen(self):
         screen_manager.current = screen_manager.previous()
 
+    # FACE RECOGNITION ---------------------------------------------------
     def add_apc_user_to_db(self):
         global user_ID
         MainApp.add_user_flag = 1
@@ -223,7 +220,7 @@ class MainApp(MDApp):
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             gray_eq = cv2.equalizeHist(gray)
-            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 8, minSize=(60, 60))
+            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(60, 60))
 
             for (x, y, w, h) in faces:
                 # Increment the count for each detected face
@@ -238,7 +235,7 @@ class MainApp(MDApp):
                 cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
                 if count >= 1000:
-                    # Release the video capture and exit the application
+                    # Release the video capture and ex it the application
                     self.camera.release()
                     cv2.destroyAllWindows()
 
@@ -253,7 +250,7 @@ class MainApp(MDApp):
             self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
 
             print(f"{main.result_text}")
-            #pygtts.speak(f'{main.result_text}')
+            # pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
@@ -268,6 +265,13 @@ class MainApp(MDApp):
         else:
             print("unexpected value of low_conf")
 
+
+    def start_face_thread(self):
+        face = threading.Thread(target=face_thread)
+        face.daemon = True
+        face.start()
+
+    # CHATBOT -----------------------------------------------------------------
 
     def send_message(self):
         """Send a message."""
@@ -320,6 +324,7 @@ class MainApp(MDApp):
         screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
 
+
     def gpio_cleanup(self):
         print('cleared pin values')
         gpio.set_gpio_pin(4, 0)
@@ -328,8 +333,10 @@ class MainApp(MDApp):
     def on_gpio(self, pin=4, state=1):
         gpio.set_gpio_pin(pin, state)
 
+    # TIMER ------------------------------------------
+
     def start_timer(self):
-        self.timeout = Clock.schedule_once(self.timeout_reset, 10)
+        self.timeout = Clock.schedule_once(self.timeout_reset, 30)
 
     def reset_timer(self):
         self.timeout.cancel()
@@ -347,7 +354,6 @@ class MainApp(MDApp):
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
-
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
         the item in queue"""
@@ -358,7 +364,7 @@ class MainApp(MDApp):
         except Empty:
             pass
 
-    def await_change_state(self, dt):
+    def await_change_state(self, dt): # CURRENTLY UNUSED. MIGHT DELETE
         """ periodically check if an item is in queue and set or clear an event"""
         try:
             item = event_queue.get_nowait()
@@ -385,13 +391,6 @@ class MainApp(MDApp):
         except Empty:
             pass
 
-
-    def start_face_thread(self):
-        face = threading.Thread(target=face_thread)
-        face.daemon = True
-        face.start()
-
-
     def set_event(self, event=active_state):
         event.set()
         print("set")
@@ -416,10 +415,13 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
+
 def face_thread():
     print("face thread active")
     if not stop_face.is_set():
         app.face_recognition_module()
+
+
 def voice_thread():
     print("voice thread active")
     while True:
