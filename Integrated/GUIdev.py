@@ -61,6 +61,7 @@ class MainApp(MDApp):
         # ADD ALL SCREENS TO BE USED HERE
         screen_manager.add_widget(Builder.load_file('idlescreen.kv'))
         screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
+        screen_manager.add_widget(Builder.load_file('lowbatteryscreen.kv'))
 
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
