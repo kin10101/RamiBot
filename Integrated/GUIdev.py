@@ -271,6 +271,10 @@ class MainApp(MDApp):
         face.daemon = True
         face.start()
 
+    def close_camera(self):
+        print("camera turned off by gui")
+        self.camera.release()
+
     # CHATBOT -----------------------------------------------------------------
 
     def send_message(self):
@@ -336,7 +340,7 @@ class MainApp(MDApp):
     # TIMER ------------------------------------------
 
     def start_timer(self):
-        self.timeout = Clock.schedule_once(self.timeout_reset, 30)
+        self.timeout = Clock.schedule_once(self.timeout_reset, 25)
 
     def reset_timer(self):
         self.timeout.cancel()
