@@ -23,6 +23,7 @@ from kivy.graphics.texture import Texture
 from kivy.uix.image import Image
 from kivy.clock import Clock
 from kivy.uix.screenmanager import NoTransition
+from kivy.uix.popup import Popup
 
 import threading
 from queue import Queue, Empty
@@ -34,6 +35,10 @@ Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
+
+
+class Popups(Popup):
+    pass
 
 
 class MainApp(MDApp):
@@ -186,6 +191,11 @@ class MainApp(MDApp):
             DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
         except Exception as e:
             print(f"Error in uploading to db: {e}")
+
+    def capture_popup(self):
+        pops = Popups
+        pop_window = Popup(title ="Popup Window", content = pops, size_hint=(None, None), size=(200, 200))
+        pop_window.open()
 
     def captures(self):
         global start
