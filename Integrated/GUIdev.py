@@ -332,6 +332,9 @@ class MainApp(MDApp):
         else:
             print("unexpected value of low_conf")
 
+    def close_camera(self):
+        self.camera.release()
+
     # CHATBOT -----------------------------------------
 
     def send_message(self):
@@ -397,7 +400,7 @@ class MainApp(MDApp):
 
     # TIMER FUNCTIONS --------------------------------
     def start_timer(self):
-        self.timeout = Clock.schedule_once(self.timeout_reset, 10)
+        self.timeout = Clock.schedule_once(self.timeout_reset, 25)
 
     def reset_timer(self):
         self.timeout.cancel()
