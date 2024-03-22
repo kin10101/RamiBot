@@ -38,8 +38,10 @@ Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
 
+
 def close_connection():
     pass
+
 
 class MainApp(MDApp):
     face_count = 0
@@ -97,7 +99,6 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
 
-
         screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
 
@@ -142,6 +143,8 @@ class MainApp(MDApp):
 
         Clock.schedule_interval(self.await_change_screen, .5)
 
+    # GUI MODIFIERS -------------------------------------
+
     def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
@@ -174,14 +177,50 @@ class MainApp(MDApp):
             print("Text not found")
             pass
 
-
-    def greet(self):
-        wake_word_response = voicebotengine.get_from_json("GEN hello")
-        pygtts.speak(wake_word_response)
-
+    def change_screen(self, screen_name):
+        screen_manager.current = screen_name
 
     def navigate_to_previous_screen(self):
         screen_manager.current = screen_manager.previous()
+
+    def await_change_screen(self, dt):
+        """periodically check if an item is in queue and change screen according to the screen name corresponding to
+        the item in queue"""
+        try:
+            item = screen_queue.get_nowait()
+            print(item)
+            self.change_screen(item)
+        except Empty:
+            pass
+
+    def await_change_state(self, dt):
+        """ periodically check if an item is in queue and set or clear an event"""
+        try:
+            item = event_queue.get_nowait()
+            print(item)
+
+            if item == 'stop face':
+                stop_face.set()
+
+            if item == "run face":
+                stop_face.clear()
+
+            if item == 'stop voice':
+                stop_voice.set()
+
+            if item == "run voice":
+                stop_voice.clear()
+
+            if item == 'stop motor':  # experimental
+                stop_motor.set()
+
+            if item == "run motor":
+                stop_motor.clear()
+
+        except Empty:
+            pass
+
+    # FACE RECOGNITION ---------------------------------
 
     def add_apc_user_to_db(self):
         global user_ID
@@ -248,7 +287,7 @@ class MainApp(MDApp):
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             gray_eq = cv2.equalizeHist(gray)
-            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors= 8, minSize=(60, 60))
+            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(60, 60))
 
             for (x, y, w, h) in faces:
                 # Increment the count for each detected face
@@ -278,7 +317,7 @@ class MainApp(MDApp):
             self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
 
             print(f"{main.result_text}")
-            #pygtts.speak(f'{main.result_text}')
+            # pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
@@ -293,6 +332,7 @@ class MainApp(MDApp):
         else:
             print("unexpected value of low_conf")
 
+    # CHATBOT -----------------------------------------
 
     def send_message(self):
         """Send a message."""
@@ -345,6 +385,8 @@ class MainApp(MDApp):
         screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
 
+    # GPIO -------------------------------------------
+
     def gpio_cleanup(self):
         print('cleared pin values')
         gpio.set_gpio_pin(4, 0)
@@ -353,6 +395,7 @@ class MainApp(MDApp):
     def on_gpio(self, pin=4, state=1):
         gpio.set_gpio_pin(pin, state)
 
+    # TIMER FUNCTIONS --------------------------------
     def start_timer(self):
         self.timeout = Clock.schedule_once(self.timeout_reset, 10)
 
@@ -369,53 +412,12 @@ class MainApp(MDApp):
         thread.start()
         return thread
 
-    def change_screen(self, screen_name):
-        screen_manager.current = screen_name
-
-
-    def await_change_screen(self, dt):
-        """periodically check if an item is in queue and change screen according to the screen name corresponding to
-        the item in queue"""
-        try:
-            item = screen_queue.get_nowait()
-            print(item)
-            self.change_screen(item)
-        except Empty:
-            pass
-
-    def await_change_state(self, dt):
-        """ periodically check if an item is in queue and set or clear an event"""
-        try:
-            item = event_queue.get_nowait()
-            print(item)
-
-            if item == 'stop face':
-                stop_face.set()
-
-            if item == "run face":
-                stop_face.clear()
-
-            if item == 'stop voice':
-                stop_voice.set()
-
-            if item == "run voice":
-                stop_voice.clear()
-
-            if item == 'stop motor':  # experimental
-                stop_motor.set()
-
-            if item == "run motor":
-                stop_motor.clear()
-
-        except Empty:
-            pass
-
+    # THREADS & EVENTS --------------------------------------
 
     def start_face_thread(self):
         face = threading.Thread(target=face_thread)
         face.daemon = True
         face.start()
-
 
     def set_event(self, event=active_state):
         event.set()
@@ -425,9 +427,9 @@ class MainApp(MDApp):
         event.clear()
         print("cleared")
 
-
-def navigate_to_previous_screen(self):
-    screen_manager.current = screen_manager.previous()
+    def greet(self):
+        wake_word_response = voicebotengine.get_from_json("GEN hello")
+        pygtts.speak(wake_word_response)
 
 
 def put_in_queue(myqueue, item):
@@ -441,10 +443,13 @@ def get_from_queue(myqueue):
     except Empty:
         return None
 
+
 def face_thread():
     print("face thread active")
     if not stop_face.is_set():
         app.face_recognition_module()
+
+
 def voice_thread():
     print("voice thread active")
     while True:
