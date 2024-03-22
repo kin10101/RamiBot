@@ -39,10 +39,6 @@ detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
 
 
-def close_connection():
-    pass
-
-
 class MainApp(MDApp):
     face_count = 0
     add_user_flag = 0
@@ -51,6 +47,7 @@ class MainApp(MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.connection = None
         self.timeout = None
         self.texture = None
         self.camera = None
@@ -61,10 +58,8 @@ class MainApp(MDApp):
         self.detect = None
         self.image = None
 
-    def build(self):
-        global screen_manager
-        screen_manager = ScreenManager(transition=NoTransition())
-
+    def connect_to_db(self):
+        print("attempting to connect to db...")
         try:
             self.connection = mysql.connector.connect(
                 host="airhub-soe.apc.edu.ph",
@@ -78,13 +73,14 @@ class MainApp(MDApp):
             print("Failed to connect to MySQL database: {}".format(err))
             return  # Exit the function if connection fails
 
-        # Close the database connection when the app exits
-        def close_connection():
-            if self.connection.is_connected():
-                self.connection.close()
-                print("Connection to MySQL database closed")
+    def close_connection(self):
+        if self.connection.is_connected():
+            self.connection.close()
+            print("Connection to MySQL database closed")
 
-        self.bind(on_stop=lambda x: close_connection())
+    def build(self):
+        global screen_manager
+        screen_manager = ScreenManager(transition=NoTransition())
 
         # ADD ALL SCREENS TO BE USED HERE
         screen_manager.add_widget(Builder.load_file('idlescreen.kv'))
@@ -136,12 +132,15 @@ class MainApp(MDApp):
         self.reset_timer()
 
     def on_start(self):
-
         self.frame_rate = 10
         self.frame_count = 50
         self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
+        self.connect_to_db()
 
         Clock.schedule_interval(self.await_change_screen, .5)
+
+    def on_stop(self):
+        self.close_connection()
 
     # GUI MODIFIERS -------------------------------------
 
