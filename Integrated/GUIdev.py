@@ -8,6 +8,8 @@ from Facerecog import main
 from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import ChatScreen, Command, Response
 
+import mysql
+import mysql.connector
 
 import Voicebot.pygtts as pygtts
 import gpio
@@ -36,6 +38,8 @@ Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
 
+def close_connection():
+    pass
 
 class MainApp(MDApp):
     face_count = 0
@@ -58,6 +62,27 @@ class MainApp(MDApp):
     def build(self):
         global screen_manager
         screen_manager = ScreenManager(transition=NoTransition())
+
+        try:
+            self.connection = mysql.connector.connect(
+                host="airhub-soe.apc.edu.ph",
+                user="marj",
+                password="RAMIcpe211",
+                database="ramibot"
+            )
+            if self.connection.is_connected():
+                print("Connected to MySQL database")
+        except mysql.connector.Error as err:
+            print("Failed to connect to MySQL database: {}".format(err))
+            return  # Exit the function if connection fails
+
+        # Close the database connection when the app exits
+        def close_connection():
+            if self.connection.is_connected():
+                self.connection.close()
+                print("Connection to MySQL database closed")
+
+        self.bind(on_stop=lambda x: close_connection())
 
         # ADD ALL SCREENS TO BE USED HERE
         screen_manager.add_widget(Builder.load_file('idlescreen.kv'))

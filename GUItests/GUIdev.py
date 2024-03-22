@@ -1,6 +1,10 @@
 import queue
+from multiprocessing import connection
 
+import mysql
+import mysql.connector
 from kivy.lang import Builder
+from kivy.uix.boxlayout import BoxLayout
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
@@ -15,12 +19,36 @@ Window.size = (1920, 1080)
 Window.fullscreen = True
 
 
+def close_connection():
+    pass
+
 
 class MainWindow(MDApp):
 
     def build(self):
         global screen_manager
         screen_manager = ScreenManager()
+
+        try:
+            self.connection = mysql.connector.connect(
+                host="airhub-soe.apc.edu.ph",
+                user="marj",
+                password="RAMIcpe211",
+                database="ramibot"
+            )
+            if self.connection.is_connected():
+                print("Connected to MySQL database")
+        except mysql.connector.Error as err:
+            print("Failed to connect to MySQL database: {}".format(err))
+            return  # Exit the function if connection fails
+
+        # Close the database connection when the app exits
+        def close_connection():
+            if self.connection.is_connected():
+                self.connection.close()
+                print("Connection to MySQL database closed")
+
+        self.bind(on_stop=lambda x: close_connection())
 
         # ADD ALL SCREENS TO BE USED HERE
         #screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
