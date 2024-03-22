@@ -14,7 +14,7 @@
             "patterns": [
                 "tang ina",
                 "tangina",
-                "fuck you",
+                "fuck",
                 "stupid",
                 "bitch",
                 "gago",
@@ -24,7 +24,9 @@
                 "ina mo"
             ],
             "responses": [
-                "please refrain from saying such words"
+                "please refrain from saying such words",
+                "I'm sure we can communicate without using offensive words.",
+                "We can discuss this in a more civil manner."
             ]
         },
         {
@@ -72,33 +74,6 @@
                 "See you later! Have a great day!",
                 "See you! Wishing you a fantastic day ahead.",
                 "Have a nice day! Take care!"
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "GEN help",
-            "patterns": [
-                "how can you help me",
-                "what can you do",
-                "capabilities",
-                "capable"
-            ],
-            "responses": [
-                "I'm here to provide you with information about Asia Pacific College. How can I assist you specifically?",
-                "Feel free to ask me anything or assign me any task. I'm at your service and ready to help!"
-            ]
-        },
-        {
-            "tag": "RAMI height",
-            "patterns": [
-                "how tall are you",
-                "how tall is rami",
-                "how tall are you rami",
-                "how tall is rami bot",
-                "how tall are you rami bot"
-            ],
-            "responses": [
-                "I'm 4.5 feet tall"
             ]
         },
         {
@@ -116,43 +91,18 @@
             ]
         },
         {
-            "tag": "GEN gossip",
+            "tag": "GEN thank you",
             "patterns": [
-                "do you have someone you like",
-                "are you interested in anyone",
-                "do you have a crush"
-
+                "thank you",
+                "thanks"
             ],
             "responses": [
-                "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
-                "Hmm, my lips are sealed tight on that matter!",
-                "Well, there is someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move. It's all in good fun, though!"
+                "happy to help",
+                "you're welcome"
             ]
         },
         {
-            "tag": "GEN Hobby",
-            "patterns": [
-                "do you have any hobbies",
-                "what do you like to do in your free time",
-                "what are your hobbies"
-            ],
-            "responses": [
-                "I like watching people pass by",
-                "in my free time, I usually look at the funny faces stored in my database"
-            ]
-        },
-        {
-            "tag": "GEN hotdog",
-            "patterns": [
-                "hotdog",
-                "hot dog"
-            ],
-            "responses": [
-                "hotdog"
-            ]
-        },
-        {
-            "tag": "GEN who are you",
+            "tag": "RAMI who are you",
             "patterns": [
                 "who are you",
                 "sino ka",
@@ -162,11 +112,37 @@
             ],
             "responses": [
                 "Hey there! I'm Rami Bot, your one and only robotic assistant designed exclusively for APC.",
-                "Greetings. I am Rami Bot, a purpose-built robotic assistant exclusively assigned to serve APC. If you require any assistance, I am at your disposal."
+                "Greetings. I am Rami Bot, a purpose-built robotic assistant exclusively assigned to serve APC."
             ]
         },
         {
-            "tag": "GEN capabilities",
+            "tag": "RAMI credits",
+            "patterns": [
+                "Who made you",
+                " who developed you",
+                " who programmed you",
+                " who created ramibot"
+            ],
+            "responses": [
+                "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
+            ]
+        },
+        {
+            "tag": "RAMI purpose",
+            "patterns": [
+                "how can you help me",
+                "what can you do",
+                "capabilities",
+                "capable",
+                "what is your purpose"
+            ],
+            "responses": [
+                "I'm here to provide you with information about Asia Pacific College. How can I assist you specifically?",
+                "Feel free to ask me anything or assign me any task. I'm at your service and ready to help!"
+            ]
+        },
+        {
+            "tag": "RAMI capabilities",
             "patterns": [
                 "what can you do",
                 "what are you capable of doing"
@@ -177,43 +153,151 @@
             ]
         },
         {
-            "tag": "LOC cafeteria",
+            "tag": "RAMI height",
             "patterns": [
-                "eat",
-                "drink",
-                "food",
-                "water",
-                "refill"
+                "rami height",
+                "tall rami",
+                "tall rami bot"
             ],
             "responses": [
-                " You'll find the cafeteria right on the first floor, enjoy your meal!"
+                "I'm 4.5 feet tall"
             ]
         },
         {
-            "tag": "LOC registrar",
+            "tag": "RAMI weight",
             "patterns": [
-                "enroll",
-                "enrollment",
-                "registrar"
+                "rami weight",
+                "weigh rami",
+                "weigh rami bot"
             ],
             "responses": [
-                "you can go to the registrar in the fourth floor"
+                "thats a secret!"
+            ]
+        },
+
+        {
+            "tag": "APC what",
+            "patterns": [
+                "what is asia pacific college",
+                "apc"
+            ],
+            "responses": [
+                "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
             ]
         },
         {
-            "tag": "LOC location_help",
+            "tag": "APC address",
             "patterns": [
-                "can you help me locate a room",
-                "find room"
+                "what is the address of APC",
+                "what is the address of asia pacific college",
+                "apc located"
             ],
             "responses": [
-                "What room do you want me to search for"
-            ],
-            "context_set": [
-                "find_room"
-            ],
-            "function": "followup_question"
+                "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
+            ]
         },
+        {
+            "tag": "APC tell me more",
+            "patterns": [
+                "can you tell me more about a pc",
+                "can you tell me more about apc",
+                "can you tell me more about asia pacific college"
+            ],
+            "responses": [
+                "Sure, which part would you like to know more about?"
+            ]
+        },
+        {
+            "tag": "APC acronym",
+            "patterns": [
+                "What does a pc stand for?",
+                "What is the meaning of APC?"
+            ],
+            "responses": [
+                "APC stands for Asia Pacific College."
+            ]
+        },
+        {
+            "tag": "APC Vision",
+            "patterns": [
+                "What is the vision of APC?",
+                "tell me about the vision of APC",
+                "state APC vision statement",
+                "what is the vision statement of APC"
+            ],
+            "responses": [
+                "Asia Pacific College envisions itself to be the preferred Higher Education Institution bridging academe and industry with its programs founded on the concepts and applications of IT, guided by the core values of integrity, industry and innovation that works."
+            ]
+        },
+        {
+            "tag": "APC Mission",
+            "patterns": [
+                "What is the mission of APC?",
+                "tell me about the mission of APC",
+                "state APC mission statement",
+                "what is the mission statement of APC"
+            ],
+            "responses": [
+                "Asia Pacific College, powered by education and industry professionals as faculty and a balanced curriculum, aims to provide business and the information and communications technology industry in the Philippines and in the global community lifelong learning graduates who are anchored on the principles of integrity and professionalism."
+            ]
+        },
+        {
+            "tag": "APC differences",
+            "patterns": [
+                "APC different from other schools",
+                "APC unique",
+                "APC special",
+                "asia pacific college"
+            ],
+            "responses": [
+                "APC is the school of choice for those seeking world-class education with a strong IT-based foundation, preparing graduates for various sectors of businesses and industries."
+            ]
+        },
+        {
+            "tag": "APC education",
+            "patterns": [
+                "What kind of education does APC offer?",
+                "What courses are available at APC?",
+                "What courses does Asia Pacific College offer?"
+            ],
+            "responses": [
+                "APC offers education in information technology, commerce, engineering, accountancy, entrepreneurship, multimedia arts, and other areas of education."
+            ]
+        },
+        {
+            "tag": "APC specialization",
+            "patterns": [
+                "What areas does APC specialize in?",
+                "what does APC specialize in?",
+                "what does asia pacific college specialize in?"
+            ],
+            "responses": [
+                "APC specializes in information technology, commerce, engineering, accountancy, entrepreneurship, and multimedia arts.",
+                "Asia Pacific College specializes in information technology, commerce, engineering, accountancy, entrepreneurship, and multimedia arts."
+            ]
+        },
+        {
+            "tag": "APC preparation",
+            "patterns": [
+                "How does apc prepare its students",
+                "how does asia pacific college treat its students"
+            ],
+            "responses": [
+                "APC prepares its students for the global community by providing a strong foundation in IT, and education in areas that are relevant to the 21st century global economy."
+            ]
+        },
+        {
+            "tag": "APC graduates employment",
+            "patterns": [
+                "Where are APC graduates currently employed?",
+                "where do APC graduates work after graduation"
+            ],
+            "responses": [
+                "APC graduates are employed in various sectors of businesses and industries."
+            ]
+        },
+
+
         {
             "tag": "LOC lobby floor location",
             "patterns": [
@@ -253,7 +337,8 @@
             "responses": [
                 "it is located at the 2nd floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "source": ""
         },
         {
             "tag": "LOC third floor location",
@@ -491,6 +576,67 @@
                 "it is located on the 12th floor"
             ]
         },
+
+        {
+            "tag": "LOC basement 1",
+            "patterns": [
+                "car park",
+                "parking"
+            ],
+            "responses": [
+                "parking spaces are available in basement 1"
+            ]
+        },
+        {
+            "tag": "LOC basement 2",
+            "patterns": [
+                "bike park",
+                "bike parking",
+                "motor park",
+                "motor parking"
+            ],
+            "responses": [
+                "parking spaces are available in basement 2"
+            ]
+        },
+        {
+            "tag": "LOC cafeteria",
+            "patterns": [
+                "eat",
+                "drink",
+                "food",
+                "water",
+                "refill"
+            ],
+            "responses": [
+                " You'll find the cafeteria right on the first floor, enjoy your meal!"
+            ]
+        },
+        {
+            "tag": "LOC registrar",
+            "patterns": [
+                "enroll",
+                "enrollment",
+                "registrar"
+            ],
+            "responses": [
+                "you can go to the registrar in the fourth floor"
+            ]
+        },
+        {
+            "tag": "LOC location_help",
+            "patterns": [
+                "can you help me locate a room",
+                "find room"
+            ],
+            "responses": [
+                "What room do you want me to search for"
+            ],
+            "context_set": [
+                "find_room"
+            ],
+            "function": "followup_question"
+        },
         {
             "tag": "LOC gym_keywords",
             "patterns": [
@@ -608,7 +754,6 @@
             "context_filter": "apc_programs",
             "context_set": ""
         },
-
         {
             "tag": "FN_sing",
             "patterns": [
@@ -654,6 +799,8 @@
                 "current_date"
             ]
         },
+
+
         {
             "tag": "FN_add_intents",
             "patterns": [
@@ -713,106 +860,7 @@
                 "update"
             ]
         },
-        {
-            "tag": "APC tell me more",
-            "patterns": [
-                "can you tell me more about a pc",
-                "can you tell me more about apc",
-                "can you tell me more about asia pacific college"
-            ],
-            "responses": [
-                "Sure, which part would you like to know more about?"
-            ]
-        },
-        {
-            "tag": "APC acronym",
-            "patterns": [
-                "What does a pc stand for?",
-                "What is the meaning of APC?"
-            ],
-            "responses": [
-                "APC stands for Asia Pacific College."
-            ]
-        },
-        {
-            "tag": "APC Vision",
-            "patterns": [
-                "What is the vision of APC?",
-                "tell me about the vision of APC",
-                "state APC vision statement",
-                "what is the vision statement of APC"
-            ],
-            "responses": [
-                "Asia Pacific College envisions itself to be the preferred Higher Education Institution bridging academe and industry with its programs founded on the concepts and applications of IT, guided by the core values of integrity, industry and innovation that works."
-            ]
-        },
-        {
-            "tag": "APC Mission",
-            "patterns": [
-                "What is the mission of APC?",
-                "tell me about the mission of APC",
-                "state APC mission statement",
-                "what is the mission statement of APC"
-            ],
-            "responses": [
-                "Asia Pacific College, powered by education and industry professionals as faculty and a balanced curriculum, aims to provide business and the information and communications technology industry in the Philippines and in the global community lifelong learning graduates who are anchored on the principles of integrity and professionalism."
-            ]
-        },
-        {
-            "tag": "APC differences",
-            "patterns": [
-                "APC different from other schools",
-                "APC unique",
-                "APC special",
-                "asia pacific college"
-            ],
-            "responses": [
-                "APC is the school of choice for those seeking world-class education with a strong IT-based foundation, preparing graduates for various sectors of businesses and industries."
-            ]
-        },
-        {
-            "tag": "APC education",
-            "patterns": [
-                "What kind of education does APC offer?",
-                "What courses are available at APC?",
-                "What courses does Asia Pacific College offer?"
-            ],
-            "responses": [
-                "APC offers education in information technology, commerce, engineering, accountancy, entrepreneurship, multimedia arts, and other areas of education."
-            ]
-        },
-        {
-            "tag": "APC specialization",
-            "patterns": [
-                "What areas does APC specialize in?",
-                "what does APC specialize in?",
-                "what does asia pacific college specialize in?"
-            ],
-            "responses": [
-                "APC specializes in information technology, commerce, engineering, accountancy, entrepreneurship, and multimedia arts.",
-                "Asia Pacific College specializes in information technology, commerce, engineering, accountancy, entrepreneurship, and multimedia arts."
-            ]
-        },
-        {
-            "tag": "APC preparation",
-            "patterns": [
-                "How does apc prepare its students",
-                "how does asia pacific college treat its students"
-            ],
-            "responses": [
-                "APC prepares its students for the global community by providing a strong foundation in IT, and education in areas that are relevant to the 21st century global economy."
-            ]
-        },
-        {
-            "tag": "APC graduates employment",
-            "patterns": [
-                "Where are APC graduates currently employed?",
-                "where do APC graduates work after graduation"
-            ],
-            "responses": [
-                "APC graduates are employed in various sectors of businesses and industries."
-            ]
-        },
+
 
         {
             "tag": " 4 year program duration",
@@ -900,18 +948,7 @@
                 "Humabon Parking, fronting the APC building and at the corner of Victoria and Lapu-Lapu Street in front of the Barangay Magallanes Hall"
             ]
         },
-        {
-            "tag": "SPC credits",
-            "patterns": [
-                "Who made you",
-                " who developed you",
-                " who programmed you",
-                " who created ramibot"
-            ],
-            "responses": [
-                "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
-            ]
-        },
+
         {
             "tag": "CPE about CPE",
             "patterns": [
@@ -934,28 +971,6 @@
                 "Specializations covered by this program include the following: Embedded systems technology, System and network administration, Computing algorithm, Software development and design (including mobile application development), Internet-of-Things (IoT), Machine learning, Robotics technology, Robotics Process Automation (RPA)"
             ]
         },
-        {
-            "tag": "APC address",
-            "patterns": [
-                "what is the address of APC",
-                "what is the address of asia pacific college",
-                "apc located"
-            ],
-            "responses": [
-                "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
-            ]
-        },
-        {
-            "tag": "APC what",
-            "patterns": [
-                "what is asia pacific college",
-                "apc"
-            ],
-            "responses": [
-                "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
-            ]
-        },
-
 
         {
             "tag": "ECE what is ECE",
@@ -967,6 +982,32 @@
             ],
             "responses": [
                 "The Bachelor of Science in Electronics Engineering (BS ECE) is a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
+            ]
+        },
+        {
+            "tag": "FUN gossip",
+            "patterns": [
+                "do you have someone you like",
+                "are you interested in anyone",
+                "do you have a crush"
+
+            ],
+            "responses": [
+                "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
+                "Hmm, my lips are sealed tight on that matter!",
+                "Well, there is someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move. It's all in good fun, though!"
+            ]
+        },
+        {
+            "tag": "FUN Hobby",
+            "patterns": [
+                "do you have any hobbies",
+                "what do you like to do in your free time",
+                "what are your hobbies"
+            ],
+            "responses": [
+                "I like watching people pass by",
+                "in my free time, I usually look at the funny faces stored in my database"
             ]
         }
     ]

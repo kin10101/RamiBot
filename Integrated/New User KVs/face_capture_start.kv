@@ -1,0 +1,15 @@
+#go here if face capture is start
+<Popups>:
+    name: 'facecapturestart'
+
+    orientation: "vertical"
+
+        Image: # Background image
+            source: 'Assets/start_face_scan.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+        Button:
+            text: "Ok"
+            on_press: root.capture_popup()
