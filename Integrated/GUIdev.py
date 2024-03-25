@@ -160,7 +160,7 @@ class MainApp(MDApp):
             pass
 
     def update_image(self, screen_name, id, source):
-        '''Update image sources in mapscreen'''
+        """Update image sources in mapscreen"""
         screen_name = self.root.get_screen(screen_name)
         try:
             label = screen_name.ids[id]
@@ -170,7 +170,7 @@ class MainApp(MDApp):
             pass
 
     def get_text(self, screen_name, id):
-        '''Get text from textinput in newuser screen'''
+        """Get text from textinput in newuser screen"""
         screen_name = self.root.get_screen(screen_name)
 
         try:
@@ -195,25 +195,22 @@ class MainApp(MDApp):
             print(item)
             self.change_screen(item)
         except Empty:
-            print("no item in queue")
             pass
 
-
-   def await_pin_change(self, dt):
-    try:
-        pin = gpio.read_gpio_pin(17)
-        self.charge_pin = pin
-        if self.charge_pin == 1:
-            self.change_screen('lowbatteryscreen')
-        if ScreenManager.current == 'lowbatteryscreen':
-            if self.charge_pin == 0:
-                self.change_screen('idlescreen')
-    except:
+    def await_pin_change(self, dt):
+       try:
+           pin = gpio.read_gpio_pin(17)
+           self.charge_pin = pin
+           if self.charge_pin == 1:
+               put_in_queue(screen_queue, 'lowbatteryscreen')
+           if ScreenManager.current == 'lowbatteryscreen':
+               if self.charge_pin == 0:
+                   put_in_queue(screen_queue, 'idlescreen')
+       except:
         print("pin reading error")
         pass
 
     # FACE RECOGNITION ---------------------------------
-
     def open_popup(self):
         content = facerecog_popup.PopupContent()
         popup = Popup(title='face capture', content=content, size_hint=(None, None), size=(500, 400))
