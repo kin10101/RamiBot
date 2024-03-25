@@ -39,13 +39,14 @@ Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
+global start
+
 
 
 class MainApp(MDApp):
     face_count = 0
     add_user_flag = 0
     global user_ID
-    global start
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -251,55 +252,58 @@ class MainApp(MDApp):
     def captures(self):
         global start
 
-        user_dir = DataCollector.user_dir
-        user_id = DataCollector.user_id
+        if start is not False:
+            user_dir = DataCollector.user_dir
+            user_id = DataCollector.user_id
 
-        count = 0
+            count = 0
 
-        self.image = Image(texture=self.texture)
-        screen_manager.ids.camera = self.texture
+            self.image = Image(texture=self.texture)
+            screen_manager.ids.camera = self.texture
 
-        self.camera = cv2.VideoCapture(0)
+            self.camera = cv2.VideoCapture(0)
 
-        capture_width, capture_height = 640, 480
+            capture_width, capture_height = 640, 480
 
-        self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
-        self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
+            self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
+            self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
 
-        while True:
-            ret, frame = self.camera.read()
-            if not ret:
-                print("Error reading frame from video source.")
-                break
+            while True:
+                ret, frame = self.camera.read()
+                if not ret:
+                    print("Error reading frame from video source.")
+                    break
 
-            frame = cv2.resize(frame, (capture_width, capture_height))
+                frame = cv2.resize(frame, (capture_width, capture_height))
 
-            buffer = cv2.flip(frame, 1).tobytes()
-            texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
-            texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
+                buffer = cv2.flip(frame, 1).tobytes()
+                texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
+                texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
 
-            self.image.texture = texture
+                self.image.texture = texture
 
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            gray_eq = cv2.equalizeHist(gray)
-            faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(60, 60))
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                gray_eq = cv2.equalizeHist(gray)
+                faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(60, 60))
 
-            for (x, y, w, h) in faces:
-                # Increment the count for each detected face
-                count += 1
+                for (x, y, w, h) in faces:
+                    # Increment the count for each detected face
+                    count += 1
 
-                face_image = gray_eq[y:y + h, x:x + w]
-                image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")
-                cv2.imwrite(image_path, face_image)
+                    face_image = gray_eq[y:y + h, x:x + w]
+                    image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")
+                    cv2.imwrite(image_path, face_image)
 
-                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
-                cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
-                cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
+                    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
+                    cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
+                    cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-                if count >= 1000:
-                    # Release the video capture and exit the application
-                    self.camera.release()
-                    cv2.destroyAllWindows()
+                    if count >= 1000:
+                        # Release the video capture and exit the application
+                        self.camera.release()
+                        cv2.destroyAllWindows()
+        else:
+            self.change_screen('newuser')
 
     def face_recognition_module(self):
         print('ACTIVE FACE SCANNING')
