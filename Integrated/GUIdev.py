@@ -3,6 +3,8 @@ import time
 import Facerecog.main
 from Facerecog import trainedModel
 from Facerecog import main
+from Facerecog import facerecog_popup
+from kivy.uix.popup import Popup
 
 # Chatbot imports
 from Chatbot.chatbot import handle_request
@@ -220,6 +222,11 @@ class MainApp(MDApp):
             pass
 
     # FACE RECOGNITION ---------------------------------
+
+    def open_popup(self):
+        content = facerecog_popup.PopupContent()
+        popup = Popup(title='face capture', content=content, size_hint=(None, None), size=(500, 400))
+        popup.open()
 
     def add_apc_user_to_db(self):
         global user_ID
