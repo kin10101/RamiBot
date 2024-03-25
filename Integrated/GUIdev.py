@@ -198,17 +198,18 @@ class MainApp(MDApp):
             pass
 
     def await_pin_change(self, dt):
-       try:
-           pin = gpio.read_gpio_pin(17)
-           self.charge_pin = pin
-           if self.charge_pin == 1:
-               put_in_queue(screen_queue, 'lowbatteryscreen')
-           if ScreenManager.current == 'lowbatteryscreen':
-               if self.charge_pin == 0:
-                   put_in_queue(screen_queue, 'idlescreen')
-       except:
-        print("pin reading error")
-        pass
+        try:
+            pin = gpio.read_gpio_pin(17)
+            self.charge_pin = pin
+            if self.charge_pin == 1:
+                # REFACTOR if queue does not contain lowbatteryscreen put in queue else pass
+                put_in_queue(screen_queue, 'lowbatteryscreen')
+            if ScreenManager.current == 'lowbatteryscreen':
+                if self.charge_pin == 0:
+                    put_in_queue(screen_queue, 'idlescreen')
+        except:
+            print("pin reading error")
+            pass
 
     # FACE RECOGNITION ---------------------------------
     def open_popup(self):
