@@ -91,6 +91,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('lowbatteryscreen.kv'))
         screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
 
+        screen_manager.add_widget(Builder.load_file('New User KVs/face_capture_start.kv'))
+
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
