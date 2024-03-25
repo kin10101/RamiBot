@@ -87,6 +87,7 @@ class MainApp(MDApp):
 
         # ADD ALL SCREENS TO BE USED HERE
         screen_manager.add_widget(Builder.load_file('idlescreen.kv'))
+        screen_manager.add_widget(Builder.load_file('lowbatteryscreen.kv'))
         screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
 
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
@@ -194,42 +195,22 @@ class MainApp(MDApp):
             print(item)
             self.change_screen(item)
         except Empty:
+            print("no item in queue")
             pass
 
-    def await_change_state(self, dt):
-        """ periodically check if an item is in queue and set or clear an event"""
-        try:
-            item = event_queue.get_nowait()
-            print(item)
 
-            if item == 'stop face':
-                stop_face.set()
-
-            if item == "run face":
-                stop_face.clear()
-
-            if item == 'stop voice':
-                stop_voice.set()
-
-            if item == "run voice":
-                stop_voice.clear()
-
-            if item == 'stop motor':  # experimental
-                stop_motor.set()
-
-            if item == "run motor":
-                stop_motor.clear()
-
-        except Empty:
-            pass
-
-    def await_pin_change(self, dt):
-        try:
-            pin = gpio.read_gpio_pin(17)
-            self.charge_pin = pin
-        except:
-            print("pin reading error")
-            pass
+   def await_pin_change(self, dt):
+    try:
+        pin = gpio.read_gpio_pin(17)
+        self.charge_pin = pin
+        if self.charge_pin == 1:
+            self.change_screen('lowbatteryscreen')
+        if ScreenManager.current == 'lowbatteryscreen':
+            if self.charge_pin == 0:
+                self.change_screen('idlescreen')
+    except:
+        print("pin reading error")
+        pass
 
     # FACE RECOGNITION ---------------------------------
 
@@ -425,8 +406,6 @@ class MainApp(MDApp):
     def timeout_reset(self, dt):
         gpio.set_gpio_pin(4, 0)
         self.change_screen('idlescreen')
-
-
 
     # THREADS & EVENTS --------------------------------------
 
