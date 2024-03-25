@@ -18,7 +18,6 @@ from kivy.uix.screenmanager import ScreenManager
 Window.size = (1920, 1080)
 Window.fullscreen = True
 
-
 def close_connection():
     pass
 
@@ -29,26 +28,7 @@ class MainWindow(MDApp):
         global screen_manager
         screen_manager = ScreenManager()
 
-        try:
-            self.connection = mysql.connector.connect(
-                host="airhub-soe.apc.edu.ph",
-                user="marj",
-                password="RAMIcpe211",
-                database="ramibot"
-            )
-            if self.connection.is_connected():
-                print("Connected to MySQL database")
-        except mysql.connector.Error as err:
-            print("Failed to connect to MySQL database: {}".format(err))
-            return  # Exit the function if connection fails
-
-        # Close the database connection when the app exits
-        def close_connection():
-            if self.connection.is_connected():
-                self.connection.close()
-                print("Connection to MySQL database closed")
-
-        self.bind(on_stop=lambda x: close_connection())
+#        self.bind(on_stop=lambda x: close_connection())
 
         # ADD ALL SCREENS TO BE USED HERE
         #screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
@@ -110,7 +90,7 @@ class MainWindow(MDApp):
         '''Update image sources in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
         try:
-            label = screen_name.ids[id]
+            label = MainWindow.getFromDB()
             label.source = source
         except:
             print("Source not found")
@@ -127,9 +107,60 @@ class MainWindow(MDApp):
         except:
             print("Text not found")
             pass
-
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
+
+    connection = None  # Placeholder for the database connection
+    pics_cursor = None  # Placeholder for the cursor
+
+    @staticmethod
+    def connect_to_db():
+        try:
+            MainWindow.connection = mysql.connector.connect(
+                host="airhub-soe.apc.edu.ph",
+                user="marj",
+                password="RAMIcpe211",
+                database="ramibot"
+            )
+            if MainWindow.connection.is_connected():
+                print("Connected to MySQL database")
+                MainWindow.pics_cursor = MainWindow.connection.cursor()
+        except mysql.connector.Error as err:
+            print("Failed to connect to MySQL database: {}".format(err))
+
+    @staticmethod
+    def close_connection():
+        if MainWindow.connection and MainWindow.connection.is_connected():
+            MainWindow.connection.close()
+            print("Connection to MySQL database closed")
+
+    @staticmethod
+    def getFromDB(imgID, imgURL):
+        try:
+            # Check if the image with the given imgID already exists in the database
+           # user_query = f"SELECT img_id FROM programs_img WHERE img_id = {12}"
+            programs_offered = f"SELECT img_url FROM programs_img WHERE img_id = {imgID}"
+            MainWindow.pics_cursor.execute(programs_offered)
+            image_found = MainWindow.pics_cursor.fetchone()
+
+            if image_found:
+                print("Image already exists in the database")
+                print(image_found[0])
+
+            else:
+                # Image does not exist, you can handle this case as needed
+                print("Image does not exist in the database")
+        except Exception as e:
+            print("Error:", e)
+
+# Connect to the database
+MainWindow.connect_to_db()
+
+# Usage example: Call the getFromDB method with your desired imgID and imgURL
+MainWindow.getFromDB(imgID='', imgURL=" ")
+
+# Close the database connection when the app exits
+MainWindow.close_connection()
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app
