@@ -57,6 +57,7 @@ class MainApp(MDApp):
         self.current_image_count = 0
         self.detect = None
         self.image = None
+        self.charge_pin = gpio.read_gpio_pin(17)
 
     def connect_to_db(self):
         print("attempting to connect to db...")
@@ -138,6 +139,7 @@ class MainApp(MDApp):
         self.connect_to_db()
 
         Clock.schedule_interval(self.await_change_screen, .5)
+        Clock.schedule_interval(self.await_pin_change, 1)
 
     def on_stop(self):
         self.close_connection()
@@ -217,6 +219,14 @@ class MainApp(MDApp):
                 stop_motor.clear()
 
         except Empty:
+            pass
+
+    def await_pin_change(self, dt):
+        try:
+            pin = gpio.read_gpio_pin(17)
+            self.charge_pin = pin
+        except:
+            print("pin reading error")
             pass
 
     # FACE RECOGNITION ---------------------------------
@@ -409,12 +419,14 @@ class MainApp(MDApp):
         gpio.set_gpio_pin(4, 0)
         self.change_screen('idlescreen')
 
+
+
+    # THREADS & EVENTS --------------------------------------
+
     def start_thread(self, thread_obj):
         thread = thread_obj()
         thread.start()
         return thread
-
-    # THREADS & EVENTS --------------------------------------
 
     def start_face_thread(self):
         face = threading.Thread(target=face_thread)
