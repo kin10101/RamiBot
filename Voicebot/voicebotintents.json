@@ -145,11 +145,15 @@
             "tag": "RAMI capabilities",
             "patterns": [
                 "what can you do",
-                "what are you capable of doing"
+                "what are you capable of doing",
+                "what tasks can you perform",
+                "tell me your capabilities",
+                "what are your abilities"
+
             ],
             "responses": [
-                "i am currently capable of answering questions that i am trained for",
-                "at the moment, i can't do much because I am still in development"
+                "ask me anything related to Asia Pacific College",
+                "I am capable of face recognition, speech, and information provision"
             ]
         },
         {
@@ -160,7 +164,7 @@
                 "tall rami bot"
             ],
             "responses": [
-                "I'm 4.5 feet tall"
+                "I'm 4.5 feet tall, just the right height to assist you!"
             ]
         },
         {
@@ -179,7 +183,9 @@
             "tag": "APC what",
             "patterns": [
                 "what is asia pacific college",
-                "apc"
+                "what is apc",
+                "what is apc about"
+
             ],
             "responses": [
                 "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
@@ -188,9 +194,10 @@
         {
             "tag": "APC address",
             "patterns": [
-                "what is the address of APC",
+                "what is the address of apc",
                 "what is the address of asia pacific college",
-                "apc located"
+                "apc located",
+                "where is apc location"
             ],
             "responses": [
                 "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
@@ -204,7 +211,7 @@
                 "can you tell me more about asia pacific college"
             ],
             "responses": [
-                "Sure, which part would you like to know more about?"
+                "Sure, what would you like to know more about?"
             ]
         },
         {
@@ -296,7 +303,43 @@
                 "APC graduates are employed in various sectors of businesses and industries."
             ]
         },
-
+        {
+            "tag": "APC orgs",
+            "patterns": [
+                "What organizations are available in APC?",
+                "What organizations can I join in APC?",
+                "What clubs are available in APC?"
+            ],
+            "responses": [
+            ]
+        },
+        {
+            "tag": "RULES id",
+            "patterns": [
+                "lost id",
+                "lost my id",
+                "lost found id"
+            ],
+            "responses": [
+                "your ID might be in the lost and found section, you can check there",
+                "you can check the lost and found section for your ID",
+                "ask the guards there if they have found your ID"
+            ]
+        },
+        {
+            "tag": "RULES dress code",
+            "patterns": [
+                "what is the dress code",
+                "dress code",
+                "what to wear",
+                "apc dress code",
+                "asia pacific college dress code"
+            ],
+            "responses": [
+                "APC does not have a uniform but students are expected to dress appropriately and decently. Sleeveless shirts, shorts, slippers, and other inappropriate attire are not allowed.",
+                "APC follows a schedule of smart casual for mondays to thursdays and casual wear for fridays."
+            ]
+        },
 
         {
             "tag": "LOC lobby floor location",
@@ -489,6 +532,7 @@
                 "oslo",
                 "air lab",
                 "air hub",
+                "engineering room",
                 "open laboratory",
                 "open lab"
             ],
@@ -606,10 +650,15 @@
                 "drink",
                 "food",
                 "water",
-                "refill"
+                "refill",
+                "cafeteria",
+                "canteen",
+                "lunch",
+                "snack"
             ],
             "responses": [
-                " You'll find the cafeteria right on the first floor, enjoy your meal!"
+                "You'll find the cafeteria right on the first floor, enjoy your meal!",
+                "you can do that at the cafeteria located on the first floor"
             ]
         },
         {
@@ -620,7 +669,7 @@
                 "registrar"
             ],
             "responses": [
-                "you can go to the registrar in the fourth floor"
+                "you can go to the registrar in the fourth floor to assist you with your concerns"
             ]
         },
         {
@@ -800,7 +849,6 @@
             ]
         },
 
-
         {
             "tag": "FN_add_intents",
             "patterns": [
@@ -860,7 +908,6 @@
                 "update"
             ]
         },
-
 
         {
             "tag": " 4 year program duration",
