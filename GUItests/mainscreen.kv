@@ -84,21 +84,7 @@ MDScreen:
                             root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
-                        text: 'Floor Map and Directory'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_release:
-                            root.manager.current = 'floormaps'
-                            root.manager.transition.direction = 'left'
-
-                    MDFillRoundFlatButton:
-                        text: 'School Information and Announcements'
+                        text: 'School Information'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -112,7 +98,7 @@ MDScreen:
                             root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
-                        text: 'About Ramibot'
+                        text: 'Floor Map and Directory'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -121,11 +107,9 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_press:
-                            root.manager.current = 'APCinfo'
+                        on_release:
+                            root.manager.current = 'floormaps'
                             root.manager.transition.direction = 'left'
-                            app.update_label("APCinfo", "infoLabel", "About RamiBot")
-                            app.update_image("APCinfo", "infoImage", " ")
 
         Button:
             size_hint: None, None

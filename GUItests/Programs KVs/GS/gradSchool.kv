@@ -1,5 +1,5 @@
 MDScreen:
-    name: 'aboutAPC'
+    name: 'gradschools'
 
     MDFloatLayout: # main layout
         orientation: 'vertical'
@@ -16,7 +16,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                root.manager.current = 'announcements'
+                root.manager.current = 'programsoffered'
                 root.manager.transition.direction = 'right'
 
         MDBoxLayout: # Square transparent container
@@ -28,9 +28,9 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
-                text: 'About Asia Pacific College'
+                text: 'Graduate Schools'
                 font_name: 'Poppins'
-                font_size: "48sp"
+                font_size: "34sp"
                 halign: 'center'
                 text_color: 1, 1, 1, 1
                 pos_hint: {"x": 0, "y": .85}
@@ -43,12 +43,12 @@ MDScreen:
                 MDBoxLayout: # Buttons
                     orientation: 'vertical'
                     padding: 10
-                    spacing: 30
+                    spacing: 25
                     size_hint_y: None
                     height: self.minimum_height
 
                     MDFillRoundFlatButton:
-                        text: 'About APC'
+                        text: 'Master in Management'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -57,14 +57,13 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_press:
-                            root.manager.current = 'APCinfo'
+                        on_release:
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_label("APCinfo", "infoLabel", " ")
-                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/apc.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mm.png")
 
                     MDFillRoundFlatButton:
-                        text: 'Quality Policy'
+                        text: 'Master in Game Design'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -73,14 +72,13 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_press:
-                            root.manager.current = 'APCinfo'
+                        on_release:
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_label("APCinfo", "infoLabel", " ")
-                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/policy.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mgd.png")
 
                     MDFillRoundFlatButton:
-                        text: 'Industry Partners'
+                        text: 'Master in Information Systems'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -89,14 +87,13 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_press:
-                            root.manager.current = 'APCinfo'
+                        on_release:
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_label("APCinfo", "infoLabel", "Some of APC's industry partners")
-                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/partners.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mis.png")
 
                     MDFillRoundFlatButton:
-                        text: 'Vision, Mission, and Values'
+                        text: 'Master in Information Technology'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -105,14 +102,13 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_press:
-                            root.manager.current = 'APCinfo'
+                        on_release:
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_label("APCinfo", "infoLabel", " ")
-                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/vmv.png")
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mit.png")
 
                     MDFillRoundFlatButton:
-                        text: 'Accreditations & Certifications'
+                        text: 'Master of Science in Computer Science'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -121,15 +117,22 @@ MDScreen:
                         size_hint: .7, None
                         pos_hint: {'center_x': 0.5}
                         padding: 30
-                        on_press:
-                            root.manager.current = 'accreds'
+                        on_release:
+                            root.manager.current = 'gsInfo'
                             root.manager.transition.direction = 'left'
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mscs.png")
 
-        Button:
-            size_hint: None, None
-            size: 250, 80
-            background_normal: 'Assets/chatbot icon.png'
-            background_color: 208/255,233/255,245/255,1
-            pos_hint: {'center_x': 0.9, 'center_y': 0.062}
-            background_scale: 'fit'
-            border_radius: [100]
+                    MDFillRoundFlatButton:
+                        text: 'Master of Engineering Major in Computer Engineering'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_release:
+                            root.manager.current = 'gsInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_image("gsInfo", "programImage", "Programs KVs/GS/gs_mecpe.png")

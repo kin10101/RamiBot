@@ -55,7 +55,6 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarInfo.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/aboutAPC.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/Accreditations.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/APCinfo.kv'))
 
@@ -90,7 +89,8 @@ class MainWindow(MDApp):
         '''Update image sources in mapscreen'''
         screen_name = self.root.get_screen(screen_name)
         try:
-            label = MainWindow.getFromDB()
+            label = screen_name.ids[id]
+           # label = MainWindow.getFromDB()
             label.source = source
         except:
             print("Source not found")
