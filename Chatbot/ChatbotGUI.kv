@@ -64,6 +64,7 @@ MDScreen:
                     root.manager.current = 'demo'
 
 
+
         ScrollView:
             size_hint_y: .77
             pos_hint: {"x": 0, "y": .116}
@@ -79,9 +80,12 @@ MDScreen:
                 spacing: 5
 
         MDFloatLayout:
+            id: text_bar_layout
             md_bg_color: 245/255, 245/255, 245/255, 1
             size_hint_y: .11
+            pos_hint: {"center_y": .05}
             BoxLayout:
+                id: text_input_layout
                 orientation: "horizontal"
                 size_hint: .8, .75
                 pos_hint: {"center_x": .43, "center_y": .5}
@@ -109,6 +113,10 @@ MDScreen:
                     foreground_color: 0, 170/255, 23/255, 1
                     background_color: 1, 1, 1, 0  # Set a white background color
                     padding: 15
+                    on_focus:
+                        app.move_text_box()
+                    on_text_validate:
+                        app.send_message()
 
             MDIconButton:
                 id: send_button
@@ -118,7 +126,9 @@ MDScreen:
                 theme_text_color: "Custom"
                 text_color: 1, 1, 1, 1
                 md_bg_color: 0, 170/255, 23/255, 1
-                on_release: app.send_message()
+
+                on_release:
+                    app.send_message()
 
 
 

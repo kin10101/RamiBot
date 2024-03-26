@@ -388,6 +388,18 @@ class MainApp(MDApp):
         screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
 
+    def move_text_box(self):
+        text_box = screen_manager.get_screen("ChatGUI").ids.text_bar_layout
+
+        if self.status:
+            text_box.pos_hint = {"center_y": 0.05}
+            self.status = False
+        else:
+            text_box.pos_hint = {"center_y": 0.7}
+            self.status = True
+
+        screen_manager.do_layout()
+
     # GPIO -------------------------------------------
 
     def gpio_cleanup(self):

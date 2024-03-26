@@ -10,9 +10,9 @@ from keras.optimizers import SGD
 from nltk.stem import WordNetLemmatizer
 
 """uncomment for first install"""
-# nltk.download("punkt")
-# nltk.download("wordnet")
-# nltk.download("stopwords")
+nltk.download("punkt")
+nltk.download("wordnet")
+nltk.download("stopwords")
 
 
 def train_bot():
@@ -86,5 +86,5 @@ def train_bot():
     print('done training')
 
 
-
-train_bot()
+if __name__ == '__main__':
+    train_bot()
