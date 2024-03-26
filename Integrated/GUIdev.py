@@ -62,6 +62,7 @@ class MainApp(MDApp):
         self.detect = None
         self.image = None
         self.charge_pin = gpio.read_gpio_pin(17)
+        self.status = False
 
     def connect_to_db(self):
         print("attempting to connect to db...")
@@ -92,7 +93,7 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('lowbatteryscreen.kv'))
         screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
 
-        screen_manager.add_widget(Builder.load_file('New User KVs/face_capture_start.kv'))
+        # screen_manager.add_widget(Builder.load_file('New User KVs/face_capture_start.kv'))
 
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
@@ -404,7 +405,7 @@ class MainApp(MDApp):
             Response(text=response, size_hint_x=.75, halign=halign))
 
     def move_text_box(self):
-        text_box = screen_manager.get_screen("ChatGUI").ids.text_bar_layout
+        text_box = screen_manager.get_screen("chatscreen").ids.text_bar_layout
 
         if self.status:
             text_box.pos_hint = {"center_y": 0.05}
