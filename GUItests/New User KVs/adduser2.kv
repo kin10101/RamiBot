@@ -172,10 +172,5 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.on_submit_button_press(given_name.text)
-                            root.on_submit_button_press(middle_initial.text)
-                            root.on_submit_button_press(last_name.text)
-                            root.on_submit_button_press(nickname.text)
-                            root.on_submit_button_press(profession.text)
-                            root.manager.current = 'greetings'
-                            root.manager.transition.direction = 'left'
+                            app.add_visitor_user_to_db()
+                            app.open_popup()

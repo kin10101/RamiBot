@@ -1,9 +1,7 @@
 import time
 
-import Facerecog.main
 from Facerecog import trainedModel
 from Facerecog import main
-from Facerecog import facerecog_popup
 from kivy.uix.popup import Popup
 
 # Chatbot imports
@@ -41,6 +39,9 @@ detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
 global start
 
+
+class YourPopupContent(Image):
+    pass
 
 
 class MainApp(MDApp):
@@ -216,9 +217,24 @@ class MainApp(MDApp):
 
     # FACE RECOGNITION ---------------------------------
     def open_popup(self):
-        content = facerecog_popup.PopupContent()
-        popup = Popup(title='face capture', content=content, size_hint=(None, None), size=(500, 400))
+        global popup
+        content = YourPopupContent()
+        popup = Popup(title="", content=Builder.load_file("New User KVs/facerecog_popup.kv"), size_hint=(None, None), size=(500, 400), background_color=(1,1,1,.0))
         popup.open()
+
+    def ok_button(self):
+        global start
+
+        print("ok button pressed")
+        start = True
+
+    def cancel_button(self):
+        global start
+
+        print("cancel button pressed")
+        start = False
+        self.change_screen('userstatus')
+        popup.dismiss()
 
     def add_apc_user_to_db(self):
         global user_ID
@@ -252,7 +268,6 @@ class MainApp(MDApp):
             print(f"Error in uploading to db: {e}")
 
     def captures(self):
-        global start
 
         if start is not False:
             user_dir = DataCollector.user_dir

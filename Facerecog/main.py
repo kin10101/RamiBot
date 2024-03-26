@@ -1,9 +1,9 @@
 import random
 import mysql.connector
 from datetime import datetime
-import pyttsx3
+#import pyttsx3
 import re
-import Voicebot.pygtts as pygtts
+#import Voicebot.pygtts as pygtts
 
 RamiDB = mysql.connector.connect(
     host = "airhub-soe.apc.edu.ph",
@@ -23,7 +23,7 @@ RamiDB = mysql.connector.connect(
 #     )
 
 cur = RamiDB.cursor()
-engine = pyttsx3.init()
+#engine = pyttsx3.init()
 voiceTrig = 0
 motorTrig = 0
 global user_nickname
@@ -159,7 +159,7 @@ def time_stamp(ID_Num, result_text):
                 if time_difference > 500:
                     #engine.say(result_text)
                     #engine.runAndWait()
-                    pygtts.speak(f'{result_text}')
+                    #pygtts.speak(f'{result_text}')
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
                     print("already greeted an hour ago")

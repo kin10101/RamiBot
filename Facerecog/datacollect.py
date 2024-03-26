@@ -43,8 +43,8 @@ def generate_visitor_id():
 
         # Check if the visitor ID exists in the database
         user_query = f"SELECT ID_Number FROM ramibot_faces WHERE ID_Number = '{visitor_id}'"
-        cur.execute(user_query)
-        existing_user = cur.fetchone()
+        m.cur.execute(user_query)
+        existing_user = m.cur.fetchone()
 
         # If the visitor ID does not exist, break out of the loop
         if existing_user is None:

@@ -1,31 +1,31 @@
-<PopupContent>:
-    FloatLayout:
+MDScreen:
+    name: 'content'
+    auto_dismiss: False
+    MDFloatLayout:
         orientation: 'vertical'
         Image:
-            source: 'start_face_scan.png'  # Replace 'image.png' with your image file
+            source: 'Assets/start_face_scan.png'
             allow_stretch: True
             keep_ratio: False
-            size_hint: 1,1
-            pos_hint: {'center_x':0.5, 'center_y': 0.5}
-        BoxLayout:
+            size_hint_y: 1  # Adjust the size of the image
+            pos_hint: {'center_x':0.5}
+
+        MDBoxLayout:
             orientation: 'horizontal'
-            pos_hint: {'center_x':0.5, 'center_y': 0.1}
+            pos_hint: {'center_y':0.15}
+            size_hint_y: 0.2  # Adjust the size of the buttons
+            padding: [10, 0]  # Add padding to the button layout
+            spacing: 10  # Add spacing between buttons
 
-            Button:
+            MDRaisedButton:
                 text: "Cancel"
-                halign: 'center'
-                size_hint: .7, None
-                size: 100, 50
-                pos_hint: {'center_x':2, 'center_y': 0.47}
+                size_hint_x: 0.5  # Adjust the size of the button
                 background_color: .003, .4, .6, 1
-                on_press: root.cancel_button()
+                on_press: app.cancel_button()
 
-            Button:
+            MDRaisedButton:
                 text: "OK"
-                halign: 'center'
-                size_hint: .7, None
-                size: 100, 50
-                pos_hint: {'center_x':2, 'center_y': 0.47}
+                size_hint_x: 0.5  # Adjust the size of the button
                 background_color: .003, .4, .6, 1
-                on_press: root.ok_button()
+                on_press: app.ok_button()
 

@@ -1,15 +1,19 @@
-from kivy.uix.boxlayout import BoxLayout
-from Integrated import GUIdev
-
-
-class PopupContent(BoxLayout):
-    def ok_button(self):
-        print("ok button pressed")
-        GUIdev.start = True
-
-    def cancel_button(self):
-        print("cancel button pressed")
-        GUIdev.start = False
+# from kivy.uix.boxlayout import BoxLayout
+# global start
+#
+#
+# class PopupContent(BoxLayout):
+#     global start
+#
+#     def ok_button(self):
+#         print("ok button pressed")
+#         start = True
+#         return start
+#
+#     def cancel_button(self):
+#         print("cancel button pressed")
+#         start = False
+#         return start
 
 
 # class face_capture_popup(BoxLayout):

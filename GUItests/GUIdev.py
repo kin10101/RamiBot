@@ -10,7 +10,10 @@ from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
 
-
+from Facerecog import facerecog_popup
+from kivy.uix.popup import Popup
+import Facerecog.datacollect as DataCollector
+from kivy.uix.image import Image
 
 '''DEVELOPMENT CODE FOR GUI'''
 '''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED PACKAGE'''
@@ -23,7 +26,36 @@ def close_connection():
     pass
 
 
+class YourPopupContent(Image):  # Change the base class if needed
+    pass
+
+
 class MainWindow(MDApp):
+
+    def open_popup(self):
+        global popup
+        content = YourPopupContent()
+        popup = Popup(title="", content=Builder.load_file("New User KVs/facerecog_popup.kv"), size_hint=(None, None), size=(500, 400), background_color=(1,1,1,.0))
+        popup.open()
+
+    def warning_popup(self):
+        global popup_warning
+
+        content = YourPopupContent()
+        popup_warning = Popup(title="", content=Builder.load_file("warning.kv"), size_hint=(None, None), size=(500, 400), background_color=(1,1,1,.0))
+        popup_warning.open()
+
+    def ok_button(self):
+        print("ok button pressed")
+
+    def warning_ok_button(self):
+        print("ok button pressed")
+        popup_warning.dismiss()
+
+    def cancel_button(self):
+        print("cancel button pressed")
+        self.change_screen('userstatus')
+        popup.dismiss()
 
     def build(self):
         global screen_manager
@@ -51,13 +83,15 @@ class MainWindow(MDApp):
         self.bind(on_stop=lambda x: close_connection())
 
         # ADD ALL SCREENS TO BE USED HERE
-        #screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
-        screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
-        screen_manager.add_widget(Builder.load_file('greetWindow.kv'))
-        screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
+
+        # screen_manager.add_widget(Builder.load_file('idleWindow.kv'))
+        # screen_manager.add_widget(Builder.load_file('greetWindow.kv'))
+        # screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser2.kv'))
+        #screen_manager.add_widget(Builder.load_file('New User KVs/facerecog_popup.kv'))
+
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
 
@@ -91,6 +125,7 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
         return screen_manager
+
 
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
@@ -130,6 +165,51 @@ class MainWindow(MDApp):
 
     def navigateToPreviousScreen(self):
         screen_manager.current = screen_manager.previous()
+
+    def add_apc_user_to_db(self):
+        global user_ID
+        MainWindow.add_user_flag = 1
+        try:
+            user_ID = self.get_text('adduser', 'school_id')
+            given_name = self.get_text('adduser', 'given_name')
+            middle_initial = self.get_text('adduser', 'middle_initial')
+            last_name = self.get_text('adduser', 'last_name')
+            nickname = self.get_text('adduser', 'nickname')
+            role = self.get_text('adduser', 'role')
+
+            if not all([given_name, last_name, nickname, role]):  # Check if any of the variables are empty
+                raise ValueError("Empty fields detected")
+
+            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
+
+        except ValueError as ve:
+            print(f"Error: {ve}")
+
+        except Exception as e:
+            print(f"Error in uploading to db: {e}")
+
+    def add_visitor_user_to_db(self):
+        global user_ID
+        MainWindow.add_user_flag = 2
+        try:
+            user_ID = DataCollector.generate_visitor_id()
+            given_name = self.get_text('adduser2', 'given_name')
+            middle_initial = self.get_text('adduser2', 'middle_initial')
+            last_name = self.get_text('adduser2', 'last_name')
+            nickname = self.get_text('adduser2', 'nickname')
+            role = self.get_text('adduser2', 'role')
+
+            if not all([given_name, last_name, nickname, role]):  # Check if any of the variables are empty
+                raise ValueError("Empty fields detected")
+
+            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
+
+        except ValueError as ve:
+            print(f"Error: {ve}")
+
+        except Exception as e:
+            print(f"Error in uploading to db: {e}")
+
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app
