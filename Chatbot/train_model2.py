@@ -4,15 +4,16 @@ import random
 
 import nltk
 import numpy as np
-from keras import Sequential
+
 from keras.layers import Dense, Dropout
 from keras.optimizers import SGD
+from keras.src.models import Sequential
 from nltk.stem import WordNetLemmatizer
 
 """uncomment for first install"""
-nltk.download("punkt")
-nltk.download("wordnet")
-nltk.download("stopwords")
+#nltk.download("punkt")
+#nltk.download("wordnet")
+#nltk.download("stopwords")
 
 
 def train_bot():
