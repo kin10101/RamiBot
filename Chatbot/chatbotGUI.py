@@ -43,6 +43,10 @@ class Response(MDLabel):
 class ChatBot(MDApp):
     input_text = ""
 
+    def __init__(self, **kwargs):
+        super().__init__()
+        self.status = None
+
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
@@ -50,6 +54,7 @@ class ChatBot(MDApp):
         global screen_manager
         screen_manager = ScreenManager()
         screen_manager.add_widget(Builder.load_file('ChatbotGUI.kv'))
+        self.status = False
         return screen_manager
 
     def send_message(self):
@@ -96,6 +101,18 @@ class ChatBot(MDApp):
         response = handle_request(self.input_text.lower(), context)
         screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
+
+    def move_text_box(self):
+        text_box = screen_manager.get_screen("ChatGUI").ids.text_bar_layout
+
+        if self.status:
+            text_box.pos_hint = {"center_y": 0.05}
+            self.status = False
+        else:
+            text_box.pos_hint = {"center_y": 0.7}
+            self.status = True
+
+        screen_manager.do_layout()
 
 
 if __name__ == '__main__':

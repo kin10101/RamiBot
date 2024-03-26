@@ -50,6 +50,22 @@ MDScreen:
                     height: self.minimum_height
 
                     MDFillRoundFlatButton:
+                        text: 'Quality Policy'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'APCinfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("APCinfo", "infoLabel", " ")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/policy.png")
+
+                    MDFillRoundFlatButton:
                         text: 'School Calendar'
                         font_name: 'Poppins'
                         font_size: "24sp"
@@ -62,6 +78,22 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendars'
                             root.manager.transition.direction = 'left'
+
+                    MDFillRoundFlatButton:
+                        text: 'Industry Partners'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'APCinfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("APCinfo", "infoLabel", "Some of APC's industry partners")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/partners.png")
 
                     MDFillRoundFlatButton:
                         text: 'School Organizations'
@@ -78,7 +110,7 @@ MDScreen:
                             root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
-                        text: 'About Asia Pacific College'
+                        text: 'Vision, Mission, and Values'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -88,7 +120,23 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_press:
-                            root.manager.current = 'aboutAPC'
+                            root.manager.current = 'APCinfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("APCinfo", "infoLabel", " ")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/vmv.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Accreditations & Certifications'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'accreds'
                             root.manager.transition.direction = 'left'
 
                     MDFillRoundFlatButton:
@@ -106,6 +154,37 @@ MDScreen:
                             root.manager.transition.direction = 'left'
                             app.update_label("scholarInfo", "scholarLabel", "Scholarship Grants and Financial Aid")
 
+                    MDFillRoundFlatButton:
+                        text: 'About Asia Pacific College'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'APCinfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("APCinfo", "infoLabel", " ")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/apc.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'The RamiBot Team'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'APCinfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_label("APCinfo", "infoLabel", "The RamiBot Team")
+                            app.update_image("APCinfo", "infoImage", "Announcements KVs/About APC/vmv.png")
         Button:
             size_hint: None, None
             size: 250, 80

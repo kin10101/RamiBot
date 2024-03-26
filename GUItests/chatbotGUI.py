@@ -100,6 +100,8 @@ class ChatBot(MDApp):
             Response(text=response, size_hint_x=.75, halign=halign))
 
 
+
+
 if __name__ == '__main__':
     LabelBase.register(name='Poppins', fn_regular="GUI/Assets/Poppins-Regular.otf")  # font for chat bubbles
     ChatBot().run()
