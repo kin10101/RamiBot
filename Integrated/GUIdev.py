@@ -404,6 +404,9 @@ class MainApp(MDApp):
         screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
 
+    def clear_chat(self):
+        screen_manager.get_screen("chatscreen").ids.chat_list.clear_widgets()
+
     def move_text_box(self):
         text_box = screen_manager.get_screen("chatscreen").ids.text_bar_layout
 
