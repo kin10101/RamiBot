@@ -1,10 +1,10 @@
 MDScreen:
-    name: 'content'
+    name: 'warning_content'
     auto_dismiss: False
     MDFloatLayout:
         orientation: 'vertical'
         Image:
-            source: 'Assets/start_face_scan.png'
+            source: 'Assets/warning.png'
             allow_stretch: True
             keep_ratio: False
             size_hint_y: 1  # Adjust the size of the image
@@ -18,18 +18,8 @@ MDScreen:
             spacing: 10  # Add spacing between buttons
 
             MDRaisedButton:
-                text: "Cancel"
-                size_hint_x: 0.5  # Adjust the size of the button
-                background_color: .003, .4, .6, 1
-                on_press: app.cancel_button()
-
-            MDRaisedButton:
                 text: "OK"
                 size_hint_x: 0.5  # Adjust the size of the button
                 background_color: .003, .4, .6, 1
                 on_press:
-                    app.ok_button()
-                    app.captures()
-                    app.change_screen('facecapturedone')
-                    #root.manager.current = 'facecapturedone'
-                    #root.manager.transition.direction = 'right'
+                    app.warning_ok_button()

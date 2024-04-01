@@ -7,10 +7,10 @@ facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 recognizer = cv2.face.LBPHFaceRecognizer.create()
 
 #RPI
-recognizer.read("/home/rami/PycharmProjects/RamiBot/Facerecog/Trainer.yml")
+#recognizer.read("/home/rami/PycharmProjects/RamiBot/Facerecog/Trainer.yml")
 
 #laptop
-#recognizer.read("D:\RamiBot Project\RamibotReal\Facerecog\Trainer.yml")
+recognizer.read("D:\RamiBot Project\RamibotReal\Facerecog\Trainer.yml")
 count = 0
 currentID = 0
 global confidence_result
