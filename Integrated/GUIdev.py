@@ -205,7 +205,7 @@ class MainApp(MDApp):
             current_screen = screen_manager.current
             img_src = image_queue.get_nowait()
 
-            self.update_image(current_screen, 'bg', img_src)
+            self.update_image(current_screen, 'img', img_src)
         except Empty:
             pass
 
