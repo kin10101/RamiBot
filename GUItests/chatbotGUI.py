@@ -10,13 +10,12 @@ from kivy.config import Config
 
 from chatbot import handle_request
 
-
-
 os.environ['MESA_LOADER_DRIVER_OVERRIDE'] = 'i965 ./kiwix-desktop'
 
 Window.size = (1920, 1080)
 Config.set('graphics', 'borderless', 0)  # 0 being off 1 being on as in true/false
-Config.set('kivy','keyboard_mode','dock')
+Config.set('kivy', 'keyboard_mode', 'dock')
+
 
 class ChatBubble(MDLabel):
     pass
@@ -98,8 +97,6 @@ class ChatBot(MDApp):
         response = handle_request(self.input_text.lower(), context)
         screen_manager.get_screen("ChatGUI").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
-
-
 
 
 if __name__ == '__main__':

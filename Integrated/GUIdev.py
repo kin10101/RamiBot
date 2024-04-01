@@ -33,6 +33,7 @@ from queue import Queue, Empty
 from Voicebot import voicebotengine
 from Voicebot.voice_assistant_module import VoiceAssistant, active_state
 
+
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
@@ -160,7 +161,7 @@ class MainApp(MDApp):
             pass
 
     def update_image(self, screen_name, id, source):
-        """Update image sources in mapscreen"""
+        """Update image sources"""
         screen_name = self.root.get_screen(screen_name)
         try:
             label = screen_name.ids[id]
@@ -194,6 +195,11 @@ class MainApp(MDApp):
             item = screen_queue.get_nowait()
             print(item)
             self.change_screen(item)
+            # TODO get the current screen and update the image
+            current_screen = screen_manager.current
+            img_src = image_queue.get_nowait()
+
+            self.update_image(current_screen, 'img', img_src)
         except Empty:
             pass
 
@@ -538,6 +544,7 @@ if __name__ == "__main__":
     # Queues
     event_queue = Queue()
     screen_queue = voicebotengine.Speech_Queue
+    image_queue = voicebotengine.Image_Queue
     # inter thread communication
     # a clocked function checks and gets the items in the queue periodically
 
