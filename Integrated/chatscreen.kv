@@ -34,7 +34,8 @@ MDScreen:
     text_input: text_input
     chat_list: chat_list
     name: "chatscreen"
-
+    on_pre_leave:
+        app.clear_chat()
 
     MDFloatLayout:
         MDFloatLayout:
@@ -44,7 +45,7 @@ MDScreen:
 
             MDLabel:
                 id: bot_name
-                text: "RamiBot Chatbot GUI"
+                text: "Chat with Rami"
                 pos_hint: {"center_x": .5, "center_y": .5}
                 halign: "center"
                 font_size: "20sp"
@@ -60,8 +61,7 @@ MDScreen:
                 theme_text_color: "Custom"
                 text_color: 0, 0, 0, 1
                 on_release:
-                    root.manager.transition.direction = "right"
-                    root.manager.current = 'demo'
+                    app.navigate_to_previous_screen()
 
 
 

@@ -722,7 +722,7 @@
             "responses": [
                 "senior high school is a two year program open to junior highschool graduates. it is divided into three strands which are STEM, ABM, and HUMSS."
             ],
-            "context_filter": "apc_programs",
+
             "context_set": ""
         },
         {
@@ -735,7 +735,7 @@
             "responses": [
                 "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
             ],
-            "context_filter": "apc_programs",
+
             "context_set": ""
         },
         {
@@ -748,11 +748,11 @@
             "responses": [
                 "the school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology"
             ],
-            "context_filter": "apc_programs",
+
             "context_set": ""
         },
         {
-            "tag": "PRG soa",
+            "tag": "PRG soar",
             "patterns": [
                 "architecture",
                 "soar",
@@ -761,7 +761,7 @@
             "responses": [
                 "The School of Architecture consists of BS Architecture"
             ],
-            "context_filter": "apc_programs",
+
             "context_set": ""
         },
         {
@@ -774,7 +774,7 @@
             "responses": [
                 "The school of management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business "
             ],
-            "context_filter": "apc_programs",
+
             "context_set": ""
         },
         {
@@ -787,7 +787,7 @@
             "responses": [
                 "The School of Multimedia Arts consists of BS Multimedia Arts and BS Psychology"
             ],
-            "context_filter": "apc_programs",
+
             "context_set": ""
         },
         {
@@ -800,7 +800,7 @@
             "responses": [
                 ""
             ],
-            "context_filter": "apc_programs",
+
             "context_set": ""
         },
         {

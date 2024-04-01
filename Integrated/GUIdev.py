@@ -414,7 +414,7 @@ class MainApp(MDApp):
             text_box.pos_hint = {"center_y": 0.05}
             self.status = False
         else:
-            text_box.pos_hint = {"center_y": 0.7}
+            text_box.pos_hint = {"center_y": 0.6}
             self.status = True
 
         screen_manager.do_layout()
