@@ -27,166 +27,28 @@ MDScreen:
             padding: 10
             radius: [15]
 
-            MDLabel: # Title
-                id: orgLabel4
-                text: 'Special Interest Organizations'
-                font_name: 'Poppins'
-                font_size: "48sp"
-                halign: 'center'
-                text_color: 1, 1, 1, 1
-                pos_hint: {"x": 0, "y": .85}
-                size_hint: 1, .2
-                bold: True
-
             MDScrollView: # ScrollView for Buttons
                 do_scroll_x: False
 
-                MDBoxLayout: # Buttons
-                    orientation: 'vertical'
+                MDGridLayout: # Layout for Buttons
+                    cols: 2
+                    rows: 3
                     padding: 10
                     spacing: 25
                     size_hint_y: None
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                     height: self.minimum_height
 
-                    MDFillRoundFlatButton:
-                        text: 'APC Hiraya'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "APC Hiraya")
+                    Image: # Background image
+                        id: orgImage1
+                        source: ' '
+                        allow_stretch: True
+                        keep_ratio: False
+                        size_hint: 0.2, 0.4
+                    Image: # Background image
+                        id: orgImage2
+                        source: ' '
+                        allow_stretch: True
+                        keep_ratio: False
+                        size_hint: 0.2, 0.4
 
-                    MDFillRoundFlatButton:
-                        text: 'APC Speaks'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "APC Speaks")
-                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/SPEAKS.png")
-
-                    MDFillRoundFlatButton:
-                        text: 'Ramshakers'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "Ramshakers")
-                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/RAMSHAKERS.png")
-
-                    MDFillRoundFlatButton:
-                        text: 'Jesus Impact'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "Jesus Impact")
-                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/JI.png")
-
-                    MDFillRoundFlatButton:
-                        text: 'Fitness Squad'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "Fitness Squad")
-                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/FITNESS.png")
-
-                    MDFillRoundFlatButton:
-                        text: 'RAMS Flag Football'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "RAMS Flag Football")
-                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/FLAG.png")
-
-                    MDFillRoundFlatButton:
-                        text: 'Flickers Photo Society'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "Flickers Photo Society")
-                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/FLICKERS.png")
-
-                    MDFillRoundFlatButton:
-                        text: 'APC-AI Atheneaum of Information'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "APC-AI Atheneaum of Information")
-                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/APCAI.png")
-
-                    MDFillRoundFlatButton:
-                        text: 'APC Pwersa Mixed Martial Arts (APC-Pwersa MMA)'
-                        font_name: 'Poppins'
-                        font_size: "24sp"
-                        halign: 'center'
-                        text_color: 1, 1, 1, 1
-                        md_bg_color: .003, .4, .6, 1
-                        size_hint: .7, None
-                        pos_hint: {'center_x': 0.5}
-                        padding: 30
-                        on_press:
-                            root.manager.current = 'orgsInfo'
-                            root.manager.transition.direction = 'left'
-                            app.update_label("orgsInfo", "orgsLabel", "APC Pwersa Mixed Martial Arts (APC-Pwersa MMA)")
-                            app.update_image("orgsInfo", "orgsLogo", "Announcements KVs/School Orgs/PWERSA.png")

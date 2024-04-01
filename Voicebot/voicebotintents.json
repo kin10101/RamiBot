@@ -356,7 +356,8 @@
             "responses": [
                 "it is located here at the 1st floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC second floor location",
@@ -381,7 +382,7 @@
                 "it is located at the 2nd floor"
             ],
             "navigate_to": "floormaps",
-            "source": ""
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC third floor location",
@@ -405,7 +406,8 @@
             "responses": [
                 "it is located at the 3rd floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC fourth floor location",
@@ -428,7 +430,8 @@
             "responses": [
                 "it is located at the 4th floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC fifth floor location",
@@ -463,7 +466,8 @@
             "responses": [
                 "it is located at the 5th floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC sixth floor location",
@@ -486,7 +490,8 @@
             "responses": [
                 "it is located at the 6th floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC seventh floor location",
@@ -504,7 +509,8 @@
             "responses": [
                 "it is located at the 7th floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC eighth floor location",
@@ -539,7 +545,8 @@
             "responses": [
                 "it is located at the 8th floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC ninth floor location",
@@ -559,7 +566,8 @@
             "responses": [
                 "it is located at the 9th floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC tenth floor location",
@@ -587,7 +595,8 @@
             "responses": [
                 "it is located at the 10th floor "
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC eleventh floor location",
@@ -609,7 +618,8 @@
             "responses": [
                 "it is located on the 11th floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC twelfth floor location",
@@ -618,7 +628,9 @@
             ],
             "responses": [
                 "it is located on the 12th floor"
-            ]
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
         },
 
         {
@@ -643,8 +655,9 @@
                 "parking spaces are available in basement 2"
             ]
         },
+
         {
-            "tag": "LOC cafeteria",
+            "tag": "CLOC cafeteria",
             "patterns": [
                 "eat",
                 "drink",
@@ -659,6 +672,84 @@
             "responses": [
                 "You'll find the cafeteria right on the first floor, enjoy your meal!",
                 "you can do that at the cafeteria located on the first floor"
+            ]
+        },
+        {
+            "tag": "CLOC comfort rooms",
+            "patterns": [
+                "restroom",
+                "toilet",
+                "comfort room",
+                "cr",
+                "washroom"
+            ],
+            "responses": [
+                "You'll find the cafeteria right on the first floor, enjoy your meal!",
+                "you can do that at the cafeteria located on the first floor"
+            ]
+        },
+        {
+            "tag": "CLOC clinic",
+            "patterns": [
+                "sick",
+                "clinic",
+                "nurse",
+                "doctor",
+                "health",
+                "medical",
+                "medicine"
+            ],
+            "responses": [
+                "The clinic is located on the first floor, you can go there for medical assistance"
+            ]
+        },
+        {
+            "tag": "CLOC chapel",
+            "patterns": [
+                "pray",
+                "chapel",
+                "church",
+                "worship",
+                "religion"
+            ],
+            "responses": [
+                "The chapel is located on the first floor, you can go there for a moment of prayer"
+            ]
+        },
+        {
+            "tag": "CLOC library",
+            "patterns": [
+                "read",
+                "study",
+                "research",
+                "library",
+                "books"
+            ],
+            "responses": [
+                "The library is located on the seventh floor, you can go there to read and study"
+            ]
+        },
+        {
+            "tag": "CLOC gym",
+            "patterns": [
+                "workout",
+                "exercise",
+                "gym",
+                "jim",
+                "dance"
+            ],
+            "responses": [
+                "The gym is located on the tenth floor, you can go there to workout"
+            ]
+        },
+        {
+            "tag": "LOC admission office",
+            "patterns": [
+                "admission",
+                "admission office"
+            ],
+            "responses": [
+                "you can go to the admission office in the first floor to assist you with your concerns"
             ]
         },
         {
