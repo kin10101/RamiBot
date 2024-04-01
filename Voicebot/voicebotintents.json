@@ -356,7 +356,8 @@
             "responses": [
                 "it is located here at the 1st floor"
             ],
-            "navigate_to": "floormaps"
+            "navigate_to": "floormaps",
+            "img_src": ""
         },
         {
             "tag": "LOC second floor location",
