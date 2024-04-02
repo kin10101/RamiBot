@@ -44,12 +44,15 @@ def face_recognition(video):
                 cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
                 #greet user with voice
-                m.returnName1(str(serial), conf)
-                print(f"{m.returnName1(str(serial), conf)}")
+                res = m.returnName1(str(serial), conf)
+                print(f"{res}")
                 video.release()
                 running = False
 
-                return confidence_result
+                if res is True:
+                    return confidence_result
+                else:
+                    pass
 
             else:
                 print("unrecognized")

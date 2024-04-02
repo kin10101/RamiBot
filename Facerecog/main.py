@@ -1,7 +1,6 @@
 import random
 import mysql.connector
 from datetime import datetime
-#import pyttsx3
 import re
 #import Voicebot.pygtts as pygtts
 
@@ -31,6 +30,8 @@ global unknown_user
 global result_text
 global lower_conf
 lower_conf = False
+
+identified_list = []
 
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
@@ -100,6 +101,11 @@ def returnName1(ID_Num,result):
             user_nickname = nickname
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
+
+            #compares 5 items in the list
+            identified_list.append(user_nickname) #adds nickname to the list
+            if identified_list.count(user_nickname) == 3: #identifies if nickname is iterated 3 times
+                return True
         else:
             lower_conf = True
             result_text = greet_new_user()
@@ -157,8 +163,6 @@ def time_stamp(ID_Num, result_text):
                 time_difference = (current_time-last_update).total_seconds()
                 print(f"time difference: {time_difference}")
                 if time_difference > 500:
-                    #engine.say(result_text)
-                    #engine.runAndWait()
                     #pygtts.speak(f'{result_text}')
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
