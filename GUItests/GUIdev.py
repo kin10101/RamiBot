@@ -49,7 +49,7 @@ class MainWindow(MDApp):
         global screen_manager
         screen_manager = ScreenManager()
 
-#        self.bind(on_stop=lambda x: close_connection())
+   #     self.bind(on_stop=lambda x: close_connection())
 
         # ADD ALL SCREENS TO BE USED HERE
         #screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
@@ -67,12 +67,12 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/Tuitions/tuitionInfo.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/Tuitions/tuitions.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendars.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
@@ -112,11 +112,20 @@ class MainWindow(MDApp):
         screen_name = self.root.get_screen(screen_name)
         try:
             label = screen_name.ids[id]
+  #          imgURL = MainWindow.getFromDB(imgID)
+   #         if imgURL:
+    #            label.source = imgURL
+     #       else:
+      #          print("Image not found in database")
+       # except Exception as e:
+        #    print("Error:", e)
+
+            #label = screen_name.ids[id]
            # label = MainWindow.getFromDB()
             label.source = source
         except:
             print("Source not found")
-            pass
+        pass
 
     def get_text(self, screen_name, id):
         '''Get text from textinput in newuser screen'''
@@ -161,7 +170,7 @@ class MainWindow(MDApp):
         try:
             # Check if the image with the given imgID already exists in the database
            # user_query = f"SELECT img_id FROM programs_img WHERE img_id = {12}"
-            programs_offered = f"SELECT img_url FROM programs_img WHERE img_id = {imgID}"
+            programs_offered = f"SELECT img_url FROM floor_map WHERE floor_id = {imgID}"
             MainWindow.pics_cursor.execute(programs_offered)
             image_found = MainWindow.pics_cursor.fetchone()
 
@@ -172,8 +181,11 @@ class MainWindow(MDApp):
             else:
                 # Image does not exist, you can handle this case as needed
                 print("Image does not exist in the database")
+                return None
+
         except Exception as e:
             print("Error:", e)
+            return None
 
     def warning(self):
         global warning_popup
@@ -318,15 +330,15 @@ class MainWindow(MDApp):
             self.change_screen('newuser')
 
 
+window_instance = MainWindow()
 # Connect to the database
-MainWindow.connect_to_db()
+window_instance.connect_to_db()
 
 # Usage example: Call the getFromDB method with your desired imgID and imgURL
-MainWindow.getFromDB(imgID='', imgURL=" ")
-
-# Close the database connection when the app exits
-MainWindow.close_connection()
+window_instance.getFromDB(imgID='', imgURL=" ")
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app
     MainWindow().run()
+    # Close the database connection when the app exits
+    window_instance.close_connection()

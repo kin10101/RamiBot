@@ -105,6 +105,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/Tuitions/tuitionInfo.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/Tuitions/tuitions.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
