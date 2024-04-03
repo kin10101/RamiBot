@@ -3,6 +3,7 @@ MDScreen:
     name: 'lowbatteryscreen'
     on_enter:
         app.close_camera()
+        app.stop_timer()
         # disable screen timeout
         # disable voicebot
         # disable face recognition

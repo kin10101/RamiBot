@@ -63,66 +63,67 @@ class VoiceAssistant:
         recognizer.operation_timeout = self.operation_timeout
         recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
         while True:
-            if not active_state.is_set():  # while active state is not set (roaming, idle screen), listen for wake word.
-                print("wakeword listening active")
-                try:
+            if gpio.read_gpio_pin(17) == 0:
+                if not active_state.is_set():  # while active state is not set (roaming, idle screen), listen for wake word.
+                    print("wakeword listening active")
+                    try:
+                        with sr.Microphone() as source:
+                            print('speak now')
+
+                            text = self.listen_to_command(recognizer, source)
+                            print("Audio received to text: " + text)
+
+                            if any(variation in text for variation in self.wake_word_variations):  # if wake word detected
+                                print('Wake word detected. Now listening...')
+
+
+                                gpio.set_gpio_pin(4, 1)  # set GPIO pin to HIGH to stop the motor wheel from moving
+
+                                # greet user
+                                ts.play_audio_file('audio/activate.wav')
+                                Speech_Queue.put("greetscreen")
+                                wake_word_response = voicebotengine.get_from_json("GEN hello")
+                                ts.speak(wake_word_response)
+
+
+                    except sr.RequestError:
+                        print("Could not request results from google Speech Recognition service")
+                    except sr.UnknownValueError:
+                        print("Wake word detected but unable to recognize speech")
+                    except sr.WaitTimeoutError:
+                        print("Timeout error while waiting for speech input")
+
+                if active_state.is_set():  # while active state is set (rami stopped, gui active)
+                    print("conversation mode active")
                     with sr.Microphone() as source:
-                        print('speak now')
+                        text2 = None
+                        response2 = None
 
-                        text = self.listen_to_command(recognizer, source)
-                        print("Audio received to text: " + text)
-
-                        if any(variation in text for variation in self.wake_word_variations):  # if wake word detected
-                            print('Wake word detected. Now listening...')
-
-
-                            gpio.set_gpio_pin(4, 1)  # set GPIO pin to HIGH to stop the motor wheel from moving
-
-                            # greet user
-                            ts.play_audio_file('audio/activate.wav')
-                            Speech_Queue.put("greetscreen")
-                            wake_word_response = voicebotengine.get_from_json("GEN hello")
-                            ts.speak(wake_word_response)
-
-
-                except sr.RequestError:
-                    print("Could not request results from google Speech Recognition service")
-                except sr.UnknownValueError:
-                    print("Wake word detected but unable to recognize speech")
-                except sr.WaitTimeoutError:
-                    print("Timeout error while waiting for speech input")
-
-            if active_state.is_set():  # while active state is set (rami stopped, gui active)
-                print("conversation mode active")
-                with sr.Microphone() as source:
-                    text2 = None
-                    response2 = None
-
-                    while active_state.is_set():  # listen until something is heard from the user
-                        print("SAY SOMETHING!!!")
-                        try:
-                            text2 = self.listen_to_command(recognizer, source)
-                            print("Received command: " + text2)
-                        except:
-                            text2 = None
-                            pass
-
-                        # generate a response from the chatbot
-                        if text2 is not None:
+                        while active_state.is_set():  # listen until something is heard from the user
+                            print("SAY SOMETHING!!!")
                             try:
-                                response2 = self.handle_command(text2, context)
+                                text2 = self.listen_to_command(recognizer, source)
+                                print("Received command: " + text2)
                             except:
-                                response2 = None
+                                text2 = None
                                 pass
 
-                        if response2 is not None:
-                            ts.speak(response2, lang='en')
-                            wakeword_detected = False
-                            ts.play_audio_file(
-                                "audio/deactivate.wav")  # sound to indicate that the conversation is over
-                            break
-                        if not active_state.is_set():
-                            break
+                            # generate a response from the chatbot
+                            if text2 is not None:
+                                try:
+                                    response2 = self.handle_command(text2, context)
+                                except:
+                                    response2 = None
+                                    pass
+
+                            if response2 is not None:
+                                ts.speak(response2, lang='en')
+                                wakeword_detected = False
+                                ts.play_audio_file(
+                                    "audio/deactivate.wav")  # sound to indicate that the conversation is over
+                                break
+                            if not active_state.is_set():
+                                break
 
     def activate_on_wake_word(self):
         context = [""]

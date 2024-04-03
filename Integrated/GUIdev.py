@@ -146,7 +146,7 @@ class MainApp(MDApp):
         self.connect_to_db()
 
         Clock.schedule_interval(self.await_change_screen, .5)
-        Clock.schedule_interval(self.await_pin_change, 1)
+        Clock.schedule_interval(self.await_pin_change, .5)
 
     def on_stop(self):
         self.close_connection()
@@ -493,6 +493,9 @@ class MainApp(MDApp):
     def reset_timer(self):
         self.timeout.cancel()
         self.start_timer()
+
+    def stop_timer(self):
+        self.timeout.cancel()
 
     def timeout_reset(self, dt):
         gpio.set_gpio_pin(4, 0)
