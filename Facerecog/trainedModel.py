@@ -49,10 +49,11 @@ def face_recognition(video):
                 video.release()
                 running = False
 
-                if res is True:
-                    return confidence_result
-                else:
-                    pass
+                return confidence_result
+                # if res is True:
+                #     return confidence_result
+                # else:
+                #     pass
 
             else:
                 print("unrecognized")

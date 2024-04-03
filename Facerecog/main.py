@@ -102,10 +102,10 @@ def returnName1(ID_Num,result):
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num, result_text)
 
-            #compares 5 items in the list
-            identified_list.append(user_nickname) #adds nickname to the list
-            if identified_list.count(user_nickname) == 3: #identifies if nickname is iterated 3 times
-                return True
+            #compares 3 items in the list
+            # identified_list.append(user_nickname) #adds nickname to the list
+            # if identified_list.count(user_nickname) == 3: #identifies if nickname is iterated 3 times
+            #     return True
         else:
             lower_conf = True
             result_text = greet_new_user()
