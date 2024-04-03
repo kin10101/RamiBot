@@ -42,11 +42,6 @@ global start
 
 
 
-
-class YourPopupContent(Image):
-    pass
-
-
 class MainApp(MDApp):
     face_count = 0
     add_user_flag = 0
@@ -96,8 +91,7 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('lowbatteryscreen.kv'))
         screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
 
-        # screen_manager.add_widget(Builder.load_file('New User KVs/face_capture_start.kv'))
-
+        screen_manager.add_widget(Builder.load_file('New User KVs/face_capture_done.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
@@ -111,6 +105,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
 
         screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/Tuitions/tuitionInfo.kv'))
+        screen_manager.add_widget(Builder.load_file('Announcements KVs/Tuitions/tuitions.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
@@ -224,10 +220,21 @@ class MainApp(MDApp):
             pass
 
     # FACE RECOGNITION ---------------------------------
+    def warning(self):
+        global warning_popup
+        warning_popup = Popup(title="", content=Builder.load_file("warning.kv"), size_hint=(None, None),
+                              size=(500, 400), background_color=(1, 1, 1, .0))
+        warning_popup.open()
+
+    def warning_ok_button(self):
+
+        print("warning ok button pressed")
+        warning_popup.dismiss()
+
     def open_popup(self):
         global popup
-        content = YourPopupContent()
-        popup = Popup(title="", content=Builder.load_file("New User KVs/facerecog_popup.kv"), size_hint=(None, None), size=(500, 400), background_color=(1,1,1,.0))
+        popup = Popup(title="", content=Builder.load_file("New User KVs/facerecog_popup.kv"), size_hint=(None, None),
+                      size=(500, 400), background_color=(1, 1, 1, .0))
         popup.open()
 
     def ok_button(self):
@@ -235,6 +242,7 @@ class MainApp(MDApp):
 
         print("ok button pressed")
         start = True
+        popup.dismiss()
 
     def cancel_button(self):
         global start
@@ -253,12 +261,23 @@ class MainApp(MDApp):
             middle_initial = self.get_text('adduserscreen', 'middle_initial')
             last_name = self.get_text('adduserscreen', 'last_name')
             nickname = self.get_text('adduserscreen', 'nickname')
-            role = self.get_text('adduserscreen', 'role')
+            role = self.get_text('adduserscreen', 'profession')
+
+            if not all([user_ID, given_name, last_name, nickname, role]):  # Check if any of the variables are empty
+                raise ValueError("Empty fields detected")
 
             DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
+            print("Uploaded to database successfully!")
+            self.open_popup()
 
+        except ValueError as ve:
+            print(f"Error: {ve}")
+            self.warning()
+            self.change_screen('adduser')
         except Exception as e:
             print(f"Error in uploading to db: {e}")
+            self.warning()
+            self.change_screen('adduser')
 
     def add_visitor_user_to_db(self):
         global user_ID
@@ -269,11 +288,24 @@ class MainApp(MDApp):
             middle_initial = self.get_text('adduser2', 'middle_initial')
             last_name = self.get_text('adduser2', 'last_name')
             nickname = self.get_text('adduser2', 'nickname')
-            role = self.get_text('adduser2', 'role')
+            role = self.get_text('adduser2', 'profession')
 
-            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
+            if not all([user_ID, given_name, last_name, nickname, role]):  # Check if any of the variables are empty
+                raise ValueError("Empty fields detected")
+            else:
+                # Only upload to the database if there are no errors
+                DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
+                print("Uploaded to database successfully!")
+                self.open_popup()
+
+        except ValueError as ve:
+            print(f"Error: {ve}")
+            self.warning()
+            self.change_screen('adduser2')
         except Exception as e:
             print(f"Error in uploading to db: {e}")
+            self.warning()
+            self.change_screen('adduser2')
 
     def captures(self):
 
@@ -323,7 +355,7 @@ class MainApp(MDApp):
                     cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
                     cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-                    if count >= 1000:
+                    if count >= 500:
                         # Release the video capture and exit the application
                         self.camera.release()
                         cv2.destroyAllWindows()

@@ -1,0 +1,328 @@
+MDScreen:
+    name: 'tuitions'
+
+    MDFloatLayout: # main layout
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+        #Back Button
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.1, 'center_y': 0.9}
+            user_font_size: "40sp"
+            on_press:
+                root.manager.current = 'announcements'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+            MDLabel: # Title
+                text: 'Freshman Sample Assessment of Tuition by Course with:'
+                font_name: 'Poppins'
+                font_size: "43sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                pos_hint: {"x": 0, "y": .85}
+                size_hint: 1, .2
+                bold: True
+
+            MDScrollView: # ScrollView for Buttons
+                do_scroll_x: False
+
+                MDBoxLayout: # Buttons
+                    orientation: 'vertical'
+                    padding: 10
+                    spacing: 30
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MDFillRoundFlatButton:
+                        text: 'AFP Educational Benefit System'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                      #      app.update_label("tuitionInfo", "tuitionLabel", "AFP Educational Benefit System Office'")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/AFP_EBSO.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'AFP Officers Ladies Club'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                      #      app.update_label("tuitionInfo", "tuitionLabel", "AFP Officers Ladies Club")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/AFP_OLC.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'APC SHS Loyalty'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                      #      app.update_label("tuitionInfo", "tuitionLabel", "APC SHS Loyalty Discount")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/APC_SHS_Loyalty.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Entrance Academic Scholar - 20%'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                       #     app.update_label("tuitionInfo", "tuitionLabel", "Entrance Academic Scholar - 20%")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/EAS-20%.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Entrance Academic Scholar - 45%'
+                        font_name: 'Poppins'
+                        font_size: "22sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                    #        app.update_label("tuitionInfo", "tuitionLabel", "Entrance Academic Scholar - 45%")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/EAS-45%.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Entrance Academic Scholar - 65%'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                     #       app.update_label("tuitionInfo", "tuitionLabel", "Entrance Academic Scholar - 65%")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/EAS-65%.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Engineering Scholarship Program (ESP)'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                      #      app.update_label("tuitionInfo", "tuitionLabel", "Engineering Scholarship Program (ESP)")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/ESP.png")
+                    MDFillRoundFlatButton:
+                        text: 'Family Discount'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                        #    app.update_label("tuitionInfo", "tuitionLabel", "Family Discount")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/Family_Discount.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Foreign Students'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                        #    app.update_label("tuitionInfo", "tuitionLabel", "Foreign Students")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/Foreign_Students.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Full Paying'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                         #   app.update_label("tuitionInfo", "tuitionLabel", "Full Paying Tuition Fees")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/Full_Paying.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'MAPSA Schools'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                         #   app.update_label("tuitionInfo", "tuitionLabel", "MAPSA Schools")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/MAPSA.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Parochial and Catholic Schools'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                       #     app.update_label("tuitionInfo", "tuitionLabel", "Parish School Scholarship")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/Parochial_and_Catholic_Schools.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'PNP'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                       #     app.update_label("tuitionInfo", "tuitionLabel", "PNP Scholarship")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/PNP.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Public Schools'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                        #    app.update_label("tuitionInfo", "tuitionLabel", "Public School Scholarship")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/Public_School.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'SM Group of Companies'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                       #     app.update_label("tuitionInfo", "tuitionLabel", "SM Group of Companies Scholarship")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/SM_Group_of_Companies.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'SM Foundation'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                        #    app.update_label("tuitionInfo", "tuitionLabel", "SM Foundation Scholarship")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/SM_Foundation.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Socialized Financial Assistance'
+                        font_name: 'Poppins'
+                        font_size: "21sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'tuitionInfo'
+                            root.manager.transition.direction = 'left'
+                        #    app.update_label("tuitionInfo", "tuitionLabel", "Socialized Financial Assistance")
+                            app.update_image("tuitionInfo", "tuitionImage", "Announcements KVs/Tuitions/Socialized_Financial_Assistance.png")
+
+        Button:
+            size_hint: None, None
+            size: 250, 80
+            background_normal: 'Assets/chatbot icon.png'
+            background_color: 208/255,233/255,245/255,1
+            pos_hint: {'center_x': 0.9, 'center_y': 0.062}
+            background_scale: 'fit'
+            border_radius: [100]

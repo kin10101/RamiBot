@@ -7,10 +7,10 @@ facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 recognizer = cv2.face.LBPHFaceRecognizer.create()
 
 #RPI
-recognizer.read("/home/rami/PycharmProjects/RamiBot/Facerecog/Trainer.yml")
+#recognizer.read("/home/rami/PycharmProjects/RamiBot/Facerecog/Trainer.yml")
 
 #laptop
-#recognizer.read("D:\RamiBot Project\RamibotReal\Facerecog\Trainer.yml")
+recognizer.read("D:\RamiBot Project\RamibotReal\Facerecog\Trainer.yml")
 count = 0
 currentID = 0
 global confidence_result
@@ -44,12 +44,15 @@ def face_recognition(video):
                 cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
                 #greet user with voice
-                m.returnName1(str(serial), conf)
-                print(f"{m.returnName1(str(serial), conf)}")
+                res = m.returnName1(str(serial), conf)
+                print(f"{res}")
                 video.release()
                 running = False
 
-                return confidence_result
+                if res is True:
+                    return confidence_result
+                else:
+                    pass
 
             else:
                 print("unrecognized")
