@@ -88,7 +88,7 @@ def get_response(intents_list, intents_json, context):
             if 'navigate_to' in i:
                 Speech_Queue.put(i['navigate_to'])
 
-            if 'source_image' in i:
+            if 'src_img' in i:
                 # TODO query image from database that is a substring of i['source_image'] and put the whole url to
                 #  the queue
 
