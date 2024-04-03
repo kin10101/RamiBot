@@ -196,26 +196,34 @@ class MainApp(MDApp):
             print(item)
             self.change_screen(item)
             # TODO get the current screen and update the image
-            current_screen = screen_manager.current
-            img_src = image_queue.get_nowait()
 
-            self.update_image(current_screen, 'img', img_src)
+            if not image_queue.empty():
+                current_screen = screen_manager.current
+                img_src = image_queue.get_nowait()
+                self.update_image(current_screen, 'img', img_src)
         except Empty:
             pass
 
+    def peek_queue_contents(self, queue):
+        with queue.mutex:
+            return list(queue.queue)
+
     def await_pin_change(self, dt):
+        print("current screen = ", screen_manager.current)
+
         try:
             pin = gpio.read_gpio_pin(17)
             self.charge_pin = pin
 
             if self.charge_pin == 1:
-                if ScreenManager.current != 'lowbatteryscreen':
+                print("read one")
+                if screen_manager.current != 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'lowbatteryscreen')
                 else:
                     pass
-
-            if ScreenManager.current == 'lowbatteryscreen':
-                if self.charge_pin == 0:
+            if self.charge_pin == 0:
+                print("read zero")
+                if screen_manager.current == 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'idlescreen')
                 else:
                     pass
