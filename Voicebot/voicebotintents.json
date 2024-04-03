@@ -357,7 +357,7 @@
                 "it is located here at the 1st floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map1.png"
+            "src_img": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC second floor location",
@@ -382,7 +382,7 @@
                 "it is located at the 2nd floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map2.png"
+            "src_img": "Floors KVs/map2.png"
         },
         {
             "tag": "LOC third floor location",
@@ -407,7 +407,7 @@
                 "it is located at the 3rd floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map3.png"
+            "src_img": "Floors KVs/map3.png"
         },
         {
             "tag": "LOC fourth floor location",
@@ -431,7 +431,7 @@
                 "it is located at the 4th floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map4.png"
+            "src_img": "Floors KVs/map4.png"
         },
         {
             "tag": "LOC fifth floor location",
@@ -467,7 +467,7 @@
                 "it is located at the 5th floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map5.png"
+            "src_img": "Floors KVs/map5.png"
         },
         {
             "tag": "LOC sixth floor location",
@@ -491,7 +491,7 @@
                 "it is located at the 6th floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map6.png"
+            "src_img": "Floors KVs/map6.png"
         },
         {
             "tag": "LOC seventh floor location",
@@ -510,7 +510,7 @@
                 "it is located at the 7th floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map7.png"
+            "src_img": "Floors KVs/map7.png"
         },
         {
             "tag": "LOC eighth floor location",
@@ -546,7 +546,7 @@
                 "it is located at the 8th floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map8.png"
+            "src_img": "Floors KVs/map8.png"
         },
         {
             "tag": "LOC ninth floor location",
@@ -567,7 +567,7 @@
                 "it is located at the 9th floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map9.png"
+            "src_img": "Floors KVs/map9.png"
         },
         {
             "tag": "LOC tenth floor location",
@@ -596,7 +596,7 @@
                 "it is located at the 10th floor "
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map10.png"
+            "src_img": "Floors KVs/map10.png"
         },
         {
             "tag": "LOC eleventh floor location",
@@ -619,7 +619,7 @@
                 "it is located on the 11th floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map11.png"
+            "src_img": "Floors KVs/map11.png"
         },
         {
             "tag": "LOC twelfth floor location",
@@ -630,7 +630,7 @@
                 "it is located on the 12th floor"
             ],
             "navigate_to": "floor",
-            "img_src": "Floors KVs/map12.png"
+            "src_img": "Floors KVs/map12.png"
         },
 
         {

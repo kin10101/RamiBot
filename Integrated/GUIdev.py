@@ -60,6 +60,9 @@ class MainApp(MDApp):
         self.charge_pin = gpio.read_gpio_pin(17)
         self.status = False
 
+    stop_voice = threading.Event()
+    stop_face = threading.Event()
+
     def connect_to_db(self):
         print("attempting to connect to db...")
         try:
@@ -198,9 +201,10 @@ class MainApp(MDApp):
             # TODO get the current screen and update the image
 
             if not image_queue.empty():
+                print("IMAGE QUEUE NOT EMPTY!!!!!!!!!!!!!!!!!!!!")
                 current_screen = screen_manager.current
-                img_src = image_queue.get_nowait()
-                self.update_image(current_screen, 'img', img_src)
+                image_path = image_queue.get_nowait()
+                self.update_image(current_screen, 'img', image_path)
         except Empty:
             pass
 
@@ -375,17 +379,18 @@ class MainApp(MDApp):
             self.change_screen('newuser')
 
     def face_recognition_module(self):
-        print('ACTIVE FACE SCANNING')
-        self.camera = cv2.VideoCapture(0)
-        conf = trainedModel.face_recognition(self.camera)
+        if self.charge_pin == 0:
+            print('ACTIVE FACE SCANNING')
+            self.camera = cv2.VideoCapture(0)
+            conf = trainedModel.face_recognition(self.camera)
 
-        if conf is not None:
-            gpio.set_gpio_pin(4, 1)
-            put_in_queue(screen_queue, 'greetscreen')
-            self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
+            if conf is not None:
+                gpio.set_gpio_pin(4, 1)
+                put_in_queue(screen_queue, 'greetscreen')
+                self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
 
-            print(f"{main.result_text}")
-            # pygtts.speak(f'{main.result_text}')
+                print(f"{main.result_text}")
+                # pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
@@ -532,14 +537,16 @@ def get_from_queue(myqueue):
 
 def face_thread():
     print("face thread active")
-    if not stop_face.is_set():
+    if not MainApp.stop_face.is_set():
         app.face_recognition_module()
+    else:
+        print("FACE THREAD DISABLED")
 
 
 def voice_thread():
     print("voice thread active")
     while True:
-        if not stop_voice.is_set():
+        if not MainApp.stop_voice.is_set():
             voicebot.voice_assistant_loop()
         else:
             print("VOICE THREAD DISABLED")
@@ -571,8 +578,7 @@ if __name__ == "__main__":
     start_voice_thread()
 
     # Event States
-    stop_voice = threading.Event()
-    stop_face = threading.Event()
+
     stop_motor = threading.Event()
     # set events to stop thread processes and clear event to resume
 
