@@ -14,7 +14,7 @@
             "patterns": [
                 "tang ina",
                 "tangina",
-                "fuck you",
+                "fuck",
                 "stupid",
                 "bitch",
                 "gago",
@@ -24,7 +24,9 @@
                 "ina mo"
             ],
             "responses": [
-                "please refrain from saying such words"
+                "please refrain from saying such words",
+                "I'm sure we can communicate without using offensive words.",
+                "We can discuss this in a more civil manner."
             ]
         },
         {
@@ -72,33 +74,6 @@
                 "See you later! Have a great day!",
                 "See you! Wishing you a fantastic day ahead.",
                 "Have a nice day! Take care!"
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "GEN help",
-            "patterns": [
-                "how can you help me",
-                "what can you do",
-                "capabilities",
-                "capable"
-            ],
-            "responses": [
-                "I'm here to provide you with information about Asia Pacific College. How can I assist you specifically?",
-                "Feel free to ask me anything or assign me any task. I'm at your service and ready to help!"
-            ]
-        },
-        {
-            "tag": "RAMI height",
-            "patterns": [
-                "how tall are you",
-                "how tall is rami",
-                "how tall are you rami",
-                "how tall is rami bot",
-                "how tall are you rami bot"
-            ],
-            "responses": [
-                "I'm 4.5 feet tall"
             ]
         },
         {
@@ -116,43 +91,18 @@
             ]
         },
         {
-            "tag": "GEN gossip",
+            "tag": "GEN thank you",
             "patterns": [
-                "do you have someone you like",
-                "are you interested in anyone",
-                "do you have a crush"
-
+                "thank you",
+                "thanks"
             ],
             "responses": [
-                "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
-                "Hmm, my lips are sealed tight on that matter!",
-                "Well, there is someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move. It's all in good fun, though!"
+                "happy to help",
+                "you're welcome"
             ]
         },
         {
-            "tag": "GEN Hobby",
-            "patterns": [
-                "do you have any hobbies",
-                "what do you like to do in your free time",
-                "what are your hobbies"
-            ],
-            "responses": [
-                "I like watching people pass by",
-                "in my free time, I usually look at the funny faces stored in my database"
-            ]
-        },
-        {
-            "tag": "GEN hotdog",
-            "patterns": [
-                "hotdog",
-                "hot dog"
-            ],
-            "responses": [
-                "hotdog"
-            ]
-        },
-        {
-            "tag": "GEN who are you",
+            "tag": "RAMI who are you",
             "patterns": [
                 "who are you",
                 "sino ka",
@@ -162,555 +112,95 @@
             ],
             "responses": [
                 "Hey there! I'm Rami Bot, your one and only robotic assistant designed exclusively for APC.",
-                "Greetings. I am Rami Bot, a purpose-built robotic assistant exclusively assigned to serve APC. If you require any assistance, I am at your disposal."
+                "Greetings. I am Rami Bot, a purpose-built robotic assistant exclusively assigned to serve APC."
             ]
         },
         {
-            "tag": "GEN capabilities",
+            "tag": "RAMI credits",
+            "patterns": [
+                "Who made you",
+                " who developed you",
+                " who programmed you",
+                " who created ramibot"
+            ],
+            "responses": [
+                "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
+            ]
+        },
+        {
+            "tag": "RAMI purpose",
+            "patterns": [
+                "how can you help me",
+                "what can you do",
+                "capabilities",
+                "capable",
+                "what is your purpose"
+            ],
+            "responses": [
+                "I'm here to provide you with information about Asia Pacific College. How can I assist you specifically?",
+                "Feel free to ask me anything or assign me any task. I'm at your service and ready to help!"
+            ]
+        },
+        {
+            "tag": "RAMI capabilities",
             "patterns": [
                 "what can you do",
-                "what are you capable of doing"
+                "what are you capable of doing",
+                "what tasks can you perform",
+                "tell me your capabilities",
+                "what are your abilities"
+
             ],
             "responses": [
-                "i am currently capable of answering questions that i am trained for",
-                "at the moment, i can't do much because I am still in development"
+                "ask me anything related to Asia Pacific College",
+                "I am capable of face recognition, speech, and information provision"
             ]
         },
         {
-            "tag": "LOC cafeteria",
+            "tag": "RAMI height",
             "patterns": [
-                "eat",
-                "drink",
-                "food",
-                "water",
-                "refill"
+                "rami height",
+                "tall rami",
+                "tall rami bot"
             ],
             "responses": [
-                " You'll find the cafeteria right on the first floor, enjoy your meal!"
+                "I'm 4.5 feet tall, just the right height to assist you!"
             ]
         },
         {
-            "tag": "LOC registrar",
+            "tag": "RAMI weight",
             "patterns": [
-                "enroll",
-                "enrollment",
-                "registrar"
+                "rami weight",
+                "weigh rami",
+                "weigh rami bot"
             ],
             "responses": [
-                "you can go to the registrar in the fourth floor"
+                "thats a secret!"
             ]
-        },
-        {
-            "tag": "LOC location_help",
-            "patterns": [
-                "can you help me locate a room",
-                "find room"
-            ],
-            "responses": [
-                "What room do you want me to search for"
-            ],
-            "context_set": [
-                "find_room"
-            ],
-            "function": "followup_question"
-        },
-        {
-            "tag": "LOC lobby floor location",
-            "patterns": [
-                "cafeteria",
-                "admission office",
-                "clinic",
-                "chapel",
-                "floor mph1",
-                "mph one",
-                "mph1",
-                "MPH1"
-            ],
-            "responses": [
-                "it is located here at the 1st floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC second floor location",
-            "patterns": [
-                "room 201",
-                "room 202",
-                "room 203",
-                "room 204",
-                "room 205",
-                "room 206",
-                "room 207",
-                "room 208",
-                "room 209",
-                "room 213",
-                "room 214",
-                "room 215",
-                "room 216",
-                "room 217",
-                "room 218"
-            ],
-            "responses": [
-                "it is located at the 2nd floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC third floor location",
-            "patterns": [
-                "room 301",
-                "room 302",
-                "room 303",
-                "room 304",
-                "room 305",
-                "room 306",
-                "room 307",
-                "room 308",
-                "room 309",
-                "room 313",
-                "room 314",
-                "room 315",
-                "room 316",
-                "room 317",
-                "room 318"
-            ],
-            "responses": [
-                "it is located at the 3rd floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC fourth floor location",
-            "patterns": [
-                "room 401",
-                "room 402",
-                "room 403",
-                "room 409",
-                "room 414",
-                "room 415",
-                "room 416",
-                "room 417",
-                "room 418",
-                "part time room",
-                "the registrars office",
-                "registrar",
-                "faculty",
-                "board room"
-            ],
-            "responses": [
-                "it is located at the 4th floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC fifth floor location",
-            "patterns": [
-                "room 501",
-                "itro",
-                "ITRO",
-                "i t r o",
-                "room 502",
-                "room 504",
-                "room 505",
-                "room 506",
-                "room 508",
-                "room 513",
-                "room 514",
-                "room 515",
-                "room 517",
-                "recording studio",
-                "music recording studio",
-                "video and photography studio",
-                "photoshoot room",
-                "photography room",
-                "apc center",
-                "APC center",
-                "documentation office",
-                "hr office",
-                "human resource office",
-                "hr office",
-                "consulting office",
-                "consultation office"
-            ],
-            "responses": [
-                "it is located at the 5th floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC sixth floor location",
-            "patterns": [
-                "room 601",
-                "room 602",
-                "room 603",
-                "room 604",
-                "room 605",
-                "room 606",
-                "room 607",
-                "room 608",
-                "room 609",
-                "room 614",
-                "room 615",
-                "room 616",
-                "room 617",
-                "room 618"
-            ],
-            "responses": [
-                "it is located at the 6th floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC seventh floor location",
-            "patterns": [
-                "discussion room",
-                "meeting room",
-                "shs faculty",
-                "senior high school faculty",
-                "library",
-                "library office",
-                "technical library",
-                "avr",
-                "mrc"
-            ],
-            "responses": [
-                "it is located at the 7th floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC eighth floor location",
-            "patterns": [
-                "room 801",
-                "digital electronics laboratory",
-                "digital electronics lab",
-                "systems design laboratory",
-                "room 802",
-                "room 803",
-                "room 804",
-                "room 805",
-                "room 806",
-                "room 807",
-                "room 808",
-                "room 809",
-                "room 811",
-                "room 813",
-                "room 814",
-                "room 815",
-                "room 816",
-                "room 817",
-                "room 818",
-                "eslo",
-                "oslo",
-                "air lab",
-                "air hub",
-                "open laboratory",
-                "open lab"
-            ],
-            "responses": [
-                "it is located at the 8th floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC ninth floor location",
-            "patterns": [
-                "room 901",
-                "room 902",
-                "room 903",
-                "room 904",
-                "room 905",
-                "room 906",
-                "room 907",
-                "room 908",
-                "room 909",
-                "dormitory",
-                "dorm room"
-            ],
-            "responses": [
-                "it is located at the 9th floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC tenth floor location",
-            "patterns": [
-                "room 1004",
-                "gym",
-                "jim",
-                "gymnasium",
-                "room 1007",
-                "shower room",
-                "room 1008",
-                "logistics office",
-                "room 1011",
-                "bmo",
-                "kitchen",
-                "discipline office",
-                "disciplinary office",
-                "room 1013",
-                "room 1014",
-                "room 1015",
-                "room 1016",
-                "room 1017",
-                "room 1018"
-            ],
-            "responses": [
-                "it is located at the 10th floor "
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC eleventh floor location",
-            "patterns": [
-                " room 1109",
-                " court",
-                " basketball court",
-                " room 1110",
-                " room 1111",
-                " room 1114",
-                " room 1115",
-                " room 1116",
-                " room 1117",
-                " room 1118",
-                " chem lab",
-                " chemistry lab",
-                " guidance office"
-            ],
-            "responses": [
-                "it is located on the 11th floor"
-            ],
-            "navigate_to": "floormaps"
-        },
-        {
-            "tag": "LOC twelfth floor location",
-            "patterns": [
-                " auditorium"
-            ],
-            "responses": [
-                "it is located on the 12th floor"
-            ]
-        },
-        {
-            "tag": "LOC gym_keywords",
-            "patterns": [
-                "gym",
-                "workout",
-                "exercise",
-                "dance",
-                "jim"
-            ],
-            "responses": [
-                "you can go to the gym at the 10th floor"
-            ]
-        },
-        {
-            "tag": "PRG apc programs",
-            "patterns": [
-                "what programs does apc offer",
-                "other programs",
-                "what are the programs offered in apc"
-            ],
-            "responses": [
-                "asia pacific college offers many programs under different schools, which school are you interested in?",
-                "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one are you interested in?"
-            ],
-            "context_set": "apc_programs"
-        },
-        {
-            "tag": "PRG shs",
-            "patterns": [
-                "what is senior high school",
-                "tell me more about shs",
-                "high school"
-            ],
-            "responses": [
-                "senior high school is a two year program open to junior highschool graduates. it is divided into three strands which are STEM, ABM, and HUMSS."
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG soe courses",
-            "patterns": [
-                "engineering",
-                "soe",
-                "school of engineering"
-            ],
-            "responses": [
-                "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG socit courses",
-            "patterns": [
-                "it",
-                "socit",
-                "school of computing and information technology"
-            ],
-            "responses": [
-                "the school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG soa",
-            "patterns": [
-                "architecture",
-                "soar",
-                "school of architecture and design"
-            ],
-            "responses": [
-                "The School of Architecture consists of BS Architecture"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG som",
-            "patterns": [
-                "management",
-                "som",
-                "school of management"
-            ],
-            "responses": [
-                "The school of management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business "
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG soma",
-            "patterns": [
-                "multimedia arts",
-                "soma",
-                "school of multimedia arts"
-            ],
-            "responses": [
-                "The School of Multimedia Arts consists of BS Multimedia Arts and BS Psychology"
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
-        },
-        {
-            "tag": "PRG grad",
-            "patterns": [
-                "graduate school",
-                "grad",
-                "graduate"
-            ],
-            "responses": [
-                ""
-            ],
-            "context_filter": "apc_programs",
-            "context_set": ""
         },
 
         {
-            "tag": "FN_sing",
+            "tag": "APC what",
             "patterns": [
-                "sing a song"
+                "what is asia pacific college",
+                "what is apc",
+                "what is apc about"
+
             ],
             "responses": [
-                " "
-            ],
-            "function": [
-                "sing"
+                "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
             ]
         },
         {
-            "tag": "FN_current_time",
+            "tag": "APC address",
             "patterns": [
-                "time is it now",
-                "tell time",
-                "oras na",
-                "current time",
-                "what time is it"
+                "what is the address of apc",
+                "what is the address of asia pacific college",
+                "apc located",
+                "where is apc location"
             ],
             "responses": [
-                " "
-            ],
-            "function": [
-                "current_time"
-            ]
-        },
-        {
-            "tag": "FN_current_date",
-            "patterns": [
-                "what day is it today",
-                "date is it now",
-                "tell day",
-                "araw na",
-                "current date",
-                "can you tell me what day it is today"
-            ],
-            "responses": [
-                " "
-            ],
-            "function": [
-                "current_date"
-            ]
-        },
-        {
-            "tag": "FN_add_intents",
-            "patterns": [
-                "i want to add intents",
-                "add intents",
-                "let me teach you new words",
-                "i want to teach you new words"
-            ],
-            "responses": [
-                "please input the intent_tag, followed by the words you want to add, and the response you want to give"
-            ],
-            "function": [
-                "add_intents"
-            ]
-        },
-        {
-            "tag": "FN_edit_intents",
-            "patterns": [
-                "i want to edit intents",
-                "edit intents"
-            ],
-            "responses": [
-                "please enter the tag of the intent you want to edit"
-            ],
-            "function": [
-                "edit_intents"
-            ]
-        },
-        {
-            "tag": "FN_show_intents",
-            "patterns": [
-                "show intents",
-                "let me see intents",
-                "i want to see the intents",
-                "show me the list of intents"
-            ],
-            "responses": [
-                "sure here is the list of intents"
-            ],
-            "function": [
-                "show_intents"
-            ]
-        },
-        {
-            "tag": "FN_update",
-            "patterns": [
-                "train yourself",
-                "retrain",
-                "update",
-                "update yourself",
-                "begin training"
-            ],
-            "responses": [
-                "updating myself, please wait"
-            ],
-            "function": [
-                "update"
+                "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
             ]
         },
         {
@@ -721,7 +211,7 @@
                 "can you tell me more about asia pacific college"
             ],
             "responses": [
-                "Sure, which part would you like to know more about?"
+                "Sure, what would you like to know more about?"
             ]
         },
         {
@@ -813,6 +303,702 @@
                 "APC graduates are employed in various sectors of businesses and industries."
             ]
         },
+        {
+            "tag": "APC orgs",
+            "patterns": [
+                "What organizations are available in APC?",
+                "What organizations can I join in APC?",
+                "What clubs are available in APC?"
+            ],
+            "responses": [
+            ]
+        },
+        {
+            "tag": "RULES id",
+            "patterns": [
+                "lost id",
+                "lost my id",
+                "lost found id"
+            ],
+            "responses": [
+                "your ID might be in the lost and found section, you can check there",
+                "you can check the lost and found section for your ID",
+                "ask the guards there if they have found your ID"
+            ]
+        },
+        {
+            "tag": "RULES dress code",
+            "patterns": [
+                "what is the dress code",
+                "dress code",
+                "what to wear",
+                "apc dress code",
+                "asia pacific college dress code"
+            ],
+            "responses": [
+                "APC does not have a uniform but students are expected to dress appropriately and decently. Sleeveless shirts, shorts, slippers, and other inappropriate attire are not allowed.",
+                "APC follows a schedule of smart casual for mondays to thursdays and casual wear for fridays."
+            ]
+        },
+
+        {
+            "tag": "LOC lobby floor location",
+            "patterns": [
+                "cafeteria",
+                "admission office",
+                "clinic",
+                "chapel",
+                "floor mph1",
+                "mph one",
+                "mph1",
+                "MPH1"
+            ],
+            "responses": [
+                "it is located here at the 1st floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC second floor location",
+            "patterns": [
+                "room 201",
+                "room 202",
+                "room 203",
+                "room 204",
+                "room 205",
+                "room 206",
+                "room 207",
+                "room 208",
+                "room 209",
+                "room 213",
+                "room 214",
+                "room 215",
+                "room 216",
+                "room 217",
+                "room 218"
+            ],
+            "responses": [
+                "it is located at the 2nd floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC third floor location",
+            "patterns": [
+                "room 301",
+                "room 302",
+                "room 303",
+                "room 304",
+                "room 305",
+                "room 306",
+                "room 307",
+                "room 308",
+                "room 309",
+                "room 313",
+                "room 314",
+                "room 315",
+                "room 316",
+                "room 317",
+                "room 318"
+            ],
+            "responses": [
+                "it is located at the 3rd floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC fourth floor location",
+            "patterns": [
+                "room 401",
+                "room 402",
+                "room 403",
+                "room 409",
+                "room 414",
+                "room 415",
+                "room 416",
+                "room 417",
+                "room 418",
+                "part time room",
+                "the registrars office",
+                "registrar",
+                "faculty",
+                "board room"
+            ],
+            "responses": [
+                "it is located at the 4th floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC fifth floor location",
+            "patterns": [
+                "room 501",
+                "itro",
+                "ITRO",
+                "i t r o",
+                "room 502",
+                "room 504",
+                "room 505",
+                "room 506",
+                "room 508",
+                "room 513",
+                "room 514",
+                "room 515",
+                "room 517",
+                "recording studio",
+                "music recording studio",
+                "video and photography studio",
+                "photoshoot room",
+                "photography room",
+                "apc center",
+                "APC center",
+                "documentation office",
+                "hr office",
+                "human resource office",
+                "hr office",
+                "consulting office",
+                "consultation office"
+            ],
+            "responses": [
+                "it is located at the 5th floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC sixth floor location",
+            "patterns": [
+                "room 601",
+                "room 602",
+                "room 603",
+                "room 604",
+                "room 605",
+                "room 606",
+                "room 607",
+                "room 608",
+                "room 609",
+                "room 614",
+                "room 615",
+                "room 616",
+                "room 617",
+                "room 618"
+            ],
+            "responses": [
+                "it is located at the 6th floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC seventh floor location",
+            "patterns": [
+                "discussion room",
+                "meeting room",
+                "shs faculty",
+                "senior high school faculty",
+                "library",
+                "library office",
+                "technical library",
+                "avr",
+                "mrc"
+            ],
+            "responses": [
+                "it is located at the 7th floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC eighth floor location",
+            "patterns": [
+                "room 801",
+                "digital electronics laboratory",
+                "digital electronics lab",
+                "systems design laboratory",
+                "room 802",
+                "room 803",
+                "room 804",
+                "room 805",
+                "room 806",
+                "room 807",
+                "room 808",
+                "room 809",
+                "room 811",
+                "room 813",
+                "room 814",
+                "room 815",
+                "room 816",
+                "room 817",
+                "room 818",
+                "eslo",
+                "oslo",
+                "air lab",
+                "air hub",
+                "engineering room",
+                "open laboratory",
+                "open lab"
+            ],
+            "responses": [
+                "it is located at the 8th floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC ninth floor location",
+            "patterns": [
+                "room 901",
+                "room 902",
+                "room 903",
+                "room 904",
+                "room 905",
+                "room 906",
+                "room 907",
+                "room 908",
+                "room 909",
+                "dormitory",
+                "dorm room"
+            ],
+            "responses": [
+                "it is located at the 9th floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC tenth floor location",
+            "patterns": [
+                "room 1004",
+                "gym",
+                "jim",
+                "gymnasium",
+                "room 1007",
+                "shower room",
+                "room 1008",
+                "logistics office",
+                "room 1011",
+                "bmo",
+                "kitchen",
+                "discipline office",
+                "disciplinary office",
+                "room 1013",
+                "room 1014",
+                "room 1015",
+                "room 1016",
+                "room 1017",
+                "room 1018"
+            ],
+            "responses": [
+                "it is located at the 10th floor "
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC eleventh floor location",
+            "patterns": [
+                " room 1109",
+                " court",
+                " basketball court",
+                " room 1110",
+                " room 1111",
+                " room 1114",
+                " room 1115",
+                " room 1116",
+                " room 1117",
+                " room 1118",
+                " chem lab",
+                " chemistry lab",
+                " guidance office"
+            ],
+            "responses": [
+                "it is located on the 11th floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+        {
+            "tag": "LOC twelfth floor location",
+            "patterns": [
+                " auditorium"
+            ],
+            "responses": [
+                "it is located on the 12th floor"
+            ],
+            "navigate_to": "floormaps",
+            "img_src": "Floors KVs/map1.png"
+        },
+
+        {
+            "tag": "LOC basement 1",
+            "patterns": [
+                "car park",
+                "parking"
+            ],
+            "responses": [
+                "parking spaces are available in basement 1"
+            ]
+        },
+        {
+            "tag": "LOC basement 2",
+            "patterns": [
+                "bike park",
+                "bike parking",
+                "motor park",
+                "motor parking"
+            ],
+            "responses": [
+                "parking spaces are available in basement 2"
+            ]
+        },
+
+        {
+            "tag": "CLOC cafeteria",
+            "patterns": [
+                "eat",
+                "drink",
+                "food",
+                "water",
+                "refill",
+                "cafeteria",
+                "canteen",
+                "lunch",
+                "snack"
+            ],
+            "responses": [
+                "You'll find the cafeteria right on the first floor, enjoy your meal!",
+                "you can do that at the cafeteria located on the first floor"
+            ]
+        },
+        {
+            "tag": "CLOC comfort rooms",
+            "patterns": [
+                "restroom",
+                "toilet",
+                "comfort room",
+                "cr",
+                "washroom"
+            ],
+            "responses": [
+                "You'll find the cafeteria right on the first floor, enjoy your meal!",
+                "you can do that at the cafeteria located on the first floor"
+            ]
+        },
+        {
+            "tag": "CLOC clinic",
+            "patterns": [
+                "sick",
+                "clinic",
+                "nurse",
+                "doctor",
+                "health",
+                "medical",
+                "medicine"
+            ],
+            "responses": [
+                "The clinic is located on the first floor, you can go there for medical assistance"
+            ]
+        },
+        {
+            "tag": "CLOC chapel",
+            "patterns": [
+                "pray",
+                "chapel",
+                "church",
+                "worship",
+                "religion"
+            ],
+            "responses": [
+                "The chapel is located on the first floor, you can go there for a moment of prayer"
+            ]
+        },
+        {
+            "tag": "CLOC library",
+            "patterns": [
+                "read",
+                "study",
+                "research",
+                "library",
+                "books"
+            ],
+            "responses": [
+                "The library is located on the seventh floor, you can go there to read and study"
+            ]
+        },
+        {
+            "tag": "CLOC gym",
+            "patterns": [
+                "workout",
+                "exercise",
+                "gym",
+                "jim",
+                "dance"
+            ],
+            "responses": [
+                "The gym is located on the tenth floor, you can go there to workout"
+            ]
+        },
+        {
+            "tag": "LOC admission office",
+            "patterns": [
+                "admission",
+                "admission office"
+            ],
+            "responses": [
+                "you can go to the admission office in the first floor to assist you with your concerns"
+            ]
+        },
+        {
+            "tag": "LOC registrar",
+            "patterns": [
+                "enroll",
+                "enrollment",
+                "registrar"
+            ],
+            "responses": [
+                "you can go to the registrar in the fourth floor to assist you with your concerns"
+            ]
+        },
+        {
+            "tag": "LOC location_help",
+            "patterns": [
+                "can you help me locate a room",
+                "find room"
+            ],
+            "responses": [
+                "What room do you want me to search for"
+            ],
+            "context_set": [
+                "find_room"
+            ],
+            "function": "followup_question"
+        },
+        {
+            "tag": "LOC gym_keywords",
+            "patterns": [
+                "gym",
+                "workout",
+                "exercise",
+                "dance",
+                "jim"
+            ],
+            "responses": [
+                "you can go to the gym at the 10th floor"
+            ]
+        },
+        {
+            "tag": "PRG apc programs",
+            "patterns": [
+                "what programs does apc offer",
+                "other programs",
+                "what are the programs offered in apc"
+            ],
+            "responses": [
+                "asia pacific college offers many programs under different schools, which school are you interested in?",
+                "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one are you interested in?"
+            ],
+            "context_set": "apc_programs"
+        },
+        {
+            "tag": "PRG shs",
+            "patterns": [
+                "what is senior high school",
+                "tell me more about shs",
+                "high school"
+            ],
+            "responses": [
+                "senior high school is a two year program open to junior highschool graduates. it is divided into three strands which are STEM, ABM, and HUMSS."
+            ],
+
+            "context_set": ""
+        },
+        {
+            "tag": "PRG soe courses",
+            "patterns": [
+                "engineering",
+                "soe",
+                "school of engineering"
+            ],
+            "responses": [
+                "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
+            ],
+
+            "context_set": ""
+        },
+        {
+            "tag": "PRG socit courses",
+            "patterns": [
+                "it",
+                "socit",
+                "school of computing and information technology"
+            ],
+            "responses": [
+                "the school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology"
+            ],
+
+            "context_set": ""
+        },
+        {
+            "tag": "PRG soar",
+            "patterns": [
+                "architecture",
+                "soar",
+                "school of architecture and design"
+            ],
+            "responses": [
+                "The School of Architecture consists of BS Architecture"
+            ],
+
+            "context_set": ""
+        },
+        {
+            "tag": "PRG som",
+            "patterns": [
+                "management",
+                "som",
+                "school of management"
+            ],
+            "responses": [
+                "The school of management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business "
+            ],
+
+            "context_set": ""
+        },
+        {
+            "tag": "PRG soma",
+            "patterns": [
+                "multimedia arts",
+                "soma",
+                "school of multimedia arts"
+            ],
+            "responses": [
+                "The School of Multimedia Arts consists of BS Multimedia Arts and BS Psychology"
+            ],
+
+            "context_set": ""
+        },
+        {
+            "tag": "PRG grad",
+            "patterns": [
+                "graduate school",
+                "grad",
+                "graduate"
+            ],
+            "responses": [
+                ""
+            ],
+
+            "context_set": ""
+        },
+        {
+            "tag": "FN_sing",
+            "patterns": [
+                "sing a song"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "sing"
+            ]
+        },
+        {
+            "tag": "FN_current_time",
+            "patterns": [
+                "time is it now",
+                "tell time",
+                "oras na",
+                "current time",
+                "what time is it"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "current_time"
+            ]
+        },
+        {
+            "tag": "FN_current_date",
+            "patterns": [
+                "what day is it today",
+                "date is it now",
+                "tell day",
+                "araw na",
+                "current date",
+                "can you tell me what day it is today"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "current_date"
+            ]
+        },
+
+        {
+            "tag": "FN_add_intents",
+            "patterns": [
+                "i want to add intents",
+                "add intents",
+                "let me teach you new words",
+                "i want to teach you new words"
+            ],
+            "responses": [
+                "please input the intent_tag, followed by the words you want to add, and the response you want to give"
+            ],
+            "function": [
+                "add_intents"
+            ]
+        },
+        {
+            "tag": "FN_edit_intents",
+            "patterns": [
+                "i want to edit intents",
+                "edit intents"
+            ],
+            "responses": [
+                "please enter the tag of the intent you want to edit"
+            ],
+            "function": [
+                "edit_intents"
+            ]
+        },
+        {
+            "tag": "FN_show_intents",
+            "patterns": [
+                "show intents",
+                "let me see intents",
+                "i want to see the intents",
+                "show me the list of intents"
+            ],
+            "responses": [
+                "sure here is the list of intents"
+            ],
+            "function": [
+                "show_intents"
+            ]
+        },
+        {
+            "tag": "FN_update",
+            "patterns": [
+                "train yourself",
+                "retrain",
+                "update",
+                "update yourself",
+                "begin training"
+            ],
+            "responses": [
+                "updating myself, please wait"
+            ],
+            "function": [
+                "update"
+            ]
+        },
 
         {
             "tag": " 4 year program duration",
@@ -900,18 +1086,7 @@
                 "Humabon Parking, fronting the APC building and at the corner of Victoria and Lapu-Lapu Street in front of the Barangay Magallanes Hall"
             ]
         },
-        {
-            "tag": "SPC credits",
-            "patterns": [
-                "Who made you",
-                " who developed you",
-                " who programmed you",
-                " who created ramibot"
-            ],
-            "responses": [
-                "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
-            ]
-        },
+
         {
             "tag": "CPE about CPE",
             "patterns": [
@@ -934,28 +1109,6 @@
                 "Specializations covered by this program include the following: Embedded systems technology, System and network administration, Computing algorithm, Software development and design (including mobile application development), Internet-of-Things (IoT), Machine learning, Robotics technology, Robotics Process Automation (RPA)"
             ]
         },
-        {
-            "tag": "APC address",
-            "patterns": [
-                "what is the address of APC",
-                "what is the address of asia pacific college",
-                "apc located"
-            ],
-            "responses": [
-                "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
-            ]
-        },
-        {
-            "tag": "APC what",
-            "patterns": [
-                "what is asia pacific college",
-                "apc"
-            ],
-            "responses": [
-                "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
-            ]
-        },
-
 
         {
             "tag": "ECE what is ECE",
@@ -967,6 +1120,32 @@
             ],
             "responses": [
                 "The Bachelor of Science in Electronics Engineering (BS ECE) is a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
+            ]
+        },
+        {
+            "tag": "FUN gossip",
+            "patterns": [
+                "do you have someone you like",
+                "are you interested in anyone",
+                "do you have a crush"
+
+            ],
+            "responses": [
+                "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
+                "Hmm, my lips are sealed tight on that matter!",
+                "Well, there is someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move. It's all in good fun, though!"
+            ]
+        },
+        {
+            "tag": "FUN Hobby",
+            "patterns": [
+                "do you have any hobbies",
+                "what do you like to do in your free time",
+                "what are your hobbies"
+            ],
+            "responses": [
+                "I like watching people pass by",
+                "in my free time, I usually look at the funny faces stored in my database"
             ]
         }
     ]

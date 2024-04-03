@@ -33,13 +33,11 @@ from queue import Queue, Empty
 from Voicebot import voicebotengine
 from Voicebot.voice_assistant_module import VoiceAssistant, active_state
 
-
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
 global start
-
 
 
 class MainApp(MDApp):
@@ -209,12 +207,18 @@ class MainApp(MDApp):
         try:
             pin = gpio.read_gpio_pin(17)
             self.charge_pin = pin
+
             if self.charge_pin == 1:
-                # REFACTOR if queue does not contain lowbatteryscreen put in queue else pass
-                put_in_queue(screen_queue, 'lowbatteryscreen')
+                if ScreenManager.current != 'lowbatteryscreen':
+                    put_in_queue(screen_queue, 'lowbatteryscreen')
+                else:
+                    pass
+
             if ScreenManager.current == 'lowbatteryscreen':
                 if self.charge_pin == 0:
                     put_in_queue(screen_queue, 'idlescreen')
+                else:
+                    pass
         except:
             print("pin reading error")
             pass
@@ -454,7 +458,7 @@ class MainApp(MDApp):
             text_box.pos_hint = {"center_y": 0.05}
             self.status = False
         else:
-            text_box.pos_hint = {"center_y": 0.6}
+            text_box.pos_hint = {"center_y": 0.58}
             self.status = True
 
         screen_manager.do_layout()
