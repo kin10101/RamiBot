@@ -10,7 +10,7 @@ MDScreen:
             keep_ratio: False
             size_hint: 1, 1
 
-        #Back Button
+        # Back Button
         MDIconButton:
             icon: 'arrow-left'
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
@@ -27,28 +27,29 @@ MDScreen:
             padding: 10
             radius: [15]
 
-            MDScrollView: # ScrollView for Buttons
-                do_scroll_x: False
+        ScrollView:
+            size_hint: 0.78, 0.88
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
-                MDGridLayout: # Layout for Buttons
-                    cols: 2
-                    rows: 3
-                    padding: 10
-                    spacing: 25
+            MDGridLayout: # GridLayout for images
+                cols: 1
+               # rows: 4
+                size_hint_y: None
+                height: self.minimum_height
+               # spacing: 10
+
+                Image:
+                    id: orgImage1
+                    source: ' '
+                    allow_stretch: True
+                    keep_ratio: False
                     size_hint_y: None
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                    height: self.minimum_height
+                    height: dp(1000)  # Adjust the height as needed
 
-                    Image: # Background image
-                        id: orgImage1
-                        source: ' '
-                        allow_stretch: True
-                        keep_ratio: False
-                        size_hint: 0.2, 0.4
-                    Image: # Background image
-                        id: orgImage2
-                        source: ' '
-                        allow_stretch: True
-                        keep_ratio: False
-                        size_hint: 0.2, 0.4
-
+                Image:
+                    id: orgImage2
+                    source: ' '
+                    allow_stretch: True
+                    keep_ratio: False
+                    size_hint_y: None
+                    height: dp(1000)  # Adjust the height as needed

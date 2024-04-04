@@ -62,7 +62,11 @@ MDScreen:
                             root.manager.current = 'floor'
                             root.manager.transition.direction = 'left'
                             #app.update_label("floor", "floorLabel", "1ST FLOOR")
-                            app.update_image("floor", "floorImage", "Floors KVs/map1.png")
+                            #app.update_image("floor", "floorImage", "Floors KVs/map1.png")
+                            #app.getFromDB(1, "../floors_img/floor_one.png")
+                           # app.getFromDB(1, "../floors_img/floor_one.png")
+                            #app.update_images('floor', 'floorImage', "../floors_img/floor_one.png")
+                            root.update_images(1)
 
                     MDFillRoundFlatButton:
                         text: '2nd Floor'

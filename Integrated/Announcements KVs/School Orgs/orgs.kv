@@ -60,9 +60,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_press:
-                            root.manager.current = 'pagOrg'
+                            root.manager.current = 'orgInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_label("pagOrg", "orgLabel2", "Performing Arts Group")
+                            app.update_image("orgInfo", "orgImage", "Announcements KVs/School Orgs/pag_orgs.png")
 
                     MDFillRoundFlatButton:
                         text: 'Academic Organizations'
@@ -77,7 +77,11 @@ MDScreen:
                         on_press:
                             root.manager.current = 'acadsOrg'
                             root.manager.transition.direction = 'left'
-                            app.update_label("acadsOrg", "orgLabel1", "Academic Organizations")
+                            app.update_image("acadsOrg", "orgImage1", "Announcements KVs/School Orgs/soe_orgs.png")
+                            app.update_image("acadsOrg", "orgImage2", "Announcements KVs/School Orgs/som_orgs.png")
+                            app.update_image("acadsOrg", "orgImage3", "Announcements KVs/School Orgs/socit_orgs.png")
+                            app.update_image("acadsOrg", "orgImage4", "Announcements KVs/School Orgs/soma_orgs.png")
+
 
                     MDFillRoundFlatButton:
                         text: 'Socio-Civic Organizations'
@@ -90,9 +94,9 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_press:
-                            root.manager.current = 'socioOrg'
+                            root.manager.current = 'orgInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_label("socioOrg", "orgLabel3", "Socio-Civic Organizations")
+                            app.update_image("orgInfo", "orgImage", "Announcements KVs/School Orgs/socio_orgs.png")
 
                     MDFillRoundFlatButton:
                         text: 'Special Interest Organizations'
@@ -107,5 +111,6 @@ MDScreen:
                         on_press:
                             root.manager.current = 'specialOrg'
                             root.manager.transition.direction = 'left'
-                            app.update_label("specialOrg", "orgLabel4", "Special Interest Organizations")
+                            app.update_image("specialOrg", "orgImage1", "Announcements KVs/School Orgs/spec1_orgs.png")
+                            app.update_image("specialOrg", "orgImage2", "Announcements KVs/School Orgs/spec2_orgs.png")
 
