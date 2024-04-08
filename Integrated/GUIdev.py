@@ -208,10 +208,6 @@ class MainApp(MDApp):
         except Empty:
             pass
 
-    def peek_queue_contents(self, queue):
-        with queue.mutex:
-            return list(queue.queue)
-
     def await_pin_change(self, dt):
         print("current screen = ", screen_manager.current)
 

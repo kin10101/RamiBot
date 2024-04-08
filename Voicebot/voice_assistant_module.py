@@ -63,7 +63,11 @@ class VoiceAssistant:
         recognizer.operation_timeout = self.operation_timeout
         recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
         while True:
-            if gpio.read_gpio_pin(17) == 0:
+            if gpio.read_gpio_pin(17) == 1:
+                print("voice assistant deactivated")
+                pass
+
+            elif gpio.read_gpio_pin(17) == 0:
                 if not active_state.is_set():  # while active state is not set (roaming, idle screen), listen for wake word.
                     print("wakeword listening active")
                     try:
