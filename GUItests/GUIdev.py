@@ -109,23 +109,12 @@ class MainWindow(MDApp):
   #app.update_label("main",)
     def update_image(self, screen_name, id, source):
         '''Update image sources in mapscreen'''
-        screen_name = self.root.get_screen(screen_name)
+        screen = self.root.get_screen(screen_name)
         try:
-            label = screen_name.ids[id]
-  #          imgURL = MainWindow.getFromDB(imgID)
-   #         if imgURL:
-    #            label.source = imgURL
-     #       else:
-      #          print("Image not found in database")
-       # except Exception as e:
-        #    print("Error:", e)
-
-            #label = screen_name.ids[id]
-           # label = MainWindow.getFromDB()
+            label = screen.ids[id]
             label.source = source
-        except:
-            print("Source not found")
-        pass
+        except Exception as e:
+            print("Error updating image source:", e)
 
     def get_text(self, screen_name, id):
         '''Get text from textinput in newuser screen'''
@@ -165,6 +154,27 @@ class MainWindow(MDApp):
             MainWindow.connection.close()
             print("Connection to MySQL database closed")
 
+    def fetch_image_url(self, img_id):
+        # Execute the query
+        user_query = "SELECT calendar_img FROM calendars_img WHERE calendar_id = %s"
+        MainWindow.pics_cursor.execute(user_query, (img_id,))
+        image_found = MainWindow.pics_cursor.fetchone()
+        print(f"image found: {image_found}")
+
+        # Return the fetched image URL
+        return image_found[0] if image_found else None
+    def update_images(self, screenName, imageLabel, img_id):
+        screens = self.root.get_screen(screenName)
+        image_url = self.fetch_image_url(img_id)
+
+        print(f"image url: {image_url}")
+        if image_url:
+            pic = screens.ids[imageLabel]
+            pic.source = image_url
+        else:
+            print("Image not found")
+
+'''
     @staticmethod
     def getFromDB(imgID, imgURL):
         try:
@@ -328,14 +338,14 @@ class MainWindow(MDApp):
                         cv2.destroyAllWindows()
         else:
             self.change_screen('newuser')
-
+'''
 
 window_instance = MainWindow()
 # Connect to the database
 window_instance.connect_to_db()
-
 # Usage example: Call the getFromDB method with your desired imgID and imgURL
-window_instance.getFromDB(imgID='', imgURL=" ")
+window_instance.fetch_image_url(img_id='')
+    #window_instance.getFromDB(imgID='', imgURL=" ")
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app
