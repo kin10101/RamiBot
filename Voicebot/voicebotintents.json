@@ -313,6 +313,7 @@
             "responses": [
             ]
         },
+
         {
             "tag": "RULES id",
             "patterns": [
@@ -1100,6 +1101,20 @@
             ]
         },
         {
+            "tag": "CPE courses",
+            "patterns": [
+                "what courses are offered in CPE",
+                "what subjects are covered in computer engineering",
+                "what subjects are covered in CPE"
+            ],
+            "responses": [
+                "The program covers subjects such as computer programming, digital electronics, computer architecture, data structures and algorithms, computer networks, operating systems, software engineering, and computer organization and design."
+            ]
+        },
+        {
+
+        },
+        {
             "tag": "CPE specialization",
             "patterns": [
                 "what are the specializations covered in CPE",
@@ -1120,6 +1135,49 @@
             ],
             "responses": [
                 "The Bachelor of Science in Electronics Engineering (BS ECE) is a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
+            ]
+        },
+        {
+            "tag": "ECE courses",
+            "patterns": [
+                "what courses are offered in ECE",
+                "what subjects are covered in electronics engineering",
+                "what subjects are covered in ECE"
+            ],
+            "responses": [
+                "The program covers subjects such as circuit theory, digital electronics, microprocessors, communication systems, control systems, signal processing, and power electronics."
+            ]
+        },
+        {
+            "tag": "ECE specialization",
+            "patterns": [
+                "what are the specializations covered in ECE",
+                "what specializations are covered in electronics engineering"
+            ],
+            "responses": [
+                "Specializations covered by this program include the following: Embedded systems technology, System and network administration, Computing algorithm, Software development and design (including mobile application development), Internet-of-Things (IoT), Machine learning, Robotics technology, Robotics Process Automation (RPA)"
+            ]
+        },
+        {
+            "tag": "ECE employment",
+            "patterns": [
+                "what are the employment opportunities for ECE graduates",
+                "what jobs can ECE graduates get",
+                "what jobs can electronics engineering graduates get"
+            ],
+            "responses": [
+                "ECE graduates can work in various industries such as telecommunications, manufacturing, power, electronics, and semiconductor companies. They can also work as electronics engineers, network engineers, and systems engineers."
+            ]
+        },
+        {
+            "tag": "ECE board exam",
+            "patterns": [
+                "what is the board exam for ECE",
+                "what is the board exam for electronics engineering",
+                "what is the board exam for ECE graduates"
+            ],
+            "responses": [
+                "The board exam for ECE graduates is the Electronics Engineering Licensure Examination, which is conducted by the Professional Regulation Commission (PRC)."
             ]
         },
         {
@@ -1147,6 +1205,35 @@
                 "I like watching people pass by",
                 "in my free time, I usually look at the funny faces stored in my database"
             ]
+        },
+        {
+            "tag": "FUN joke",
+            "patterns": [
+                "tell me a joke",
+                "say something funny",
+                "make me laugh"
+            ],
+            "responses": [
+                "Why did the computer go to the doctor? Because it had a virus!",
+                "Why was the computer cold? It left its Windows open!",
+                "Why did the computer keep its drinks on the floor? Because it didn't want to spill its data!",
+                "two bytes meet. The first byte asks, 'Are you ill?' The second byte replies, 'No, just feeling a bit off."
+            ]
+        },
+        {
+            "tag": "FUN ugly",
+            "patterns": [
+                "you're ugly",
+                "panget"
+            ],
+            "responses": [
+                "I'm sorry if I'm not up to your standards. I'm just a bot after all.",
+                "at least I'm not as ugly as your attitude",
+                "remember, beauty is in the eye of the beholder."
+            ]
+        },
+        {
+
         }
     ]
 }
