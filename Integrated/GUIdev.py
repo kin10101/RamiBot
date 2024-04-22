@@ -1,17 +1,15 @@
-import time
-
 from Facerecog import trainedModel
 from Facerecog import main
 from kivy.uix.popup import Popup
 
 # Chatbot imports
 from Chatbot.chatbot import handle_request
-from Chatbot.chatbotGUI import ChatScreen, Command, Response
+from Chatbot.chatbotGUI import Command, Response
 
 import mysql
 import mysql.connector
 
-import Voicebot.pygtts as pygtts
+import pygtts as pygtts
 import gpio
 
 import cv2

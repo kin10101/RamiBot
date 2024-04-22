@@ -1,6 +1,5 @@
 from gtts import gTTS
 import pygame
-
 def speak(text, lang='en'):
     # Create a gTTS object
     tts = gTTS(text, lang=lang)
@@ -10,7 +9,7 @@ def speak(text, lang='en'):
 
     # Initialize the audio player
     pygame.mixer.init()
-    sound = pygame.mixer.Sound("output.mp3")
+    sound = pygame.mixer.Sound("Voicebot/output.mp3")
 
     # Play the speech
     sound.play()
