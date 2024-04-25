@@ -15,11 +15,11 @@ Speech_Queue = Queue()
 Image_Queue = Queue()
 # Load data
 lemmatizer = WordNetLemmatizer()
-path = './RamiBot/Voicebot/'
-intents = json.loads(open('/home/rami/PycharmProjects/RamiBot/Voicebot/voicebotintents.json').read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbot_model.h5')
+
+intents = json.loads(open('/home/rami/PycharmProjects/RamiBot/Integrated/voicebotintents.json').read())
+words = pickle.load(open('/home/rami/PycharmProjects/RamiBot/Integrated/words.pkl', 'rb'))
+classes = pickle.load(open('/home/rami/PycharmProjects/RamiBot/Integrated/classes.pkl', 'rb'))
+model = load_model('/home/rami/PycharmProjects/RamiBot/Integrated/chatbot_model.h5')
 
 # Get dict command mappings
 intent_methods = voicecommand_functions.command_mappings
@@ -87,12 +87,14 @@ def get_response(intents_list, intents_json, context):
 
             if 'navigate_to' in i:
                 Speech_Queue.put(i['navigate_to'])
+                print("VOICEBOT PLACED AN ITEM IN SCREEN QUEUE")
 
-            if 'src_img' in i:
+            if 'source_image' in i:
                 # TODO query image from database that is a substring of i['source_image'] and put the whole url to
                 #  the queue
 
-                Image_Queue.put(i['src_img'])
+                Image_Queue.put(i['source_image'])
+                print("VOICEBOT PLACED AN ITEM TO CHANGE IMAGE")
 
             if 'responses' in i and i['responses']:
                 result = random.choice(i['responses'])  # Gets a random response from the given list

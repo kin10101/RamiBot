@@ -313,7 +313,17 @@
             "responses": [
             ]
         },
-
+       {
+            "tag": "APC current events",
+            "patterns": [
+                "What happening in APC?",
+                "What events are happening in APC?",
+                "events in APC"
+            ],
+            "responses": ["here are the current happenings in APC"
+            ],
+           "source_image": "APC Events KVs/Events.png"
+        },
         {
             "tag": "RULES id",
             "patterns": [
@@ -358,7 +368,7 @@
                 "it is located here at the 1st floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map1.png"
+            "source_image": "Floors KVs/map1.png"
         },
         {
             "tag": "LOC second floor location",
@@ -383,7 +393,7 @@
                 "it is located at the 2nd floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map2.png"
+            "source_image": "Floors KVs/map2.png"
         },
         {
             "tag": "LOC third floor location",
@@ -408,7 +418,7 @@
                 "it is located at the 3rd floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map3.png"
+            "source_image": "Floors KVs/map3.png"
         },
         {
             "tag": "LOC fourth floor location",
@@ -432,7 +442,7 @@
                 "it is located at the 4th floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map4.png"
+            "source_image": "Floors KVs/map4.png"
         },
         {
             "tag": "LOC fifth floor location",
@@ -468,7 +478,7 @@
                 "it is located at the 5th floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map5.png"
+            "source_image": "Floors KVs/map5.png"
         },
         {
             "tag": "LOC sixth floor location",
@@ -492,7 +502,7 @@
                 "it is located at the 6th floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map6.png"
+            "source_image": "Floors KVs/map6.png"
         },
         {
             "tag": "LOC seventh floor location",
@@ -511,7 +521,7 @@
                 "it is located at the 7th floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map7.png"
+            "source_image": "Floors KVs/map7.png"
         },
         {
             "tag": "LOC eighth floor location",
@@ -547,7 +557,7 @@
                 "it is located at the 8th floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map8.png"
+            "source_image": "Floors KVs/map8.png"
         },
         {
             "tag": "LOC ninth floor location",
@@ -568,7 +578,7 @@
                 "it is located at the 9th floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map9.png"
+            "source_image": "Floors KVs/map9.png"
         },
         {
             "tag": "LOC tenth floor location",
@@ -597,7 +607,7 @@
                 "it is located at the 10th floor "
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map10.png"
+            "source_image": "Floors KVs/map10.png"
         },
         {
             "tag": "LOC eleventh floor location",
@@ -620,7 +630,7 @@
                 "it is located on the 11th floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map11.png"
+            "source_image": "Floors KVs/map11.png"
         },
         {
             "tag": "LOC twelfth floor location",
@@ -631,7 +641,7 @@
                 "it is located on the 12th floor"
             ],
             "navigate_to": "floor",
-            "src_img": "Floors KVs/map12.png"
+            "source_image": "Floors KVs/map12.png"
         },
 
         {
@@ -1101,20 +1111,6 @@
             ]
         },
         {
-            "tag": "CPE courses",
-            "patterns": [
-                "what courses are offered in CPE",
-                "what subjects are covered in computer engineering",
-                "what subjects are covered in CPE"
-            ],
-            "responses": [
-                "The program covers subjects such as computer programming, digital electronics, computer architecture, data structures and algorithms, computer networks, operating systems, software engineering, and computer organization and design."
-            ]
-        },
-        {
-
-        },
-        {
             "tag": "CPE specialization",
             "patterns": [
                 "what are the specializations covered in CPE",
@@ -1135,49 +1131,6 @@
             ],
             "responses": [
                 "The Bachelor of Science in Electronics Engineering (BS ECE) is a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
-            ]
-        },
-        {
-            "tag": "ECE courses",
-            "patterns": [
-                "what courses are offered in ECE",
-                "what subjects are covered in electronics engineering",
-                "what subjects are covered in ECE"
-            ],
-            "responses": [
-                "The program covers subjects such as circuit theory, digital electronics, microprocessors, communication systems, control systems, signal processing, and power electronics."
-            ]
-        },
-        {
-            "tag": "ECE specialization",
-            "patterns": [
-                "what are the specializations covered in ECE",
-                "what specializations are covered in electronics engineering"
-            ],
-            "responses": [
-                "Specializations covered by this program include the following: Embedded systems technology, System and network administration, Computing algorithm, Software development and design (including mobile application development), Internet-of-Things (IoT), Machine learning, Robotics technology, Robotics Process Automation (RPA)"
-            ]
-        },
-        {
-            "tag": "ECE employment",
-            "patterns": [
-                "what are the employment opportunities for ECE graduates",
-                "what jobs can ECE graduates get",
-                "what jobs can electronics engineering graduates get"
-            ],
-            "responses": [
-                "ECE graduates can work in various industries such as telecommunications, manufacturing, power, electronics, and semiconductor companies. They can also work as electronics engineers, network engineers, and systems engineers."
-            ]
-        },
-        {
-            "tag": "ECE board exam",
-            "patterns": [
-                "what is the board exam for ECE",
-                "what is the board exam for electronics engineering",
-                "what is the board exam for ECE graduates"
-            ],
-            "responses": [
-                "The board exam for ECE graduates is the Electronics Engineering Licensure Examination, which is conducted by the Professional Regulation Commission (PRC)."
             ]
         },
         {
@@ -1205,35 +1158,6 @@
                 "I like watching people pass by",
                 "in my free time, I usually look at the funny faces stored in my database"
             ]
-        },
-        {
-            "tag": "FUN joke",
-            "patterns": [
-                "tell me a joke",
-                "say something funny",
-                "make me laugh"
-            ],
-            "responses": [
-                "Why did the computer go to the doctor? Because it had a virus!",
-                "Why was the computer cold? It left its Windows open!",
-                "Why did the computer keep its drinks on the floor? Because it didn't want to spill its data!",
-                "two bytes meet. The first byte asks, 'Are you ill?' The second byte replies, 'No, just feeling a bit off."
-            ]
-        },
-        {
-            "tag": "FUN ugly",
-            "patterns": [
-                "you're ugly",
-                "panget"
-            ],
-            "responses": [
-                "I'm sorry if I'm not up to your standards. I'm just a bot after all.",
-                "at least I'm not as ugly as your attitude",
-                "remember, beauty is in the eye of the beholder."
-            ]
-        },
-        {
-
         }
     ]
 }

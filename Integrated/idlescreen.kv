@@ -4,10 +4,12 @@ MDScreen:
         app.start_face_thread()
         app.start_timer()
         app.clear_event()
+        app.set_face_blink()
 
     on_pre_leave:
         app.on_gpio(4, 1)
         app.close_camera()
+
 
 
 
@@ -17,29 +19,10 @@ MDScreen:
         orientation: 'vertical'
 
         Image: # Background image
-            source: 'Assets/rami_faces/smile.png'
-            allow_stretch: True
-            keep_ratio: False
+            id: face
+            source: ' rami_faces/smile.png'
+            allow_stretch: False
+            keep_ratio: True
             size_hint: 1, 1
             on_touch_down: app.root.current = 'mainmenu'
-
-
-        MDBoxLayout: # Square transparent container
-            orientation: 'vertical'
-            size_hint: .8, .9
-            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
-            md_bg_color: 0.1, 0.1, 0.1, 0.1
-            padding: 2
-            radius: [15]
-
-            MDLabel: # Title
-                text: 'tap screen to interact'
-                font_name: 'Poppins'
-                font_size: "70sp"
-                halign: 'center'
-                valign: 'center'
-                text_color: 1, 1, 1, 1
-                size_hint: 1, .2
-                bold: True
-
 
