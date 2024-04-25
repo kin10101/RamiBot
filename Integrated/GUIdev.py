@@ -255,8 +255,8 @@ class MainApp(MDApp):
                 put_in_queue(image_queue, 'rami_faces/smile.png')
 
     def set_face_blink(self):
-        Clock.schedule_interval(self.await_face_change, 1)
-        Clock.schedule_interval(self.face_blink, 1)
+        Clock.schedule_interval(self.await_face_change, .5)
+        Clock.schedule_interval(self.face_blink, 3)
         if screen_manager.current != 'idlescreen':
             Clock.unschedule(self.face_blink)
             Clock.unschedule(self.await_face_change)
