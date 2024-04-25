@@ -238,7 +238,7 @@ class MainWindow(MDApp):
             middle_initial = self.get_text('adduser', 'middle_initial')
             last_name = self.get_text('adduser', 'last_name')
             nickname = self.get_text('adduser', 'nickname')
-            role = self.get_text('adduser', 'profession')
+            role = self.get_text('adduser', 'role')
 
             if not all([user_ID, given_name, last_name, nickname, role]): # Check if any of the variables are empty
                 raise ValueError("Empty fields detected")

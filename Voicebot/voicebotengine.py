@@ -7,7 +7,6 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from keras.models import load_model
 
-import Voicebot.voicecommand_functions
 from Voicebot import voicecommand_functions
 from queue import Queue, Empty
 

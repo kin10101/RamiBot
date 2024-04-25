@@ -307,7 +307,7 @@ class MainApp(MDApp):
             nickname = self.get_text('adduserscreen', 'nickname')
             role = self.get_text('adduserscreen', 'role')
 
-            if not all([user_ID, given_name, last_name, nickname, role]):  # Check if any of the variables are empty
+            if not all([user _ID, given_name, last_name, nickname, role]):  # Check if any of the variables are empty
                 raise ValueError("Empty fields detected")
 
             DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
