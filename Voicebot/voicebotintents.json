@@ -1483,7 +1483,7 @@
             "responses": [
                 "APC offers several scholarship programs for Senior High School students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program would you like to hear about?",
                 "There are several scholarships available for SHS students in APC. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program are you interested in?",
-                "APC provides a variety of scholarship programs for SHS students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which one do you prefer?"
+                "APC provides a variety of scholarship programs for SHS students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, Philippine National Police (PNP), and the Armed Forces of the Philippines (AFP) scholarships. Which one do you prefer?"
             ]
         },
         {
@@ -1510,6 +1510,140 @@
             ],
             "responses": [
                 "The SM Foundation Scholarship is a great opportunity for incoming freshmen at Asia Pacific College, especially those with strong academic records and facing financial limitations. It offers full tuition coverage, a monthly stipend, and even helps scholars find part-time jobs."
+            ]
+        },
+        {
+            "tag": "APC_SM_Group_Scholarship",
+            "patterns": [
+                "Tell me about the SM Group of Companies Scholarship",
+                "What is the SM Group of Companies Scholarship",
+                "Can you give me information about the SM Group of Companies Scholarship",
+                "I want to know about the SM Group of Companies Scholarship"
+            ],
+            "responses": [
+                "The SM Group of Companies Scholarship is a scholarship program offered to children and siblings of SM employees. It provides 20% subsidy for those who are qualified."
+            ]
+        },
+        {
+            "tag": "APC_AFP_Scholarship",
+            "patterns": [
+                "Tell me about the Armed Forces of the Philippines (AFP) Scholarship",
+                "What is the Armed Forces of the Philippines (AFP) Scholarship",
+                "Can you give me information about the Armed Forces of the Philippines (AFP) Scholarship",
+                "I want to know about the Armed Forces of the Philippines (AFP) Scholarship"
+            ],
+            "responses": [
+                "The Armed Forces of the Philippines (AFP) Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 60% or 100% subsidy to students who are dependents of AFP personnel."
+            ]
+        },
+        {
+            "tag": "APC_Entrance_Academic_Scholar",
+            "patterns": [
+                "Tell me about the Entrance Academic Scholar",
+                "What is the Entrance Academic Scholar",
+                "Can you give me information about the Entrance Academic Scholar",
+                "I want to know about the Entrance Academic Scholar"
+            ],
+            "responses": [
+                "The Entrance Academic Scholar is a scholarship program offered to Senior High School and college students of Asia Pacific College. It provides subsidy to students who excel academically and demonstrate leadership potential."
+            ]
+        },
+        {
+            "tag": "APC_PNP_Scholarship",
+            "patterns": [
+                "Tell me about the PNP Scholarship",
+                "What is the PNP Scholarship",
+                "Can you give me information about the PNP Scholarship",
+                "I want to know about the PNP Scholarship"
+            ],
+            "responses": [
+                "The PNP Scholarship is a program where all children of active uniformed Philippine National Police personnel will have a 60% subsidy."
+            ]
+        },
+        {
+            "tag": "APC_IBM_Scholarship",
+            "patterns": [
+                "Tell me about the IBM Scholarship",
+                "What is the IBM Scholarship",
+                "Can you give me information about the IBM Scholarship",
+                "I want to know about the IBM Scholarship"
+            ],
+            "responses": [
+                "The IBM Scholarship is a program that offers a 40% subsidy for the top 5 high school graduates endorsed by IBM and a 20% subsidy for regular employees of IBM."
+            ]
+        },
+        {
+            "tag": "APC_Public_School_Grad_Financial_Assistance",
+            "patterns": [
+                "Tell me about the Public School Graduates Financial Assistance",
+                "What is the Public School Graduates Financial Assistance",
+                "Can you give me information about the Public School Graduates Financial Assistance",
+                "I want to know about the Public School Graduates Financial Assistance"
+            ],
+            "responses": [
+                "The Public School Graduates Financial Assistance is a program that offers a 50% subsidy for High school graduates of any public school."
+            ]
+        },
+        {
+            "tag": "APC_MaPSA_Financial_Assistance",
+            "patterns": [
+                "Tell me about the MaPSA Financial Assistance",
+                "What is the MaPSA Financial Assistance",
+                "Can you give me information about the MaPSA Financial Assistance",
+                "I want to know about the MaPSA Financial Assistance"
+            ],
+            "responses": [
+                "The MaPSA or Parish School Graduate Financial Assistance is a program that offers a 35% subsidy for High school graduates (who has not attended any college/university) of any parish school."
+            ]
+        },
+        {
+            "tag": "APC_Socialized_Financial_Assistance",
+            "patterns": [
+                "Tell me about the Socialized Financial Assistance",
+                "What is the Socialized Financial Assistance",
+                "Can you give me information about the Socialized Financial Assistance",
+                "I want to know about the Socialized Financial Assistance"
+            ],
+            "responses": [
+                "The Socialized Financial Assistance is a program that offers a 35% subsidy for students whose family aggregate annual income is less than P400,000 and a 20% subsidy for students whose family aggregate annual income is between P400,000 and P800,000."
+            ]
+        },
+        {
+            "tag": "APC_Socialized_Financial_Assistance_Siblings",
+            "patterns": [
+                "Tell me about the Socialized Financial Assistance for siblings",
+                "What is the Socialized Financial Assistance for siblings",
+                "Can you give me information about the Socialized Financial Assistance for siblings",
+                "I want to know about the Socialized Financial Assistance for siblings"
+            ],
+            "responses": [
+                "The Socialized Financial Assistance is a program that offers a 20% subsidy for siblings of currently enrolled APC students."
+            ]
+        },
+        {
+            "tag": "Program_Duration",
+            "patters": [
+                "How long are the programs offered in APC?",
+                "What is the duration of the bachelors program?",
+                "How many years is the bachelors program?",
+                "How many years does the program take?",
+                "How many years is the course?",
+                "How many years does the course take?"
+            ],
+            "responses": [
+                "The bachelors program in APC typically takes four years to complete."
+            ]
+        },
+        {
+            "tag": "APC_Office_Availability_Weekends",
+            "patterns": [
+                "Are all offices open during weekends?",
+                "What are the office hours during weekends?",
+                "Can you tell me the office hours of all offices during weekends?",
+                "I want to know the office hours of all offices during weekends."
+            ],
+            "responses": [
+                "All offices in APC are typically open from 8:00 AM to 5:00 PM during weekends. However, it's best to contact the specific office for any special arrangements."
             ]
         }
     ]
