@@ -30,25 +30,29 @@ from queue import Queue, Empty
 
 from Voicebot import voicebotengine
 from Voicebot.voice_assistant_module import VoiceAssistant, active_state
+import random
+import time
+
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 global count
 global start
-
+global screen_manager
 
 class MainApp(MDApp):
     face_count = 0
     add_user_flag = 0
     global user_ID
 
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.connection = None
         self.timeout = None
         self.texture = None
-        self.camera = None
+        self.camera = cv2.VideoCapture(0)
         self.frame_count = None
         self.frame_rate = None
         self.num_images_to_capture = 50
@@ -57,7 +61,8 @@ class MainApp(MDApp):
         self.image = None
         self.charge_pin = gpio.read_gpio_pin(17)
         self.status = False
-
+        self.current_screen = None
+        self.previous_screen = None
     stop_voice = threading.Event()
     stop_face = threading.Event()
 
@@ -110,8 +115,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
+        #screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
+        #screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendars.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
@@ -144,7 +149,8 @@ class MainApp(MDApp):
         self.connect_to_db()
 
         Clock.schedule_interval(self.await_change_screen, .5)
-        Clock.schedule_interval(self.await_pin_change, .5)
+        Clock.schedule_interval(self.await_pin_change, 1)
+
 
     def on_stop(self):
         self.close_connection()
@@ -192,35 +198,47 @@ class MainApp(MDApp):
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
         the item in queue"""
-        try:
+        if not screen_queue.empty():
             item = screen_queue.get_nowait()
             print(item)
-            self.change_screen(item)
-            # TODO get the current screen and update the image
 
+            current_screen = screen_manager.current
+            if item != current_screen:
+                self.change_screen(item)
             if not image_queue.empty():
-                print("IMAGE QUEUE NOT EMPTY!!!!!!!!!!!!!!!!!!!!")
                 current_screen = screen_manager.current
                 image_path = image_queue.get_nowait()
-                self.update_image(current_screen, 'img', image_path)
-        except Empty:
-            pass
 
+                self.update_image(current_screen, 'img', image_path)
+            # TODO get the current screen and update the image
+
+
+        else: pass
+
+    def await_face_change(self, dt):
+        if not image_queue.empty():
+            current_screen = screen_manager.current
+            if current_screen == 'idlescreen':
+                image_path = image_queue.get_nowait()
+
+                self.update_image(current_screen, 'face', image_path)
+        else:
+            pass
     def await_pin_change(self, dt):
-        print("current screen = ", screen_manager.current)
+        #print("current screen = ", screen_manager.current)
 
         try:
             pin = gpio.read_gpio_pin(17)
             self.charge_pin = pin
 
             if self.charge_pin == 1:
-                print("read one")
+                #print("read one")
                 if screen_manager.current != 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'lowbatteryscreen')
                 else:
                     pass
             if self.charge_pin == 0:
-                print("read zero")
+                #print("read zero")
                 if screen_manager.current == 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'idlescreen')
                 else:
@@ -228,6 +246,22 @@ class MainApp(MDApp):
         except:
             print("pin reading error")
             pass
+
+    def face_blink(self, dt):
+        if screen_manager.current == 'idlescreen':
+            blink_probability = random.randint(1, 10)  # Generate a random number between 1 and 10
+            if blink_probability > 8:
+                put_in_queue(image_queue, 'rami_faces/blink.png')
+                put_in_queue(image_queue, 'rami_faces/smile.png')
+
+    def set_face_blink(self):
+        Clock.schedule_interval(self.await_face_change, .8)
+        Clock.schedule_interval(self.face_blink, 3)
+        if screen_manager.current != 'idlescreen':
+            Clock.unschedule(self.face_blink)
+            Clock.unschedule(self.await_face_change)
+
+
 
     # FACE RECOGNITION ---------------------------------
     def warning(self):
@@ -273,7 +307,7 @@ class MainApp(MDApp):
             nickname = self.get_text('adduserscreen', 'nickname')
             role = self.get_text('adduserscreen', 'role')
 
-            if not all([user _ID, given_name, last_name, nickname, role]):  # Check if any of the variables are empty
+            if not all([user_ID, given_name, last_name, nickname, role]):  # Check if any of the variables are empty
                 raise ValueError("Empty fields detected")
 
             DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
@@ -283,11 +317,11 @@ class MainApp(MDApp):
         except ValueError as ve:
             print(f"Error: {ve}")
             self.warning()
-            self.change_screen('adduser')
+            self.change_screen('adduserscreen')
         except Exception as e:
             print(f"Error in uploading to db: {e}")
             self.warning()
-            self.change_screen('adduser')
+            self.change_screen('adduserscreen')
 
     def add_visitor_user_to_db(self):
         global user_ID
@@ -384,7 +418,7 @@ class MainApp(MDApp):
                 self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
 
                 print(f"{main.result_text}")
-                # pygtts.speak(f'{main.result_text}')
+                pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
@@ -396,8 +430,6 @@ class MainApp(MDApp):
         elif lower_conf is False:
             self.change_screen('mainmenu')
 
-        else:
-            print("unexpected value of low_conf")
 
     def close_camera(self):
         self.camera.release()
@@ -521,13 +553,17 @@ class MainApp(MDApp):
 
 
 def put_in_queue(myqueue, item):
-    myqueue.put(item)
-    print("placed" + item)
+    if not myqueue.empty() and myqueue.queue[0] == item:
+        print("Item already at the front of the queue")
+    else:
+        myqueue.put(item)
+        print("Placed " + item)
 
 
 def get_from_queue(myqueue):
     try:
-        return myqueue.get_nowait()
+        item = myqueue.get_nowait()
+        return item
     except Empty:
         return None
 

@@ -5,11 +5,11 @@ def speak(text, lang='en'):
     tts = gTTS(text, lang=lang)
 
     # Save the speech as an audio file
-    tts.save("output.mp3")
+    tts.save("/home/rami/PycharmProjects/RamiBot/Integrated/output.mp3")
 
     # Initialize the audio player
     pygame.mixer.init()
-    sound = pygame.mixer.Sound("Voicebot/output.mp3")
+    sound = pygame.mixer.Sound("/home/rami/PycharmProjects/RamiBot/Integrated/output.mp3")
 
     # Play the speech
     sound.play()
