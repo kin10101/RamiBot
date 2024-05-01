@@ -78,11 +78,11 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_images("calendarInfo", "calendarImage", "1")
-                            app.update_label("calendarInfo", "calendarLabel", "Senior High School Calendar: A.Y. 2023-2024")
+                            app.update_images("calendarInfo", "calendarImage", "SHS")
+                          #  app.update_label("calendarInfo", "calendarLabel", "Senior High School Calendar: A.Y. 2023-2024")
 
                     MDFillRoundFlatButton:
-                        text: 'Senior High School Calendar: Term 1, A.Y. 2023-2024'
+                        text: 'Senior High School Calendar: Term 1'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -94,12 +94,12 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_images("calendarInfo", "calendarImage", "2")
-                            app.update_label("calendarInfo", "calendarLabel", "Senior High School Calendar: Term 1, A.Y. 2023-2024")
+                            app.update_images("calendarInfo", "calendarImage", "T1_SHS")
+                       #     app.update_label("calendarInfo", "calendarLabel", "Senior High School Calendar: Term 1, A.Y. 2023-2024")
                             #app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/shsc_t1ay20232024.png")
 
                     MDFillRoundFlatButton:
-                        text: 'Senior High School Calendar: Term 2, A.Y. 2023-2024'
+                        text: 'Senior High School Calendar: Term 2'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -111,8 +111,25 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_images("calendarInfo", "calendarImage", "3")
-                            app.update_label("calendarInfo", "calendarLabel", "Senior High School Calendar: Term 2, A.Y. 2023-2024")
+                            app.update_images("calendarInfo", "calendarImage", "T2_SHS")
+                         #   app.update_label("calendarInfo", "calendarLabel", "Senior High School Calendar: Term 2, A.Y. 2023-2024")
+                            #app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/shsc_t2ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Senior High School Calendar: Term 3'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'calendarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_images("calendarInfo", "calendarImage", "T3_SHS")
+                           # app.update_label("calendarInfo", "calendarLabel", "Senior High School Calendar: Term 3, A.Y. 2023-2024")
                             #app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/shsc_t2ay20232024.png")
 
                     Label: # Title
@@ -146,12 +163,12 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_images("calendarInfo", "calendarImage", "4")
-                            app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: A.Y. 2023-2024")
+                            app.update_images("calendarInfo", "calendarImage", "Colleges")
+                        #    app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: A.Y. 2023-2024")
                          #   app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/apc_csc_ay20232024.png")
 
                     MDFillRoundFlatButton:
-                        text: 'Collegiate Calendar: Term 1,  A.Y. 2023-2024'
+                        text: 'Collegiate Calendar: Term 1'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -163,12 +180,12 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_images("calendarInfo", "calendarImage", "5")
-                            app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: Term 1, A.Y. 2023-2024")
+                            app.update_images("calendarInfo", "calendarImage", "T1_Colleges")
+                          #  app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: Term 1, A.Y. 2023-2024")
                            # app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/csc_t1ay20232024.png")
 
                     MDFillRoundFlatButton:
-                        text: 'Collegiate Calendar: Term 2, A.Y. 2023-2024'
+                        text: 'Collegiate Calendar: Term 2'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -180,8 +197,25 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_images("calendarInfo", "calendarImage", "6")
-                            app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: Term 2, A.Y. 2023-2024")
+                            app.update_images("calendarInfo", "calendarImage", "T2_Colleges")
+                         #   app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: Term 2, A.Y. 2023-2024")
+                            #app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/csc_t2ay20232024.png")
+
+                    MDFillRoundFlatButton:
+                        text: 'Collegiate Calendar: Term 3'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'calendarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_images("calendarInfo", "calendarImage", "T3_Colleges")
+                        #    app.update_label("calendarInfo", "calendarLabel", "Collegiate Calendar: Term 3, A.Y. 2023-2024")
                             #app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/csc_t2ay20232024.png")
 
                     Label: # Title
@@ -203,7 +237,7 @@ MDScreen:
                                 size: self.size
 
                     MDFillRoundFlatButton:
-                        text: 'Graduate School Calendar: Term 1, A.Y. 2023-2024'
+                        text: 'Graduate School Calendar: Term 1'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -215,12 +249,12 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_images("calendarInfo", "calendarImage", "7")
-                            app.update_label("calendarInfo", "calendarLabel", "Graduate School Calendar: Term 1, A.Y. 2023-2024")
+                            app.update_images("calendarInfo", "calendarImage", "T1_GS")
+                          #  app.update_label("calendarInfo", "calendarLabel", "Graduate School Calendar: Term 1, A.Y. 2023-2024")
                             #app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/gc_t1ay20232024.png")
 
                     MDFillRoundFlatButton:
-                        text: 'Graduate School Calendar: Term 2,  A.Y. 2023-2024'
+                        text: 'Graduate School Calendar: Term 2'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -232,10 +266,26 @@ MDScreen:
                         on_press:
                             root.manager.current = 'calendarInfo'
                             root.manager.transition.direction = 'left'
-                            app.update_images("calendarInfo", "calendarImage", "8")
-                            app.update_label("calendarInfo", "calendarLabel", "Graduate School Calendar: Term 2, A.Y. 2023-2024")
+                            app.update_images("calendarInfo", "calendarImage", "T2_GS")
+                        #    app.update_label("calendarInfo", "calendarLabel", "Graduate School Calendar: Term 2, A.Y. 2023-2024")
                             #app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/gc_t2ay20232024.png")
 
+                    MDFillRoundFlatButton:
+                        text: 'Graduate School Calendar: Term 3'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_press:
+                            root.manager.current = 'calendarInfo'
+                            root.manager.transition.direction = 'left'
+                            app.update_images("calendarInfo", "calendarImage", "T3_GS")
+                       #     app.update_label("calendarInfo", "calendarLabel", "Graduate School Calendar: Term 3, A.Y. 2023-2024")
+                            #app.update_image("calendarInfo", "calendarImage", "Announcements KVs/School Calendar/gc_t2ay20232024.png")
         Button:
             size_hint: None, None
             size: 250, 80
