@@ -18,7 +18,7 @@ def read_gpio_pin(pin):
     GPIO.setup(pin, GPIO.IN)
     # Read the state of the pin
     state = GPIO.input(pin)
-    print('Read state of GPIO pin', pin, ':', state)
+    #print('Read state of GPIO pin', pin, ':', state)
     return state
 
 '''

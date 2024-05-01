@@ -1,7 +1,7 @@
 import sys
 import speech_recognition as sr
 import Voicebot.voicebotengine as voicebotengine
-import Voicebot.pygtts as ts
+import pygtts as ts
 import gpio as gpio
 from Voicebot.voicebotengine import Speech_Queue as Speech_Queue
 import threading
