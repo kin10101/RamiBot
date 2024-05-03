@@ -593,7 +593,7 @@ def start_voice_thread():
 
 
 if __name__ == "__main__":
-    LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
+    LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-SemiBold.ttf")
 
     # Queues
     event_queue = Queue()
