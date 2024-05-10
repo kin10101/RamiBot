@@ -11,7 +11,7 @@ global user_dir
 global increment
 increment = 0
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-
+path = r"\\192.168.80.4\sambashare\RamiBot\datasets"
 
 # Initialize count as a class variable
 
@@ -20,7 +20,7 @@ def add_to_db(id_num, nickname, last_name, given_name, middle_initial, professio
     global user_id
     # add to database
     m.insertToDB(id_num, nickname, last_name, given_name, middle_initial, profession)
-    user_dir = os.path.join("datasets", id_num)
+    user_dir = os.path.join(path, id_num)
     user_id = id_num
     # Check if the user directory already exists
     if not os.path.exists(user_dir):

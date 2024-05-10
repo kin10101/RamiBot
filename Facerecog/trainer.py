@@ -6,7 +6,7 @@ import os
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 # Specify the base directory where user-specific folders are located
-base_path = "datasets"
+base_path = r"\\192.168.80.4\sambashare\RamiBot\datasets"
 
 
 def getImageID(base_path):

@@ -2,6 +2,7 @@ import random
 import mysql.connector
 from datetime import datetime
 import re
+from smb.SMBConnection import SMBConnection
 #import Voicebot.pygtts as pygtts
 
 RamiDB = mysql.connector.connect(
@@ -73,7 +74,7 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 90
+    threshold = 50
 
     temp = False
     lower_conf = False
@@ -171,6 +172,28 @@ def time_stamp(ID_Num, result_text):
         print("user not in db")
 
 
+def samba_connection():
+
+    # Samba server details
+    server_address = "192.168.80.4"
+    username = "apc-airlab"
+    password = "APC_Airlab_2023!"
+    share_name = "sambashare"
+
+    # Connect to the Samba server
+    conn = SMBConnection(username, password, "client", "server_name", use_ntlm_v2=True)
+    conn.connect(server_address, 445)
+
+    # List contents of a folder
+    folder_path = r"\\192.168.80.4\sambashare\RamiBot\datasets"
+    file_list = conn.listPath(share_name, folder_path)
+
+    # Print the list of files in the folder
+    for file_info in file_list:
+        print(file_info.filename)
+
+    # Disconnect from the server
+    conn.close()
 
 
 
