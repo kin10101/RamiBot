@@ -137,10 +137,10 @@ class MainWindow(MDApp):
     def connect_to_db():
         try:
             MainWindow.connection = mysql.connector.connect(
-                host="airhub-soe.apc.edu.ph",
-                user="marj",
-                password="RAMIcpe211",
-                database="ramibot"
+                host="localhost", #"airhub-soe.apc.edu.ph"
+                user="root", #"marj",
+                password= "", #RAMIcpe211",
+                database="mj_test" #"ramibot"
             )
             if MainWindow.connection.is_connected():
                 print("Connected to MySQL database")
@@ -155,14 +155,21 @@ class MainWindow(MDApp):
             print("Connection to MySQL database closed")
 
     def fetch_image_url(self, img_id):
-        # Execute the query
-        user_query = "SELECT calendar_img FROM calendars_img WHERE calendar_id = %s"
-        MainWindow.pics_cursor.execute(user_query, (img_id,))
-        image_found = MainWindow.pics_cursor.fetchone()
-        print(f"image found: {image_found}")
+        tables = ['calendars_img', 'floor_map', 'tuition_img', 'programs_img', 'offices', 'apcinfo_img']
+        for table in tables:
+            # Execute the query
+            user_query = f"SELECT img_url FROM {table} WHERE img_identifier = %s"
+            MainWindow.pics_cursor.execute(user_query, (img_id,))
+            image_found = MainWindow.pics_cursor.fetchone()
+            print(f"image found: {image_found}")
 
-        # Return the fetched image URL
-        return image_found[0] if image_found else None
+            # If image found in current table, return the image URL
+            if image_found:
+                return image_found[0]
+
+        # If image not found in any table, return None
+        return None
+
     def update_images(self, screenName, imageLabel, img_id):
         screens = self.root.get_screen(screenName)
         image_url = self.fetch_image_url(img_id)
@@ -343,9 +350,7 @@ class MainWindow(MDApp):
 window_instance = MainWindow()
 # Connect to the database
 window_instance.connect_to_db()
-# Usage example: Call the getFromDB method with your desired imgID and imgURL
 window_instance.fetch_image_url(img_id='')
-    #window_instance.getFromDB(imgID='', imgURL=" ")
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app
