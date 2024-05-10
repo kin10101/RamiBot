@@ -172,27 +172,41 @@ def time_stamp(ID_Num, result_text):
         print("user not in db")
 
 
-def samba_connection():
+def samba_connection(path_file):
+    global conn
 
-    # Samba server details
-    server_address = "192.168.80.4"
+    # Define the server details
+    server_name = "192.168.80.4"  # Replace with the Samba server's IP address
+    share_name = "sambashare"
     username = "apc-airlab"
     password = "APC_Airlab_2023!"
-    share_name = "sambashare"
 
-    # Connect to the Samba server
-    conn = SMBConnection(username, password, "client", "server_name", use_ntlm_v2=True)
-    conn.connect(server_address, 445)
+    # Create an SMB connection object
+    conn = SMBConnection(username, password, "pysmb-client", server_name, use_ntlm_v2=True)
 
-    # List contents of a folder
-    folder_path = r"\\192.168.80.4\sambashare\RamiBot\datasets"
-    file_list = conn.listPath(share_name, folder_path)
+    try:
+        # Connect to the Samba server
+        print("Connecting to Samba server...")
+        conn.connect(server_name, 445)
 
-    # Print the list of files in the folder
-    for file_info in file_list:
-        print(file_info.filename)
+        print("Connected to Samba server")
 
-    # Disconnect from the server
+        # List files in the share
+        files = conn.listPath(share_name, path_file)
+
+        for file in files:
+            print(file.filename)
+
+        # You can perform other operations like reading files, writing files, etc. here
+
+    except Exception as e:
+        print("Error:", e)
+
+
+def close_samba_connection():
+
+    # Disconnect from the Samba server
+    print("Closing connection...")
     conn.close()
 
 

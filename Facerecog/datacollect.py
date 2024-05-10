@@ -11,9 +11,10 @@ global user_dir
 global increment
 increment = 0
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-path = r"\\192.168.80.4\sambashare\RamiBot\datasets"
+path = m.samba_connection("/RamiBot/datasets")
 
 # Initialize count as a class variable
+
 
 def add_to_db(id_num, nickname, last_name, given_name, middle_initial, profession):
     global user_dir
