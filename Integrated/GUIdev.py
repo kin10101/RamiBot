@@ -6,9 +6,6 @@ from kivy.uix.popup import Popup
 from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import Command, Response
 
-import mysql
-import mysql.connector
-
 import pygtts as pygtts
 import gpio
 
@@ -33,6 +30,7 @@ from Voicebot.voice_assistant_module import VoiceAssistant, active_state
 import random
 import time
 
+import sql_module
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
@@ -41,11 +39,11 @@ global count
 global start
 global screen_manager
 
+
 class MainApp(MDApp):
     face_count = 0
     add_user_flag = 0
     global user_ID
-
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -63,28 +61,9 @@ class MainApp(MDApp):
         self.status = False
         self.current_screen = None
         self.previous_screen = None
+
     stop_voice = threading.Event()
     stop_face = threading.Event()
-
-    def connect_to_db(self):
-        print("attempting to connect to db...")
-        try:
-            self.connection = mysql.connector.connect(
-                host="airhub-soe.apc.edu.ph",
-                user="marj",
-                password="RAMIcpe211",
-                database="ramibot"
-            )
-            if self.connection.is_connected():
-                print("Connected to MySQL database")
-        except mysql.connector.Error as err:
-            print("Failed to connect to MySQL database: {}".format(err))
-            return  # Exit the function if connection fails
-
-    def close_connection(self):
-        if self.connection.is_connected():
-            self.connection.close()
-            print("Connection to MySQL database closed")
 
     def build(self):
         global screen_manager
@@ -115,8 +94,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
-        #screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
-        #screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
+        # screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
+        # screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendars.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
@@ -146,14 +125,13 @@ class MainApp(MDApp):
         self.frame_rate = 10
         self.frame_count = 50
         self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
-        self.connect_to_db()
+        sql_module.connect()
 
         Clock.schedule_interval(self.await_change_screen, .5)
         Clock.schedule_interval(self.await_pin_change, 1)
 
-
     def on_stop(self):
-        self.close_connection()
+        sql_module.disconnect()
 
     # GUI MODIFIERS -------------------------------------
 
@@ -213,7 +191,8 @@ class MainApp(MDApp):
             # TODO get the current screen and update the image
 
 
-        else: pass
+        else:
+            pass
 
     def await_face_change(self, dt):
         if not image_queue.empty():
@@ -224,21 +203,22 @@ class MainApp(MDApp):
                 self.update_image(current_screen, 'face', image_path)
         else:
             pass
+
     def await_pin_change(self, dt):
-        #print("current screen = ", screen_manager.current)
+        # print("current screen = ", screen_manager.current)
 
         try:
             pin = gpio.read_gpio_pin(17)
             self.charge_pin = pin
 
             if self.charge_pin == 1:
-                #print("read one")
+                # print("read one")
                 if screen_manager.current != 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'lowbatteryscreen')
                 else:
                     pass
             if self.charge_pin == 0:
-                #print("read zero")
+                # print("read zero")
                 if screen_manager.current == 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'idlescreen')
                 else:
@@ -261,7 +241,15 @@ class MainApp(MDApp):
             Clock.unschedule(self.face_blink)
             Clock.unschedule(self.await_face_change)
 
+    def idle_announcement(self, dt):
+        column_data = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
+        text = random.choice(column_data)
+        pygtts.speak(text)
 
+    def schedule_idle_announcement(self):
+        Clock.schedule_interval(self.idle_announcement, 60)
+        if screen_manager.current != 'idlescreen':
+            Clock.unschedule(self.idle_announcement)
 
     # FACE RECOGNITION ---------------------------------
     def warning(self):
@@ -429,7 +417,6 @@ class MainApp(MDApp):
 
         elif lower_conf is False:
             self.change_screen('mainmenu')
-
 
     def close_camera(self):
         self.camera.release()
