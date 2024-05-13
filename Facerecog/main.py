@@ -2,6 +2,7 @@ import random
 import mysql.connector
 from datetime import datetime
 import re
+from smb.SMBConnection import SMBConnection
 #import Voicebot.pygtts as pygtts
 
 RamiDB = mysql.connector.connect(
@@ -171,6 +172,35 @@ def time_stamp(ID_Num, result_text):
         print("user not in db")
 
 
+def samba_connection():
+
+    global conn
+
+    # Define the server details
+    server_name = "192.168.80.4"  # Replace with the Samba server's IP address
+    share_name = "sambashare"
+    username = "apc-airlab"
+    password = "APC_Airlab_2023!"
+
+    # Create an SMB connection object
+    conn = SMBConnection(username, password, "pysmb-client", server_name, use_ntlm_v2=True)
+
+    try:
+        # Connect to the Samba server
+        print("Connecting to Samba server...")
+        if not conn.connect(server_name, 445):
+            raise Exception("Failed to connect to Samba server.")
+
+        print("Connected to Samba server")
+
+    except Exception as e:
+        print("Error:", e)
+
+def close_samba_connection():
+
+    # Disconnect from the Samba server
+    print("Closing connection...")
+    conn.close()
 
 
 

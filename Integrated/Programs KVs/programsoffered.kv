@@ -60,8 +60,8 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/shs.png")
-                          #  app.getFromDB(1, ../programs_img/shs.png)
+                            app.update_images("programs", "programImage", "SHS")
+                            #app.getFromDB(1, "../programs_img/shs.png")
 
                     MDFillRoundFlatButton:
                         text: 'School of Engineering'
@@ -76,8 +76,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/soe.png")
-                            #app.getFromDB(2, ../programs_img/soe.png)
+                            app.update_images("programs", "programImage", "SOE")
 
                     MDFillRoundFlatButton:
                         text: 'School of Architecture'
@@ -92,8 +91,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/soa.png")
-                           # app.getFromDB(3, ../programs_img/soa.png)
+                            app.update_images("programs", "programImage", "SOAR")
 
                     MDFillRoundFlatButton:
                         text: 'School of Management'
@@ -108,9 +106,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/som.png")
-                          #  app.getFromDB(4, ../programs_img/som.png)
-
+                            app.update_images("programs", "programImage", "SOM")
 
                     MDFillRoundFlatButton:
                         text: 'School of Multimedia and Arts'
@@ -125,8 +121,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/soma.png")
-                           # app.getFromDB(5, ../programs_img/soma.png)
+                            app.update_images("programs", "programImage", "SOMA")
 
                     MDFillRoundFlatButton:
                         text: 'School of Computing and Information Technology'
@@ -141,8 +136,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "Programs KVs/socit.png")
-                         #   app.getFromDB(6, ../programs_img/socit.png)
+                            app.update_images("programs", "programImage", "SOCIT")
 
                     MDFillRoundFlatButton:
                         text: 'Graduate Schools'
@@ -155,7 +149,7 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'gradschool'
+                            root.manager.current = 'gradschools'
                             root.manager.transition.direction = 'left'
 
         Button:

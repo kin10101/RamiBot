@@ -2,12 +2,13 @@ import cv2
 import numpy as np
 from PIL import Image
 import os
+import main
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 # Specify the base directory where user-specific folders are located
-base_path = "datasets"
-
+#base_path = r"\\192.168.80.4\sambashare\RamiBot\datasets"
+base_path = r"D:\RamiBot Project\RamibotReal\Facerecog\datasets"
 
 def getImageID(base_path):
     imagePaths = [os.path.join(base_path, user_id, image_file) for user_id in os.listdir(base_path) for image_file in
@@ -32,12 +33,16 @@ def getImageID(base_path):
 
 
 IDs, facedata = getImageID(base_path)
+
 try:
     recognizer.train(facedata, np.array(IDs))
 except cv2.error as e:
     print(f"OpenCV error: {e}")
 except Exception as e:
     print(f"An unexpected error occurred: {e}")
-recognizer.write("Trainer.yml")
+recognizer.write(r"\\192.168.80.4\sambashare\RamiBot\Trainer.yml")
 cv2.destroyAllWindows()
 print("Training Completed............")
+
+
+

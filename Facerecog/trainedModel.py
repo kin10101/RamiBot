@@ -6,6 +6,9 @@ facedetect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 recognizer = cv2.face.LBPHFaceRecognizer.create()
 
+#RPI via server
+#recognizer.read(m.samba_connection("/RamiBot/Trainer.yml"))
+
 #RPI
 recognizer.read("/home/rami/PycharmProjects/RamiBot/Facerecog/Trainer.yml")
 

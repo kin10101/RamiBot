@@ -155,18 +155,20 @@ class MainWindow(MDApp):
             print("Connection to MySQL database closed")
 
     def fetch_image_url(self, img_id):
-        tables = ['calendars_img', 'floor_map']
+        tables = ['calendars_img', 'floor_map', 'tuition_img', 'programs_img', 'offices', 'apcinfo_img']
         for table in tables:
-        # Execute the query
-            user_query = f"SELECT img_url FROM calendars_img WHERE img_identifier = %s"
-            #user_query = f"SELECT img_url FROM {tables} WHERE img_identifier = %s"
-
+            # Execute the query
+            user_query = f"SELECT img_url FROM {table} WHERE img_identifier = %s"
             MainWindow.pics_cursor.execute(user_query, (img_id,))
             image_found = MainWindow.pics_cursor.fetchone()
             print(f"image found: {image_found}")
 
-        # Return the fetched image URL
-        return image_found[0] if image_found else None
+            # If image found in current table, return the image URL
+            if image_found:
+                return image_found[0]
+
+        # If image not found in any table, return None
+        return None
 
     def update_images(self, screenName, imageLabel, img_id):
         screens = self.root.get_screen(screenName)
