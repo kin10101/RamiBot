@@ -172,7 +172,8 @@ def time_stamp(ID_Num, result_text):
         print("user not in db")
 
 
-def samba_connection(path_file):
+def samba_connection():
+
     global conn
 
     # Define the server details
@@ -187,21 +188,13 @@ def samba_connection(path_file):
     try:
         # Connect to the Samba server
         print("Connecting to Samba server...")
-        conn.connect(server_name, 445)
+        if not conn.connect(server_name, 445):
+            raise Exception("Failed to connect to Samba server.")
 
         print("Connected to Samba server")
 
-        # List files in the share
-        files = conn.listPath(share_name, path_file)
-
-        for file in files:
-            print(file.filename)
-
-        # You can perform other operations like reading files, writing files, etc. here
-
     except Exception as e:
         print("Error:", e)
-
 
 def close_samba_connection():
 

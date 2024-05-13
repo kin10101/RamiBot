@@ -11,7 +11,8 @@ global user_dir
 global increment
 increment = 0
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-path = m.samba_connection("/RamiBot/datasets")
+path = "D:\RamiBot Project\RamibotReal\Facerecog\datasets"
+#path = m.samba_connection("/RamiBot/datasets")
 
 # Initialize count as a class variable
 
