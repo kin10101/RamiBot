@@ -241,19 +241,35 @@ class MainApp(MDApp):
             Clock.unschedule(self.face_blink)
             Clock.unschedule(self.await_face_change)
 
+    def change_face_and_speak(self, text, face_path):
+        # Change the face
+        put_in_queue(image_queue, face_path)
+        # Start the thread
+        speak_thread = threading.Thread(target=pygtts.speak, args=(text,))
+        speak_thread.start()
+        speak_thread.join()
+
     def idle_announcement(self, dt):
+
         column_data = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
         text = random.choice(column_data)
-        put_in_queue(image_queue, 'rami_faces/skeri.png')
-        pygtts.speak(text)
-        put_in_queue(image_queue, 'rami_faces/smile.png')
+
+        self.change_face_and_speak(text, 'rami_faces/wink.png')
+
+
+
 
     def schedule_idle_announcement(self):
         print("Current Screen: ", screen_manager.current)
         if screen_manager.current == 'idlescreen':
             Clock.schedule_interval(self.idle_announcement, 40)
-        if screen_manager.current != 'idlescreen':
-            Clock.unschedule(self.idle_announcement)
+
+    def unschedule_idle_announcement(self):
+        Clock.unschedule(self.idle_announcement)
+
+    def get_current_screen(self):
+        print("Current Screen is ", screen_manager.current)
+        return screen_manager.current
 
     # FACE RECOGNITION ---------------------------------
     def warning(self):
