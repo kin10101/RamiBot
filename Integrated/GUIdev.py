@@ -248,9 +248,8 @@ class MainApp(MDApp):
         pygtts.speak(text)
         put_in_queue(image_queue, 'rami_faces/smile.png')
 
-
     def schedule_idle_announcement(self):
-        print("Current Screen: ",screen_manager.current)
+        print("Current Screen: ", screen_manager.current)
         if screen_manager.current == 'idlescreen':
             Clock.schedule_interval(self.idle_announcement, 40)
         if screen_manager.current != 'idlescreen':
