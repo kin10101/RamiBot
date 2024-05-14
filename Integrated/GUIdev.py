@@ -244,10 +244,15 @@ class MainApp(MDApp):
     def idle_announcement(self, dt):
         column_data = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
         text = random.choice(column_data)
+        put_in_queue(image_queue, 'rami_faces/skeri.png')
         pygtts.speak(text)
+        put_in_queue(image_queue, 'rami_faces/smile.png')
+
 
     def schedule_idle_announcement(self):
-        Clock.schedule_interval(self.idle_announcement, 60)
+        print("Current Screen: ",screen_manager.current)
+        if screen_manager.current == 'idlescreen':
+            Clock.schedule_interval(self.idle_announcement, 40)
         if screen_manager.current != 'idlescreen':
             Clock.unschedule(self.idle_announcement)
 
