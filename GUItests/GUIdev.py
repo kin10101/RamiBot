@@ -4,7 +4,7 @@ from multiprocessing import connection
 import mysql
 import mysql.connector
 from kivy.lang import Builder
-from kivy.uix.boxlayout import BoxLayout
+from kivy.metrics import dp
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
@@ -21,6 +21,8 @@ from Facerecog import trainedModel
 from Facerecog import main
 
 from kivy.graphics.texture import Texture
+
+#from sql import sql_query
 
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
@@ -155,7 +157,7 @@ class MainWindow(MDApp):
             print("Connection to MySQL database closed")
 
     def fetch_image_url(self, img_id):
-        tables = ['calendars_img', 'floor_map', 'tuition_img', 'programs_img', 'offices', 'apcinfo_img']
+        tables = ['calendars_img', 'floor_map', 'tuition_img', 'programs_img', 'offices', 'apcinfo_img', 'org_img']
         for table in tables:
             # Execute the query
             user_query = f"SELECT img_url FROM {table} WHERE img_identifier = %s"
@@ -163,11 +165,9 @@ class MainWindow(MDApp):
             image_found = MainWindow.pics_cursor.fetchone()
             print(f"image found: {image_found}")
 
-            # If image found in current table, return the image URL
             if image_found:
                 return image_found[0]
 
-        # If image not found in any table, return None
         return None
 
     def update_images(self, screenName, imageLabel, img_id):
@@ -181,29 +181,34 @@ class MainWindow(MDApp):
         else:
             print("Image not found")
 
+    def fetch_all_images(self, table):
+        tables = [table]
+        all_images = []
+        for table in tables:
+            user_query = f"SELECT img_url FROM {table}"
+            self.pics_cursor.execute(user_query)
+            images = self.pics_cursor.fetchall()
+            all_images.extend([img[0] for img in images])
+        return all_images
+
+    def update_all_images(self, screenName, table):
+        screen = self.root.get_screen(screenName)
+        images = self.fetch_all_images(table)
+        image_widget = screen.ids.image_grid
+
+        if images:
+            print("Updating multiple images:")
+            image_widget.clear_widgets()
+
+            for image_url in images:
+                new_image = Image(source=image_url, size_hint=(None, None), size=(dp(600), dp(800)))
+                image_widget.add_widget(new_image)
+                print(f"Added image: {image_url}")
+
+        else:
+            print("No images found")
+
 '''
-    @staticmethod
-    def getFromDB(imgID, imgURL):
-        try:
-            # Check if the image with the given imgID already exists in the database
-           # user_query = f"SELECT img_id FROM programs_img WHERE img_id = {12}"
-            programs_offered = f"SELECT img_url FROM floor_map WHERE floor_id = {imgID}"
-            MainWindow.pics_cursor.execute(programs_offered)
-            image_found = MainWindow.pics_cursor.fetchone()
-
-            if image_found:
-                print("Image already exists in the database")
-                print(image_found[0])
-
-            else:
-                # Image does not exist, you can handle this case as needed
-                print("Image does not exist in the database")
-                return None
-
-        except Exception as e:
-            print("Error:", e)
-            return None
-
     def warning(self):
         global warning_popup
         warning_popup = Popup(title="", content=Builder.load_file("warning.kv"), size_hint=(None, None),
@@ -350,7 +355,7 @@ class MainWindow(MDApp):
 window_instance = MainWindow()
 # Connect to the database
 window_instance.connect_to_db()
-window_instance.fetch_image_url(img_id='')
+#window_instance.fetch_image_url(img_id='')
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf") # register fonts for use in app

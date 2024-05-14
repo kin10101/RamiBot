@@ -1,6 +1,10 @@
+import mysql
+import mysql.connector
 from Facerecog import trainedModel
 from Facerecog import main
 from kivy.uix.popup import Popup
+
+from kivy.metrics import dp
 
 # Chatbot imports
 from Chatbot.chatbot import handle_request
@@ -39,6 +43,8 @@ global count
 global start
 global screen_manager
 
+def close_connection():
+    pass
 
 class MainApp(MDApp):
     face_count = 0
@@ -94,8 +100,6 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
-        # screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
-        # screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendars.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
@@ -154,6 +158,81 @@ class MainApp(MDApp):
         except:
             print("Source not found")
             pass
+
+    connection = None  # Placeholder for the database connection
+    pics_cursor = None  # Placeholder for the cursor
+
+    @staticmethod
+    def connect_to_db():
+        try:
+            MainApp.connection = mysql.connector.connect(
+                host="localhost", #"airhub-soe.apc.edu.ph"
+                user="root", #"marj",
+                password= "", #RAMIcpe211",
+                database="mj_test" #"ramibot"
+            )
+            if MainApp.connection.is_connected():
+                print("Connected to MySQL database")
+                MainApp.pics_cursor = MainApp.connection.cursor()
+        except mysql.connector.Error as err:
+            print("Failed to connect to MySQL database: {}".format(err))
+
+    @staticmethod
+    def close_connection():
+        if MainApp.connection and MainApp.connection.is_connected():
+            MainApp.connection.close()
+            print("Connection to MySQL database closed")
+
+    def fetch_image_url(self, img_id):
+        tables = ['calendars_img', 'floor_map', 'tuition_img', 'programs_img', 'offices', 'apcinfo_img', 'org_img']
+        for table in tables:
+            # Execute the query
+            user_query = f"SELECT img_url FROM {table} WHERE img_identifier = %s"
+            MainApp.pics_cursor.execute(user_query, (img_id,))
+            image_found = MainApp.pics_cursor.fetchone()
+            print(f"image found: {image_found}")
+
+            if image_found:
+                return image_found[0]
+
+        return None
+
+    def update_images(self, screenName, imageLabel, img_id):
+        screens = self.root.get_screen(screenName)
+        image_url = self.fetch_image_url(img_id)
+
+        print(f"image url: {image_url}")
+        if image_url:
+            pic = screens.ids[imageLabel]
+            pic.source = image_url
+        else:
+            print("Image not found")
+
+    def fetch_all_images(self, table):
+        tables = [table]
+        all_images = []
+        for table in tables:
+            user_query = f"SELECT img_url FROM {table}"
+            self.pics_cursor.execute(user_query)
+            images = self.pics_cursor.fetchall()
+            all_images.extend([img[0] for img in images])
+        return all_images
+    def update_all_images(self, screenName, table):
+        screen = self.root.get_screen(screenName)
+        images = self.fetch_all_images(table)
+        image_widget = screen.ids.image_grid
+
+        if images:
+            print("Updating multiple images:")
+            image_widget.clear_widgets()
+
+            for image_url in images:
+                new_image = Image(source=image_url, size_hint=(None, None), size=(dp(600), dp(800)))
+                image_widget.add_widget(new_image)
+                print(f"Added image: {image_url}")
+
+        else:
+            print("No images found")
 
     def get_text(self, screen_name, id):
         """Get text from textinput in newuser screen"""
@@ -598,6 +677,9 @@ def start_voice_thread():
     voice.daemon = True
     voice.start()
 
+window_instance = MainApp()
+# Connect to the database
+window_instance.connect_to_db()
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-SemiBold.ttf")
@@ -623,3 +705,6 @@ if __name__ == "__main__":
     # set events to stop thread processes and clear event to resume
 
     app.run()
+
+    # Close the database connection when the app exits
+    window_instance.close_connection()
