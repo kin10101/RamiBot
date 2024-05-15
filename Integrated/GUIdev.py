@@ -1,5 +1,6 @@
-import mysql
-import mysql.connector
+
+from kivymd.uix.button import MDFillRoundFlatButton
+
 from Facerecog import trainedModel
 from Facerecog import main
 from kivy.uix.popup import Popup
@@ -43,8 +44,7 @@ global count
 global start
 global screen_manager
 
-def close_connection():
-    pass
+
 
 class MainApp(MDApp):
     face_count = 0
@@ -64,6 +64,13 @@ class MainApp(MDApp):
         self.detect = None
         self.image = None
         self.charge_pin = gpio.read_gpio_pin(17)
+
+        # self.main_menu_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
+        # self.office_sched_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
+        # self.programs_offered_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
+        # self.school_info_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
+        # self.floor_maps_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
+
         self.status = False
         self.current_screen = None
         self.previous_screen = None
@@ -86,6 +93,17 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/adduser2.kv'))
         screen_manager.add_widget(Builder.load_file('New User KVs/datacollect.kv'))
+
+        # MAY BUTTON LIST
+        screen_manager.add_widget(Builder.load_file('main.kv'))
+
+        screen_manager.add_widget(Builder.load_file('office_schedule.kv'))
+        screen_manager.add_widget(Builder.load_file('faculty_schedule.kv'))
+        screen_manager.add_widget(Builder.load_file('programs_offered.kv'))
+        screen_manager.add_widget(Builder.load_file('school_information.kv'))
+        screen_manager.add_widget(Builder.load_file('floor_maps.kv'))
+
+        screen_manager.add_widget(Builder.load_file('image_info.kv'))
 
         screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
@@ -138,6 +156,65 @@ class MainApp(MDApp):
         sql_module.disconnect()
 
     # GUI MODIFIERS -------------------------------------
+    def back_button(self):
+        screen_manager.current = self.previous_screen
+
+    def create_button_list_to_button_list(self, button_list):
+        self.clear_buttons()
+        for button_text in button_list:
+            button_title = button_text.replace("_", " ")
+            button = MDFillRoundFlatButton(
+                text=button_title,
+                font_name='Poppins',
+                font_size=24,
+                halign='center',
+                text_color=(1, 1, 1, 1),
+                md_bg_color=(0.003, 0.4, 0.6, 1),
+                size_hint=(0.7, None),
+                pos_hint={'center_x': 0.5},
+                padding=(30, 30),
+                on_press=lambda instance, text=button_text: self.on_list_to_list(text)
+            )
+            screen_manager.get_screen(screen_manager.current).ids.button_layout.add_widget(button)
+
+    def on_list_to_list(self, button_text):
+        # Handle button press here
+        print(f"Button {button_text} pressed")
+        screen_manager.current = button_text
+
+    def create_button_list_to_image_info(self, button_list):
+        self.clear_buttons()
+
+        for button_text in button_list:
+            button_title = button_text.replace("_", " ")
+            button = MDFillRoundFlatButton(
+                text=button_title,
+                font_name='Poppins',
+                font_size=24,
+                halign='center',
+                text_color=(1, 1, 1, 1),
+                md_bg_color=(0.003, 0.4, 0.6, 1),
+                size_hint=(0.7, None),
+                pos_hint={'center_x': 0.5},
+                padding=(30, 30),
+                on_press=lambda instance, text=button_text: self.on_list_to_image(text)
+            )
+            screen_manager.get_screen(screen_manager.current).ids.button_layout.add_widget(button)
+
+    def on_list_to_image(self, button_text):
+
+        print(f"Button {button_text} pressed")
+        screen_manager.current = "image_info"  # navigate to image info screen
+        path = ""  # get path source location
+        screen_manager.get_screen(screen_manager.current).ids.img.source = path + button_text + ".png"
+
+    def clear_buttons(self):
+        # Get a reference to the button layout
+        button_layout = screen_manager.get_screen(screen_manager.current).ids.button_layout
+
+        # Remove all children (buttons) from the button layout
+        if button_layout.children:
+            button_layout.clear_widgets()
 
     def update_label(self, screen_name, id, text):
         '''Update labels in mapscreen'''
@@ -161,27 +238,6 @@ class MainApp(MDApp):
 
     connection = None  # Placeholder for the database connection
     pics_cursor = None  # Placeholder for the cursor
-
-    @staticmethod
-    def connect_to_db():
-        try:
-            MainApp.connection = mysql.connector.connect(
-                host="localhost", #"airhub-soe.apc.edu.ph"
-                user="root", #"marj",
-                password= "", #RAMIcpe211",
-                database="mj_test" #"ramibot"
-            )
-            if MainApp.connection.is_connected():
-                print("Connected to MySQL database")
-                MainApp.pics_cursor = MainApp.connection.cursor()
-        except mysql.connector.Error as err:
-            print("Failed to connect to MySQL database: {}".format(err))
-
-    @staticmethod
-    def close_connection():
-        if MainApp.connection and MainApp.connection.is_connected():
-            MainApp.connection.close()
-            print("Connection to MySQL database closed")
 
     def fetch_image_url(self, img_id):
         tables = ['calendars_img', 'floor_map', 'tuition_img', 'programs_img', 'offices', 'apcinfo_img', 'org_img']
@@ -334,8 +390,6 @@ class MainApp(MDApp):
         text = random.choice(column_data)
 
         self.change_face_and_speak(text, 'rami_faces/wink.png')
-
-
 
 
     def schedule_idle_announcement(self):
@@ -677,9 +731,6 @@ def start_voice_thread():
     voice.daemon = True
     voice.start()
 
-window_instance = MainApp()
-# Connect to the database
-window_instance.connect_to_db()
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-SemiBold.ttf")
@@ -706,5 +757,3 @@ if __name__ == "__main__":
 
     app.run()
 
-    # Close the database connection when the app exits
-    window_instance.close_connection()

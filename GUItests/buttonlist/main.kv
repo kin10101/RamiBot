@@ -1,7 +1,13 @@
 MDScreen:
-    name: 'mainmenu'
+    name: 'Main_Menu'
+
     on_pre_enter:
-        app.create_button_list()
+        app.create_button_list_to_button_list(app.Main_Menu)
+
+    on_pre_leave:
+        app.previous_screen = 'Main_Menu'
+
+
 
 
     MDFloatLayout: # main layout
