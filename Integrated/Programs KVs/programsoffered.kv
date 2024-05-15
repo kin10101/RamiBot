@@ -60,7 +60,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "SHS")
+                            app.update_images("programs", "programImage", "SHS")
                             #app.getFromDB(1, "../programs_img/shs.png")
 
                     MDFillRoundFlatButton:
@@ -76,7 +76,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "SOE")
+                            app.update_images("programs", "programImage", "SOE")
 
                     MDFillRoundFlatButton:
                         text: 'School of Architecture'
@@ -91,7 +91,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "SOAR")
+                            app.update_images("programs", "programImage", "SOAR")
 
                     MDFillRoundFlatButton:
                         text: 'School of Management'
@@ -106,7 +106,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "SOM")
+                            app.update_images("programs", "programImage", "SOM")
 
                     MDFillRoundFlatButton:
                         text: 'School of Multimedia and Arts'
@@ -121,7 +121,7 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "SOMA")
+                            app.update_images("programs", "programImage", "SOMA")
 
                     MDFillRoundFlatButton:
                         text: 'School of Computing and Information Technology'
@@ -136,10 +136,10 @@ MDScreen:
                         on_release:
                             root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
-                            app.update_image("programs", "programImage", "SOCIT")
+                            app.update_images("programs", "programImage", "SOCIT")
 
                     MDFillRoundFlatButton:
-                        text: 'Graduate Schools'
+                        text: 'Graduate School: Master in Management'
                         font_name: 'Poppins'
                         font_size: "24sp"
                         halign: 'center'
@@ -149,8 +149,85 @@ MDScreen:
                         pos_hint: {'center_x': 0.5}
                         padding: 30
                         on_release:
-                            root.manager.current = 'gradschools'
+                            root.manager.current = 'programs'
                             root.manager.transition.direction = 'left'
+                            app.update_images("programs", "programImage", "GS_MM")
+
+                    MDFillRoundFlatButton:
+                        text: 'Graduate School: Master in Game Design'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_release:
+                            root.manager.current = 'programs'
+                            root.manager.transition.direction = 'left'
+                            app.update_images("programs", "programImage", "GS_MGD")
+
+                    MDFillRoundFlatButton:
+                        text: 'Graduate School: Master in Information Systems'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_release:
+                            root.manager.current = 'programs'
+                            root.manager.transition.direction = 'left'
+                            app.update_images("programs", "programImage", "GS_MIS")
+
+                    MDFillRoundFlatButton:
+                        text: 'Graduate School: Master in Information Technology'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_release:
+                            root.manager.current = 'programs'
+                            root.manager.transition.direction = 'left'
+                            app.update_images("programs", "programImage", "GS_MIT")
+
+                    MDFillRoundFlatButton:
+                        text: 'Graduate School: Master of Science in Computer Science'
+                        font_name: 'Poppins'
+                        font_size: "24sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_release:
+                            root.manager.current = 'programs'
+                            root.manager.transition.direction = 'left'
+                            app.update_images("programs", "programImage", "GS_MSCS")
+
+                    MDFillRoundFlatButton:
+                        text: 'Graduate School: Master of Engineering Major in Computer Engineering'
+                        font_name: 'Poppins'
+                        font_size: "22sp"
+                        halign: 'center'
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: .003, .4, .6, 1
+                        size_hint: .7, None
+                        pos_hint: {'center_x': 0.5}
+                        padding: 30
+                        on_release:
+                            root.manager.current = 'programs'
+                            root.manager.transition.direction = 'left'
+                            app.update_images("programs", "programImage", "GS_MECPE")
+
 
         Button:
             size_hint: None, None
