@@ -44,10 +44,11 @@ def show_columns(table):
 
 def get_column_data(table, column):
     """Get all data from a column in a table."""
-    query = f"SELECT {column} FROM {table};"
+    query = f"SELECT {column} FROM {table} WHERE {column} IS NOT NULL AND {column} != '';"
     results = sql_query(query)
     # Extract the first element of each tuple in the results
-    column_data = [result[0] for result in results]
+    column_data = [result[0] for result in results if result[0] != 'NULL']
+
     return column_data
 
 
@@ -62,7 +63,8 @@ def insert_data(table, columns, values):
 if __name__ == "__main__":
     connect()
     show_tables()
-    show_columns("programs_img")
-
-    column_data = get_column_data("text_to_voice_announcements", "announcement_name")
+    show_columns("button_list_structure__1_")
+    column_data = get_column_data("button_list_structure__1_", "faculty_schedule")
     print(column_data)
+
+

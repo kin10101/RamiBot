@@ -90,8 +90,7 @@ class MainWindow(MDApp):
 
         screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
+
 
         return screen_manager
 
@@ -182,7 +181,7 @@ class MainWindow(MDApp):
             print("Image not found")
 
     def fetch_all_images(self, table):
-        tables = [table]
+        tables = ['faculty_scheds']
         all_images = []
         for table in tables:
             user_query = f"SELECT img_url FROM {table}"

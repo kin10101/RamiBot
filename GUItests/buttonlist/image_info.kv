@@ -1,5 +1,9 @@
 MDScreen:
-    name: 'gsInfo'
+    name: 'image_info'
+
+    on_enter:
+        print(app.previous_screen)
+
 
     MDFloatLayout: # main layout
         orientation: 'vertical'
@@ -16,8 +20,8 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                root.manager.current = 'gradschools'
-                root.manager.transition.direction = 'right'
+                app.root.current = app.previous_screen
+
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
@@ -28,8 +32,9 @@ MDScreen:
             radius: [15]
 
             Image: # Background image
-                id: programImage
-                source: ' '
-                allow_stretch: True
-                keep_ratio: False
+                id: img
+                source: "/home/rami/PycharmProjects/RamiBot/Integrated/Assets/logo.png"
+                allow_stretch: False
+                keep_ratio: True
                 size_hint: 1, 1
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
