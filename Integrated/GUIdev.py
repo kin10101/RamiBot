@@ -1,14 +1,15 @@
+import mysql
+import mysql.connector
 from Facerecog import trainedModel
 from Facerecog import main
 from Facerecog import test
 from kivy.uix.popup import Popup
 
+from kivy.metrics import dp
+
 # Chatbot imports
 from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import Command, Response
-
-import mysql
-import mysql.connector
 
 import pygtts as pygtts
 import gpio
@@ -34,6 +35,7 @@ from Voicebot.voice_assistant_module import VoiceAssistant, active_state
 import random
 import time
 
+import sql_module
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
@@ -42,11 +44,13 @@ global count
 global start
 global screen_manager
 
+def close_connection():
+    pass
+
 class MainApp(MDApp):
     face_count = 0
     add_user_flag = 0
     global user_ID
-
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -64,28 +68,9 @@ class MainApp(MDApp):
         self.status = False
         self.current_screen = None
         self.previous_screen = None
+
     stop_voice = threading.Event()
     stop_face = threading.Event()
-
-    def connect_to_db(self):
-        print("attempting to connect to db...")
-        try:
-            self.connection = mysql.connector.connect(
-                host="airhub-soe.apc.edu.ph",
-                user="marj",
-                password="RAMIcpe211",
-                database="ramibot"
-            )
-            if self.connection.is_connected():
-                print("Connected to MySQL database")
-        except mysql.connector.Error as err:
-            print("Failed to connect to MySQL database: {}".format(err))
-            return  # Exit the function if connection fails
-
-    def close_connection(self):
-        if self.connection.is_connected():
-            self.connection.close()
-            print("Connection to MySQL database closed")
 
     def build(self):
         global screen_manager
@@ -116,8 +101,6 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
-        #screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/pagOrg.kv'))
-        #screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/socioOrg.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendars.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
         screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
@@ -147,14 +130,13 @@ class MainApp(MDApp):
         self.frame_rate = 10
         self.frame_count = 50
         self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
-        self.connect_to_db()
+        sql_module.connect()
 
         Clock.schedule_interval(self.await_change_screen, .5)
         Clock.schedule_interval(self.await_pin_change, 1)
 
-
     def on_stop(self):
-        self.close_connection()
+        sql_module.disconnect()
 
     # GUI MODIFIERS -------------------------------------
 
@@ -177,6 +159,81 @@ class MainApp(MDApp):
         except:
             print("Source not found")
             pass
+
+    connection = None  # Placeholder for the database connection
+    pics_cursor = None  # Placeholder for the cursor
+
+    @staticmethod
+    def connect_to_db():
+        try:
+            MainApp.connection = mysql.connector.connect(
+                host="localhost", #"airhub-soe.apc.edu.ph"
+                user="root", #"marj",
+                password= "", #RAMIcpe211",
+                database="mj_test" #"ramibot"
+            )
+            if MainApp.connection.is_connected():
+                print("Connected to MySQL database")
+                MainApp.pics_cursor = MainApp.connection.cursor()
+        except mysql.connector.Error as err:
+            print("Failed to connect to MySQL database: {}".format(err))
+
+    @staticmethod
+    def close_connection():
+        if MainApp.connection and MainApp.connection.is_connected():
+            MainApp.connection.close()
+            print("Connection to MySQL database closed")
+
+    def fetch_image_url(self, img_id):
+        tables = ['calendars_img', 'floor_map', 'tuition_img', 'programs_img', 'offices', 'apcinfo_img', 'org_img']
+        for table in tables:
+            # Execute the query
+            user_query = f"SELECT img_url FROM {table} WHERE img_identifier = %s"
+            MainApp.pics_cursor.execute(user_query, (img_id,))
+            image_found = MainApp.pics_cursor.fetchone()
+            print(f"image found: {image_found}")
+
+            if image_found:
+                return image_found[0]
+
+        return None
+
+    def update_images(self, screenName, imageLabel, img_id):
+        screens = self.root.get_screen(screenName)
+        image_url = self.fetch_image_url(img_id)
+
+        print(f"image url: {image_url}")
+        if image_url:
+            pic = screens.ids[imageLabel]
+            pic.source = image_url
+        else:
+            print("Image not found")
+
+    def fetch_all_images(self, table):
+        tables = [table]
+        all_images = []
+        for table in tables:
+            user_query = f"SELECT img_url FROM {table}"
+            self.pics_cursor.execute(user_query)
+            images = self.pics_cursor.fetchall()
+            all_images.extend([img[0] for img in images])
+        return all_images
+    def update_all_images(self, screenName, table):
+        screen = self.root.get_screen(screenName)
+        images = self.fetch_all_images(table)
+        image_widget = screen.ids.image_grid
+
+        if images:
+            print("Updating multiple images:")
+            image_widget.clear_widgets()
+
+            for image_url in images:
+                new_image = Image(source=image_url, size_hint=(None, None), size=(dp(600), dp(800)))
+                image_widget.add_widget(new_image)
+                print(f"Added image: {image_url}")
+
+        else:
+            print("No images found")
 
     def get_text(self, screen_name, id):
         """Get text from textinput in newuser screen"""
@@ -214,7 +271,8 @@ class MainApp(MDApp):
             # TODO get the current screen and update the image
 
 
-        else: pass
+        else:
+            pass
 
     def await_face_change(self, dt):
         if not image_queue.empty():
@@ -225,21 +283,22 @@ class MainApp(MDApp):
                 self.update_image(current_screen, 'face', image_path)
         else:
             pass
+
     def await_pin_change(self, dt):
-        #print("current screen = ", screen_manager.current)
+        # print("current screen = ", screen_manager.current)
 
         try:
             pin = gpio.read_gpio_pin(17)
             self.charge_pin = pin
 
             if self.charge_pin == 1:
-                #print("read one")
+                # print("read one")
                 if screen_manager.current != 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'lowbatteryscreen')
                 else:
                     pass
             if self.charge_pin == 0:
-                #print("read zero")
+                # print("read zero")
                 if screen_manager.current == 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'idlescreen')
                 else:
@@ -262,7 +321,35 @@ class MainApp(MDApp):
             Clock.unschedule(self.face_blink)
             Clock.unschedule(self.await_face_change)
 
+    def change_face_and_speak(self, text, face_path):
+        # Change the face
+        put_in_queue(image_queue, face_path)
+        # Start the thread
+        speak_thread = threading.Thread(target=pygtts.speak, args=(text,))
+        speak_thread.start()
+        speak_thread.join()
 
+    def idle_announcement(self, dt):
+
+        column_data = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
+        text = random.choice(column_data)
+
+        self.change_face_and_speak(text, 'rami_faces/wink.png')
+
+
+
+
+    def schedule_idle_announcement(self):
+        print("Current Screen: ", screen_manager.current)
+        if screen_manager.current == 'idlescreen':
+            Clock.schedule_interval(self.idle_announcement, 40)
+
+    def unschedule_idle_announcement(self):
+        Clock.unschedule(self.idle_announcement)
+
+    def get_current_screen(self):
+        print("Current Screen is ", screen_manager.current)
+        return screen_manager.current
 
     # FACE RECOGNITION ---------------------------------
     def warning(self):
@@ -440,7 +527,6 @@ class MainApp(MDApp):
         elif lower_conf is False:
             self.change_screen('mainmenu')
 
-
     def close_camera(self):
         self.camera.release()
 
@@ -601,6 +687,9 @@ def start_voice_thread():
     voice.daemon = True
     voice.start()
 
+window_instance = MainApp()
+# Connect to the database
+window_instance.connect_to_db()
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-SemiBold.ttf")
@@ -626,3 +715,6 @@ if __name__ == "__main__":
     # set events to stop thread processes and clear event to resume
 
     app.run()
+
+    # Close the database connection when the app exits
+    window_instance.close_connection()

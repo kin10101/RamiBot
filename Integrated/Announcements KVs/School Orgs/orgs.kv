@@ -63,7 +63,7 @@ MDScreen:
                             root.manager.current = 'orgInfo'
                             root.manager.transition.direction = 'left'
                             app.update_images("orgInfo", "orgImage", "pagOrg")
-#will apply fetch all
+
                     MDFillRoundFlatButton:
                         text: 'Academic Organizations'
                         font_name: 'Poppins'
@@ -77,10 +77,10 @@ MDScreen:
                         on_press:
                             root.manager.current = 'acadsOrg'
                             root.manager.transition.direction = 'left'
-                            app.update_image("acadsOrg", "orgImage1", "Announcements KVs/School Orgs/soe_orgs.png")
-                            app.update_image("acadsOrg", "orgImage2", "Announcements KVs/School Orgs/som_orgs.png")
-                            app.update_image("acadsOrg", "orgImage3", "Announcements KVs/School Orgs/socit_orgs.png")
-                            app.update_image("acadsOrg", "orgImage4", "Announcements KVs/School Orgs/soma_orgs.png")
+                            app.update_images("acadsOrg", "orgImage1", "soeOrg")
+                            app.update_images("acadsOrg", "orgImage2", "somOrg")
+                            app.update_images("acadsOrg", "orgImage3", "socitOrg")
+                            app.update_images("acadsOrg", "orgImage4", "somaOrg")
 
 
                     MDFillRoundFlatButton:
@@ -97,7 +97,7 @@ MDScreen:
                             root.manager.current = 'orgInfo'
                             root.manager.transition.direction = 'left'
                             app.update_images("orgInfo", "orgImage", "socioOrg")
-#will apply fetch all
+
                     MDFillRoundFlatButton:
                         text: 'Special Interest Organizations'
                         font_name: 'Poppins'
@@ -111,6 +111,7 @@ MDScreen:
                         on_press:
                             root.manager.current = 'specialOrg'
                             root.manager.transition.direction = 'left'
-                            app.update_image("specialOrg", "orgImage1", "Announcements KVs/School Orgs/spec1_orgs.png")
-                            app.update_image("specialOrg", "orgImage2", "Announcements KVs/School Orgs/spec2_orgs.png")
+                            #app.update_all_images("specialOrg", "org_img")
+                            app.update_images("specialOrg", "orgImage1", "specOrg1")
+                            app.update_images("specialOrg", "orgImage2", "specOrg2")
 

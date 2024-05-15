@@ -40,7 +40,7 @@ def face_recognition(video):
             confidence_result = conf
             print(f"confidence level: {confidence_result} for id number {str(serial)}")
 
-            if conf > 50:
+            if conf > 60:
 
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)

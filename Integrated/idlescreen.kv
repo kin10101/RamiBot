@@ -5,10 +5,12 @@ MDScreen:
         app.start_timer()
         app.clear_event()
         app.set_face_blink()
-
+        app.schedule_idle_announcement()
     on_pre_leave:
         app.on_gpio(4, 1)
         app.close_camera()
+        app.unschedule_idle_announcement()
+
 
 
 

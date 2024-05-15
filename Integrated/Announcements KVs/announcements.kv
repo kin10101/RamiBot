@@ -152,6 +152,7 @@ MDScreen:
                         on_press:
                             root.manager.current = 'accreds'
                             root.manager.transition.direction = 'left'
+                            app.update_all_images("accreds", "apc_certificates")
 
                     MDFillRoundFlatButton:
                         text: 'Scholarship Grants and Financial Aid'
