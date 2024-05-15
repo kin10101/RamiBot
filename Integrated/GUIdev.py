@@ -567,7 +567,9 @@ class MainApp(MDApp):
                 self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
 
                 print(f"{main.result_text}")
-                pygtts.speak(f'{main.result_text}')
+
+                if main.great_user:
+                    pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
