@@ -133,8 +133,6 @@ class MainApp(MDApp):
 
         screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
         screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gradSchool.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/GS/gsInfo.kv'))
 
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
