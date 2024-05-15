@@ -11,8 +11,10 @@ global user_dir
 global increment
 increment = 0
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-path = "D:\RamiBot Project\RamibotReal\Facerecog\datasets"
-#path = m.samba_connection("/RamiBot/datasets")
+#computer marj
+path = "D:\RamiBot Project\RamibotReal\Facerecog\datasets50"
+
+#path = "/home/rami/PycharmProjects/RamiBot/Facerecog/datasets50"
 
 # Initialize count as a class variable
 

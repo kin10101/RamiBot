@@ -1,5 +1,6 @@
 from Facerecog import trainedModel
 from Facerecog import main
+from Facerecog import test
 from kivy.uix.popup import Popup
 
 # Chatbot imports
@@ -399,7 +400,7 @@ class MainApp(MDApp):
                     cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
                     cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
 
-                    if count >= 500:
+                    if count >= 50:
                         # Release the video capture and exit the application
                         self.camera.release()
                         cv2.destroyAllWindows()
@@ -410,9 +411,18 @@ class MainApp(MDApp):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
-            conf = trainedModel.face_recognition(self.camera)
+            #conf = trainedModel.face_recognition(self.camera)
+            conf = test.realtime_face_recognition(self.camera)
 
-            if conf is not None:
+            # if conf is not None:
+            #     gpio.set_gpio_pin(4, 1)
+            #     put_in_queue(screen_queue, 'greetscreen')
+            #     self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
+            #
+            #     print(f"{main.result_text}")
+            #     pygtts.speak(f'{main.result_text}')
+
+            if conf:
                 gpio.set_gpio_pin(4, 1)
                 put_in_queue(screen_queue, 'greetscreen')
                 self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')

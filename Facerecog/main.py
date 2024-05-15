@@ -2,7 +2,10 @@ import random
 import mysql.connector
 from datetime import datetime
 import re
+
 from smb.SMBConnection import SMBConnection
+import smbclient
+
 #import Voicebot.pygtts as pygtts
 
 RamiDB = mysql.connector.connect(
@@ -64,7 +67,7 @@ def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
             RamiDB.close()
 
 
-def returnName1(ID_Num,result):
+def returnName1(ID_Num,person_identified):
     global user_nickname
     global unknown_user
     global result_text
@@ -74,7 +77,7 @@ def returnName1(ID_Num,result):
     res = cur.fetchall()
     greeting = get_time_of_day_greeting()
     unknown_user = greet_new_user()
-    threshold = 50
+    #threshold = 50
 
     temp = False
     lower_conf = False
@@ -97,11 +100,18 @@ def returnName1(ID_Num,result):
             pass
 
         # Convert the recognition result to text
-        if result > threshold:
+        # if result > threshold:
+        #     result_text = f"{greeting}, {nickname}!"
+        #     user_nickname = nickname
+        #     print(f"Recognized: {nickname} (ID: {ID_Num})")
+        #     time_stamp(ID_Num, result_text)
+
+        if person_identified:
             result_text = f"{greeting}, {nickname}!"
             user_nickname = nickname
             print(f"Recognized: {nickname} (ID: {ID_Num})")
-            time_stamp(ID_Num, result_text)
+            time_stamp(ID_Num)
+            lower_conf = False
 
             #compares 3 items in the list
             # identified_list.append(user_nickname) #adds nickname to the list
@@ -110,7 +120,8 @@ def returnName1(ID_Num,result):
         else:
             lower_conf = True
             result_text = greet_new_user()
-            print(f"Recognition confidence ({result}) is below the threshold. Unknown. name : {nickname}")
+            #print(f"Recognition confidence ({result}) is below the threshold. Unknown. name : {nickname}")
+            print(f"Recognition confidence is below the threshold. Unknown. name : {nickname}")
 
     else:
         lower_conf = True
@@ -146,7 +157,7 @@ def greet_new_user():
         return "Greetings, I'm Rami bot!"
 
 
-def time_stamp(ID_Num, result_text):
+def time_stamp(ID_Num):
     new_user = f"INSERT INTO greeted_users (ID_Number) VALUES ({ID_Num})"
     cur.execute(new_user)
     uploaded = cur.rowcount
@@ -154,7 +165,6 @@ def time_stamp(ID_Num, result_text):
     print(uploaded, f"timestamp uploaded to db with cur_time {current_time}")
 
     if uploaded == 1:
-        #check if timestamp is greater than 30
         user_query = f"SELECT time_stamp FROM greeted_users WHERE ID_Number = {ID_Num} ORDER BY id LIMIT 1"
         cur.execute(user_query)
         last_update = cur.fetchone()
@@ -163,8 +173,7 @@ def time_stamp(ID_Num, result_text):
                 last_update = last_update[0]
                 time_difference = (current_time-last_update).total_seconds()
                 print(f"time difference: {time_difference}")
-                if time_difference > 500:
-                    #pygtts.speak(f'{result_text}')
+                if time_difference > 86400:
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
                     print("already greeted an hour ago")
@@ -172,37 +181,25 @@ def time_stamp(ID_Num, result_text):
         print("user not in db")
 
 
-def samba_connection():
-
-    global conn
-
-    # Define the server details
-    server_name = "192.168.80.4"  # Replace with the Samba server's IP address
-    share_name = "sambashare"
-    username = "apc-airlab"
-    password = "APC_Airlab_2023!"
-
-    # Create an SMB connection object
-    conn = SMBConnection(username, password, "pysmb-client", server_name, use_ntlm_v2=True)
+def samba_connection(folder_path):
+    server_name = '192.168.80.4'
+    share_name = 'sambashare'
+    username = 'apc-airlab'
+    password = 'APC_Airlab_2023!'
+    #folder_path = 'RamiBot/datasets50'
 
     try:
-        # Connect to the Samba server
-        print("Connecting to Samba server...")
-        if not conn.connect(server_name, 445):
-            raise Exception("Failed to connect to Samba server.")
+        # Establish a connection to the Samba share
+        conn = SMBConnection(username, password, '', server_name, use_ntlm_v2=True)
+        conn.connect(server_name, 445)
+        print("Connection established")
 
-        print("Connected to Samba server")
+        # List files and directories in the folder
+        files_in_folder = conn.listPath(share_name, folder_path)
+        return  files_in_folder
 
     except Exception as e:
-        print("Error:", e)
-
-def close_samba_connection():
-
-    # Disconnect from the Samba server
-    print("Closing connection...")
-    conn.close()
-
-
+        print(f"An error occurred: {e}")
 
 
 

@@ -1,31 +1,12 @@
-# from kivy.uix.boxlayout import BoxLayout
-# global start
-#
-#
-# class PopupContent(BoxLayout):
-#     global start
-#
-#     def ok_button(self):
-#         print("ok button pressed")
-#         start = True
-#         return start
-#
-#     def cancel_button(self):
-#         print("cancel button pressed")
-#         start = False
-#         return start
+import os
 
+# Source path (UNC format) to the target folder within the Samba share
+source_path = '\\\\192.168.80.2\\sambashare\\RamiBot\\datasets50'
 
-# class face_capture_popup(BoxLayout):
-#     def open_popup(self):
-#         content = PopupContent()
-#         popup = Popup(title='face capture', content=content, size_hint=(None, None), size=(500, 400))
-#         popup.open()
-#
-# class TestApp(App):
-#     def build(self):
-#         return face_capture_popup()
-#
-#
-# if __name__ == '__main__':
-#     TestApp().run()
+# Destination path where the symbolic link will be created
+destination_path = 'D:\\RamiBot Project\\RamibotReal\\Facerecog\\realdatasets'
+
+# Create the symbolic link using mklink command
+os.system(f'mklink /d "{destination_path}" "{source_path}"')
+
+print("Symbolic link created successfully.")
