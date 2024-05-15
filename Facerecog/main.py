@@ -33,9 +33,10 @@ global user_nickname
 global unknown_user
 global result_text
 global lower_conf
+global great_user
 lower_conf = False
+great_user = False
 
-identified_list = []
 
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
@@ -158,6 +159,9 @@ def greet_new_user():
 
 
 def time_stamp(ID_Num):
+
+    global greet_user
+
     new_user = f"INSERT INTO greeted_users (ID_Number) VALUES ({ID_Num})"
     cur.execute(new_user)
     uploaded = cur.rowcount
@@ -174,9 +178,11 @@ def time_stamp(ID_Num):
                 time_difference = (current_time-last_update).total_seconds()
                 print(f"time difference: {time_difference}")
                 if time_difference > 86400:
+                    greet_user = True
                     cur.execute(f"DELETE FROM greeted_users WHERE ID_Number = {ID_Num}")
                 else:
-                    print("already greeted an hour ago")
+                    greet_user = False
+                    print("already greeted within the day")
     else:
         print("user not in db")
 
