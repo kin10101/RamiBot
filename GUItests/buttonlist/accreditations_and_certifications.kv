@@ -1,12 +1,11 @@
 MDScreen:
-    name: 'Other_Information'
+    name: 'Accreditations_and_Certifications'
 
-    on_pre_enter:
-        app.create_button_list_to_button_list(app.Other_Information)
+    on_enter:
+        app.create_button_list_to_image_info(app.Accreditations_and_Certifications)
 
-    on_pre_leave:
-        app.previous_screen = 'School_Information'
     MDFloatLayout: # main layout
+
 
         orientation: 'vertical'
 

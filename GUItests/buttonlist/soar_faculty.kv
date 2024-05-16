@@ -1,12 +1,11 @@
 MDScreen:
-    name: 'Other_Information'
+    name: 'SOAR_Faculty'
 
-    on_pre_enter:
-        app.create_button_list_to_button_list(app.Other_Information)
+    on_enter:
+        app.create_button_list_to_image_info(app.SOAR_Faculty)
 
-    on_pre_leave:
-        app.previous_screen = 'School_Information'
     MDFloatLayout: # main layout
+
 
         orientation: 'vertical'
 
@@ -23,7 +22,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                app.root.current = "School_Information"
+                app.root.current = "Faculty_Schedule"
 
 
         MDBoxLayout: # Square transparent container
