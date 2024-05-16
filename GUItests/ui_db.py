@@ -50,7 +50,7 @@ class MyApp(App):
             return image
         except Exception as e:
             print(f"Error creating image: {e}")
-            return Image(source='shs.png')
+            return Image(source='Senior_High_School.png')
                 # Replace with a default image source
 
 if __name__ == '__main__':

@@ -1,9 +1,7 @@
 
 from kivymd.uix.button import MDFillRoundFlatButton
 
-from Facerecog import trainedModel
 from Facerecog import main
-from Facerecog import test
 from kivy.uix.popup import Popup
 
 from kivy.metrics import dp
@@ -66,11 +64,16 @@ class MainApp(MDApp):
         self.image = None
         self.charge_pin = gpio.read_gpio_pin(17)
 
-        # self.main_menu_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
-        # self.office_sched_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
-        # self.programs_offered_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
-        # self.school_info_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
-        # self.floor_maps_button_list = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
+        self.Main_Menu = sql_module.get_column_data("button_list", "Main_Menu")
+        self.Office_Schedule = sql_module.get_column_data("button_list", "Office_Schedule")
+        self.Faculty_Schedule = sql_module.get_column_data("button_list", "Faculty_Schedule")
+        self.Programs_Offered = sql_module.get_column_data("button_list", "Programs_Offered")
+        self.Other_Information = sql_module.get_column_data("button_list", "Other_Information")
+        self.Tuition_Fees = sql_module.get_column_data("button_list", "Tuition_Fees")
+        self.School_Calendar = sql_module.get_column_data("button_list", "School_Calendar")
+        self.School_Organizations = sql_module.get_column_data("button_list", "School_Organizations")
+        self.School_Information = sql_module.get_column_data("button_list", "School_Information")
+        self.Floor_Maps = sql_module.get_column_data("button_list", "Floor_Maps")
 
         self.status = False
         self.current_screen = None
@@ -105,35 +108,7 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('floor_maps.kv'))
 
         screen_manager.add_widget(Builder.load_file('image_info.kv'))
-
-        screen_manager.add_widget(Builder.load_file('mainscreen.kv'))
         screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
-
-        screen_manager.add_widget(Builder.load_file('Office KVs/officehours.kv'))
-        screen_manager.add_widget(Builder.load_file('Office KVs/officeInfo.kv'))
-
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/announcements.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/Tuitions/tuitionInfo.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/Tuitions/tuitions.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgs.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/orgsInfo.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/specialOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Orgs/acadsOrg.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendars.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/School Calendar/calendarInfo.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarships.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/Scholarships/scholarInfo.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/Accreditations.kv'))
-        screen_manager.add_widget(Builder.load_file('Announcements KVs/About APC/APCinfo.kv'))
-
-        screen_manager.add_widget(Builder.load_file('Faculty Scheds KVs/faculty.kv'))
-        screen_manager.add_widget(Builder.load_file('Faculty Scheds KVs/facultyInfo.kv'))
-
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floormaps.kv'))
-        screen_manager.add_widget(Builder.load_file('Floors KVs/floor.kv'))
-
-        screen_manager.add_widget(Builder.load_file('Programs KVs/programsoffered.kv'))
-        screen_manager.add_widget(Builder.load_file('Programs KVs/programs.kv'))
 
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
@@ -204,7 +179,7 @@ class MainApp(MDApp):
 
         print(f"Button {button_text} pressed")
         screen_manager.current = "image_info"  # navigate to image info screen
-        path = ""  # get path source location
+        path = "/home/rami/PycharmProjects/RamiBot/Integrated/Assets/Image Infos/"  # get path source location
         screen_manager.get_screen(screen_manager.current).ids.img.source = path + button_text + ".png"
 
     def clear_buttons(self):
@@ -551,7 +526,7 @@ class MainApp(MDApp):
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
             #conf = trainedModel.face_recognition(self.camera)
-            conf = test.realtime_face_recognition(self.camera)
+            conf = main.realtime_face_recognition(self.camera)
 
             # if conf is not None:
             #     gpio.set_gpio_pin(4, 1)
@@ -573,13 +548,14 @@ class MainApp(MDApp):
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
+
         print(f"lower_conf: {lower_conf}")
 
         if lower_conf is True:
             self.change_screen('newuser')
 
         elif lower_conf is False:
-            self.change_screen('mainmenu')
+            self.change_screen('Main_Menu')
 
     def close_camera(self):
         self.camera.release()
@@ -743,7 +719,7 @@ def start_voice_thread():
 
 
 if __name__ == "__main__":
-    LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-SemiBold.ttf")
+    LabelBase.register(name='Poppins', fn_regular="Assets/Fonts/Poppins-SemiBold.ttf")
 
     # Queues
     event_queue = Queue()

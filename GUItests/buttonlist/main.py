@@ -20,14 +20,7 @@ global screen_manager
 class MainWindow(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # self.Main_Menu = ["Office_Schedule", "Faculty_Schedule", "Programs_Offered", "School_Information", "Floor_Maps"]
-        # self.Office_Schedule = ["Admissions_Office", "Accounting", "Registrar"]
-        # self.Office_Schedule_URL = ["logo.png", "main_bg.png", "face_scan_complete.png"]
-        # self.Faculty_Schedule = ["two1", "two2", "two3"]
-        # self.Programs_Offered = ["three1", "three2", "three3"]
-        # self.School_Information = ["four1", "four2", "four3"]
-        # self.Floor_Maps = ["five1", "five2", "five3"]
-
+       
         self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
         self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
         self.Faculty_Schedule = sql_module.get_column_data("button_list", "faculty_schedule")
