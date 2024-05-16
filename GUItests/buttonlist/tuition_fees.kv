@@ -4,6 +4,11 @@ MDScreen:
     on_pre_enter:
         app.create_button_list_to_image_info(app.Tuition_Fees)
 
+    on_pre_leave:
+        app.previous_screen = 'Tuition_Fees'
+
+    MDFloatLayout: # main layout
+
         orientation: 'vertical'
 
         Image: # Background image
@@ -19,7 +24,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                app.root.current = "Other_Information"
+                app.root.current = "School_Information"
 
 
         MDBoxLayout: # Square transparent container

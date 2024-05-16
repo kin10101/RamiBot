@@ -1,10 +1,10 @@
 MDScreen:
-    name: 'Office_Schedule'
+    name: 'SHS_Faculty'
 
     on_enter:
-        app.create_button_list_to_image_info(app.Office_Schedule)
+        app.create_button_list_to_image_info(app.SHS_Faculty)
     on_pre_leave:
-        app.previous_screen = 'Office_Schedule'
+        app.previous_screen = 'SHS_Faculty'
     MDFloatLayout: # main layout
 
 
@@ -23,7 +23,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                app.root.current = "Main_Menu"
+                app.root.current = "Faculty_Schedule"
 
 
         MDBoxLayout: # Square transparent container

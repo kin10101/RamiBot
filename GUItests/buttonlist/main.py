@@ -24,13 +24,22 @@ class MainWindow(MDApp):
         self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
         self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
         self.Faculty_Schedule = sql_module.get_column_data("button_list", "faculty_schedule")
+        self.SOE_Faculty = sql_module.get_column_data("button_list", "soe_faculty")
+        self.SHS_Faculty = sql_module.get_column_data("button_list", "shs_faculty")
+        self.SOAR_Faculty = sql_module.get_column_data("button_list", "soar_faculty")
+        self.SOCIT_Faculty = sql_module.get_column_data("button_list", "socit_faculty")
+        self.SOM_Faculty = sql_module.get_column_data("button_list", "som_faculty")
+        self.SOMAFaculty = sql_module.get_column_data("button_list", "soma_faculty")
+        self.GS_Faculty = sql_module.get_column_data("button_list", "gs_faculty")
         self.Programs_Offered = sql_module.get_column_data("button_list", "programs_offered")
+        self.School_Information = sql_module.get_column_data("button_list", "school_information")
         self.Other_Information = sql_module.get_column_data("button_list", "other_information")
+        self.Accreditations_and_Certifications = sql_module.get_column_data("button_list", "accreditations_and_certifications")
         self.Tuition_Fees = sql_module.get_column_data("button_list", "tuition_fees")
         self.School_Calendar = sql_module.get_column_data("button_list", "school_calendar")
         self.School_Organizations = sql_module.get_column_data("button_list", "school_organizations")
-        self.School_Information = sql_module.get_column_data("button_list", "school_information")
-        self.Floor_Map_and_Directory = sql_module.get_column_data("button_list", "floor_map_and_directory")
+        self.Floor_Maps = sql_module.get_column_data("button_list", "floor_maps")
+
 
         self.previous_screen = None
 
@@ -45,11 +54,19 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('office_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('faculty_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('programs_offered.kv'))
+        screen_manager.add_widget(Builder.load_file('soe_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('shs_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('soar_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('socit_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('som_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('soma_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('gs_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('school_information.kv'))
         screen_manager.add_widget(Builder.load_file('other_information.kv'))
+        screen_manager.add_widget(Builder.load_file('accreditations_and_certifications.kv'))
         screen_manager.add_widget(Builder.load_file('tuition_fees.kv'))
         screen_manager.add_widget(Builder.load_file('school_calendar.kv'))
         screen_manager.add_widget(Builder.load_file('school_organizations.kv'))
-        screen_manager.add_widget(Builder.load_file('school_information.kv'))
         screen_manager.add_widget(Builder.load_file('floor_maps.kv'))
 
         screen_manager.add_widget(Builder.load_file('image_info.kv'))
@@ -105,9 +122,11 @@ class MainWindow(MDApp):
 
         print(f"Button {button_text} pressed")
         screen_manager.current = "image_info"  # navigate to image info screen
-        path = ""  # get path from database
-        screen_manager.get_screen(screen_manager.current).ids.img.source = path + button_text + ".png"
+        path = "Image_Infos/"  # get path from database
+        url =  path + button_text + ".png"
+        print(screen_manager.current)
 
+        screen_manager.get_screen("image_info").ids.img.source = url
     def clear_buttons(self):
         # Get a reference to the button layout
         button_layout = screen_manager.get_screen(screen_manager.current).ids.button_layout
