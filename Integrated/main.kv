@@ -4,16 +4,11 @@ MDScreen:
     on_pre_enter:
         app.create_button_list_to_button_list(app.Main_Menu)
         print("entered mainmenu")
-        app.set_event()
+        app.set_event() #idk ano purpose
     on_pre_leave:
         app.previous_screen = 'Main_Menu'
 
-
-
-
     MDFloatLayout: # main layout
-
-
         orientation: 'vertical'
 
         Image: # Background image
@@ -51,76 +46,6 @@ MDScreen:
                     spacing: 25
                     size_hint_y: None
                     height: self.minimum_height
-#
-#                    MDFillRoundFlatButton:
-#                        text: 'Office Schedules'
-#                        font_name: 'Poppins'
-#                        font_size: "24sp"
-#                        halign: 'center'
-#                        text_color: 1, 1, 1, 1
-#                        md_bg_color: .003, .4, .6, 1
-#                        size_hint: .7, None
-#                        pos_hint: {'center_x': 0.5}
-#                        padding: 30
-#                        on_release:
-#                            root.manager.current = 'officehours'
-#                            root.manager.transition.direction = 'left'
-#
-#                    MDFillRoundFlatButton:
-#                        text: 'Faculty Schedules'
-#                        font_name: 'Poppins'
-#                        font_size: "24sp"
-#                        halign: 'center'
-#                        text_color: 1, 1, 1, 1
-#                        md_bg_color: .003, .4, .6, 1
-#                        size_hint: .7, None
-#                        pos_hint: {'center_x': 0.5}
-#                        padding: 30
-#                        on_release:
-#                            root.manager.current = 'facultyscheds'
-#                            root.manager.transition.direction = 'left'
-#
-#                    MDFillRoundFlatButton:
-#                        text: 'Programs Offered'
-#                        font_name: 'Poppins'
-#                        font_size: "24sp"
-#                        halign: 'center'
-#                        text_color: 1, 1, 1, 1
-#                        md_bg_color: .003, .4, .6, 1
-#                        size_hint: .7, None
-#                        pos_hint: {'center_x': 0.5}
-#                        padding: 30
-#                        on_release:
-#                            root.manager.current = 'programsoffered'
-#                            root.manager.transition.direction = 'left'
-#
-#                    MDFillRoundFlatButton:
-#                        text: 'School Information'
-#                        font_name: 'Poppins'
-#                        font_size: "24sp"
-#                        halign: 'center'
-#                        text_color: 1, 1, 1, 1
-#                        md_bg_color: .003, .4, .6, 1
-#                        size_hint: .7, None
-#                        pos_hint: {'center_x': 0.5}
-#                        padding: 30
-#                        on_release:
-#                            root.manager.current = 'announcements'
-#                            root.manager.transition.direction = 'left'
-#
-#                    MDFillRoundFlatButton:
-#                        text: 'Floor Map and Directory'
-#                        font_name: 'Poppins'
-#                        font_size: "24sp"
-#                        halign: 'center'
-#                        text_color: 1, 1, 1, 1
-#                        md_bg_color: .003, .4, .6, 1
-#                        size_hint: .7, None
-#                        pos_hint: {'center_x': 0.5}
-#                        padding: 30
-#                        on_release:
-#                            root.manager.current = 'floormaps'
-#                            root.manager.transition.direction = 'left'
 
         Button:
             size_hint: None, None
@@ -130,3 +55,5 @@ MDScreen:
             pos_hint: {'center_x': 0.9, 'center_y': 0.062}
             background_scale: 'fit'
             border_radius: [100]
+            on_release:
+                app.change_screen("chatscreen")

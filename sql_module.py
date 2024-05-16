@@ -62,9 +62,9 @@ def insert_data(table, columns, values):
 
 if __name__ == "__main__":
     connect()
-    show_tables()
-    show_columns("button_list_structure__1_")
-    column_data = get_column_data("button_list_structure__1_", "faculty_schedule")
+    #show_tables()
+    show_columns("button_list")
+    column_data = get_column_data("button_list", "")
     print(column_data)
 
 

@@ -19,7 +19,7 @@ from nltk.stem import WordNetLemmatizer
 def train_bot():
     lemmatizer = WordNetLemmatizer()
 
-    intents = json.loads(open('/home/rami/PycharmProjects/RamiBot/Voicebot/voicebotintents.json').read())
+    intents = json.loads(open('/home/rami/PycharmProjects/RamiBot/Integrated/voicebotintents.json').read())
 
     words = []
     classes = []

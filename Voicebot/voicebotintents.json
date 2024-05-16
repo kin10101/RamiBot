@@ -4,7 +4,7 @@
             "tag": "Fallback unknown",
             "patterns": [],
             "responses": [
-                "sorry, I cant understand you, could you please repeat what you said?",
+                "sorry, could you please repeat what you said?",
                 "could you please repeat what you said? i could not understand you",
                 "i dont understand what you are saying"
             ]
