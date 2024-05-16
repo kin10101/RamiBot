@@ -3,9 +3,9 @@ MDScreen:
 
     on_enter:
         app.create_button_list_to_image_info(app.Academic_Organizations)
-
+    on_pre_leave:
+        app.previous_screen = 'Academic_Organizations'
     MDFloatLayout: # main layout
-
 
         orientation: 'vertical'
 

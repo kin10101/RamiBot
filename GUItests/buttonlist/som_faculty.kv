@@ -3,6 +3,8 @@ MDScreen:
 
     on_enter:
         app.create_button_list_to_image_info(app.SOM_Faculty)
+    on_pre_leave:
+        app.previous_screen = 'SOM_Faculty'
 
     MDFloatLayout: # main layout
 

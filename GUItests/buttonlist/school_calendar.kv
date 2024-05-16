@@ -3,7 +3,8 @@ MDScreen:
 
     on_pre_enter:
         app.create_button_list_to_image_info(app.School_Calendar)
-
+    on_pre_leave:
+        app.previous_screen = 'School_Calendar'
     MDFloatLayout: # main layout
 
         orientation: 'vertical'

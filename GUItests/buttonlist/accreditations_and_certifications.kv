@@ -3,7 +3,8 @@ MDScreen:
 
     on_enter:
         app.create_button_list_to_image_info(app.Accreditations_and_Certifications)
-
+    on_pre_leave:
+        app.previous_screen = 'Accreditations_and_Certifications'
     MDFloatLayout: # main layout
 
 

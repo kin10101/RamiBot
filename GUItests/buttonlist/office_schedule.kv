@@ -3,7 +3,8 @@ MDScreen:
 
     on_enter:
         app.create_button_list_to_image_info(app.Office_Schedule)
-
+    on_pre_leave:
+        app.previous_screen = 'Office_Schedule'
     MDFloatLayout: # main layout
 
 

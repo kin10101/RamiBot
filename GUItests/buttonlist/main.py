@@ -124,9 +124,11 @@ class MainWindow(MDApp):
 
         print(f"Button {button_text} pressed")
         screen_manager.current = "image_info"  # navigate to image info screen
-        path = ""  # get path from database
-        screen_manager.get_screen(screen_manager.current).ids.img.source = path + button_text + ".png"
+        path = "Image_Infos/"  # get path from database
+        url =  path + button_text + ".png"
+        print("o  ",screen_manager.current)
 
+        screen_manager.get_screen("image_info").ids.img.source = url
     def clear_buttons(self):
         # Get a reference to the button layout
         button_layout = screen_manager.get_screen(screen_manager.current).ids.button_layout

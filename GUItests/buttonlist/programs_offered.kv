@@ -3,7 +3,8 @@ MDScreen:
 
     on_enter:
         app.create_button_list_to_image_info(app.Programs_Offered)
-
+    on_pre_leave:
+        app.previous_screen = 'Programs_Offered'
     MDFloatLayout: # main layout
 
         orientation: 'vertical'
