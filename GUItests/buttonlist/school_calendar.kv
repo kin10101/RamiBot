@@ -1,10 +1,8 @@
 MDScreen:
-    name: 'Programs_Offered'
+    name: 'School_Calendar'
 
-    on_enter:
-        app.create_button_list_to_image_info(app.Programs_Offered)
-
-    MDFloatLayout: # main layout
+    on_pre_enter:
+        app.create_button_list_to_image_info(app.School_Calendar)
 
         orientation: 'vertical'
 
@@ -21,7 +19,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                app.root.current = "Main_Menu"
+                app.root.current = "Other_Information"
 
 
         MDBoxLayout: # Square transparent container
