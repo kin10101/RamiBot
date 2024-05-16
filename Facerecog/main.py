@@ -33,13 +33,13 @@ global person_detected
 
 
 #start of face recognition module--------------------------------------------------------------------------------------
-def realtime_face_recognition():
+def realtime_face_recognition(video):
     global person_identified
     global person_detected
-    video = cv2.VideoCapture(0)
+    #video = cv2.VideoCapture(0)
     # Define a video capture object
     global x, y, w, h
-    path = "/home/rami/PycharmProjects/RamiBot/Facerecog/datasets50"
+    path = "/home/rami/PycharmProjects/RamiBot/Facerecog/datasets"
     while True:
         # Capture the video frame by frame
         ret, frame = video.read()
