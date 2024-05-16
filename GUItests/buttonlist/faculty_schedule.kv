@@ -1,14 +1,11 @@
 MDScreen:
     name: 'Faculty_Schedule'
 
-    on_enter:
-        app.create_button_list_to_image_info(app.Faculty_Schedule)
+    on_pre_enter:
+        app.create_button_list_to_button_list(app.Faculty_Schedule)
+
     on_pre_leave:
-        app.previous_screen = 'Faculty_Schedule'
-
-
-
-
+        app.previous_screen = 'Main_Menu'
 
     MDFloatLayout: # main layout
 
