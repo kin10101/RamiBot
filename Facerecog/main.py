@@ -4,6 +4,7 @@ from datetime import datetime
 import re
 
 from smb.SMBConnection import SMBConnection
+from Facerecog.test import person_detected
 import smbclient
 
 #import Voicebot.pygtts as pygtts
@@ -100,12 +101,10 @@ def returnName1(ID_Num,person_identified):
             # Handle the case where name is not a string (e.g., raise an exception or handle it appropriately)
             pass
 
-        # Convert the recognition result to text
-        # if result > threshold:
-        #     result_text = f"{greeting}, {nickname}!"
-        #     user_nickname = nickname
-        #     print(f"Recognized: {nickname} (ID: {ID_Num})")
-        #     time_stamp(ID_Num, result_text)
+        if person_detected:
+            lower_conf = True
+            result_text = greet_new_user()
+            print(f"person not in db")
 
         if person_identified:
             result_text = f"{greeting}, {nickname}!"
@@ -113,16 +112,6 @@ def returnName1(ID_Num,person_identified):
             print(f"Recognized: {nickname} (ID: {ID_Num})")
             time_stamp(ID_Num)
             lower_conf = False
-
-            #compares 3 items in the list
-            # identified_list.append(user_nickname) #adds nickname to the list
-            # if identified_list.count(user_nickname) == 3: #identifies if nickname is iterated 3 times
-            #     return True
-        else:
-            lower_conf = True
-            result_text = greet_new_user()
-            #print(f"Recognition confidence ({result}) is below the threshold. Unknown. name : {nickname}")
-            print(f"Recognition confidence is below the threshold. Unknown. name : {nickname}")
 
     else:
         lower_conf = True

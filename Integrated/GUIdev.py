@@ -573,6 +573,7 @@ class MainApp(MDApp):
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf
+
         print(f"lower_conf: {lower_conf}")
 
         if lower_conf is True:
