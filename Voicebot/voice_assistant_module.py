@@ -70,6 +70,7 @@ class VoiceAssistant:
                 pass
 
             elif gpio.read_gpio_pin(17) == 0:
+
                 if not active_state.is_set():  # while active state is not set (roaming, idle screen), listen for wake word.
                     print("wakeword listening active")
                     try:
@@ -106,6 +107,7 @@ class VoiceAssistant:
 
                         while active_state.is_set():  # listen until something is heard from the user
                             print("SAY SOMETHING!!!")
+
                             try:
                                 text2 = self.listen_to_command(recognizer, source)
                                 print("Received command: " + text2)
@@ -129,7 +131,38 @@ class VoiceAssistant:
                             if not active_state.is_set():
                                 break
 
+    def run_once(self):
+        recognizer = sr.Recognizer()
+        recognizer.pause_threshold = self.pause_threshold
+        recognizer.energy_threshold = self.energy_threshold
+        recognizer.operation_timeout = self.operation_timeout
+        recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
+
+        print("Current mic being used: ", self.mic)
+        context = [""]  # need to remove this
+
+        if gpio.read_gpio_pin(17) == 0:
+            print("voice assistant activated")
+            with self.mic as source:
+                print('speak now')
+                try:
+                    text = self.listen_to_command(recognizer, source)
+                    print("Audio received to text: " + text)
+                    response = self.handle_command(text, context)
+                    if response is not None:
+                        ts.speak(response, lang='en')
+                except sr.RequestError:
+                    print("Could not request results from google Speech Recognition service")
+                except sr.UnknownValueError:
+                    print("Unable to recognize speech")
+                except sr.WaitTimeoutError:
+                    print("Timeout error while waiting for speech input")
+        else:
+            print("voice assistant deactivated")
+
 if __name__ == "__main__":
+    Voicebot = VoiceAssistant()
+    Voicebot.run_once()
 
 
     for index, name in enumerate(sr.Microphone.list_microphone_names()):

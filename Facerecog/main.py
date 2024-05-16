@@ -25,6 +25,7 @@ global unknown_user
 global result_text
 global lower_conf
 global great_user
+global video
 lower_conf = False
 great_user = False
 global person_identified
@@ -32,9 +33,10 @@ global person_detected
 
 
 #start of face recognition module--------------------------------------------------------------------------------------
-def realtime_face_recognition(video):
+def realtime_face_recognition():
     global person_identified
     global person_detected
+    video = cv2.VideoCapture(0)
     # Define a video capture object
     global x, y, w, h
     path = "/home/rami/PycharmProjects/RamiBot/Facerecog/datasets50"

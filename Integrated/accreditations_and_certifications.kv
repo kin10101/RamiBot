@@ -1,12 +1,10 @@
 MDScreen:
-    name: 'Faculty_Schedule'
+    name: 'Accreditations_and_Certifications'
 
-    on_pre_enter:
-        app.create_button_list_to_button_list(app.Faculty_Schedule)
-
+    on_enter:
+        app.create_button_list_to_image_info(app.Accreditations_and_Certifications)
     on_pre_leave:
-        app.previous_screen = 'Main_Menu'
-
+        app.previous_screen = 'Accreditations_and_Certifications'
     MDFloatLayout: # main layout
 
 
@@ -25,7 +23,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.9}
             user_font_size: "40sp"
             on_press:
-                app.root.current = "Main_Menu"
+                app.root.current = "School_Information"
 
 
         MDBoxLayout: # Square transparent container
