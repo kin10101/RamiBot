@@ -126,7 +126,7 @@ class MainWindow(MDApp):
         screen_manager.current = "image_info"  # navigate to image info screen
         path = "Image_Infos/"  # get path from database
         url =  path + button_text + ".png"
-        print("o  ",screen_manager.current)
+        print(screen_manager.current)
 
         screen_manager.get_screen("image_info").ids.img.source = url
     def clear_buttons(self):
