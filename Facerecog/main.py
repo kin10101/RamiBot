@@ -1,35 +1,25 @@
 import random
-import mysql.connector
 from datetime import datetime
 import re
 
 from smb.SMBConnection import SMBConnection
-from Facerecog.test import person_detected
-import smbclient
+import sql_module
 
-#import Voicebot.pygtts as pygtts
+from deepface import DeepFace
+import cv2
+import pandas as pd
 
-RamiDB = mysql.connector.connect(
-    host = "airhub-soe.apc.edu.ph",
-    user = "marj",
-    passwd = 'RAMIcpe211',
-    database = "ramibot",
-    autocommit  = True
-    )
 
-# RamiDB = mysql.connector.connect(
-#     host = "localhost",
-#     user = "root",
-#     passwd = '',
-#     database = "ramibot",
-#     port = "3306",
-#     autocommit  = True
-#     )
-
+RamiDB = sql_module.connect()
 cur = RamiDB.cursor()
-#engine = pyttsx3.init()
+
 voiceTrig = 0
 motorTrig = 0
+
+backends = ['opencv', 'ssd', 'dlib', 'mtcnn', 'fastmtcnn','retinaface', 'mediapipe','yolov8','yunet','centerface',]
+models = ["VGG-Face", "Facenet", "Facenet512", "OpenFace", "DeepFace", "DeepID", "ArcFace", "Dlib", "SFace","GhostFaceNet",]
+metrics = ["cosine", "euclidean", "euclidean_l2"]
+
 global user_nickname
 global unknown_user
 global result_text
@@ -37,8 +27,70 @@ global lower_conf
 global great_user
 lower_conf = False
 great_user = False
+global person_identified
+global person_detected
 
 
+#start of face recognition module--------------------------------------------------------------------------------------
+def realtime_face_recognition(vid):
+    global person_identified
+    global person_detected
+    # Define a video capture object
+    global x, y, w, h
+
+    while True:
+        # Capture the video frame by frame
+        ret, frame = vid.read()
+
+        try:
+            # Perform face recognition on the captured frame
+            # Find faces and identify people using a specific model and distance metric
+            detections = DeepFace.extract_faces(img_path=frame, detector_backend=backends[8])
+            if detections:
+                print("face detected")
+                person_detected = True
+                people = DeepFace.find(img_path=frame, db_path='datasets50/', model_name=models[2], distance_metric=metrics[2], detector_backend=backends[8],enforce_detection=False, threshold=0.6)
+                #print(f"people: {people}")
+                if people:
+                    for person in people:
+                        person_identified = True
+                        # Retrieve the coordinates of the face bounding box
+                        # Ensure that person['source_x'], person['source_y'], etc. are Series
+                        if isinstance(person['source_x'], pd.Series):
+                            x = person['source_x'].iloc[0]
+                            y = person['source_y'].iloc[0]
+                            w = person['source_w'].iloc[0]
+                            h = person['source_h'].iloc[0]
+
+                            # Draw a rectangle around the face
+                            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+                            # Get the person's name and display it on the image
+                            name = person['identity'][0].split("/")[-1].split("\\")[0]
+                            returnName1(str(name), person_identified)
+                            cv2.putText(frame, name, (x, y), cv2.FONT_ITALIC, 1, (0, 0, 255), 2)
+
+        except Exception as e:
+            person_detected = False
+            print(f"An error occurred: {e}")
+
+
+        #Display the resulting frame
+        # cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
+        # cv2.resizeWindow('frame', 960, 720)
+        # cv2.imshow('frame', frame)
+
+        # Check if the 'q' button is pressed to quit the program
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+        # Release the video capture object and close all windows
+    vid.release()
+    #cv2.destroyAllWindows()
+
+#end of face recognition module----------------------------------------------------------------------------------------
+
+#other modules---------------------------------------------------------------------------------------------------------
 def insertToDB(ID_Num, nickname, Last_Name, Given_name, MI, Proffesion):
 
     try:

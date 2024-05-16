@@ -1,9 +1,7 @@
 
 from kivymd.uix.button import MDFillRoundFlatButton
 
-from Facerecog import trainedModel
 from Facerecog import main
-from Facerecog import test
 from kivy.uix.popup import Popup
 
 from kivy.metrics import dp
@@ -551,7 +549,7 @@ class MainApp(MDApp):
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
             #conf = trainedModel.face_recognition(self.camera)
-            conf = test.realtime_face_recognition(self.camera)
+            conf = main.realtime_face_recognition(self.camera)
 
             # if conf is not None:
             #     gpio.set_gpio_pin(4, 1)
