@@ -13,6 +13,7 @@ import sql_module
 '''TEST HERE GUI CODE TO BE IMPLEMENTED IN INTEGRATED'''
 
 Window.size = (1920, 1080)
+Window.fullscreen = True
 global screen_manager
 
 
@@ -27,12 +28,16 @@ class MainWindow(MDApp):
         # self.School_Information = ["four1", "four2", "four3"]
         # self.Floor_Maps = ["five1", "five2", "five3"]
 
-        self.Main_Menu = sql_module.get_column_data("button_list_structure__1_", "main_menu")
-        self.Office_Schedule = sql_module.get_column_data("button_list_structure__1_", "office_schedule")
-        self.Faculty_Schedule = sql_module.get_column_data("button_list_structure__1_", "faculty_schedule")
-        self.Programs_Offered = sql_module.get_column_data("button_list_structure__1_", "programs_offered")
-        self.School_Information = sql_module.get_column_data("button_list_structure__1_", "school_information")
-        self.Floor_Maps = sql_module.get_column_data("button_list_structure__1_", "floor_maps")
+        self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
+        self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
+        self.Faculty_Schedule = sql_module.get_column_data("button_list", "faculty_schedule")
+        self.Programs_Offered = sql_module.get_column_data("button_list", "programs_offered")
+        self.Other_Information = sql_module.get_column_data("button_list", "other_information")
+        self.Tuition_Fees = sql_module.get_column_data("button_list", "tuition_fees")
+        self.School_Calendar = sql_module.get_column_data("button_list", "school_calendar")
+        self.School_Organizations = sql_module.get_column_data("button_list", "school_organizations")
+        self.School_Information = sql_module.get_column_data("button_list", "school_information")
+        self.Floor_Map_and_Directory = sql_module.get_column_data("button_list", "floor_map_and_directory")
 
         self.previous_screen = None
 
@@ -47,6 +52,10 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('office_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('faculty_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('programs_offered.kv'))
+        screen_manager.add_widget(Builder.load_file('other_information.kv'))
+        screen_manager.add_widget(Builder.load_file('tuition_fees.kv'))
+        screen_manager.add_widget(Builder.load_file('school_calendar.kv'))
+        screen_manager.add_widget(Builder.load_file('school_organizations.kv'))
         screen_manager.add_widget(Builder.load_file('school_information.kv'))
         screen_manager.add_widget(Builder.load_file('floor_maps.kv'))
 
@@ -118,7 +127,7 @@ class MainWindow(MDApp):
 if __name__ == "__main__":
     # create the list of buttons in the main menu, then map the functions in the on_press_list to the buttons that takes in the argument of the list to be created as new button list
 
-    LabelBase.register(name='Poppins', fn_regular="Assets/Poppins-Regular.otf")
+    LabelBase.register(name='Poppins', fn_regular="Poppins-Regular.otf")
     MainWindow().run()
 
     sql_module.connect()
