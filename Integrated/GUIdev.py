@@ -64,16 +64,25 @@ class MainApp(MDApp):
         self.image = None
         self.charge_pin = gpio.read_gpio_pin(17)
 
-        self.Main_Menu = sql_module.get_column_data("button_list", "Main_Menu")
-        self.Office_Schedule = sql_module.get_column_data("button_list", "Office_Schedule")
-        self.Faculty_Schedule = sql_module.get_column_data("button_list", "Faculty_Schedule")
-        self.Programs_Offered = sql_module.get_column_data("button_list", "Programs_Offered")
-        self.Other_Information = sql_module.get_column_data("button_list", "Other_Information")
-        self.Tuition_Fees = sql_module.get_column_data("button_list", "Tuition_Fees")
-        self.School_Calendar = sql_module.get_column_data("button_list", "School_Calendar")
-        self.School_Organizations = sql_module.get_column_data("button_list", "School_Organizations")
-        self.School_Information = sql_module.get_column_data("button_list", "School_Information")
-        self.Floor_Maps = sql_module.get_column_data("button_list", "Floor_Maps")
+        self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
+        self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
+        self.Faculty_Schedule = sql_module.get_column_data("button_list", "faculty_schedule")
+        self.SOE_Faculty = sql_module.get_column_data("button_list", "soe_faculty")
+        self.SHS_Faculty = sql_module.get_column_data("button_list", "shs_faculty")
+        self.SOAR_Faculty = sql_module.get_column_data("button_list", "soar_faculty")
+        self.SOCIT_Faculty = sql_module.get_column_data("button_list", "socit_faculty")
+        self.SOM_Faculty = sql_module.get_column_data("button_list", "som_faculty")
+        self.SOMAFaculty = sql_module.get_column_data("button_list", "soma_faculty")
+        self.GS_Faculty = sql_module.get_column_data("button_list", "gs_faculty")
+        self.Programs_Offered = sql_module.get_column_data("button_list", "programs_offered")
+        self.School_Information = sql_module.get_column_data("button_list", "school_information")
+        self.Other_Information = sql_module.get_column_data("button_list", "other_information")
+        self.Accreditations_and_Certifications = sql_module.get_column_data("button_list",
+                                                                            "accreditations_and_certifications")
+        self.Tuition_Fees = sql_module.get_column_data("button_list", "tuition_fees")
+        self.School_Calendar = sql_module.get_column_data("button_list", "school_calendar")
+        self.School_Organizations = sql_module.get_column_data("button_list", "school_organizations")
+        self.Floor_Maps = sql_module.get_column_data("button_list", "floor_maps")
 
         self.status = False
         self.current_screen = None
@@ -100,11 +109,22 @@ class MainApp(MDApp):
 
         # MAY BUTTON LIST
         screen_manager.add_widget(Builder.load_file('main.kv'))
-
         screen_manager.add_widget(Builder.load_file('office_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('faculty_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('programs_offered.kv'))
+        screen_manager.add_widget(Builder.load_file('soe_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('shs_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('soar_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('socit_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('som_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('soma_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('gs_faculty.kv'))
         screen_manager.add_widget(Builder.load_file('school_information.kv'))
+        screen_manager.add_widget(Builder.load_file('other_information.kv'))
+        screen_manager.add_widget(Builder.load_file('accreditations_and_certifications.kv'))
+        screen_manager.add_widget(Builder.load_file('tuition_fees.kv'))
+        screen_manager.add_widget(Builder.load_file('school_calendar.kv'))
+        screen_manager.add_widget(Builder.load_file('school_organizations.kv'))
         screen_manager.add_widget(Builder.load_file('floor_maps.kv'))
 
         screen_manager.add_widget(Builder.load_file('image_info.kv'))
@@ -123,7 +143,7 @@ class MainApp(MDApp):
         self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
         sql_module.connect()
 
-        Clock.schedule_interval(self.await_change_screen, .5)
+        Clock.schedule_interval(self.await_change_screen, .3)
         Clock.schedule_interval(self.await_pin_change, 1)
 
     def on_stop(self):
@@ -524,9 +544,9 @@ class MainApp(MDApp):
     def face_recognition_module(self):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
-            self.camera = cv2.VideoCapture(0)
+            #self.camera = cv2.VideoCapture(0)
             #conf = trainedModel.face_recognition(self.camera)
-            conf = main.realtime_face_recognition(self.camera)
+            conf = main.realtime_face_recognition()
 
             # if conf is not None:
             #     gpio.set_gpio_pin(4, 1)
@@ -667,7 +687,7 @@ class MainApp(MDApp):
 
     def set_event(self, event=active_state):
         event.set()
-        print("set")
+        print("active_set")
 
     def clear_event(self, event=active_state):
         event.clear()

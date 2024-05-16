@@ -3,10 +3,8 @@ MDScreen:
 
     on_enter:
         app.create_button_list_to_image_info(app.Floor_Maps)
-
-
-
-
+    on_pre_leave:
+        app.previous_screen = 'Floor_Maps'
 
     MDFloatLayout: # main layout
 

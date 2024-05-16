@@ -25,6 +25,7 @@ global unknown_user
 global result_text
 global lower_conf
 global great_user
+global video
 lower_conf = False
 great_user = False
 global person_identified
@@ -32,15 +33,16 @@ global person_detected
 
 
 #start of face recognition module--------------------------------------------------------------------------------------
-def realtime_face_recognition(vid):
+def realtime_face_recognition():
     global person_identified
     global person_detected
+    video = cv2.VideoCapture(0)
     # Define a video capture object
     global x, y, w, h
-
+    path = "/home/rami/PycharmProjects/RamiBot/Facerecog/datasets50"
     while True:
         # Capture the video frame by frame
-        ret, frame = vid.read()
+        ret, frame = video.read()
 
         try:
             # Perform face recognition on the captured frame
@@ -49,7 +51,7 @@ def realtime_face_recognition(vid):
             if detections:
                 print("face detected")
                 person_detected = True
-                people = DeepFace.find(img_path=frame, db_path='datasets50/', model_name=models[2], distance_metric=metrics[2], detector_backend=backends[8],enforce_detection=False, threshold=0.6)
+                people = DeepFace.find(img_path=frame, db_path=path, model_name=models[2], distance_metric=metrics[2], detector_backend=backends[8],enforce_detection=False, threshold=0.6)
                 #print(f"people: {people}")
                 if people:
                     for person in people:
@@ -66,13 +68,13 @@ def realtime_face_recognition(vid):
                             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
                             # Get the person's name and display it on the image
-                            name = person['identity'][0].split("/")[-1].split("\\")[0]
+                            name = person['identity'][0].split("/")[1]
                             returnName1(str(name), person_identified)
                             cv2.putText(frame, name, (x, y), cv2.FONT_ITALIC, 1, (0, 0, 255), 2)
 
         except Exception as e:
             person_detected = False
-            print(f"An error occurred: {e}")
+            #print(f"An error occurred: {e}")
 
 
         #Display the resulting frame
@@ -85,8 +87,8 @@ def realtime_face_recognition(vid):
             break
 
         # Release the video capture object and close all windows
-    vid.release()
-    #cv2.destroyAllWindows()
+    video.release()
+    # cv2.destroyAllWindows()
 
 #end of face recognition module----------------------------------------------------------------------------------------
 
