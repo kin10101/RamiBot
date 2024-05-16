@@ -2,10 +2,10 @@ MDScreen:
     name: 'Other_Information'
 
     on_pre_enter:
-        app.create_button_list_to_button_list(app.Other_Information)
+        app.create_button_list_to_image_info(app.Other_Information)
 
     on_pre_leave:
-        app.previous_screen = 'School_Information'
+        app.previous_screen = 'Other_Information'
     MDFloatLayout: # main layout
 
         orientation: 'vertical'

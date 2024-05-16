@@ -38,7 +38,6 @@ class MainWindow(MDApp):
         self.Tuition_Fees = sql_module.get_column_data("button_list", "tuition_fees")
         self.School_Calendar = sql_module.get_column_data("button_list", "school_calendar")
         self.School_Organizations = sql_module.get_column_data("button_list", "school_organizations")
-        self.Academic_Organizations = sql_module.get_column_data("button_list", "academic_organizations")
         self.Floor_Maps = sql_module.get_column_data("button_list", "floor_maps")
 
 
@@ -68,7 +67,6 @@ class MainWindow(MDApp):
         screen_manager.add_widget(Builder.load_file('tuition_fees.kv'))
         screen_manager.add_widget(Builder.load_file('school_calendar.kv'))
         screen_manager.add_widget(Builder.load_file('school_organizations.kv'))
-        screen_manager.add_widget(Builder.load_file('academic_organizations.kv'))
         screen_manager.add_widget(Builder.load_file('floor_maps.kv'))
 
         screen_manager.add_widget(Builder.load_file('image_info.kv'))
