@@ -546,18 +546,19 @@ class MainApp(MDApp):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
-
+            main.realtime_face_recognition(self.camera)
+            print("person detected? ",main.person_detected)
+            print("person identified? ", main.person_identified)
             #conf = trainedModel.face_recognition(self.camera)
-            conf = main.realtime_face_recognition(self.camera)
-
-            if conf is True:
+            #conf = main.realtime_face_recognition(self.camera)
+            #if conf is True:
+            if main.person_identified or main.person_detected is True:
                 gpio.set_gpio_pin(4, 1)
                 put_in_queue(screen_queue, 'greetscreen')
                 self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
-
+                pygtts.speak(f'{main.result_text}')
                 print(f"{main.result_text}")
 
-                pygtts.speak(f'{main.result_text}')
 
             # if conf:
             #     gpio.set_gpio_pin(4, 1)
@@ -570,6 +571,7 @@ class MainApp(MDApp):
             #         pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
+        print("checking if face is recognized or not...")
         lower_conf = main.lower_conf
 
         print(f"lower_conf: {lower_conf}")

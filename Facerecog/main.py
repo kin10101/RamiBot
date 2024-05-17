@@ -14,9 +14,6 @@ import pandas as pd
 RamiDB = sql_module.connect()
 cur = RamiDB.cursor()
 
-voiceTrig = 0
-motorTrig = 0
-
 backends = ['opencv', 'ssd', 'dlib', 'mtcnn', 'fastmtcnn','retinaface', 'mediapipe','yolov8','yunet','centerface',]
 models = ["VGG-Face", "Facenet", "Facenet512", "OpenFace", "DeepFace", "DeepID", "ArcFace", "Dlib", "SFace","GhostFaceNet",]
 metrics = ["cosine", "euclidean", "euclidean_l2"]
@@ -27,12 +24,11 @@ global result_text
 global lower_conf
 global great_user
 
-lower_conf = False
-great_user = False
+
+
 global person_identified
 global person_detected
-person_identified = False
-person_detected = False
+
 
 
 #start of face recognition module--------------------------------------------------------------------------------------
@@ -40,6 +36,7 @@ def realtime_face_recognition(video):
     global person_identified
     global person_detected
     global running
+    global result_text
     #video = cv2.VideoCapture(0)
     # Define a video capture object
     global x, y, w, h
@@ -59,6 +56,7 @@ def realtime_face_recognition(video):
                 print(f"person detected: {person_detected}")
                 people = DeepFace.find(img_path=frame, db_path=path, model_name=models[2], distance_metric=metrics[2], detector_backend=backends[8],enforce_detection=False, threshold=0.6)
                 #print(f"people: {people}")
+                #result_text = greet_new_user()
                 if people:
                     for person in people:
                         person_identified = True
@@ -76,12 +74,11 @@ def realtime_face_recognition(video):
 
                             # Get the person's name and display it on the image
                             name = person['identity'][0].split('/')[-1].split('.')[1]
-
                             returnName1(str(name), person_identified)
                             cv2.putText(frame, name, (x, y), cv2.FONT_ITALIC, 1, (0, 0, 255), 2)
                             video.release()
                             running = False
-                            return True
+                            #return person_identified
         except Exception as e:
             person_detected = False
             #print(f"no person detected: {person_detected}")
