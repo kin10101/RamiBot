@@ -26,7 +26,7 @@ global unknown_user
 global result_text
 global lower_conf
 global great_user
-global video
+
 lower_conf = False
 great_user = False
 global person_identified
@@ -39,14 +39,16 @@ person_detected = False
 def realtime_face_recognition(video):
     global person_identified
     global person_detected
+    global running
     #video = cv2.VideoCapture(0)
     # Define a video capture object
     global x, y, w, h
+
+    running = True
     path = "/home/rami/PycharmProjects/RamiBot/Facerecog/datasets"
-    while True:
+    while running:
         # Capture the video frame by frame
         ret, frame = video.read()
-
         try:
             # Perform face recognition on the captured frame
             # Find faces and identify people using a specific model and distance metric
@@ -77,10 +79,12 @@ def realtime_face_recognition(video):
 
                             returnName1(str(name), person_identified)
                             cv2.putText(frame, name, (x, y), cv2.FONT_ITALIC, 1, (0, 0, 255), 2)
+                            video.release()
+                            running = False
                             return True
         except Exception as e:
             person_detected = False
-            print(f"no person detected: {person_detected}")
+            #print(f"no person detected: {person_detected}")
             #print(f"An error occurred: {e}")
 
 
@@ -90,11 +94,11 @@ def realtime_face_recognition(video):
         # cv2.imshow('frame', frame)
 
         # Check if the 'q' button is pressed to quit the program
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        # if cv2.waitKey(1) & 0xFF == ord('q'):
+        #     break
 
         # Release the video capture object and close all windows
-    video.release()
+    #video.release()
     # cv2.destroyAllWindows()
 
 #end of face recognition module----------------------------------------------------------------------------------------

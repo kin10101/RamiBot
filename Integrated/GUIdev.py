@@ -146,6 +146,7 @@ class MainApp(MDApp):
 
         Clock.schedule_interval(self.await_change_screen, .3)
         Clock.schedule_interval(self.await_pin_change, 1)
+        start_voice_thread()
 
     def on_stop(self):
         sql_module.disconnect()
@@ -488,7 +489,6 @@ class MainApp(MDApp):
             self.change_screen('adduser2')
 
     def captures(self):
-
         if start is not False:
             user_dir = DataCollector.user_dir
             user_id = DataCollector.user_id
@@ -546,6 +546,7 @@ class MainApp(MDApp):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
+
             #conf = trainedModel.face_recognition(self.camera)
             conf = main.realtime_face_recognition(self.camera)
 
@@ -735,9 +736,11 @@ def voice_thread():
 
 
 def start_voice_thread():
+    print("starting voice thread")
     voice = threading.Thread(target=voice_thread)
     voice.daemon = True
     voice.start()
+    print("voice thread now activeid")
 
 
 if __name__ == "__main__":
@@ -755,9 +758,6 @@ if __name__ == "__main__":
     app = MainApp()
 
     # Thread initialization
-
-    start_voice_thread()
-
     # Event States
 
     stop_motor = threading.Event()
