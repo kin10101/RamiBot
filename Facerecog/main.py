@@ -1,6 +1,7 @@
 import random
 from datetime import datetime
 import re
+import os
 
 from smb.SMBConnection import SMBConnection
 import sql_module
@@ -30,6 +31,8 @@ lower_conf = False
 great_user = False
 global person_identified
 global person_detected
+person_identified = False
+person_detected = False
 
 
 #start of face recognition module--------------------------------------------------------------------------------------
@@ -51,11 +54,13 @@ def realtime_face_recognition(video):
             if detections:
                 print("face detected")
                 person_detected = True
+                print(f"person detected: {person_detected}")
                 people = DeepFace.find(img_path=frame, db_path=path, model_name=models[2], distance_metric=metrics[2], detector_backend=backends[8],enforce_detection=False, threshold=0.6)
                 #print(f"people: {people}")
                 if people:
                     for person in people:
                         person_identified = True
+                        print(f"person identified: {person_identified}")
                         # Retrieve the coordinates of the face bounding box
                         # Ensure that person['source_x'], person['source_y'], etc. are Series
                         if isinstance(person['source_x'], pd.Series):
@@ -68,12 +73,14 @@ def realtime_face_recognition(video):
                             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
                             # Get the person's name and display it on the image
-                            name = person['identity'][0].split("/")[1]
+                            name = person['identity'][0].split('/')[-1].split('.')[1]
+
                             returnName1(str(name), person_identified)
                             cv2.putText(frame, name, (x, y), cv2.FONT_ITALIC, 1, (0, 0, 255), 2)
-
+                            return True
         except Exception as e:
             person_detected = False
+            print(f"no person detected: {person_detected}")
             #print(f"An error occurred: {e}")
 
 
@@ -156,9 +163,8 @@ def returnName1(ID_Num,person_identified):
             pass
 
         if person_detected:
-            lower_conf = True
             result_text = greet_new_user()
-            print(f"person not in db")
+            lower_conf = True
 
         if person_identified:
             result_text = f"{greeting}, {nickname}!"

@@ -109,6 +109,7 @@ class MainApp(MDApp):
 
         # MAY BUTTON LIST
         screen_manager.add_widget(Builder.load_file('main.kv'))
+        screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
         screen_manager.add_widget(Builder.load_file('office_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('faculty_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('programs_offered.kv'))
@@ -128,7 +129,7 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('floor_maps.kv'))
 
         screen_manager.add_widget(Builder.load_file('image_info.kv'))
-        screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
+
 
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
@@ -544,27 +545,28 @@ class MainApp(MDApp):
     def face_recognition_module(self):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
-            #self.camera = cv2.VideoCapture(0)
+            self.camera = cv2.VideoCapture(0)
             #conf = trainedModel.face_recognition(self.camera)
             conf = main.realtime_face_recognition(self.camera)
 
-            # if conf is not None:
-            #     gpio.set_gpio_pin(4, 1)
-            #     put_in_queue(screen_queue, 'greetscreen')
-            #     self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
-            #
-            #     print(f"{main.result_text}")
-            #     pygtts.speak(f'{main.result_text}')
-
-            if conf:
+            if conf is True:
                 gpio.set_gpio_pin(4, 1)
                 put_in_queue(screen_queue, 'greetscreen')
                 self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
 
                 print(f"{main.result_text}")
 
-                if main.great_user:
-                    pygtts.speak(f'{main.result_text}')
+                pygtts.speak(f'{main.result_text}')
+
+            # if conf:
+            #     gpio.set_gpio_pin(4, 1)
+            #     put_in_queue(screen_queue, 'greetscreen')
+            #     self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
+            #
+            #     print(f"{main.result_text}")
+            #
+            #     if main.great_user:
+            #         pygtts.speak(f'{main.result_text}')
 
     def is_face_recognized(self):
         lower_conf = main.lower_conf

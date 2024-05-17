@@ -344,6 +344,20 @@
             ]
         },
 
+        {"tag": "LOC Room Help",
+            "patterns": [
+                "Can you help me find a room?",
+                "I want to find a room. Can you help me?",
+                "Can you help me look for a room?",
+                "I want to look for this room. Can you help me?"
+            ],
+            "responses": [
+                "Sure! What room are you looking for?",
+                "No problem! What room are you looking for?",
+                "What room are you looking for?",
+                "Absolutely! What room are you looking for?"
+            ]
+        },
         {
             "tag": "LOC lobby floor location",
             "patterns": [
@@ -1005,7 +1019,7 @@
         },
 
         {
-            "tag": " 4 year program duration",
+            "tag": "4 year program duration",
             "patterns": [
                 "how long is the program"
             ],
@@ -1200,20 +1214,7 @@
                 "Yes, Asia Pacific College operates on a trimester academic system, which means there are three terms in an academic year."
             ]
         },
-         {
-            "patterns": [
-                "Can you help me find a room?",
-                "I want to find a room. Can you help me?",
-                "Can you help me look for a room?",
-                "I want to look for this room. Can you help me?"
-            ],
-            "responses": [
-                "Sure! What room are you looking for?",
-                "No problem! What room are you looking for?",
-                "What room are you looking for?",
-                "Absolutely! What room are you looking for?"
-            ]
-        },
+
         {
             "tag": "APC_eat_places",
             "patterns": [
@@ -1374,7 +1375,7 @@
                 "The clinic is open for service from 8:00 AM."
             ]
         },
-                {
+        {
             "tag": "LOC_ITRO_hours",
             "patterns": [
                 "What time does the ITRO open?",
@@ -1622,7 +1623,7 @@
         },
         {
             "tag": "Program_Duration",
-            "patters": [
+            "patterns": [
                 "How long are the programs offered in APC?",
                 "What is the duration of the bachelors program?",
                 "How many years is the bachelors program?",
