@@ -28,6 +28,7 @@ global great_user
 
 global person_identified
 global person_detected
+lower_conf=False
 
 
 

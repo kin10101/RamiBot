@@ -581,6 +581,8 @@ class MainApp(MDApp):
 
         elif lower_conf is False:
             self.change_screen('Main_Menu')
+        else:
+            self.change_screen("Main_Menu")
 
     def close_camera(self):
         self.camera.release()
