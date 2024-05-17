@@ -125,7 +125,9 @@
             ],
             "responses": [
                 "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/The_Ramibot_Team.png"
         },
         {
             "tag": "RAMI purpose",
@@ -343,7 +345,21 @@
                 "APC follows a schedule of smart casual for mondays to thursdays and casual wear for fridays."
             ]
         },
-
+        {
+            "tag": "LOC room help",
+            "patterns": [
+                "Can you help me find a room?",
+                "I want to find a room. Can you help me?",
+                "Can you help me look for a room?",
+                "I want to look for this room. Can you help me?"
+            ],
+            "responses": [
+                "Sure! What room are you looking for?",
+                "No problem! What room are you looking for?",
+                "What room are you looking for?",
+                "Absolutely! What room are you looking for?"
+            ]
+        },
         {
             "tag": "LOC lobby floor location",
             "patterns": [
@@ -359,8 +375,8 @@
             "responses": [
                 "it is located here at the 1st floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map1.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/1st_Floor.png"
         },
         {
             "tag": "LOC second floor location",
@@ -379,13 +395,15 @@
                 "room 215",
                 "room 216",
                 "room 217",
-                "room 218"
+                "room 218",
+                "mph2",
+                "mph 2"
             ],
             "responses": [
                 "it is located at the 2nd floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map2.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/2nd_Floor.png"
         },
         {
             "tag": "LOC third floor location",
@@ -409,8 +427,8 @@
             "responses": [
                 "it is located at the 3rd floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map3.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/3rd_Floor.png"
         },
         {
             "tag": "LOC fourth floor location",
@@ -433,8 +451,8 @@
             "responses": [
                 "it is located at the 4th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map4.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/4th_Floor.png"
         },
         {
             "tag": "LOC fifth floor location",
@@ -469,8 +487,8 @@
             "responses": [
                 "it is located at the 5th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map5.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/5th_Floor.png"
         },
         {
             "tag": "LOC sixth floor location",
@@ -493,8 +511,8 @@
             "responses": [
                 "it is located at the 6th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map6.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/6th_Floor.png"
         },
         {
             "tag": "LOC seventh floor location",
@@ -512,8 +530,8 @@
             "responses": [
                 "it is located at the 7th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map7.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/7th_Floor.png"
         },
         {
             "tag": "LOC eighth floor location",
@@ -541,6 +559,7 @@
                 "oslo",
                 "air lab",
                 "air hub",
+                "airhub",
                 "engineering room",
                 "open laboratory",
                 "open lab"
@@ -548,8 +567,8 @@
             "responses": [
                 "it is located at the 8th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map8.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/8th_Floor.png"
         },
         {
             "tag": "LOC ninth floor location",
@@ -569,8 +588,8 @@
             "responses": [
                 "it is located at the 9th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map9.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/9th_Floor.png"
         },
         {
             "tag": "LOC tenth floor location",
@@ -598,8 +617,8 @@
             "responses": [
                 "it is located at the 10th floor "
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map10.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/10th_Floor.png"
         },
         {
             "tag": "LOC eleventh floor location",
@@ -621,8 +640,8 @@
             "responses": [
                 "it is located on the 11th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map11.png"
+             "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/11th_Floor.png"
         },
         {
             "tag": "LOC twelfth floor location",
@@ -632,8 +651,8 @@
             "responses": [
                 "it is located on the 12th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map12.png"
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/10th_Floor.png"
         },
 
         {
@@ -675,7 +694,9 @@
             "responses": [
                 "You'll find the cafeteria right on the first floor, enjoy your meal!",
                 "you can do that at the cafeteria located on the first floor"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/1st_Floor.png"
         },
         {
             "tag": "CLOC comfort rooms",
@@ -704,7 +725,9 @@
             ],
             "responses": [
                 "The clinic is located on the first floor, you can go there for medical assistance"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/1st_Floor.png"
         },
         {
             "tag": "CLOC chapel",
@@ -716,9 +739,12 @@
                 "religion"
             ],
             "responses": [
-                "The chapel is located on the first floor, you can go there for a moment of prayer"
-            ]
+                "The chapel is located on the first floor, left turn from the humabon entrance"
+            ],
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/1st_Floor.png"
         },
+
         {
             "tag": "CLOC library",
             "patterns": [
@@ -726,11 +752,14 @@
                 "study",
                 "research",
                 "library",
-                "books"
+                "books",
+                "rest"
             ],
             "responses": [
                 "The library is located on the seventh floor, you can go there to read and study"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/7th_Floor.png"
         },
         {
             "tag": "CLOC gym",
@@ -742,8 +771,10 @@
                 "dance"
             ],
             "responses": [
-                "The gym is located on the tenth floor, you can go there to workout"
-            ]
+                "The gym is located on the tenth floor, you can go there to do your workouts. remember to bring appropriate clothes and shoes"
+            ],
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/10th_Floor.png"
         },
         {
             "tag": "LOC admission office",
@@ -752,8 +783,9 @@
                 "admission office"
             ],
             "responses": [
-                "you can go to the admission office in the first floor to assist you with your concerns"
-            ]
+                "you can go to the admissions office here in the 1st floor to assist you with your concerns"
+            ],"navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/1st_Floor.png"
         },
         {
             "tag": "LOC registrar",
@@ -765,7 +797,9 @@
             ],
             "responses": [
                 "you can go to the registrar in the fourth floor to assist you with your concerns"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/4th_Floor.png"
         },
         {
             "tag": "LOC location_help",
@@ -781,19 +815,7 @@
             ],
             "function": "followup_question"
         },
-        {
-            "tag": "LOC gym_keywords",
-            "patterns": [
-                "gym",
-                "workout",
-                "exercise",
-                "dance",
-                "jim"
-            ],
-            "responses": [
-                "you can go to the gym at the 10th floor"
-            ]
-        },
+
         {
             "tag": "PRG apc programs",
             "patterns": [
@@ -805,7 +827,8 @@
                 "asia pacific college offers many programs under different schools, which school are you interested in?",
                 "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one are you interested in?"
             ],
-            "context_set": "apc_programs"
+            "context_set": "apc_programs",
+            "navigate_to": "Programs_Offered"
         },
         {
             "tag": "PRG shs",
@@ -817,8 +840,9 @@
             "responses": [
                 "senior high school is a two year program open to junior highschool graduates. it is divided into three strands which are STEM, ABM, and HUMSS."
             ],
-
-            "context_set": ""
+            "context_set": "",
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/Senior_High_School.png"
         },
         {
             "tag": "PRG soe courses",
@@ -830,8 +854,9 @@
             "responses": [
                 "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
             ],
-
-            "context_set": ""
+            "context_set": "",
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/School_of_Engineering.png"
         },
         {
             "tag": "PRG socit courses",
@@ -843,8 +868,9 @@
             "responses": [
                 "the school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology"
             ],
-
-            "context_set": ""
+            "context_set": "",
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/School_of_Computing_and_IT.png"
         },
         {
             "tag": "PRG soar",
@@ -856,8 +882,9 @@
             "responses": [
                 "The School of Architecture consists of BS Architecture"
             ],
-
-            "context_set": ""
+            "context_set": "",
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/School_of_Architecture.png"
         },
         {
             "tag": "PRG som",
@@ -869,8 +896,9 @@
             "responses": [
                 "The school of management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business "
             ],
-
-            "context_set": ""
+            "context_set": "",
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/School_of_Management.png"
         },
         {
             "tag": "PRG soma",
@@ -882,8 +910,9 @@
             "responses": [
                 "The School of Multimedia Arts consists of BS Multimedia Arts and BS Psychology"
             ],
-
-            "context_set": ""
+            "context_set": "",
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/School_of_Multimedia_and_Arts.png"
         },
         {
             "tag": "PRG grad",
@@ -895,8 +924,21 @@
             "responses": [
                 ""
             ],
-
-            "context_set": ""
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/School_of_Multimedia_and_Arts.png"
+        },
+           {
+            "tag": "PRG grad",
+            "patterns": [
+                "graduate school",
+                "grad",
+                "graduate"
+            ],
+            "responses": [
+                ""
+            ],
+            "navigate_to": "image_info",
+            "src_img": "Assets/Image Infos/School_of_Multimedia_and_Arts.png"
         },
         {
             "tag": "FN_sing",
@@ -1200,20 +1242,7 @@
                 "Yes, Asia Pacific College operates on a trimester academic system, which means there are three terms in an academic year."
             ]
         },
-         {
-            "patterns": [
-                "Can you help me find a room?",
-                "I want to find a room. Can you help me?",
-                "Can you help me look for a room?",
-                "I want to look for this room. Can you help me?"
-            ],
-            "responses": [
-                "Sure! What room are you looking for?",
-                "No problem! What room are you looking for?",
-                "What room are you looking for?",
-                "Absolutely! What room are you looking for?"
-            ]
-        },
+
         {
             "tag": "APC_eat_places",
             "patterns": [
@@ -1374,7 +1403,7 @@
                 "The clinic is open for service from 8:00 AM."
             ]
         },
-                {
+        {
             "tag": "LOC_ITRO_hours",
             "patterns": [
                 "What time does the ITRO open?",
@@ -1621,20 +1650,6 @@
             ]
         },
         {
-            "tag": "Program_Duration",
-            "patters": [
-                "How long are the programs offered in APC?",
-                "What is the duration of the bachelors program?",
-                "How many years is the bachelors program?",
-                "How many years does the program take?",
-                "How many years is the course?",
-                "How many years does the course take?"
-            ],
-            "responses": [
-                "The bachelors program in APC typically takes four years to complete."
-            ]
-        },
-        {
             "tag": "APC_Office_Availability_Weekends",
             "patterns": [
                 "Are all offices open during weekends?",
@@ -1643,7 +1658,7 @@
                 "I want to know the office hours of all offices during weekends."
             ],
             "responses": [
-                "All offices in APC are typically open from 8:00 AM to 5:00 PM during weekends. However, it's best to contact the specific office for any special arrangements."
+                "All offices in APC are typically open from 8:00 AM to 5:00 PM during weekends. But it's best to contact the specific office for any special arrangements."
             ]
         }
     ]
