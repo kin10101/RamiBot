@@ -1,11 +1,12 @@
 import random
 import json
 import pickle
+
+import keras
 import numpy as np
 
 import nltk
 from nltk.stem import WordNetLemmatizer
-from keras.models import load_model
 
 from Voicebot import voicecommand_functions
 from queue import Queue, Empty
@@ -15,10 +16,10 @@ Image_Queue = Queue()
 # Load data
 lemmatizer = WordNetLemmatizer()
 
-intents = json.loads(open('/home/rami/PycharmProjects/RamiBot/Integrated/voicebotintents.json').read())
-words = pickle.load(open('/home/rami/PycharmProjects/RamiBot/Integrated/words.pkl', 'rb'))
-classes = pickle.load(open('/home/rami/PycharmProjects/RamiBot/Integrated/classes.pkl', 'rb'))
-model = load_model('/home/rami/PycharmProjects/RamiBot/Integrated/chatbot_model.h5')
+intents = json.loads(open('../Integrated/voicebotintents.json').read())
+words = pickle.load(open('../Integrated/words.pkl', 'rb'))
+classes = pickle.load(open('../Integrated/classes.pkl', 'rb'))
+model = keras.models.load_model('../Integrated/chatbot_model.h5')
 
 # Get dict command mappings
 intent_methods = voicecommand_functions.command_mappings

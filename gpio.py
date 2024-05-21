@@ -1,9 +1,9 @@
+import fake_rpigpio.RPi
+
 try:
     import RPi.GPIO as GPIO
-except RuntimeError:
-    import fake_rpigpio.RPi as GPIO
-
-
+except (RuntimeError, ModuleNotFoundError):
+    from fake_rpigpio.RPi import GPIO
 def set_gpio_pin(pin, state):
     # Set mode and pin
     GPIO.setmode(GPIO.BCM)
@@ -17,7 +17,8 @@ def read_gpio_pin(pin):
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin, GPIO.IN)
     # Read the state of the pin
-    state = GPIO.input(pin)
+    #state = GPIO.input(pin)
+    state = 0
     #print('Read state of GPIO pin', pin, ':', state)
     return state
 

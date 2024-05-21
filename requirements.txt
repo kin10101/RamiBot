@@ -1,0 +1,34 @@
+# GUI Dependencies
+Kivy~=2.3.0
+kivymd~=1.2.0
+pillow~=10.2.0
+
+# External Communication
+flask
+requests~=2.31.0
+pysmb~=1.2.9.1
+smbprotocol
+mysql-connector-python
+
+# Face Module Dependencies
+opencv-python
+deepface
+
+#Speech Module Dependencies
+speechrecognition
+sounddevice
+gtts
+pygame
+pyaudio
+
+# Chatbot Module Dependencies
+nltk
+keras
+tensorflow
+numpy
+matplotlib
+
+# GPIO PINS
+RPi.GPIO
+fake-rpigpio
+

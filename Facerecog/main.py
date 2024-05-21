@@ -9,6 +9,7 @@ RamiDB = sql_module.connect()
 cur = RamiDB.cursor()
 
 global person_detected
+lower_conf=False
 
 #start of face recognition module--------------------------------------------------------------------------------------
 def realtime_face_recognition(video):

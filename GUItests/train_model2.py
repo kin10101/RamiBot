@@ -4,15 +4,15 @@ import random
 
 import nltk
 import numpy as np
-from keras import Sequential
-from keras.layers import Dense, Dropout
-from keras.optimizers import SGD
+import keras
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.optimizers import SGD
 from nltk.stem import WordNetLemmatizer
 
 """uncomment for first install"""
-# nltk.download("punkt")
-# nltk.download("wordnet")
-# nltk.download("stopwords")
+nltk.download("punkt")
+nltk.download("wordnet")
+nltk.download("stopwords")
 
 
 def train_bot():
@@ -63,27 +63,30 @@ def train_bot():
     train_y = list(training[:, 1])
 
     # Define the model
-    model = Sequential()
-    model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(64, activation='relu'))
-    model.add(Dropout(0.3))
-    model.add(Dense(len(train_y[0]), activation='softmax'))
-
+    model = keras.Sequential(
+        [
+            keras.layers.Dense(128, input_shape=(len(train_x[0]),), activation='relu'),
+            keras.layers.Dropout(0.5),
+            keras.layers.Dense(64, activation='relu'),
+            keras.layers.Dropout(0.3),
+            keras.layers.Dense(len(train_y[0]), activation='softmax')
+        ]
+    )
     sgd = SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
 
     model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
-    print(model.summary()) # print model summary
+    print(model.summary())  # print model summary
 
     # Train the model with validation data
     hist = model.fit(
         np.array(train_x), np.array(train_y),
         epochs=200, batch_size=5, verbose=2
     )
-    model.save('chatbot_model.h5', hist)
+    model.save('chatbot_model.h5')
 
     print('done training')
 
 
-
+# Run the training function
+train_bot()

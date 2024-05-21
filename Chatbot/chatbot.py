@@ -6,30 +6,18 @@ import numpy as np
 
 import nltk
 from nltk.stem import WordNetLemmatizer
-from keras.models import load_model
+import keras
 
 from . import command_functions
 
 # Load data
 lemmatizer = WordNetLemmatizer()
 
-# Use os.path.join to construct file paths
-intents_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chatbotintents.json')
-words_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'words.pkl')
-classes_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'classes.pkl')
-model_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chatbot_model.h5')
+intents = json.loads(open('../Integrated/voicebotintents.json').read())
+words = pickle.load(open('../Integrated/words.pkl', 'rb'))
+classes = pickle.load(open('../Integrated/classes.pkl', 'rb'))
+model = keras.models.load_model('../Integrated/chatbot_model.h5')
 
-with open(intents_file_path, 'r') as file:
-    intents = json.load(file)
-
-with open(words_file_path, 'rb') as file:
-    words = pickle.load(file)
-
-with open(classes_file_path, 'rb') as file:
-    classes = pickle.load(file)
-
-model = load_model(model_file_path)
-print(model_file_path)
 # Get dict command mappings
 intent_methods = command_functions.command_mappings
 
@@ -117,7 +105,7 @@ def handle_request(message, context):
 
 def get_from_json(tag):
     """Get wake word response."""
-    with open(intents_file_path) as file:  # change file name when necessary
+    with open("../Chatbot/chatbotintents.json") as file:  # change file name when necessary
         intents_json = json.load(file)
 
     list_of_intents = intents_json['intents']

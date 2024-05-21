@@ -11,7 +11,7 @@ active_state = threading.Event()
 
 class VoiceAssistant:
     def __init__(self):
-        self.mic = sr.Microphone(device_index=2)
+        self.mic = sr.Microphone()
         self.pause_threshold = .8
         self.energy_threshold = 3500
         self.operation_timeout = 5000
