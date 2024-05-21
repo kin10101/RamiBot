@@ -83,7 +83,7 @@ def train_bot():
         np.array(train_x), np.array(train_y),
         epochs=200, batch_size=5, verbose=2
     )
-    model.save('./Integrated/chatbot_model.h5')
+    model.save('../Integrated/chatbot_model.h5')
 
     print('done training')
 

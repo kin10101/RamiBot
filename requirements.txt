@@ -10,6 +10,10 @@ pysmb~=1.2.9.1
 smbprotocol
 mysql-connector-python
 
+# Face Module Dependencies
+opencv-python
+deepface
+
 #Speech Module Dependencies
 speechrecognition
 sounddevice
@@ -22,7 +26,9 @@ nltk
 keras
 tensorflow
 numpy
+matplotlib
 
 # GPIO PINS
 RPi.GPIO
 fake-rpigpio
+
