@@ -6,7 +6,7 @@ import numpy as np
 
 import nltk
 from nltk.stem import WordNetLemmatizer
-from keras.models import load_model
+from tf.keras.models import load_model
 
 from . import command_functions
 

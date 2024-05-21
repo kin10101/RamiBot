@@ -2,7 +2,6 @@
 Kivy~=2.3.0
 kivymd~=1.2.0
 pillow~=10.2.0
-threading
 
 # External Communication
 flask
@@ -21,9 +20,8 @@ pyaudio
 # Chatbot Module Dependencies
 nltk
 keras
-pickle
-json
-
+tensorflow
+numpy
 
 # GPIO PINS
 RPi.GPIO

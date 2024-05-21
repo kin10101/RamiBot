@@ -1,5 +1,6 @@
 import requests
-
+import tensorflow as tf
+print("TensorFlow version: ", tf.__version__)
 def get_http_image(url, filename):
     response = requests.get(url)
 
