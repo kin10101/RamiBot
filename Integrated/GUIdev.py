@@ -400,187 +400,19 @@ class MainApp(MDApp):
         print("Current Screen is ", screen_manager.current)
         return screen_manager.current
 
-    # FACE RECOGNITION ---------------------------------
-    def warning(self):
-        global warning_popup
-        warning_popup = Popup(title="", content=Builder.load_file("warning.kv"), size_hint=(None, None),
-                              size=(500, 400), background_color=(1, 1, 1, .0))
-        warning_popup.open()
-
-    def warning_ok_button(self):
-
-        print("warning ok button pressed")
-        warning_popup.dismiss()
-
-    def open_popup(self):
-        global popup
-        popup = Popup(title="", content=Builder.load_file("New User KVs/facerecog_popup.kv"), size_hint=(None, None),
-                      size=(500, 400), background_color=(1, 1, 1, .0))
-        popup.open()
-
-    def ok_button(self):
-        global start
-
-        print("ok button pressed")
-        start = True
-        popup.dismiss()
-
-    def cancel_button(self):
-        global start
-
-        print("cancel button pressed")
-        start = False
-        self.change_screen('userstatus')
-        popup.dismiss()
-
-    def add_apc_user_to_db(self):
-        global user_ID
-        MainApp.add_user_flag = 1
-        try:
-            user_ID = self.get_text('adduserscreen', 'school_id')
-            given_name = self.get_text('adduserscreen', 'given_name')
-            middle_initial = self.get_text('adduserscreen', 'middle_initial')
-            last_name = self.get_text('adduserscreen', 'last_name')
-            nickname = self.get_text('adduserscreen', 'nickname')
-            role = self.get_text('adduserscreen', 'role')
-
-            if not all([user_ID, given_name, last_name, nickname, role]):  # Check if any of the variables are empty
-                raise ValueError("Empty fields detected")
-
-            DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
-            print("Uploaded to database successfully!")
-            self.open_popup()
-
-        except ValueError as ve:
-            print(f"Error: {ve}")
-            self.warning()
-            self.change_screen('adduserscreen')
-        except Exception as e:
-            print(f"Error in uploading to db: {e}")
-            self.warning()
-            self.change_screen('adduserscreen')
-
-    def add_visitor_user_to_db(self):
-        global user_ID
-        MainApp.add_user_flag = 2
-        try:
-            user_ID = DataCollector.generate_visitor_id()
-            given_name = self.get_text('adduser2', 'given_name')
-            middle_initial = self.get_text('adduser2', 'middle_initial')
-            last_name = self.get_text('adduser2', 'last_name')
-            nickname = self.get_text('adduser2', 'nickname')
-            role = self.get_text('adduser2', 'profession')
-
-            if not all([user_ID, given_name, last_name, nickname, role]):  # Check if any of the variables are empty
-                raise ValueError("Empty fields detected")
-            else:
-                # Only upload to the database if there are no errors
-                DataCollector.add_to_db(user_ID, nickname, last_name, given_name, middle_initial, role)
-                print("Uploaded to database successfully!")
-                self.open_popup()
-
-        except ValueError as ve:
-            print(f"Error: {ve}")
-            self.warning()
-            self.change_screen('adduser2')
-        except Exception as e:
-            print(f"Error in uploading to db: {e}")
-            self.warning()
-            self.change_screen('adduser2')
-
-    def captures(self):
-        if start is not False:
-            user_dir = DataCollector.user_dir
-            user_id = DataCollector.user_id
-
-            count = 0
-
-            self.image = Image(texture=self.texture)
-            screen_manager.ids.camera = self.texture
-
-            self.camera = cv2.VideoCapture(0)
-
-            capture_width, capture_height = 640, 480
-
-            self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, capture_width)
-            self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, capture_height)
-
-            while True:
-                ret, frame = self.camera.read()
-                if not ret:
-                    print("Error reading frame from video source.")
-                    break
-
-                frame = cv2.resize(frame, (capture_width, capture_height))
-
-                buffer = cv2.flip(frame, 1).tobytes()
-                texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr')
-                texture.blit_buffer(buffer, colorfmt='bgr', bufferfmt='ubyte')
-
-                self.image.texture = texture
-
-                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                gray_eq = cv2.equalizeHist(gray)
-                faces = detect.detectMultiScale(gray_eq, scaleFactor=1.1, minNeighbors=8, minSize=(60, 60))
-
-                for (x, y, w, h) in faces:
-                    # Increment the count for each detected face
-                    count += 1
-
-                    face_image = gray_eq[y:y + h, x:x + w]
-                    image_path = os.path.join(user_dir, f"User.{user_id}.{count}.jpg")
-                    cv2.imwrite(image_path, face_image)
-
-                    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 1)
-                    cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 255), 2)
-                    cv2.rectangle(frame, (x, y), (x + w, y), (50, 50, 255), 1)
-
-                    if count >= 50:
-                        # Release the video capture and exit the application
-                        self.camera.release()
-                        cv2.destroyAllWindows()
-        else:
-            self.change_screen('newuser')
-
+    # FACE detection ---------------------------------
     def face_recognition_module(self):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
             main.realtime_face_recognition(self.camera)
-            print("person detected? ",main.person_detected)
-            print("person identified? ", main.person_identified)
-            #conf = trainedModel.face_recognition(self.camera)
-            #conf = main.realtime_face_recognition(self.camera)
-            #if conf is True:
-            if main.person_identified or main.person_detected is True:
+
+            if main.person_detected is True:
                 gpio.set_gpio_pin(4, 1)
                 put_in_queue(screen_queue, 'greetscreen')
-                self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
-                pygtts.speak(f'{main.result_text}')
-                print(f"{main.result_text}")
-
-
-            # if conf:
-            #     gpio.set_gpio_pin(4, 1)
-            #     put_in_queue(screen_queue, 'greetscreen')
-            #     self.update_label('greetscreen', 'greet_user_label', f'{main.result_text}')
-            #
-            #     print(f"{main.result_text}")
-            #
-            #     if main.great_user:
-            #         pygtts.speak(f'{main.result_text}')
-
-    def is_face_recognized(self):
-        print("checking if face is recognized or not...")
-        lower_conf = main.lower_conf
-
-        print(f"lower_conf: {lower_conf}")
-
-        if lower_conf is True:
-            self.change_screen('newuser')
-
-        elif lower_conf is False:
-            self.change_screen('Main_Menu')
+                self.update_label('greetscreen', 'greet_user_label', f'{main.greet_new_user()}')
+                pygtts.speak(f'{main.greet_new_user()}')
+                print(f"{main.greet_new_user()}")
 
     def close_camera(self):
         self.camera.release()
