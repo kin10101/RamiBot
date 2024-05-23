@@ -7,6 +7,7 @@ pillow~=10.2.0
 flask
 requests~=2.31.0
 pysmb~=1.2.9.1
+aiohttp
 smbprotocol
 mysql-connector-python
 

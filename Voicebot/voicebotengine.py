@@ -19,7 +19,7 @@ lemmatizer = WordNetLemmatizer()
 intents = json.loads(open('../Integrated/voicebotintents.json').read())
 words = pickle.load(open('../Integrated/words.pkl', 'rb'))
 classes = pickle.load(open('../Integrated/classes.pkl', 'rb'))
-model = keras.models.load_model('../Integrated/chatbot_model.h5')
+model = keras.models.load_model('../Integrated/voicebot_model.h5')
 
 # Get dict command mappings
 intent_methods = voicecommand_functions.command_mappings
@@ -47,7 +47,7 @@ def bag_of_words(sentence):
     return np.array(bag)
 
 
-def predict_class(sentence, error_threshold=0.7):
+def predict_class(sentence, error_threshold=0.65):
     """Predict the intent of the sentence."""
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]

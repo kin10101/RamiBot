@@ -1,16 +1,14 @@
-import requests
-import tensorflow as tf
-print("TensorFlow version: ", tf.__version__)
-def get_http_image(url, filename):
-    response = requests.get(url)
+from flask import Flask, request, jsonify
 
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Open the file in binary mode and write the response content to it
-        with open(filename, 'wb') as file:
-            file.write(response.content)
+app = Flask(__name__)
+
+@app.route('/respond', methods=['GET'])
+def respond():
+    text = request.args.get('text', type=str)
+    if text and text.lower() == 'hello':
+        return jsonify({'response': "What's up"})
     else:
-        print(f"Failed to get image. HTTP response code: {response.status_code}")
+        return jsonify({'response': 'Unrecognized input'}), 400
 
-# Use the function
-get_http_image("http://example.com/path/to/image.jpg", "downloaded_image.jpg")
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

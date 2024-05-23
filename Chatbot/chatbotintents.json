@@ -760,16 +760,6 @@
             ]
         },
         {
-            "tag": "LOC admission office",
-            "patterns": [
-                "admission",
-                "admission office"
-            ],
-            "responses": [
-                "you can go to the admission office in the first floor to assist you with your concerns"
-            ]
-        },
-        {
             "tag": "LOC registrar",
             "patterns": [
                 "enroll",

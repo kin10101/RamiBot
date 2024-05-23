@@ -13,7 +13,7 @@ from kivy.uix.vkeyboard import VKeyboard
 os.environ['MESA_LOADER_DRIVER_OVERRIDE'] = 'i965 ./kiwix-desktop'
 
 Window.size = (1920, 1080)
-Config.set('graphics', 'borderless', 0)  # 0 being off 1 being on as in true/false
+Config.set('graphics', 'borderless', 1)  # 0 being off 1 being on as in true/false
 Config.set('kivy','keyboard_mode','dock')
 
 class ChatBubble(MDLabel):

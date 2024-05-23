@@ -8,7 +8,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 import keras
 
-from . import command_functions
+from Chatbot import command_functions
 
 # Load data
 lemmatizer = WordNetLemmatizer()
@@ -20,6 +20,7 @@ model = keras.models.load_model('../Integrated/chatbot_model.h5')
 
 # Get dict command mappings
 intent_methods = command_functions.command_mappings
+
 
 def clean_up_sentence(sentence):
     """Tokenize and lemmatize the sentence."""
@@ -58,9 +59,6 @@ def predict_class(sentence):
         return_list.append({'intent': 'FB Unknown', 'probability': '1'})
 
     return return_list
-
-
-import random
 
 
 def get_response(intents_list, intents_json, context):
@@ -117,10 +115,11 @@ def get_from_json(tag):
             break
 
     return result
+
+
 def get_tag(message):
     tag = predict_class(message)
     return tag
-
 
 
 def run_chatbot():
@@ -144,3 +143,7 @@ def run_chatbot():
         except Exception as e:
             response = str(e)  # Convert exception to string
             print(response)  # Print the error message
+
+
+if __name__ == "__main__":
+    run_chatbot()

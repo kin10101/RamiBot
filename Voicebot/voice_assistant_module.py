@@ -39,9 +39,9 @@ class VoiceAssistant:
 
     def listen_to_command(self, recognizer, source):
 
-        audio = recognizer.listen(source=source,  )
-        with open('speech.wav', 'wb') as f:
-            f.write(audio.get_wav_data())
+        audio = recognizer.listen(source=source, timeout=self.listen_timeout, phrase_time_limit=self.phrase_time_limit)
+        # with open('speech.wav', 'wb') as f:
+        #     f.write(audio.get_wav_data())
         text = recognizer.recognize_google(audio)
         return text.lower()
 

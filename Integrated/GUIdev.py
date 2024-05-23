@@ -2,7 +2,6 @@
 from kivymd.uix.button import MDFillRoundFlatButton
 
 from Facerecog import main
-from kivy.uix.popup import Popup
 
 from kivy.metrics import dp
 
@@ -19,8 +18,7 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.screenmanager import ScreenManager
-import Facerecog.datacollect as DataCollector
-import os
+
 from kivy.graphics.texture import Texture
 from kivy.uix.image import Image
 from kivy.clock import Clock
@@ -64,6 +62,8 @@ class MainApp(MDApp):
         self.image = None
         self.charge_pin = gpio.read_gpio_pin(17)
 
+
+
         self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
         self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
         self.Faculty_Schedule = sql_module.get_column_data("button_list", "faculty_schedule")
@@ -96,39 +96,33 @@ class MainApp(MDApp):
         screen_manager = ScreenManager(transition=NoTransition())
 
         # ADD ALL SCREENS TO BE USED HERE
-        screen_manager.add_widget(Builder.load_file('idlescreen.kv'))
-        screen_manager.add_widget(Builder.load_file('lowbatteryscreen.kv'))
-        screen_manager.add_widget(Builder.load_file('greetscreen.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/idlescreen.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/lowbatteryscreen.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/greetscreen.kv'))
 
-        screen_manager.add_widget(Builder.load_file('New User KVs/face_capture_done.kv'))
-        screen_manager.add_widget(Builder.load_file('New User KVs/newuser.kv'))
-        screen_manager.add_widget(Builder.load_file('New User KVs/userstatus.kv'))
-        screen_manager.add_widget(Builder.load_file('New User KVs/adduser.kv'))
-        screen_manager.add_widget(Builder.load_file('New User KVs/adduser2.kv'))
-        screen_manager.add_widget(Builder.load_file('New User KVs/datacollect.kv'))
 
         # MAY BUTTON LIST
-        screen_manager.add_widget(Builder.load_file('main.kv'))
-        screen_manager.add_widget(Builder.load_file('chatscreen.kv'))
-        screen_manager.add_widget(Builder.load_file('office_schedule.kv'))
-        screen_manager.add_widget(Builder.load_file('faculty_schedule.kv'))
-        screen_manager.add_widget(Builder.load_file('programs_offered.kv'))
-        screen_manager.add_widget(Builder.load_file('soe_faculty.kv'))
-        screen_manager.add_widget(Builder.load_file('shs_faculty.kv'))
-        screen_manager.add_widget(Builder.load_file('soar_faculty.kv'))
-        screen_manager.add_widget(Builder.load_file('socit_faculty.kv'))
-        screen_manager.add_widget(Builder.load_file('som_faculty.kv'))
-        screen_manager.add_widget(Builder.load_file('soma_faculty.kv'))
-        screen_manager.add_widget(Builder.load_file('gs_faculty.kv'))
-        screen_manager.add_widget(Builder.load_file('school_information.kv'))
-        screen_manager.add_widget(Builder.load_file('other_information.kv'))
-        screen_manager.add_widget(Builder.load_file('accreditations_and_certifications.kv'))
-        screen_manager.add_widget(Builder.load_file('tuition_fees.kv'))
-        screen_manager.add_widget(Builder.load_file('school_calendar.kv'))
-        screen_manager.add_widget(Builder.load_file('school_organizations.kv'))
-        screen_manager.add_widget(Builder.load_file('floor_maps.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/main.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/chatscreen.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/office_schedule.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/faculty_schedule.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/programs_offered.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/soe_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/shs_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/soar_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/socit_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/som_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/soma_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/gs_faculty.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/school_information.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/other_information.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/accreditations_and_certifications.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/tuition_fees.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/school_calendar.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/school_organizations.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/floor_maps.kv'))
 
-        screen_manager.add_widget(Builder.load_file('image_info.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/image_info.kv'))
 
 
         Window.bind(on_touch_down=self.on_touch_down)

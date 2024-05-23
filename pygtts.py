@@ -1,27 +1,62 @@
 from gtts import gTTS
-import pygame
+from pydub import AudioSegment
+import pyaudio
+import wave
+import os
+import sounddevice
+
 def speak(text, lang='en'):
-    # Create a gTTS object
+    # Create the output directory if it doesn't exist
+    output_dir = "../Integrated/"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Define file paths
+    mp3_file = os.path.join(output_dir, "output.mp3")
+    wav_file = os.path.join(output_dir, "output.wav")
+
+    # Create a gTTS objHello, this is a test.ect
     tts = gTTS(text, lang=lang)
 
-    # Save the speech as an audio file
-    tts.save("/home/rami/PycharmProjects/RamiBot/Integrated/output.mp3")
+    # Save the speech as an MP3 file
+    tts.save(mp3_file)
 
-    # Initialize the audio player
-    pygame.mixer.init()
-    sound = pygame.mixer.Sound("/home/rami/PycharmProjects/RamiBot/Integrated/output.mp3")
+    # Convert MP3 to WAV
+    sound = AudioSegment.from_mp3(mp3_file)
+    sound.export(wav_file, format="wav")
 
-    # Play the speech
-    sound.play()
-    # Wait for the speech to finish
-    pygame.time.delay(int(sound.get_length() * 1000))
-    pygame.quit()
-
-print("imported from pyggts") #track imports
+    # Play the WAV file using pyaudio
+    play_audio_file(wav_file)
 
 def play_audio_file(file):
-    pygame.mixer.init()
-    sound = pygame.mixer.Sound(file)
-    sound.play()
-    pygame.time.delay(int(sound.get_length() * 1000))
-    pygame.quit()
+    # Open the WAV file
+    wf = wave.open(file, 'rb')
+
+    # Instantiate PyAudio
+    p = pyaudio.PyAudio()
+
+    # Open a .Stream object to write the WAV file to
+    stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                    channels=wf.getnchannels(),
+                    rate=wf.getframerate(),
+                    output=True)
+
+    # Read data in chunks
+    chunk = 1024
+    data = wf.readframes(chunk)
+
+    # Play the sound by writing the audio data to the stream
+    while len(data) > 0:
+        stream.write(data)
+        data = wf.readframes(chunk)
+
+    # Close and terminate the stream
+    stream.close()
+    p.terminate()
+
+
+import pyttsx3
+
+
+if __name__ == "__main__":
+    speak("Hello, this is a test.")
