@@ -1,68 +1,44 @@
-
-from kivymd.uix.button import MDFillRoundFlatButton
-
-from Facerecog import main
-
-from kivy.metrics import dp
-
-# Chatbot imports
-from Chatbot.chatbot import handle_request
-from Chatbot.chatbotGUI import Command, Response
-
-import pygtts as pygtts
-import gpio
-
-import cv2
-from kivy.lang import Builder
-from kivymd.app import MDApp
-from kivy.core.window import Window
-from kivy.core.text import LabelBase
-from kivy.uix.screenmanager import ScreenManager
-
-from kivy.graphics.texture import Texture
-from kivy.uix.image import Image
-from kivy.clock import Clock
-from kivy.uix.screenmanager import NoTransition
-
+# Standard library imports
+import random
 import threading
+import time
 from queue import Queue, Empty
 
+# Third party imports
+import cv2
+import gpio
+import pygtts
+import sql_module
+from kivy.clock import Clock
+from kivy.core.text import LabelBase
+from kivy.core.window import Window
+from kivy.graphics.texture import Texture
+from kivy.lang import Builder
+
+from kivy.uix.screenmanager import NoTransition, ScreenManager
+from kivymd.app import MDApp
+from kivymd.uix.button import MDFillRoundFlatButton
+
+# Local application imports
+from Chatbot.chatbot import handle_request
+from Chatbot.chatbotGUI import Command, Response
+from Facerecog import main
 from Voicebot import voicebotengine
 from Voicebot.voice_assistant_module import VoiceAssistant, active_state
-import random
-import time
-
-import sql_module
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-global count
-global start
-global screen_manager
 
 
 
 class MainApp(MDApp):
-    face_count = 0
-    add_user_flag = 0
-    global user_ID
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.connection = None
         self.timeout = None
-        self.texture = None
         self.camera = cv2.VideoCapture(0)
-        self.frame_count = None
-        self.frame_rate = None
-        self.num_images_to_capture = 50
-        self.current_image_count = 0
-        self.detect = None
-        self.image = None
         self.charge_pin = gpio.read_gpio_pin(17)
-
-
 
         self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
         self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
@@ -84,7 +60,7 @@ class MainApp(MDApp):
         self.School_Organizations = sql_module.get_column_data("button_list", "school_organizations")
         self.Floor_Maps = sql_module.get_column_data("button_list", "floor_maps")
 
-        self.status = False
+        self.keyboard_status = False
         self.current_screen = None
         self.previous_screen = None
 
@@ -99,7 +75,6 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('KV Screens/idlescreen.kv'))
         screen_manager.add_widget(Builder.load_file('KV Screens/lowbatteryscreen.kv'))
         screen_manager.add_widget(Builder.load_file('KV Screens/greetscreen.kv'))
-
 
         # MAY BUTTON LIST
         screen_manager.add_widget(Builder.load_file('KV Screens/main.kv'))
@@ -124,7 +99,6 @@ class MainApp(MDApp):
 
         screen_manager.add_widget(Builder.load_file('KV Screens/image_info.kv'))
 
-
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
         return screen_manager
@@ -133,9 +107,6 @@ class MainApp(MDApp):
         self.reset_timer()
 
     def on_start(self):
-        self.frame_rate = 10
-        self.frame_count = 50
-        self.texture = Texture.create(size=(640, 480), colorfmt='bgr')
         sql_module.connect()
 
         Clock.schedule_interval(self.await_change_screen, .3)
@@ -195,7 +166,7 @@ class MainApp(MDApp):
 
         print(f"Button {button_text} pressed")
         screen_manager.current = "image_info"  # navigate to image info screen
-        path = "/home/rami/PycharmProjects/RamiBot/Integrated/Assets/Image Infos/"  # get path source location
+        path = "../Integrated/Assets/Image Infos/"  # get path source location
         screen_manager.get_screen(screen_manager.current).ids.img.source = path + button_text + ".png"
 
     def clear_buttons(self):
@@ -207,7 +178,7 @@ class MainApp(MDApp):
             button_layout.clear_widgets()
 
     def update_label(self, screen_name, id, text):
-        '''Update labels in mapscreen'''
+        """Update labels in mapscreen"""
         screen_name = self.root.get_screen(screen_name)
         try:
             label = screen_name.ids[id]
@@ -225,60 +196,6 @@ class MainApp(MDApp):
         except:
             print("Source not found")
             pass
-
-    connection = None  # Placeholder for the database connection
-    pics_cursor = None  # Placeholder for the cursor
-
-    def fetch_image_url(self, img_id):
-        tables = ['calendars_img', 'floor_map', 'tuition_img', 'programs_img', 'offices', 'apcinfo_img', 'org_img']
-        for table in tables:
-            # Execute the query
-            user_query = f"SELECT img_url FROM {table} WHERE img_identifier = %s"
-            MainApp.pics_cursor.execute(user_query, (img_id,))
-            image_found = MainApp.pics_cursor.fetchone()
-            print(f"image found: {image_found}")
-
-            if image_found:
-                return image_found[0]
-
-        return None
-
-    def update_images(self, screenName, imageLabel, img_id):
-        screens = self.root.get_screen(screenName)
-        image_url = self.fetch_image_url(img_id)
-
-        print(f"image url: {image_url}")
-        if image_url:
-            pic = screens.ids[imageLabel]
-            pic.source = image_url
-        else:
-            print("Image not found")
-
-    def fetch_all_images(self, table):
-        tables = [table]
-        all_images = []
-        for table in tables:
-            user_query = f"SELECT img_url FROM {table}"
-            self.pics_cursor.execute(user_query)
-            images = self.pics_cursor.fetchall()
-            all_images.extend([img[0] for img in images])
-        return all_images
-    def update_all_images(self, screenName, table):
-        screen = self.root.get_screen(screenName)
-        images = self.fetch_all_images(table)
-        image_widget = screen.ids.image_grid
-
-        if images:
-            print("Updating multiple images:")
-            image_widget.clear_widgets()
-
-            for image_url in images:
-                new_image = Image(source=image_url, size_hint=(None, None), size=(dp(600), dp(800)))
-                image_widget.add_widget(new_image)
-                print(f"Added image: {image_url}")
-
-        else:
-            print("No images found")
 
     def get_text(self, screen_name, id):
         """Get text from textinput in newuser screen"""
@@ -381,7 +298,6 @@ class MainApp(MDApp):
 
         self.change_face_and_speak(text, 'rami_faces/wink.png')
 
-
     def schedule_idle_announcement(self):
         print("Current Screen: ", screen_manager.current)
         if screen_manager.current == 'idlescreen':
@@ -470,12 +386,12 @@ class MainApp(MDApp):
     def move_text_box(self):
         text_box = screen_manager.get_screen("chatscreen").ids.text_bar_layout
 
-        if self.status:
+        if self.keyboard_status:
             text_box.pos_hint = {"center_y": 0.05}
-            self.status = False
+            self.keyboard_status = False
         else:
             text_box.pos_hint = {"center_y": 0.58}
-            self.status = True
+            self.keyboard_status = True
 
         screen_manager.do_layout()
 
@@ -592,4 +508,3 @@ if __name__ == "__main__":
     # set events to stop thread processes and clear event to resume
 
     app.run()
-

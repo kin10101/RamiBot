@@ -3,12 +3,15 @@ MDScreen:
 
     on_pre_enter:
         app.create_button_list_to_button_list(app.Main_Menu)
-        print("entered mainmenu")
-        app.set_event() #idk ano purpose
+        app.set_event()
+
     on_pre_leave:
         app.previous_screen = 'Main_Menu'
 
+
     MDFloatLayout: # main layout
+
+
         orientation: 'vertical'
 
         Image: # Background image
@@ -47,13 +50,18 @@ MDScreen:
                     size_hint_y: None
                     height: self.minimum_height
 
-        Button:
-            size_hint: None, None
-            size: 250, 80
-            background_normal: 'Assets/chatbot icon.png'
-            background_color: 208/255,233/255,245/255,1
-            pos_hint: {'center_x': 0.9, 'center_y': 0.062}
-            background_scale: 'fit'
-            border_radius: [100]
-            on_release:
-                app.change_screen("chatscreen")
+        MDFlatButton:
+            size: 325, 195
+            user_font_size: "200sp"
+            pos_hint: {'center_x': 0.88, 'center_y': 0.1}
+            Image:
+                source: 'Assets/chatbot_button.png'
+
+
+
+
+
+
+
+
+

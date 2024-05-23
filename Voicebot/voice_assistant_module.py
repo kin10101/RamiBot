@@ -151,8 +151,7 @@ class VoiceAssistant:
                     response = self.handle_command(text, context)
                     if response is not None:
                         ts.speak(response, lang='en')
-                except sr.RequestError:
-                    print("Could not request results from google Speech Recognition service")
+
                 except sr.UnknownValueError:
                     print("Unable to recognize speech")
                 except sr.WaitTimeoutError:
