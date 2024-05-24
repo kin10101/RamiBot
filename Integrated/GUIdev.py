@@ -22,7 +22,7 @@ from kivymd.uix.button import MDFillRoundFlatButton
 # Local application imports
 from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import Command, Response
-from Facerecog import main
+from Facerecog import face_recog_module
 from Voicebot import voicebotengine
 from Voicebot.voice_assistant_module import VoiceAssistant, active_state
 
@@ -315,14 +315,14 @@ class MainApp(MDApp):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
-            main.realtime_face_recognition(self.camera)
+            face_recog_module.realtime_face_recognition(self.camera)
 
-            if main.person_detected is True:
+            if face_recog_module.person_detected is True:
                 gpio.set_gpio_pin(4, 1)
                 put_in_queue(screen_queue, 'greetscreen')
-                self.update_label('greetscreen', 'greet_user_label', f'{main.greet_new_user()}')
-                pygtts.speak(f'{main.greet_new_user()}')
-                print(f"{main.greet_new_user()}")
+                self.update_label('greetscreen', 'greet_user_label', f'{face_recog_module.greet_new_user()}')
+                pygtts.speak(f'{face_recog_module.greet_new_user()}')
+                print(f"{face_recog_module.greet_new_user()}")
 
     def close_camera(self):
         self.camera.release()

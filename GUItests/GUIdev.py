@@ -18,7 +18,7 @@ from kivy.uix.image import Image
 from kivy.uix.popup import Popup
 
 from Facerecog import trainedModel
-from Facerecog import main
+from Facerecog import face_recog_module
 
 from kivy.graphics.texture import Texture
 

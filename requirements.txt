@@ -4,32 +4,34 @@ kivymd~=1.2.0
 pillow~=10.2.0
 
 # External Communication
-flask
+flask~=3.0.3
 requests~=2.31.0
 pysmb~=1.2.9.1
 aiohttp
 smbprotocol
-mysql-connector-python
+mysql-connector-python~=8.4.0
 
 # Face Module Dependencies
-opencv-python
-deepface
+opencv-python~=4.9.0.80
+deepface~=0.0.91
 
 #Speech Module Dependencies
 speechrecognition
-sounddevice
-gtts
+sounddevice~=0.4.6
+gtts~=2.5.1
 pygame
-pyaudio
+pyaudio~=0.2.13
 
 # Chatbot Module Dependencies
-nltk
-keras
-tensorflow
-numpy
-matplotlib
+nltk~=3.8.1
+keras~=3.3.3
+tensorflow~=2.16.1
+numpy~=1.26.4
+matplotlib~=3.9.0
 
 # GPIO PINS
 RPi.GPIO
 fake-rpigpio
 
+
+playsound~=1.3.0
