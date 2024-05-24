@@ -53,17 +53,15 @@ MDScreen:
                 theme_text_color: "Custom"
                 text_color: 1,1,1,1
 
-            MDIconButton:
-                icon: 'arrow-left'
-                icon_size: "50sp"
-                icon_color: 1, 1, 1, 1
-                pos_hint: {'center_x': 0.05, 'center_y': 0.5}
+            #Back Button
+            MDFlatButton:
+                size: 125, 125
+                pos_hint: {'center_x': 0.07, 'center_y': 0.5}
 
                 on_press:
-                    app.navigate_to_previous_screen()
-
-
-
+                    app.root.current = app.previous_screen
+                Image:
+                    source: 'Assets/back_button.png'
 
         ScrollView:
             size_hint_y: .77

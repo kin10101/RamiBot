@@ -3,7 +3,6 @@ MDScreen:
     on_enter:
         # app.greet()
 
-
     MDFloatLayout: # main layout
 
         orientation: 'vertical'
@@ -15,7 +14,7 @@ MDScreen:
             size_hint: 1, 1
 
             on_touch_down:
-                app.is_face_recognized()
+                app.root.current = 'Main_Menu'
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
