@@ -55,11 +55,17 @@ MDScreen:
                     size_hint_y: None
                     height: self.minimum_height
 
-        Button:
-            size_hint: None, None
-            size: 250, 80
-            background_normal: 'Assets/chatbot icon.png'
-            background_color: 208/255,233/255,245/255,1
-            pos_hint: {'center_x': 0.9, 'center_y': 0.062}
-            background_scale: 'fit'
-            border_radius: [100]
+        MDFlatButton:
+            id: chatbot_button
+            size: 325, 195
+            user_font_size: "200sp"
+            pos_hint: {'center_x': 0.88, 'center_y': 0.1}
+            on_press: app.root.current = 'chatscreen'
+            Image:
+                source: 'Assets/chatbot_button.png'
+                size: 100, 100
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: 1, 1
+
