@@ -57,9 +57,9 @@ def realtime_face_recognition(video):
             print(f"An error occurred: {e}")
 
         # display
-        cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('frame', 800, 600)
-        cv2.imshow('frame', frame)
+        # cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
+        # cv2.resizeWindow('frame', 800, 600)
+        # cv2.imshow('frame', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

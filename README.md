@@ -1,8 +1,6 @@
 # RamiBot - Asia Pacific College Robotic Concierge
 
-# Introduction
-RamiBot is a robotic concierge that is designed to assist students and faculty members of Asia Pacific College. It is capable of answering frequently asked questions, providing information about the school, and assisting users in navigating the campus. RamiBot is designed to be user-friendly and easy to use, making it an ideal companion for students and faculty members of Asia Pacific College.
-
+# Table of Contents
 # <!-- TOC -->
 1. [Introduction](#introduction)    
 2. [Installation](#installation)
@@ -10,6 +8,20 @@ RamiBot is a robotic concierge that is designed to assist students and faculty m
 4. [Usage](#usage)
 5. [Acknowledgements](#acknowledgements)
 <!-- TOC -->
+
+
+# Introduction
+RamiBot is a robotic concierge that is designed to assist students and faculty members of Asia Pacific College. 
+It is capable of answering frequently asked questions, providing information about the school, and assisting users in navigating the campus building.
+This repository contains the source code for the software side of the RamiBot project. 
+
+The project is divided into four main modules:
+1. Chatbot Module - A chatbot that can answer frequently asked questions and provide information about the school.
+2. Voice Recognition Module - A voice recognition module that allows users to interact with the chatbot using voice commands. extension of the chatbot module.
+3. Face Recognition Module - A face recognition module that allows the chatbot to recognize and greet a user if the bot sees a user's face.
+4. GUI Module - A graphical user interface that allows users to interact with Rami through a touch screen interface. The Kivy framework is used to create the GUI.
+
+
 
 # Installation
 Program is deployed on debian 12. A Linux OS is recommended to run this however, it can also run on Windows albeit with some workarounds when installing cmake.
@@ -105,3 +117,7 @@ to another screen that navigates to a screen holding an image.
 
 Modifying the list involves changing a column in the button list table inside the mysql server that is used by the project.
 Do note that the column item in the table is going to be the name of the button that will be displayed on the screen.
+
+
+# Acknowledgements
+This project was a PBL project by the Computer and Electronic Engineering students of Asia Pacific College.

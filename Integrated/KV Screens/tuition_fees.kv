@@ -19,12 +19,16 @@ MDScreen:
             size_hint: 1, 1
 
            #Back Button
-        MDIconButton:
-            icon: 'arrow-left'
+        MDFlatButton:
+            size: 125, 125
+            size_hint: None, None
             pos_hint: {'center_x': 0.1, 'center_y': 0.5}
-            user_font_size: "45sp"
+
             on_press:
                 app.root.current = "School_Information"
+            Image:
+                source: 'Assets/back_button.png'
+
 
 
         MDBoxLayout: # Square transparent container
