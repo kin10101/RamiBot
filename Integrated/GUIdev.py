@@ -347,7 +347,7 @@ class MainApp(MDApp):
             Command(text=value, size_hint_x=size, halign=halign))
 
     def set_message_size_and_alignment(self):
-        """Set the size and alignment of the message based on its length."""
+        """Set the size and alignment of the message boxbased on its length."""
         global size, halign
         if len(value) < 6:
             size = .22

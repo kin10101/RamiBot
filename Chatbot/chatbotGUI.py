@@ -17,6 +17,7 @@ Config.set('graphics', 'borderless', 1)  # 0 being off 1 being on as in true/fal
 Config.set('kivy','keyboard_mode','dock')
 
 class ChatBubble(MDLabel):
+    font_size = 17
     pass
 
 
@@ -28,16 +29,18 @@ class Command(MDLabel):
     text = StringProperty()
     size_hint_x = NumericProperty()
     halign = StringProperty()
+    font_name = "Poppins"
 
-    font_size = 17
+    font_size = 24
 
 
 class Response(MDLabel):
     text = StringProperty()
     size_hint_x = NumericProperty()
     halign = StringProperty()
+    font_name = "Poppins"
 
-    font_size = 17
+    font_size = 24
 
 
 class ChatBot(MDApp):
@@ -64,25 +67,20 @@ class ChatBot(MDApp):
 
         # Check if the input text is not empty
         if self.input_text:
-            value = self.input_text
-            if len(value) < 6:
-                size = .22
-                halign = "center"
-            elif len(value) < 11:
-                size = .32
-                halign = "center"
-            elif len(value) < 16:
-                size = .45
-                halign = "center"
-            elif len(value) < 21:
-                size = .58
-                halign = "center"
-            elif len(value) < 26:
-                size = .71
-                halign = "center"
-            else:
-                size = .85
-                halign = "left"
+            if self.input_text:
+                value = self.input_text
+                lengths = [6, 11, 16, 21, 26]
+                sizes = [.22, .32, .45, .58, .71, .85]
+                haligns = ["center"] * 5 + ["left"]
+
+                for i, length in enumerate(lengths):
+                    if len(value) < length:
+                        size = sizes[i]
+                        halign = haligns[i]
+                        break
+                else:
+                    size = sizes[-1]
+                    halign = haligns[-1]
 
             # Add the message to the chat list
             screen_manager.get_screen("chatscreen").chat_list.add_widget(
