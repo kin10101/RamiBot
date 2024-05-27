@@ -123,7 +123,7 @@ class VoiceAssistant:
                                     pass
 
                             if response2 is not None:
-                                ts.speak(response2, lang='en')
+                                ts.speak(response2)
 
                                 ts.play_audio_file(
                                     "audio/deactivate.wav")  # sound to indicate that the conversation is over

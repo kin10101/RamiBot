@@ -1,31 +1,18 @@
-from gtts import gTTS
+
+import subprocess
 from playsound import playsound
-import pyaudio
-import wave
-import os
-import sounddevice
+# if not working, try: pip install piper-tts
 
+def speak(text):
+    model_path = "../en_US-lessac-medium.onnx"  # Update this with the path to your local model file
 
-def speak(text, lang='en'):
-    # Create the output directory if it doesn't exist
-    output_dir = "../Integrated/"
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    # Define the command to be run with the local model path
+    command = f'echo "{text}" | piper --model {model_path} --output-raw | aplay -r 22050 -f S16_LE -t raw -'
 
-    # Define the MP3 file path
-    mp3_file = os.path.join(output_dir, "output.mp3")
+    # Run the command
+    subprocess.run(command, shell=True, check=True)
 
-    # Create a gTTS object and save the speech as an MP3 file
-    tts = gTTS(text, lang=lang)
-    tts.save(mp3_file)
-
-    # Play the MP3 file
-    playsound(mp3_file)
 
 def play_audio_file(file):
     playsound(file)
 
-
-
-if __name__ == "__main__":
-    speak("Hello, this is a test.")
