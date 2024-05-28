@@ -21,12 +21,22 @@ The project is divided into four main modules:
 3. Face Recognition Module - A face recognition module that allows the chatbot to recognize and greet a user if the bot sees a user's face.
 4. GUI Module - A graphical user interface that allows users to interact with Rami through a touch screen interface. The Kivy framework is used to create the GUI.
 
+## Chatbot Module
+a rule-based chatbot that uses a bag-of-words model to classify user input into different intents. 
+The chatbot is trained on a dataset of intents and responses, and uses the NLTK library for natural language processing.
+Keras is used to create the neural network model that classifies user input into intents. It is a probabilistic model that uses the softmax activation function to output the probability of how close the users input is to an intent category.
+The intent with the highest probability is then used to generate a response to the user.
 
+## Voice Recognition Module
+An extension of the chatbot module that allows users to interact with the chatbot using voice commands. 
+Uses faster-whisper to convert the user's speech to text. 
+The module uses the SpeechRecognition .
+The voice recognition module is trained on the same dataset of intents and responses as the chatbot module, and uses the same neural network model to classify user input into intents.
 
 # Installation
 Program is deployed on debian 12. A Linux OS is recommended to run this however, it can also run on Windows albeit with some workarounds when installing cmake.
 
-- Recommended python version: 3.11
+- used python version: 3.11
 - Requires connection to the internet to access the Google speech recognition API (contact ITRO if connection gets blocked)
 - Must be connected to the school network for the app to run because resources are hosted on the school server
 

@@ -1,14 +1,8 @@
-from flask import Flask, request, jsonify
 
-app = Flask(__name__)
+from whisper_live.server import TranscriptionServer
 
-@app.route('/respond', methods=['GET'])
-def respond():
-    text = request.args.get('text', type=str)
-    if text and text.lower() == 'hello':
-        return jsonify({'response': "What's up"})
-    else:
-        return jsonify({'response': 'Unrecognized input'}), 400
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+server = TranscriptionServer()
+print("Server starting")
+server.run("0.0.0.0", 9090)
+print("Server started")

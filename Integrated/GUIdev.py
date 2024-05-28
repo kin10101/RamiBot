@@ -36,7 +36,7 @@ class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.timeout = None
-        self.camera = cv2.VideoCapture(1)
+        self.camera = cv2.VideoCapture(0)
         self.charge_pin = gpio.read_gpio_pin(17)
 
         self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
@@ -313,7 +313,7 @@ class MainApp(MDApp):
     def face_recognition_module(self):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
-            self.camera = cv2.VideoCapture(1)
+
             face_recog_module.realtime_face_recognition(self.camera)
 
             if face_recog_module.person_detected is True:

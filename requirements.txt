@@ -21,6 +21,7 @@ sounddevice~=0.4.6
 gtts~=2.5.1
 pygame
 pyaudio~=0.2.13
+whisper
 
 # Chatbot Module Dependencies
 nltk~=3.8.1

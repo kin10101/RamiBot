@@ -10,8 +10,6 @@ MDScreen:
 
 
     MDFloatLayout: # main layout
-
-
         orientation: 'vertical'
 
         Image: # Background image
@@ -20,6 +18,17 @@ MDScreen:
             allow_stretch: True
             keep_ratio: False
             size_hint: 1, 1
+
+        MDLabel: # Title
+            id: transcribed_input
+            text: ''
+            font_name: 'Poppins'
+            font_size: "36sp"
+            halign: 'center'
+            text_color: 1, 1, 1, 1
+            pos_hint: {"x": 0, "y": 0}
+            size_hint: 1, .2
+            bold: True
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'

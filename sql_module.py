@@ -60,6 +60,8 @@ def insert_data(table, columns, values):
     sql_query(query)
 
 
+
+
 if __name__ == "__main__":
     connect()
     #show_tables()
