@@ -311,17 +311,21 @@ class MainApp(MDApp):
 
     # FACE detection ---------------------------------
     def face_recognition_module(self):
+        print(face_recog_module.person_detected)
+
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
+            self.camera = cv2.VideoCapture(0)
+            recognized = face_recog_module.realtime_face_recognition(self.camera)
 
-            face_recog_module.realtime_face_recognition(self.camera)
-
-            if face_recog_module.person_detected is True:
+            if recognized:
                 gpio.set_gpio_pin(4, 1)
                 put_in_queue(screen_queue, 'greetscreen')
                 self.update_label('greetscreen', 'greet_user_label', f'{face_recog_module.greet_new_user()}')
-                pygtts.speak(f'{face_recog_module.greet_new_user()}')
-                print(f"{face_recog_module.greet_new_user()}")
+                pygtts.speak_async(recognized)
+
+
+
 
     def close_camera(self):
         self.camera.release()
@@ -406,7 +410,7 @@ class MainApp(MDApp):
 
     # TIMER FUNCTIONS --------------------------------
     def start_timer(self):
-        self.timeout = Clock.schedule_once(self.timeout_reset, 25)
+        self.timeout = Clock.schedule_once(self.timeout_reset, 5)
 
     def reset_timer(self):
         self.timeout.cancel()

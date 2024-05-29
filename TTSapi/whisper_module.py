@@ -30,6 +30,8 @@ from faster_whisper import WhisperModel
 import pyaudio
 import wave
 
+import pygtts
+
 
 def record_audio(duration, filename):
     # Set up audio recording parameters
@@ -77,7 +79,7 @@ def transcribe_audio_from_mic(duration=5):
     start_time = time.time()
 
     # Record audio from microphone and save to a temporary file
-    audio_filename = "temp_audio.wav"
+    audio_filename = "../temp_audio.wav"
     record_audio(duration, audio_filename)
 
     # Load Whisper model
@@ -98,3 +100,4 @@ def transcribe_audio_from_mic(duration=5):
 # Example usage
 transcribed_text = transcribe_audio_from_mic(duration=5)
 print("Transcribed text:", transcribed_text)
+pygtts.speak_async(transcribed_text)

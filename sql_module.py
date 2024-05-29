@@ -59,14 +59,21 @@ def insert_data(table, columns, values):
     query = f"INSERT INTO {table} ({columns_str}) VALUES ({values_str});"
     sql_query(query)
 
-
+def change_value(table, column, value, condition_column, condition_value):
+    """Change a value in a table."""
+    query = f";"
+    sql_query(query)
 
 
 if __name__ == "__main__":
     connect()
-    #show_tables()
-    show_columns("button_list")
-    column_data = get_column_data("button_list", "")
+    show_tables()
+    print("-------------------------------")
+    show_columns("admin_control")
+
+    change_value("admin_control", "Ramibot_Return", "2", "ID", "1")
+    column_data = get_column_data("admin_control", "")
     print(column_data)
 
 
+#table rami_motor_control

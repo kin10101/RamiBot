@@ -1,6 +1,6 @@
 import random
 import numpy as np
-
+import time
 from deepface import DeepFace
 import cv2
 
@@ -13,11 +13,18 @@ def realtime_face_recognition(video):
     global person_detected
     global running
     running = True
+
+    if not video.isOpened():
+        print("Error: Camera is not initialized properly. Exiting...")
+        return
+
     while running:
         try:
             ret, frame = video.read()
+
             if not ret:
-                break
+                print("Can't receive frame (stream end?). Exiting...")
+
 
             # Get the dimensions of the frame
             height, width, _ = frame.shape
@@ -45,8 +52,8 @@ def realtime_face_recognition(video):
                 if distance < 50:  # You can adjust this value as needed
                     person_detected = True
                     print("person detected")
-                    running = False
-                    video.release()
+                    return person_detected
+                    break
 
                 else:
                     print("face not in center")
@@ -82,3 +89,14 @@ def greet_new_user():
     elif random_num == 5:
         return "Greetings, I'm Rami bot!"
 
+def get_camera_list(max_cameras=10):
+    """Get a list of available camera devices and their index."""
+    cameras = []
+    for index in range(max_cameras):
+        cap = cv2.VideoCapture(index)
+        if cap.isOpened():
+            cameras.append(index)
+        cap.release()
+    return cameras
+
+get_camera_list(5)

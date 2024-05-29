@@ -150,7 +150,7 @@ class VoiceAssistant:
                     print("Audio received to text: " + text)
                     response = self.handle_command(text, context)
                     if response is not None:
-                        ts.speak(response, lang='en')
+                        ts.speak(response)
 
                 except sr.UnknownValueError:
                     print("Unable to recognize speech")
@@ -161,7 +161,7 @@ class VoiceAssistant:
 
 if __name__ == "__main__":
     Voicebot = VoiceAssistant()
-    Voicebot.run_once()
+    Voicebot.voice_assistant_loop()
 
 
     for index, name in enumerate(sr.Microphone.list_microphone_names()):

@@ -1,6 +1,7 @@
 
 import subprocess
 from playsound import playsound
+import threading
 # if not working, try: pip install piper-tts
 
 def speak(text):
@@ -12,7 +13,10 @@ def speak(text):
     # Run the command
     subprocess.run(command, shell=True, check=True)
 
-
+def speak_async(text):
+    thread = threading.Thread(target=speak, args=(text,))
+    thread.start()
 def play_audio_file(file):
     playsound(file)
+
 
