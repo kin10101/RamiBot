@@ -1,14 +1,21 @@
 import mysql.connector
+from mysql.connector import Error
 
 
 def connect():
-    return mysql.connector.connect(
-        host="airhub-soe.apc.edu.ph",
-        user="marj",
-        password="RAMIcpe211",
-        database="ramibot"
-    )
-
+    try:
+        connection = mysql.connector.connect(
+            host="airhub-soe.apc.edu.ph",
+            user="marj",
+            password="RAMIcpe211",
+            database="ramibot"
+        )
+        if connection.is_connected():
+            print("Successfully connected to the database")
+            return connection
+    except Error as e:
+        print(f"Error: {e}")
+        pass
 
 def disconnect():
     conn = connect()
@@ -22,12 +29,19 @@ def check_connection():
 
 
 def sql_query(query):
-    conn = connect()
-    cursor = conn.cursor()
-    cursor.execute(query)
-    result = cursor.fetchall()
-    conn.close()
-    return result
+    try:
+        conn = connect()
+        if conn is None:
+            raise Exception("Failed to connect to the database")
+
+        cursor = conn.cursor()
+        cursor.execute(query)
+        result = cursor.fetchall()
+        return result
+    except Error as e:
+        print(f"Error: {e}")
+        return None
+
 
 
 def show_tables():

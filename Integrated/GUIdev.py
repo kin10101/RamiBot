@@ -6,6 +6,8 @@ from queue import Queue, Empty
 
 # Third party imports
 import cv2
+import requests
+
 import gpio
 import pygtts
 import sql_module
@@ -29,8 +31,10 @@ Window.size = (1920, 1080)
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
-
-
+HOST_IP = 'http://192.168.80.4:5000'
+IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
+TIMEOUT_DURATION = 30
+ANNOUNCEMENT_TIMEOUT = 10
 class MainApp(MDApp):
 
     def __init__(self, **kwargs):
@@ -162,11 +166,9 @@ class MainApp(MDApp):
             screen_manager.get_screen(screen_manager.current).ids.button_layout.add_widget(button)
 
     def on_list_to_image(self, button_text):
-
         print(f"Button {button_text} pressed")
         screen_manager.current = "image_info"  # navigate to image info screen
-        path = "../Integrated/Assets/Image Infos/"  # get path source location
-        screen_manager.get_screen(screen_manager.current).ids.img.source = path + button_text + ".png"
+        self.request_image(button_text)  # request image from server
 
     def clear_buttons(self):
         # Get a reference to the button layout
@@ -175,6 +177,28 @@ class MainApp(MDApp):
         # Remove all children (buttons) from the button layout
         if button_layout.children:
             button_layout.clear_widgets()
+
+    def request_image(self, image):
+        """Request an image from the server and save it locally. takes in the image path (with extension) as a
+        parameter."""
+        try:
+            response = requests.get(f'{HOST_IP}/get_image/{image}.png')
+            if response.status_code == 200:
+                # write to temp file
+                with open(IMAGE_PATH, 'wb') as f:
+                    f.write(response.content)
+                    print("Image downloaded successfully")
+                    screen_manager.get_screen('image_info').ids.img.source = IMAGE_PATH
+                    screen_manager.get_screen('image_info').ids.img.reload()
+
+            else:
+                print(f"Failed to load image: {response.status_code}")
+                screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
+                screen_manager.get_screen('image_info').ids.img.reload()
+        except Exception as e:
+            print(f"Failed to load image: {e}")
+            screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
+            screen_manager.get_screen('image_info').ids.img.reload()
 
     def update_label(self, screen_name, id, text):
         """Update labels in mapscreen"""
@@ -286,9 +310,8 @@ class MainApp(MDApp):
         # Change the face
         put_in_queue(image_queue, face_path)
         # Start the thread
-        speak_thread = threading.Thread(target=pygtts.speak, args=(text,))
-        speak_thread.start()
-        speak_thread.join()
+        pygtts.speak_async(text)
+
 
     def idle_announcement(self, dt):
 
@@ -300,7 +323,7 @@ class MainApp(MDApp):
     def schedule_idle_announcement(self):
         print("Current Screen: ", screen_manager.current)
         if screen_manager.current == 'idlescreen':
-            Clock.schedule_interval(self.idle_announcement, 40)
+            Clock.schedule_interval(self.idle_announcement, ANNOUNCEMENT_TIMEOUT)
 
     def unschedule_idle_announcement(self):
         Clock.unschedule(self.idle_announcement)
@@ -323,9 +346,6 @@ class MainApp(MDApp):
                 put_in_queue(screen_queue, 'greetscreen')
                 self.update_label('greetscreen', 'greet_user_label', f'{face_recog_module.greet_new_user()}')
                 pygtts.speak_async(recognized)
-
-
-
 
     def close_camera(self):
         self.camera.release()
@@ -410,7 +430,7 @@ class MainApp(MDApp):
 
     # TIMER FUNCTIONS --------------------------------
     def start_timer(self):
-        self.timeout = Clock.schedule_once(self.timeout_reset, 5)
+        self.timeout = Clock.schedule_once(self.timeout_reset, TIMEOUT_DURATION)
 
     def reset_timer(self):
         self.timeout.cancel()

@@ -9,6 +9,10 @@
 5. [Acknowledgements](#acknowledgements)
 <!-- TOC -->
 
+# TODO
+- [ ] setup image server
+- 
+
 
 # Introduction
 RamiBot is a robotic concierge that is designed to assist students and faculty members of Asia Pacific College. 
@@ -36,7 +40,7 @@ The voice recognition module is trained on the same dataset of intents and respo
 # Installation
 Program is deployed on debian 12. A Linux OS is recommended to run this however, it can also run on Windows albeit with some workarounds when installing cmake.
 
-- used python version: 3.11
+- Requires python 3.8 or higher. 3.11 was used for this project.
 - Requires connection to the internet to access the Google speech recognition API (contact ITRO if connection gets blocked)
 - Must be connected to the school network for the app to run because resources are hosted on the school server
 

@@ -21,7 +21,6 @@ def realtime_face_recognition(video):
     while running:
         try:
             ret, frame = video.read()
-
             if not ret:
                 print("Can't receive frame (stream end?). Exiting...")
 
@@ -52,14 +51,16 @@ def realtime_face_recognition(video):
                 if distance < 50:  # You can adjust this value as needed
                     person_detected = True
                     print("person detected")
-                    return person_detected
-                    break
+                    greeting = greet_new_user()
+                    return greeting
+
 
                 else:
                     print("face not in center")
         except Exception as e:
             person_detected = False
             print(f"An error occurred: {e}")
+            break
 
         # display
         # cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
@@ -77,17 +78,14 @@ def realtime_face_recognition(video):
 #other modules---------------------------------------------------------------------------------------------------------
 
 def greet_new_user():
-    random_num = random.randint(1,5)
-    if random_num == 1:
-        return "Hello there, I'm Rami bot!"
-    elif random_num == 2:
-        return "Hello friend! my name is Rami bot!"
-    elif random_num == 3:
-        return "Good day, I'm Rami bot!"
-    elif random_num == 4:
-        return "Hi there, I'm Rami bot!"
-    elif random_num == 5:
-        return "Greetings, I'm Rami bot!"
+    greetings = [
+        "Hello there, I'm Rami bot!",
+        "Hello friend! my name is Rami bot!",
+        "Good day, I'm Rami bot!",
+        "Hi there, I'm Rami bot!",
+        "Greetings, I'm Rami bot!"
+    ]
+    return random.choice(greetings)
 
 def get_camera_list(max_cameras=10):
     """Get a list of available camera devices and their index."""
