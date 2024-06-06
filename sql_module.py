@@ -8,7 +8,8 @@ def connect():
             host="airhub-soe.apc.edu.ph",
             user="marj",
             password="RAMIcpe211",
-            database="ramibot"
+            database="ramibot",
+            autocommit=True
         )
         if connection.is_connected():
             print("Successfully connected to the database")
@@ -16,6 +17,7 @@ def connect():
     except Error as e:
         print(f"Error: {e}")
         pass
+
 
 def disconnect():
     conn = connect()
@@ -41,7 +43,6 @@ def sql_query(query):
     except Error as e:
         print(f"Error: {e}")
         return None
-
 
 
 def show_tables():
@@ -73,21 +74,25 @@ def insert_data(table, columns, values):
     query = f"INSERT INTO {table} ({columns_str}) VALUES ({values_str});"
     sql_query(query)
 
+
 def change_value(table, column, value, condition_column, condition_value):
     """Change a value in a table."""
-    query = f";"
+    query = f"UPDATE {table} SET {column} = '{value}' WHERE {condition_column} = '{condition_value}';"
     sql_query(query)
+
+
+def show_value(table, column, condition_column, condition_value):
+    query = f"SELECT {column} FROM {table} WHERE {condition_column} = {condition_value}"
+    result = sql_query(query)
+    return result
 
 
 if __name__ == "__main__":
     connect()
-    show_tables()
-    print("-------------------------------")
-    show_columns("admin_control")
+    # show_tables()
+    # print("-------------------------------")
+    # show_columns("admin_control")
+    # print("-------------------------------")
+    print(show_value("admin_control", "MOTOR_state", "ID", 1))
 
-    change_value("admin_control", "Ramibot_Return", "2", "ID", "1")
-    column_data = get_column_data("admin_control", "")
-    print(column_data)
-
-
-#table rami_motor_control
+# table rami_motor_control

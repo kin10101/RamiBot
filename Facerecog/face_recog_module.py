@@ -60,7 +60,7 @@ def realtime_face_recognition(video):
         except Exception as e:
             person_detected = False
             print(f"An error occurred: {e}")
-            break
+
 
         # display
         # cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
@@ -71,7 +71,7 @@ def realtime_face_recognition(video):
             break
 
     video.release()
-    cv2.destroyAllWindows()
+
 
 #end of face recognition module----------------------------------------------------------------------------------------
 

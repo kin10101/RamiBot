@@ -8,7 +8,7 @@ MDScreen:
 
         app.schedule_idle_announcement()
     on_pre_leave:
-        app.on_gpio(4, 1)
+        app.off_motor()
         app.close_camera()
 
         app.unschedule_idle_announcement()

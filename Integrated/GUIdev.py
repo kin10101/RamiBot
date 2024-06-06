@@ -33,15 +33,17 @@ detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 HOST_IP = 'http://192.168.80.4:5000'
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
-TIMEOUT_DURATION = 30
-ANNOUNCEMENT_TIMEOUT = 10
+TIMEOUT_DURATION = 10
+ANNOUNCEMENT_TIMEOUT = 60
+
+
 class MainApp(MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.timeout = None
         self.camera = cv2.VideoCapture(0)
-        self.charge_pin = gpio.read_gpio_pin(17)
+        self.charge_pin = gpio.read_gpio_pin(17)  # TODO change to database value
 
         self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
         self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
@@ -111,7 +113,6 @@ class MainApp(MDApp):
 
     def on_start(self):
         sql_module.connect()
-
         Clock.schedule_interval(self.await_change_screen, .3)
         Clock.schedule_interval(self.await_pin_change, 1)
         start_voice_thread()
@@ -200,7 +201,7 @@ class MainApp(MDApp):
             screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
             screen_manager.get_screen('image_info').ids.img.reload()
 
-    def update_label(self, screen_name, id, text):
+    def update_label(self, screen_name, id, text):  # TODO add transcribed text showing
         """Update labels in mapscreen"""
         screen_name = self.root.get_screen(screen_name)
         try:
@@ -235,9 +236,6 @@ class MainApp(MDApp):
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
-    def navigate_to_previous_screen(self):
-        screen_manager.current = screen_manager.previous()
-
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
         the item in queue"""
@@ -253,7 +251,7 @@ class MainApp(MDApp):
                 image_path = image_queue.get_nowait()
 
                 self.update_image(current_screen, 'img', image_path)
-            # TODO get the current screen and update the image
+            # TODO check if this function is updated correctly
 
 
         else:
@@ -269,7 +267,7 @@ class MainApp(MDApp):
         else:
             pass
 
-    def await_pin_change(self, dt):
+    def await_pin_change(self, dt):  # TODO update to get from database RamiBot_Return
         # print("current screen = ", screen_manager.current)
 
         try:
@@ -312,13 +310,13 @@ class MainApp(MDApp):
         # Start the thread
         pygtts.speak_async(text)
 
-
     def idle_announcement(self, dt):
-
         column_data = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
         text = random.choice(column_data)
 
         self.change_face_and_speak(text, 'rami_faces/wink.png')
+        # back to normal face after speaking
+        put_in_queue(image_queue, 'rami_faces/smile.png')
 
     def schedule_idle_announcement(self):
         print("Current Screen: ", screen_manager.current)
@@ -339,13 +337,16 @@ class MainApp(MDApp):
         if self.charge_pin == 0:
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
-            recognized = face_recog_module.realtime_face_recognition(self.camera)
+            detected = face_recog_module.realtime_face_recognition(self.camera)
 
-            if recognized:
-                gpio.set_gpio_pin(4, 1)
+            if detected:
+                # gpio.set_gpio_pin(4, 1)
+                self.on_motor()
+                pygtts.speak_async(detected)  # Speak the greeting for the detected person
+
                 put_in_queue(screen_queue, 'greetscreen')
-                self.update_label('greetscreen', 'greet_user_label', f'{face_recog_module.greet_new_user()}')
-                pygtts.speak_async(recognized)
+
+                # TODO: fix the lagging face screen
 
     def close_camera(self):
         self.camera.release()
@@ -425,8 +426,18 @@ class MainApp(MDApp):
         gpio.set_gpio_pin(4, 0)
         gpio.GPIO.cleanup()
 
-    def on_gpio(self, pin=4, state=1):
-        gpio.set_gpio_pin(pin, state)
+    def on_gpio(self):
+        gpio.set_gpio_pin(4, 1)
+        self.on_motor()
+
+    def on_motor(self):
+        sql_module.change_value("admin_control", "MOTOR_state", 0, "ID", 1)
+
+    def off_motor(self):
+        sql_module.change_value("admin_control", "MOTOR_state", 1, "ID", 1)
+
+    def read_low_battery_state(self):
+        sql_module.show_value("admin_control", "RamiBot_Return", "ID", 1)
 
     # TIMER FUNCTIONS --------------------------------
     def start_timer(self):
@@ -440,7 +451,8 @@ class MainApp(MDApp):
         self.timeout.cancel()
 
     def timeout_reset(self, dt):
-        gpio.set_gpio_pin(4, 0)
+        # gpio.set_gpio_pin(4, 0)
+        self.on_motor()
         self.change_screen('idlescreen')
 
     # THREADS & EVENTS --------------------------------------
@@ -523,11 +535,5 @@ if __name__ == "__main__":
     # Classes
     voicebot = VoiceAssistant()
     app = MainApp()
-
-    # Thread initialization
-    # Event States
-
-    stop_motor = threading.Event()
-    # set events to stop thread processes and clear event to resume
 
     app.run()

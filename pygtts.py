@@ -5,7 +5,7 @@ import threading
 # if not working, try: pip install piper-tts
 
 def speak(text):
-    model_path = "en_US-lessac-medium.onnx"  # Update this with the path to your local model file
+    model_path = "../en_US-lessac-medium.onnx"  # Update this with the path to your local model file
 
 
     # Define the command to be run with the local model path
