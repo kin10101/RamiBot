@@ -373,8 +373,8 @@
             "responses": [
                 "it is located here at the 1st floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map1.png"
+            "navigate_to": "image_info",
+            "source_image": "First_Floor"
         },
         {
             "tag": "LOC second floor location",
@@ -398,8 +398,8 @@
             "responses": [
                 "it is located at the 2nd floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map2.png"
+            "navigate_to": "image_info",
+            "source_image": "2nd_Floor"
         },
         {
             "tag": "LOC third floor location",
@@ -423,8 +423,8 @@
             "responses": [
                 "it is located at the 3rd floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map3.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map3.png"
         },
         {
             "tag": "LOC fourth floor location",
@@ -447,8 +447,8 @@
             "responses": [
                 "it is located at the 4th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map4.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map4.png"
         },
         {
             "tag": "LOC fifth floor location",
@@ -483,8 +483,8 @@
             "responses": [
                 "it is located at the 5th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map5.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map5.png"
         },
         {
             "tag": "LOC sixth floor location",
@@ -507,8 +507,8 @@
             "responses": [
                 "it is located at the 6th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map6.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map6.png"
         },
         {
             "tag": "LOC seventh floor location",
@@ -526,8 +526,8 @@
             "responses": [
                 "it is located at the 7th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map7.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map7.png"
         },
         {
             "tag": "LOC eighth floor location",
@@ -562,8 +562,8 @@
             "responses": [
                 "it is located at the 8th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map8.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map8.png"
         },
         {
             "tag": "LOC ninth floor location",
@@ -583,8 +583,8 @@
             "responses": [
                 "it is located at the 9th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map9.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map9.png"
         },
         {
             "tag": "LOC tenth floor location",
@@ -612,8 +612,8 @@
             "responses": [
                 "it is located at the 10th floor "
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map10.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map10.png"
         },
         {
             "tag": "LOC eleventh floor location",
@@ -635,8 +635,8 @@
             "responses": [
                 "it is located on the 11th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map11.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map11.png"
         },
         {
             "tag": "LOC twelfth floor location",
@@ -646,8 +646,8 @@
             "responses": [
                 "it is located on the 12th floor"
             ],
-            "navigate_to": "floor",
-            "src_img": "Floors KVs/map12.png"
+            "navigate_to": "image_info",
+            "source_image": "Floors KVs/map12.png"
         },
 
         {

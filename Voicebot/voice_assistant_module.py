@@ -5,20 +5,24 @@ import pygtts as ts
 import gpio as gpio
 from Voicebot.voicebotengine import Speech_Queue as Speech_Queue
 import threading
-import sounddevice
+import sounddevice # import this to remove warnings
+from queue import Queue
+
+from sql_module import show_value_as_bool
 
 active_state = threading.Event()
+Transcription_Queue = Queue()
+Timeout_Queue = Queue()
 
 class VoiceAssistant:
     def __init__(self):
-        self.mic = sr.Microphone()
+        self.mic = sr.Microphone(device_index=5)
         self.pause_threshold = .8
         self.energy_threshold = 3500
         self.operation_timeout = 5000
         self.dynamic_energy_threshold = False
         self.listen_timeout = 3
         self.phrase_time_limit = 5
-        self.gpio_pin = 17
         self.wake_word_variations = [
             "hello ram",
             "hello mommy",
@@ -40,8 +44,6 @@ class VoiceAssistant:
     def listen_to_command(self, recognizer, source):
 
         audio = recognizer.listen(source=source, timeout=self.listen_timeout, phrase_time_limit=self.phrase_time_limit)
-        # with open('speech.wav', 'wb') as f:
-        #     f.write(audio.get_wav_data())
         text = recognizer.recognize_google(audio)
         return text.lower()
 
@@ -65,12 +67,13 @@ class VoiceAssistant:
         recognizer.operation_timeout = self.operation_timeout
         recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
         while True:
-            if gpio.read_gpio_pin(17) == 1:
+            state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
+            # if ramibotreturn is set to 1, voice assistant is deactivated
+            if state:
                 print("voice assistant deactivated")
                 pass
-
-            elif gpio.read_gpio_pin(17) == 0:
-
+            # if ramibotreturn is set to 0, voice assistant is activated
+            elif not state:
                 if not active_state.is_set():  # while active state is not set (roaming, idle screen), listen for wake word.
                     print("wakeword listening active")
                     try:
@@ -110,6 +113,8 @@ class VoiceAssistant:
 
                             try:
                                 text2 = self.listen_to_command(recognizer, source)
+                                Transcription_Queue.put(text2)
+                                Timeout_Queue.put("stop")
                                 print("Received command: " + text2)
                             except:
                                 text2 = None
@@ -124,9 +129,8 @@ class VoiceAssistant:
 
                             if response2 is not None:
                                 ts.speak(response2)
-
-                                ts.play_audio_file(
-                                    "audio/deactivate.wav")  # sound to indicate that the conversation is over
+                                ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
+                                Timeout_Queue.put("start")
                                 break
                             if not active_state.is_set():
                                 break
@@ -161,7 +165,7 @@ class VoiceAssistant:
 
 if __name__ == "__main__":
     Voicebot = VoiceAssistant()
-    Voicebot.voice_assistant_loop()
+    # Voicebot.voice_assistant_loop()
 
 
     for index, name in enumerate(sr.Microphone.list_microphone_names()):

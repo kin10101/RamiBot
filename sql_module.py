@@ -81,10 +81,13 @@ def change_value(table, column, value, condition_column, condition_value):
     sql_query(query)
 
 
-def show_value(table, column, condition_column, condition_value):
+def show_value_as_bool(table, column, condition_column, condition_value):
     query = f"SELECT {column} FROM {table} WHERE {condition_column} = {condition_value}"
     result = sql_query(query)
-    return result
+    if result and result[0]:
+        return bool(int(result[0][0]))
+    else:
+        return None
 
 
 if __name__ == "__main__":
@@ -93,6 +96,11 @@ if __name__ == "__main__":
     # print("-------------------------------")
     # show_columns("admin_control")
     # print("-------------------------------")
-    print(show_value("admin_control", "MOTOR_state", "ID", 1))
+    print(show_value_as_bool("admin_control", "MOTOR_state", "ID", 1))
+    state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
 
+    if state:
+        print("RamiBot_Return is False")
+    if not state:
+        print("RamiBot_Return is False")
 # table rami_motor_control

@@ -25,7 +25,7 @@ from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import Command, Response
 from Facerecog import face_recog_module
 from Voicebot import voicebotengine
-from Voicebot.voice_assistant_module import VoiceAssistant, active_state
+from Voicebot.voice_assistant_module import VoiceAssistant, active_state, Transcription_Queue, Timeout_Queue
 
 Window.size = (1920, 1080)
 Window.fullscreen = True
@@ -33,7 +33,7 @@ detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 HOST_IP = 'http://192.168.80.4:5000'
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
-TIMEOUT_DURATION = 10
+TIMEOUT_DURATION = 30
 ANNOUNCEMENT_TIMEOUT = 60
 
 
@@ -43,7 +43,6 @@ class MainApp(MDApp):
         super().__init__(**kwargs)
         self.timeout = None
         self.camera = cv2.VideoCapture(0)
-        self.charge_pin = gpio.read_gpio_pin(17)  # TODO change to database value
 
         self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
         self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
@@ -114,13 +113,43 @@ class MainApp(MDApp):
     def on_start(self):
         sql_module.connect()
         Clock.schedule_interval(self.await_change_screen, .3)
-        Clock.schedule_interval(self.await_pin_change, 1)
+        Clock.schedule_interval(self.await_image_change, .5)
+        Clock.schedule_interval(self.await_recharge_change, .5)
+        Clock.schedule_interval(self.await_timeout_change, .5)
+        Clock.schedule_interval(self.await_transcription_queue, .5)
         start_voice_thread()
 
     def on_stop(self):
         sql_module.disconnect()
 
-    # GUI MODIFIERS -------------------------------------
+    def request_image(self, image):
+        """Request an image from the server and save it locally. Takes in the image path (with extension) as a
+        parameter."""
+        try:
+            # Check if the image path ends with .png, if not add .png
+            if not image.endswith('.png'):
+                image += '.png'
+
+            # Send the request to the server
+            response = requests.get(f'{HOST_IP}/get_image/{image}')
+
+            if response.status_code == 200:
+                # Write to temp file
+                with open(IMAGE_PATH, 'wb') as f:
+                    f.write(response.content)
+                    print("Image downloaded successfully")
+                    screen_manager.get_screen('image_info').ids.img.source = IMAGE_PATH
+                    screen_manager.get_screen('image_info').ids.img.reload()
+            else:
+                print(f"Failed to load image: {response.status_code}")
+                screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
+                screen_manager.get_screen('image_info').ids.img.reload()
+        except Exception as e:
+            print(f"Failed to load image: {e}")
+            screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
+            screen_manager.get_screen('image_info').ids.img.reload()
+
+    # GUI BUTTONS -------------------------------------
     def back_button(self):
         screen_manager.current = self.previous_screen
 
@@ -179,27 +208,7 @@ class MainApp(MDApp):
         if button_layout.children:
             button_layout.clear_widgets()
 
-    def request_image(self, image):
-        """Request an image from the server and save it locally. takes in the image path (with extension) as a
-        parameter."""
-        try:
-            response = requests.get(f'{HOST_IP}/get_image/{image}.png')
-            if response.status_code == 200:
-                # write to temp file
-                with open(IMAGE_PATH, 'wb') as f:
-                    f.write(response.content)
-                    print("Image downloaded successfully")
-                    screen_manager.get_screen('image_info').ids.img.source = IMAGE_PATH
-                    screen_manager.get_screen('image_info').ids.img.reload()
-
-            else:
-                print(f"Failed to load image: {response.status_code}")
-                screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
-                screen_manager.get_screen('image_info').ids.img.reload()
-        except Exception as e:
-            print(f"Failed to load image: {e}")
-            screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
-            screen_manager.get_screen('image_info').ids.img.reload()
+    # GUI MODIFIERS -------------------------------------
 
     def update_label(self, screen_name, id, text):  # TODO add transcribed text showing
         """Update labels in mapscreen"""
@@ -236,6 +245,8 @@ class MainApp(MDApp):
     def change_screen(self, screen_name):
         screen_manager.current = screen_name
 
+    # AWAIT FUNCTIONS -------------------------------------
+
     def await_change_screen(self, dt):
         """periodically check if an item is in queue and change screen according to the screen name corresponding to
         the item in queue"""
@@ -246,18 +257,21 @@ class MainApp(MDApp):
             current_screen = screen_manager.current
             if item != current_screen:
                 self.change_screen(item)
-            if not image_queue.empty():
-                current_screen = screen_manager.current
+        else:
+            pass
+
+    def await_image_change(self, dt):
+        """periodically check if an item is in queue and change image accordingly. for image infos"""
+        if not image_queue.empty():
+            current_screen = screen_manager.current
+            if current_screen == 'image_info':
                 image_path = image_queue.get_nowait()
-
-                self.update_image(current_screen, 'img', image_path)
-            # TODO check if this function is updated correctly
-
-
+                self.request_image(image_path)  # request image from server
         else:
             pass
 
     def await_face_change(self, dt):
+        """periodically check if an item is in queue and change face image accordingly"""
         if not image_queue.empty():
             current_screen = screen_manager.current
             if current_screen == 'idlescreen':
@@ -267,20 +281,18 @@ class MainApp(MDApp):
         else:
             pass
 
-    def await_pin_change(self, dt):  # TODO update to get from database RamiBot_Return
-        # print("current screen = ", screen_manager.current)
-
+    def await_recharge_change(self, dt):
+        """periodically check if return to charger status is low and change screen accordingly"""
         try:
-            pin = gpio.read_gpio_pin(17)
-            self.charge_pin = pin
+            state = sql_module.show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
 
-            if self.charge_pin == 1:
+            if state:
                 # print("read one")
                 if screen_manager.current != 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'lowbatteryscreen')
                 else:
                     pass
-            if self.charge_pin == 0:
+            if not state:
                 # print("read zero")
                 if screen_manager.current == 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'idlescreen')
@@ -289,6 +301,36 @@ class MainApp(MDApp):
         except:
             print("pin reading error")
             pass
+
+    def await_timeout_change(self, dt):
+        """periodically handles executing timeout commands from inputs in the timeout queue from other threads"""
+        if not Timeout_Queue.empty():
+            item = Timeout_Queue.get_nowait()
+            print(item + "in timeout queue")
+            if item == 'reset':
+                self.reset_timer()
+                print("reset")
+            if item == 'start':
+                self.start_timer()
+                print("start")
+            if item == 'stop':
+                self.stop_timer()
+                print("stop")
+
+    def await_transcription_queue(self, dt):
+        """periodically check if an item is in queue and change screen accordingly"""
+        if not Transcription_Queue.empty():
+            item = Transcription_Queue.get_nowait()
+            print(item)
+            self.update_label(screen_manager.current, 'transcribed_text', "What I heard was: " + item)
+            Clock.schedule_once(self.clear_label, 5)
+        else:
+            pass
+
+    def clear_label(self, dt):
+        self.update_label(screen_manager.current, 'transcribed_text', 'What can I help you with?')
+
+    # FACE FUNCTIONS -------------------------------------
 
     def face_blink(self, dt):
         if screen_manager.current == 'idlescreen':
@@ -334,7 +376,7 @@ class MainApp(MDApp):
     def face_recognition_module(self):
         print(face_recog_module.person_detected)
 
-        if self.charge_pin == 0:
+        if not sql_module.show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1):
             print('ACTIVE FACE SCANNING')
             self.camera = cv2.VideoCapture(0)
             detected = face_recog_module.realtime_face_recognition(self.camera)
@@ -451,7 +493,6 @@ class MainApp(MDApp):
         self.timeout.cancel()
 
     def timeout_reset(self, dt):
-        # gpio.set_gpio_pin(4, 0)
         self.on_motor()
         self.change_screen('idlescreen')
 
@@ -475,17 +516,13 @@ class MainApp(MDApp):
         event.clear()
         print("cleared")
 
-    def greet(self):
-        wake_word_response = voicebotengine.get_from_json("GEN hello")
-        pygtts.speak(wake_word_response)
-
 
 def put_in_queue(myqueue, item):
     if not myqueue.empty() and myqueue.queue[0] == item:
         print("Item already at the front of the queue")
     else:
         myqueue.put(item)
-        print("Placed " + item)
+        print("Placed " + item + "at" + str(myqueue))
 
 
 def get_from_queue(myqueue):
@@ -529,6 +566,7 @@ if __name__ == "__main__":
     event_queue = Queue()
     screen_queue = voicebotengine.Speech_Queue
     image_queue = voicebotengine.Image_Queue
+
     # inter thread communication
     # a clocked function checks and gets the items in the queue periodically
 

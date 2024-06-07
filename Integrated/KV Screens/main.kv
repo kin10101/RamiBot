@@ -19,16 +19,6 @@ MDScreen:
             keep_ratio: False
             size_hint: 1, 1
 
-        MDLabel: # Title
-            id: transcribed_input
-            text: ''
-            font_name: 'Poppins'
-            font_size: "36sp"
-            halign: 'center'
-            text_color: 1, 1, 1, 1
-            pos_hint: {"x": 0, "y": 0}
-            size_hint: 1, .2
-            bold: True
 
         MDBoxLayout: # Square transparent container
             orientation: 'vertical'
@@ -39,6 +29,7 @@ MDScreen:
             radius: [15]
 
             MDLabel: # Title
+                id: transcribed_text
                 text: 'What can I help you with?'
                 font_name: 'Poppins'
                 font_size: "48sp"

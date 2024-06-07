@@ -23,6 +23,7 @@ def realtime_face_recognition(video):
             ret, frame = video.read()
             if not ret:
                 print("Can't receive frame (stream end?). Exiting...")
+                break
 
 
             # Get the dimensions of the frame
@@ -55,11 +56,11 @@ def realtime_face_recognition(video):
                     return greeting
 
 
-                else:
-                    print("face not in center")
+                #else:
+                    # print("face not in center")
         except Exception as e:
             person_detected = False
-            print(f"An error occurred: {e}")
+            # print(f"An error occurred: {e}")
 
 
         # display
@@ -71,11 +72,7 @@ def realtime_face_recognition(video):
             break
 
     video.release()
-
-
-#end of face recognition module----------------------------------------------------------------------------------------
-
-#other modules---------------------------------------------------------------------------------------------------------
+    cv2.destroyAllWindows()
 
 def greet_new_user():
     greetings = [
@@ -84,6 +81,7 @@ def greet_new_user():
         "Good day, I'm Rami bot!",
         "Hi there, I'm Rami bot!",
         "Greetings, I'm Rami bot!"
+
     ]
     return random.choice(greetings)
 

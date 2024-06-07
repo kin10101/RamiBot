@@ -13,6 +13,7 @@ from queue import Queue, Empty
 
 Speech_Queue = Queue()
 Image_Queue = Queue()
+
 # Load data
 lemmatizer = WordNetLemmatizer()
 
@@ -85,16 +86,13 @@ def get_response(intents_list, intents_json, context):
                 # refactor to use intent_methods
                 break
 
+            if 'source_image' in i:
+                Image_Queue.put(i['source_image'])
+                print("VOICEBOT PLACED AN ITEM TO CHANGE IMAGE")
+
             if 'navigate_to' in i:
                 Speech_Queue.put(i['navigate_to'])
                 print("VOICEBOT PLACED AN ITEM IN SCREEN QUEUE")
-
-            if 'source_image' in i:
-                # TODO query image from database that is a substring of i['source_image'] and put the whole url to
-                #  the queue
-
-                Image_Queue.put(i['source_image'])
-                print("VOICEBOT PLACED AN ITEM TO CHANGE IMAGE")
 
             if 'responses' in i and i['responses']:
                 result = random.choice(i['responses'])  # Gets a random response from the given list

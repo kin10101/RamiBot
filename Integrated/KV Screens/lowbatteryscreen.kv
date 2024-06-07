@@ -2,22 +2,21 @@
 MDScreen:
     name: 'lowbatteryscreen'
     on_enter:
-        app.close_camera()
-        app.stop_timer()
-        app.on_gpio(4, 0)
-        # disable screen timeout
-        # disable voicebot
-        # disable face recognition
+        app.close_camera() # disable face recognition
+        app.stop_timer() # disable screen timeout
+        app.on_motor()
+
+
+
     on_pre_leave:
         # enable screen timeout
-        # enable voicebot
         # enable face recognition
 
     MDGridLayout: # main layout
         cols: 1
 
         Image: # Background image
-            source: 'Assets/low_battery.png'
+            source: 'rami_faces/dizzy.png'
             allow_stretch: True
             keep_ratio: False
             size_hint: 1, 1
