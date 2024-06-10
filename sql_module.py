@@ -92,15 +92,15 @@ def show_value_as_bool(table, column, condition_column, condition_value):
 
 if __name__ == "__main__":
     connect()
-    # show_tables()
-    # print("-------------------------------")
-    # show_columns("admin_control")
-    # print("-------------------------------")
-    print(show_value_as_bool("admin_control", "MOTOR_state", "ID", 1))
-    state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
-
-    if state:
-        print("RamiBot_Return is False")
-    if not state:
-        print("RamiBot_Return is False")
+    show_tables()
+    print("-------------------------------")
+    show_columns("button_list")
+    print("-------------------------------")
+    # print(show_value_as_bool("admin_control", "MOTOR_state", "ID", 1))
+    # state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
+    #
+    # if state:
+    #     print("RamiBot_Return is False")
+    # if not state:
+    #     print("RamiBot_Return is False")
 # table rami_motor_control
