@@ -1338,6 +1338,8 @@
         {
             "tag": "APC_enrollment",
             "patterns": [
+                "enrollment process",
+                "enroll",
                 "How can I enroll for shs?",
                 "How can I enroll for college?",
                 "How can I enroll for gradschool?",
@@ -1646,6 +1648,192 @@
             "responses": [
                 "All offices in APC are typically open from 8:00 AM to 5:00 PM during weekends. However, it's best to contact the specific office for any special arrangements."
             ]
+        },
+        {
+            "tag": "APC_acronym",
+            "patterns": [
+                "What does APC stand for?",
+                "APC acronym",
+                "What is the meaning of APC?"
+            ],
+            "responses": [
+                "APC stands for Asia Pacific College.",
+                "APC is an abbreviation for Asia Pacific College.",
+                "APC refers to Asia Pacific College.",
+                "The acronym APC stands for Asia Pacific College."
+            ]
+        },
+        {
+            "tag": "Asia Pacific College",
+            "patterns": [
+                "What is APC?",
+                "What is Asia Pacific College?"
+            ],
+            "responses": [
+                "Asia Pacific College (APC) is a private educational institution in the Philippines that offers programs in the fields of engineering, computing, multimedia arts, management, senior high school, and graduate school.",
+                "Asia Pacific College (APC) is a premier educational institution in the Philippines that provides programs in engineering, computing, multimedia arts, management, senior high school, and graduate school.",
+                "Asia Pacific College (APC) is a leading educational institution in the Philippines that offers programs in engineering, computing, multimedia arts, management, senior high school, and graduate school."
+            ]
+        },
+       {
+            "tag": "Junior Information Systems Security Association(JISSA)",
+            "patterns": [
+                "What is APC-JISSA?",
+                "What is Junior Information Systems Security Association?",
+                "What is JISSA?"
+            ],
+            "responses": [
+               "the Junior Information Systems Security Association ) promotes the education and helps expand the knowledge and skills of its members in the interrelated fields of information systems security, and information or data processing. The organization aspires to be acknowledged as a bridge for students in developing excellence and professionalism in business, industry, and community."
+            ]
+        },
+        {
+            "tag": "Junior Philippine Computer Society (J P C S)",
+            "patterns": [
+                "What is A P C - J P C S?",
+                "What is Junior Philippine Computer Society?",
+                "What is J P C S?"
+            ],
+            "responses": [
+               "The APC Junior Philippine Computer Society (APC-J P C S) aims to prepare its members for their future in the corporate world as an ICT professional by providing complementary experiences aside from what they learn in school. It provides an opportunity to share experiences and work with other students from different schools, in the pursuit of IT excellence through common projects."
+            ]
+        },
+        {
+            "tag": "MSC",
+            "patterns": [
+                "What is A P C - M S C?",
+                "What is Microsoft Community?",
+                "What is M S C?"
+            ],
+            "responses": [
+               "The Asia Pacific College - Microsoft Community (A P C - M S C) is an organization that aspires to acquaint students with the latest in technology and software development through various Microsoft events, tools, and technologies. Having Microsoft Student Partners (MSPs) in its executive board, the organization is able to obtain promotional paraphernalia and hold both official and Microsoft endorsed events in the school."
+            ]
+        },
+        {
+            "tag": "Gaming Genesis ( G G )",
+            "patterns": [
+                "What is A P C - G G?",
+                "What is Gaming Genesis?",
+                "What is G G?"
+            ],
+            "responses": [
+               "Gaming Genesis ( G G ) is an organization built to support game design and multimedia art students in their projects involving games. It promotes the creativity and talent of students in the field of gaming and game design, with the goal to contribute in the new gaming industry and bring joy to the APC community through gaming."
+            ]
+        },
+        {
+            "tag": "Society of Electronics Engineering Students ( S E E S)",
+            "patterns": [
+                "What is A P C - S E E S?",
+                "What is Society of Electronics Engineering Students?",
+                "What is S E E S?"
+            ],
+            "responses": [
+               "Formed to promote a strong foundation of brotherhood and sisterhood by helping each other overcome their weaknesses especially when it comes to academics, the Society of Electronics Engineering Students’ (SEES) mission is to showcase professional, technical development and a paradigm of excellence in applying the principles of electronics technology for the advancement of humanity."
+            ]
+        },
+        {
+            "tag": "Association of Computer Engineering Students ( A C E S)",
+            "patterns": [
+                "What is A P C - A C E S?",
+                "What is Association of Computer Engineering Students?",
+                "What is A C E S?"
+            ],
+            "responses": [
+               "The A P C Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awareness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
+            ]
+        },
+        {
+            "tag": "Association of Computer Engineering Students ( A C E S)",
+            "patterns": [
+                "What is A P C - A C E S?",
+                "What is Association of Computer Engineering Students?",
+                "What is A C E S?"
+            ],
+            "responses": [
+               "The A P C Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awareness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
+            ]
+        },
+        {
+            "tag": "Robotics Organization (RobOrg)",
+            "patterns": [
+                "What is A P C - RobOrg?",
+                "What is Robotics Organization?",
+                "What is RobOrg?"
+            ],
+            "responses": [
+               "The APC Robotics Organization (APC-ROB ORG) envisions itself to establish a group of robotics enthusiasts who are committed to become involved with the innovative life of robotics. Using robotics as a medium, it inspires the students to take their involvement with basic Engineering and to develop technical experience by leading others."
+            ]
+        },
+        {
+            "tag": "Founding Organization of Civil Engineering Students (FOrCES)",
+            "patterns": [
+                "What is A P C - FOrCES?",
+                "What is Founding Organization of Civil Engineering Students?",
+                "What is FOrCES?"
+            ],
+            "responses": [
+               "The Founding Organization for Civil Engineering Students ( FOrCES ) is an academic organization of Asia Pacific College for Civil Engineering Students. One of the organization’s purpose is for its members to develop their skills and relationship as aspiring civil engineers. this organization was founded primarily to serve as a platform for the expression of our ideals and aspirations and to foster an environment that is highly conducive to moral, social, and intellectual development, do hereby ordain and promulgate this constitution and by-laws."
+            ]
+        },
+        {
+            "tag": "Junior Marketing Association (AP J M A)",
+            "patterns": [
+                "What is A P C - A P JMA?",
+                "What is Junior Marketing Association?",
+                "What is A P JMA?"
+            ],
+            "responses": [
+               "APC Junior Marketing Association (APJMA) participates in activities that will help the members develop their skills and further expand their knowledge in marketing. It organizes events and activities that support the students to be productive and cultivate their talents for the common good at the same time."
+            ]
+        },
+        {
+            "tag": "Junior Philippine Institute of Accountants (JPIA)",
+            "patterns": [
+                "What is A P C - JPIA?",
+                "What is Junior Philippine Institute of Accountants?",
+                "What is JPIA?"
+            ],
+            "responses": [
+              "A unified accountancy student organization, with a mission of pursuing academic excellence in the field of accountancy and with the objective of refining raw talent and potential, the APC Junior Philippine Institute of Accountants (JPIA) is composed of young accountants that execute activities to promote camaraderie among its members.."
+            ]
+        },
+        {
+            "tag": "Junior Philippine Institute of Accountants (JPIA)",
+            "patterns": [
+                "What is A P C - JPIA?",
+                "What is Junior Philippine Institute of Accountants?",
+                "What is JPIA?"
+            ],
+            "responses": [
+              "A unified accountancy student organization, with a mission of pursuing academic excellence in the field of accountancy and with the objective of refining raw talent and potential, the APC Junior Philippine Institute of Accountants (JPIA) is composed of young accountants that execute activities to promote camaraderie among its members.."
+            ]
+        },
+        {
+            "tag": "Business Management Group-Junior People Management Association of the Philippine",
+            "patterns": [
+                "What is A P C - B MAG?",
+                "What is Business Management Group?",
+                "What is Junior People Management Association of the Philippine",
+                "What is B MAG?",
+                "What is J P MAP?",
+                "What is A P C - J P MAP?"
+            ],
+            "responses": [
+              "The Business Management Group-Junior People Management Association of the Philippine APC’s purpose is to provide opportunities for students to work together and mold their leadership skills dedicated to serving the school, the industry,and society."
+            ]
+        },
+        {
+            "tag": "Tourism Management Society (TM SOC)",
+            "patterns": [
+                "What is A P C - TM SOC?",
+                "What is Tourism Management Society?",
+                "What is TM SOC?"
+            ],
+            "responses": [
+              "The Tourism Management Society (TM SOC) aspires to administer activitiesthat will help create awareness on the role and importance of tourism. It develops events for the APC community to know more about tourism and appreciate in turn what it can offer. The organization also aims to inculcate in the minds of its members the value of environmental conservation and the concept of sustainable development for the long-term benefit of the Philippine tourism industry"
+            ]
         }
+
+
+
     ]
 }
