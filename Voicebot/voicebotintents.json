@@ -1831,9 +1831,235 @@
             "responses": [
               "The Tourism Management Society (TM SOC) aspires to administer activitiesthat will help create awareness on the role and importance of tourism. It develops events for the APC community to know more about tourism and appreciate in turn what it can offer. The organization also aims to inculcate in the minds of its members the value of environmental conservation and the concept of sustainable development for the long-term benefit of the Philippine tourism industry"
             ]
+        },
+        {
+            "tag": "Junior Financial Executives (JFINEX)",
+            "patterns": [
+                "What is A P C - J FINEX?",
+                "What is Junior Financial Executives?",
+                "What is J FINEX?"
+            ],
+            "responses": [
+              "The APC Junior Financial Executives purpose is to unite the Financial Managementstudents of Asia Pacific College and expose them to the financial sectors and nationwide financial activities. APCFO also \nwelcomes all students majoring in business to be introduced to the realm of finance and enhance their knowledge in finance, from the basics to advanced."
+            ]
+        },
+        {
+            "tag": "Psychological Society (PSYCH SOC)",
+            "patterns": [
+                "What is A P C - PSYCH SOC?",
+                "What is Psychological Society?",
+                "What is PSYCH SOC?"
+            ],
+            "responses": [
+              "The APC Psychological Society (PSYCH SOC) aims to promote general mental health awareness among the members of the APC community and minimize the stigma surrounding mental illnesses to create a better understanding of mental health."
+            ]
+        },
+        {
+            "tag": "Bahay Bombilya",
+            "patterns": [
+                "What is A P C - Bahay Bomba?",
+                "What is Bahay Bombilya?",
+                "What is Bahay bomba?",
+                "Bahay Bombilya",
+                "Bahay Bomba"
+            ],
+            "responses": [
+               "Through the years, Bahay Bombilya’s mission is to provide support for the members of the organization by equipping them with more knowledge, skills, and experience in multimedia arts that can be used for future jobs. This is done by conducting events, publications and coverages that highlight the excellence of Multimedia Arts and its students."
+            ]
+        },
+        {
+            "tag": "CINEMASOMA",
+            "patterns": [
+                "What is A P C - CINEMASOMA?",
+                "What is CINEMASOMA?",
+                "CINEMASOMA?"
+            ],
+            "responses": [
+               "CINEMASOMA is a student interest organization open to all students of Asia pacific College, Rams. The objectives of the organization are to equip members with methods and skills that have something to do with film production."
+            ]
+        },
+        {
+            "tag": "APC BAND",
+            "patterns": [
+                "What is A P C - BAND?",
+                "Does A P C have a band?",
+                "APC BAND?"
+            ],
+            "responses": [
+               "APC Band envisions itself to be the premier music maker of Asia Pacific College. By setting a stage for students who want to have a career in music or simply share their opinions through the craft, the organization foresees itself in encouraging the students to express themselves through the art of sound."
+            ]
+        },
+        {
+            "tag": "APC Chorale",
+            "patterns": [
+                "What is A P C - Chorale?",
+                "Does A P C have a Choir?",
+                "Does A P C have a Chorale?",
+                "APC Chorale?"
+            ],
+            "responses": [
+              "APC Chorale improves their skills and personality to achieve innovation not only in the field of singing, but also as future individuals in the world. It promotes singing as a group rather than performing solo, with the goal to achieve unity as singers and of meeting at a one common line."
+            ]
+        },
+        {
+            "tag": "APC Dance Company",
+            "patterns": [
+                "What is A P C - Dance Company?",
+                "A P C - D C?",
+                "Does A P C have a dance group?",
+                "A P C - Dance Company?"
+            ],
+            "responses": [
+                "The APC Dance Company (APC-DC) seeks for members with exceptional talent in dancing and who are very much willing to pursue and develop what they already have. Driven by passion, the organization aims to develop professional and well-rounded students that excels academically, administratively, and artistically"
+            ]
+        },
+        {
+            "tag": "APC Strings",
+            "patterns": [
+                "What is A P C - Strings?",
+                "A P C - Strings?",
+                "Strings?"
+            ],
+            "responses": [
+               "APC Strings create ties to connect musicians and aspiring musicians through their passion. The group aims to form a community that will connect people and break borders through music, and promote responsibility, patience, commitment, time management and hard work among its members. It also trainsits members to be confident and master their instruments"
+            ]
+        },
+        {
+            "tag": "Teatré Phileo",
+            "patterns": [
+                "What is A P C - Teatré Phileo?",
+                "A P C - Teatré Phileo?",
+                "Teatré Phileo?"
+            ],
+            "responses": [
+              "Teatré Phileo is driven by the passion to promote teamwork, develop leadership, and produce value-oriented and socially relevant plays and productions that showcase the organization’s team players’ unique talents in performing arts. It aims to produce plays that do not only entertain, but also promote the relevance of theatre in today's society."
+            ]
+        },
+        {
+            "tag": "Rotaract Club",
+            "patterns": [
+                "What is A P C - Rotaract Club?",
+                "A P C - Rotaract Club?",
+                "Rotaract Club?",
+                "Rotaract",
+                "What is Rotaract"
+            ],
+            "responses": [
+              "The Rotaract Club of Asia Pacific College, a socio-civic organization sponsored by the Rotary Club of Makati Paseo De Roxas, brings together committed individuals ranging from 18-30 to take action in their community, develop their leadership and professional skills, and have fun through service. The organization is a movement that raise leaders \nthat will work together to become a network of help to the world."
+            ]
+        },
+        {
+            "tag": "SOAR",
+            "patterns": [
+                "What is A P C - SOAR?",
+                "Student Organization Association of Regents?",
+                "SOAR?"
+            ],
+            "responses": [
+              "The Student Organization Association of Regents (SOAR) is a student organization which aims to cultivate future leaders and embed the attributes of an APCian Graduate in every individual. SOAR Officers are the ones in-charge of the termly Student Forum, the annual Student Recognition,Organization Fair, and the much-anticipated APC Fest."
+            ]
+        },
+        {
+            "tag": "Pwersa",
+            "patterns": [
+                "What is A P C - Pwersa Mixed Martial Arts?",
+                "Pwersa?",
+                "Pwersa Mixed Martial Arts?"
+            ],
+            "responses": [
+             "APC Pwersa Mixed Martial Arts (APC-Pwersa MMA) wishes to improve the members through training and discipline by teaching them Brazilian Jiu-Jitsu. "
+            ]
+        },
+        {
+            "tag": "Speaks",
+            "patterns": [
+                "What is A P C - Speaks?",
+                "Speaks?",
+                "Does you have a debate club?",
+                "Debate Club",
+                "debate"
+            ],
+            "responses": [
+                "As APC’s official debate and public speaking organization, APC Speaks’ objective is to empower the members to express themselves freely and confidently without fear of judgement."
+            ]
+        },
+        {
+            "tag": "Hiraya",
+            "patterns": [
+                "What is A P C - Speaks?",
+                "Speaks?",
+                "Does you have a debate club?",
+                "Debate Club",
+                "debate"
+            ],
+            "responses": [
+               "APC HiRAYA is an academic organization open for all students of Asia Pacific College who has interest in humanities and social sciences."
+            ]
+        },
+        {
+            "tag": "Jesus Impact",
+            "patterns": [
+                "What is A P C - Jesus Impact?",
+                "Jesus Impact?"
+            ],
+            "responses": [
+               "Jesus Impact provides free concerts, lectures, seminars, and training to students, teachers, staff, and other stakeholders of the school. "
+            ]
+        },
+        {
+            "tag": "Flickers Photo Society",
+            "patterns": [
+                "What is A P C - Flickers",
+                "Flickers Photo Society?",
+                "Flickers?"
+            ],
+            "responses": [
+               "Flickers Photo Society’s mission is to provide an outlet for the heightening of photography skills in different fields like landscape, events, people, and nature. "
+            ]
+        },
+        {
+            "tag": "Fitness Squad",
+            "patterns": [
+                "What is A P C - Fitness Squad",
+                "Fitness Squad?"
+            ],
+            "responses": [
+               "Fitness Squad. The purpose of this organization is to recreate APC's fitness culture in both the workplace and in the classroom."
+            ]
+        },
+        {
+            "tag": "Rams Flag Football",
+            "patterns": [
+                "What is A P C - Rams Flag Football",
+                "Fotball",
+                "Flag Football?",
+                "Football Club?"
+            ],
+            "responses": [
+               "The RAMS Flag Football aims to promote the young athletes of Asia Pacific College with their development of character, sportsmanship, discipline, and athleticism."
+            ]
+        },
+        {
+            "tag": "Ram shakers",
+            "patterns": [
+                "What is A P C - Ram shakers",
+                "Ram Shakers"
+            ],
+            "responses": [
+               "Ramshakers is a Christian organization of Asia Pacific College, that focuses on discipleship and growing the body of Christ."
+            ]
+        },
+        {
+            "tag": "AI Atheneaum of Information",
+            "patterns": [
+                "What is A P C - AI Atheneaum of Information",
+                "What is A P C - Atheneaum",
+                "Atheneaum of Information",
+                "Atheneaum"
+            ],
+            "responses": [
+               "APC-AI Atheneaum of Information implore the aid of the Divine Providence in order to effectively promote, utilize and enhance our knowledge in Information. "
+            ]
         }
-
-
-
     ]
 }
