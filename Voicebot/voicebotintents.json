@@ -6,7 +6,9 @@
             "responses": [
                 "sorry, could you please repeat what you said?",
                 "could you please repeat what you said? i could not understand you",
-                "i dont understand what you are saying"
+                "i dont understand what you are saying",
+                "Can you repeat what you've said? I'm having trouble understanding you.",
+                "I'm sorry, I didn't get that. Can you please repeat what you said?"
             ]
         },
         {
@@ -125,7 +127,9 @@
             ],
             "responses": [
                 "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "The_RamiBot_Team"
         },
         {
             "tag": "RAMI purpose",
@@ -189,7 +193,10 @@
             ],
             "responses": [
                 "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "About_Asia_Pacific_College"
+
         },
         {
             "tag": "APC address",
@@ -201,7 +208,9 @@
             ],
             "responses": [
                 "Asia Pacific College's Address is 3 Humabon Place, Magallanes, Makati City 1232 PH"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "About_Asia_Pacific_College"
         },
         {
             "tag": "APC tell me more",
@@ -215,16 +224,6 @@
             ]
         },
         {
-            "tag": "APC acronym",
-            "patterns": [
-                "What does a pc stand for?",
-                "What is the meaning of APC?"
-            ],
-            "responses": [
-                "APC stands for Asia Pacific College."
-            ]
-        },
-        {
             "tag": "APC Vision",
             "patterns": [
                 "What is the vision of APC?",
@@ -234,7 +233,9 @@
             ],
             "responses": [
                 "Asia Pacific College envisions itself to be the preferred Higher Education Institution bridging academe and industry with its programs founded on the concepts and applications of IT, guided by the core values of integrity, industry and innovation that works."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Vision,_Mission_and_Values"
         },
         {
             "tag": "APC Mission",
@@ -246,7 +247,9 @@
             ],
             "responses": [
                 "Asia Pacific College, powered by education and industry professionals as faculty and a balanced curriculum, aims to provide business and the information and communications technology industry in the Philippines and in the global community lifelong learning graduates who are anchored on the principles of integrity and professionalism."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Vision,_Mission_and_Values"
         },
         {
             "tag": "APC differences",
@@ -374,7 +377,7 @@
                 "it is located here at the 1st floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "First_Floor"
+            "source_image": "1st_Floor"
         },
         {
             "tag": "LOC second floor location",
@@ -424,7 +427,7 @@
                 "it is located at the 3rd floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map3.png"
+            "source_image": "3rd_Floor"
         },
         {
             "tag": "LOC fourth floor location",
@@ -448,7 +451,7 @@
                 "it is located at the 4th floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map4.png"
+            "source_image": "4th_Floor"
         },
         {
             "tag": "LOC fifth floor location",
@@ -484,7 +487,7 @@
                 "it is located at the 5th floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map5.png"
+            "source_image": "5th_Floor"
         },
         {
             "tag": "LOC sixth floor location",
@@ -508,7 +511,7 @@
                 "it is located at the 6th floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map6.png"
+            "source_image": "6th_Floor"
         },
         {
             "tag": "LOC seventh floor location",
@@ -527,7 +530,7 @@
                 "it is located at the 7th floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map7.png"
+            "source_image": "7th_Floor"
         },
         {
             "tag": "LOC eighth floor location",
@@ -563,7 +566,7 @@
                 "it is located at the 8th floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map8.png"
+            "source_image": "8th_Floor"
         },
         {
             "tag": "LOC ninth floor location",
@@ -584,7 +587,7 @@
                 "it is located at the 9th floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map9.png"
+            "source_image": "9th_Floor"
         },
         {
             "tag": "LOC tenth floor location",
@@ -613,7 +616,7 @@
                 "it is located at the 10th floor "
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map10.png"
+            "source_image": "10th_Floor"
         },
         {
             "tag": "LOC eleventh floor location",
@@ -636,7 +639,7 @@
                 "it is located on the 11th floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map11.png"
+            "source_image": "11th_Floor"
         },
         {
             "tag": "LOC twelfth floor location",
@@ -647,7 +650,7 @@
                 "it is located on the 12th floor"
             ],
             "navigate_to": "image_info",
-            "source_image": "Floors KVs/map12.png"
+            "source_image": "12th_Floor"
         },
 
         {
@@ -767,7 +770,9 @@
             ],
             "responses": [
                 "you can go to the admission office in the first floor to assist you with your concerns"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Admissions_Office"
         },
         {
             "tag": "LOC registrar",
@@ -779,7 +784,23 @@
             ],
             "responses": [
                 "you can go to the registrar in the fourth floor to assist you with your concerns"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Office_of_the_Registrar"
+        },
+        {
+            "tag": "LOC finance",
+            "patterns": [
+                "finance",
+                "finance office",
+                "How can I pay onsite?",
+                "accounting and finance office"
+            ],
+            "responses": [
+                "you can go to the finance office in the fourth floor to assist you with your concerns"
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Accounting_and_Finance_Office"
         },
         {
             "tag": "LOC location_help",
@@ -831,8 +852,8 @@
             "responses": [
                 "senior high school is a two year program open to junior highschool graduates. it is divided into three strands which are STEM, ABM, and HUMSS."
             ],
-
-            "context_set": ""
+            "navigate_to": "image_info",
+            "source_image": "Senior_High_School"
         },
         {
             "tag": "PRG soe courses",
@@ -844,8 +865,8 @@
             "responses": [
                 "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
             ],
-
-            "context_set": ""
+            "navigate_to": "image_info",
+            "source_image": "School_of_Engineering"
         },
         {
             "tag": "PRG socit courses",
@@ -857,8 +878,8 @@
             "responses": [
                 "the school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology"
             ],
-
-            "context_set": ""
+            "navigate_to": "image_info",
+            "source_image": "School_of_Computing_and_IT"
         },
         {
             "tag": "PRG soar",
@@ -870,8 +891,8 @@
             "responses": [
                 "The School of Architecture consists of BS Architecture"
             ],
-
-            "context_set": ""
+            "navigate_to": "image_info",
+            "source_image": "School_of_Architecture"
         },
         {
             "tag": "PRG som",
@@ -883,8 +904,8 @@
             "responses": [
                 "The school of management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business "
             ],
-
-            "context_set": ""
+            "navigate_to": "image_info",
+            "source_image": "School_of_Management"
         },
         {
             "tag": "PRG soma",
@@ -896,8 +917,8 @@
             "responses": [
                 "The School of Multimedia Arts consists of BS Multimedia Arts and BS Psychology"
             ],
-
-            "context_set": ""
+            "navigate_to": "image_info",
+            "source_image": "School_of_Multimedia_and_Arts"
         },
         {
             "tag": "PRG grad",
@@ -908,9 +929,7 @@
             ],
             "responses": [
                 ""
-            ],
-
-            "context_set": ""
+            ]
         },
         {
             "tag": "FN_sing",
@@ -1387,7 +1406,9 @@
             ],
             "responses": [
                 "The ITRO opens at 8:00 AM."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "IT_Resources_Office"
         },
         {
             "tag": "LOC_BMO_hours",
@@ -1399,7 +1420,9 @@
             ],
             "responses": [
                 "The BMO/Building office opens at 8:00 AM."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Building_Management_Office"
         },
         {
             "tag": "LOC_logistics_hours",
@@ -1411,7 +1434,9 @@
             ],
             "responses": [
                 "The logistics office opens at 8:00 AM."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Logistics_Office"
         },
         {
             "tag": "LOC_discipline_hours",
@@ -1423,7 +1448,9 @@
             ],
             "responses": [
                 "The discipline office opens at 8:00 AM."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Discipline_Office"
         },
         {
             "tag": "APC_tuition_fee",
@@ -1454,7 +1481,9 @@
                 "In APC, we provide scholarships for College and Senior High School students. Which one do you want to know more about?",
                 "APC has scholarship programs for both College and Senior High School students. Which one do you want details for?",
                 "Both College and Senior High School students can avail scholarships in APC. Which one would you like to get information on?"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_college_scholarships",
@@ -1469,7 +1498,9 @@
                 "APC offers several scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship,Armed Forces Scholarships, and the IBM Scholarship Program. Which program would you like to hear about?.",
                 "There are several scholarships available for college students in APC. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarships, and the IBM Scholarship Program. Which program are you interested in?",
                 "APC provides a variety of scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarship, and the IBM Scholarship Program. Which one do you prefer?."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_SHS_scholarships",
@@ -1487,7 +1518,9 @@
                 "APC offers several scholarship programs for Senior High School students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program would you like to hear about?",
                 "There are several scholarships available for SHS students in APC. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program are you interested in?",
                 "APC provides a variety of scholarship programs for SHS students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, Philippine National Police (PNP), and the Armed Forces of the Philippines (AFP) scholarships. Which one do you prefer?"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_financial_assistance",
@@ -1501,7 +1534,9 @@
                 "APC offers several financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Which program are you interested in?",
                 "There are several financial assistance available for both College and Senior High School students in APC. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Can you specify which program you want to know more about?",
                 "APC provides a variety of financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Please tell me which program you are interested in for more information."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_SM_Scholarship",
@@ -1513,7 +1548,9 @@
             ],
             "responses": [
                 "The SM Foundation Scholarship is a great opportunity for incoming freshmen at Asia Pacific College, especially those with strong academic records and facing financial limitations. It offers full tuition coverage, a monthly stipend, and even helps scholars find part-time jobs."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SM_Foundation"
         },
         {
             "tag": "APC_SM_Group_Scholarship",
@@ -1525,7 +1562,9 @@
             ],
             "responses": [
                 "The SM Group of Companies Scholarship is a scholarship program offered to children and siblings of SM employees. It provides 20% subsidy for those who are qualified."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SM_Group_of_Companies"
         },
         {
             "tag": "APC_AFP_Scholarship",
@@ -1537,7 +1576,22 @@
             ],
             "responses": [
                 "The Armed Forces of the Philippines (AFP) Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 60% or 100% subsidy to students who are dependents of AFP personnel."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "AFP_Educational_Benefit_System"
+        },
+        {
+            "tag": "APC_AFP_Officers_Ladies_Club_Scholarship",
+            "patterns": [
+                "Officers Ladies Club",
+                "What is A F P Officers Ladies Club Scholarship",
+                "Ladies Club"
+            ],
+            "responses": [
+                "The A F P Officers Ladies Club Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 30% subsidy to students who are dependents of AFP personnel."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "AFP_Officers_Ladies_Club"
         },
         {
             "tag": "APC_Entrance_Academic_Scholar",
@@ -1545,7 +1599,9 @@
                 "Tell me about the Entrance Academic Scholar",
                 "What is the Entrance Academic Scholar",
                 "Can you give me information about the Entrance Academic Scholar",
-                "I want to know about the Entrance Academic Scholar"
+                "I want to know about the Entrance Academic Scholar",
+                "Entrance Academic Scholarship",
+                "Entrance Academic"
             ],
             "responses": [
                 "The Entrance Academic Scholar is a scholarship program offered to Senior High School and college students of Asia Pacific College. It provides subsidy to students who excel academically and demonstrate leadership potential."
@@ -1561,7 +1617,9 @@
             ],
             "responses": [
                 "The PNP Scholarship is a program where all children of active uniformed Philippine National Police personnel will have a 60% subsidy."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "PNP_Scholarship"
         },
         {
             "tag": "APC_IBM_Scholarship",
@@ -1585,7 +1643,9 @@
             ],
             "responses": [
                 "The Public School Graduates Financial Assistance is a program that offers a 50% subsidy for High school graduates of any public school."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Public_Schools"
         },
         {
             "tag": "APC_MaPSA_Financial_Assistance",
@@ -1597,7 +1657,9 @@
             ],
             "responses": [
                 "The MaPSA or Parish School Graduate Financial Assistance is a program that offers a 35% subsidy for High school graduates (who has not attended any college/university) of any parish school."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "MAPSA_Schools"
         },
         {
             "tag": "APC_Socialized_Financial_Assistance",
@@ -1609,7 +1671,9 @@
             ],
             "responses": [
                 "The Socialized Financial Assistance is a program that offers a 35% subsidy for students whose family aggregate annual income is less than P400,000 and a 20% subsidy for students whose family aggregate annual income is between P400,000 and P800,000."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Socialized_Financial_Assistance"
         },
         {
             "tag": "APC_Socialized_Financial_Assistance_Siblings",
@@ -1622,6 +1686,19 @@
             "responses": [
                 "The Socialized Financial Assistance is a program that offers a 20% subsidy for siblings of currently enrolled APC students."
             ]
+        },
+        {
+            "tag": "APC_SHS_Loyalty",
+            "patterns": [
+                "S H S Loyalty",
+                "SHS Loyalty",
+                "Senior High School Loyalty"
+            ],
+            "responses": [
+                "The Senior High School Loyalty program offers a subsidy for graduating Senior High School student who will continue their college studies in Asia Pacific College."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "APC_SHS_Loyalty"
         },
         {
             "tag": "Program_Duration",
@@ -1663,18 +1740,6 @@
                 "The acronym APC stands for Asia Pacific College."
             ]
         },
-        {
-            "tag": "Asia Pacific College",
-            "patterns": [
-                "What is APC?",
-                "What is Asia Pacific College?"
-            ],
-            "responses": [
-                "Asia Pacific College (APC) is a private educational institution in the Philippines that offers programs in the fields of engineering, computing, multimedia arts, management, senior high school, and graduate school.",
-                "Asia Pacific College (APC) is a premier educational institution in the Philippines that provides programs in engineering, computing, multimedia arts, management, senior high school, and graduate school.",
-                "Asia Pacific College (APC) is a leading educational institution in the Philippines that offers programs in engineering, computing, multimedia arts, management, senior high school, and graduate school."
-            ]
-        },
        {
             "tag": "Junior Information Systems Security Association(JISSA)",
             "patterns": [
@@ -1684,7 +1749,9 @@
             ],
             "responses": [
                "the Junior Information Systems Security Association ) promotes the education and helps expand the knowledge and skills of its members in the interrelated fields of information systems security, and information or data processing. The organization aspires to be acknowledged as a bridge for students in developing excellence and professionalism in business, industry, and community."
-            ]
+            ],
+           "navigate_to": "image_info",
+            "source_image": "SOCIT_Organizations"
         },
         {
             "tag": "Junior Philippine Computer Society (J P C S)",
@@ -1695,7 +1762,9 @@
             ],
             "responses": [
                "The APC Junior Philippine Computer Society (APC-J P C S) aims to prepare its members for their future in the corporate world as an ICT professional by providing complementary experiences aside from what they learn in school. It provides an opportunity to share experiences and work with other students from different schools, in the pursuit of IT excellence through common projects."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOCIT_Organizations"
         },
         {
             "tag": "MSC",
@@ -1706,7 +1775,9 @@
             ],
             "responses": [
                "The Asia Pacific College - Microsoft Community (A P C - M S C) is an organization that aspires to acquaint students with the latest in technology and software development through various Microsoft events, tools, and technologies. Having Microsoft Student Partners (MSPs) in its executive board, the organization is able to obtain promotional paraphernalia and hold both official and Microsoft endorsed events in the school."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOCIT_Organizations"
         },
         {
             "tag": "Gaming Genesis ( G G )",
@@ -1717,7 +1788,9 @@
             ],
             "responses": [
                "Gaming Genesis ( G G ) is an organization built to support game design and multimedia art students in their projects involving games. It promotes the creativity and talent of students in the field of gaming and game design, with the goal to contribute in the new gaming industry and bring joy to the APC community through gaming."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOCIT_Organizations"
         },
         {
             "tag": "Society of Electronics Engineering Students ( S E E S)",
@@ -1728,7 +1801,9 @@
             ],
             "responses": [
                "Formed to promote a strong foundation of brotherhood and sisterhood by helping each other overcome their weaknesses especially when it comes to academics, the Society of Electronics Engineering Students’ (SEES) mission is to showcase professional, technical development and a paradigm of excellence in applying the principles of electronics technology for the advancement of humanity."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOE_Organizations"
         },
         {
             "tag": "Association of Computer Engineering Students ( A C E S)",
@@ -1739,18 +1814,9 @@
             ],
             "responses": [
                "The A P C Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awareness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
-            ]
-        },
-        {
-            "tag": "Association of Computer Engineering Students ( A C E S)",
-            "patterns": [
-                "What is A P C - A C E S?",
-                "What is Association of Computer Engineering Students?",
-                "What is A C E S?"
             ],
-            "responses": [
-               "The A P C Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awareness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
-            ]
+            "navigate_to": "image_info",
+            "source_image": "SOE_Organizations"
         },
         {
             "tag": "Robotics Organization (RobOrg)",
@@ -1761,7 +1827,9 @@
             ],
             "responses": [
                "The APC Robotics Organization (APC-ROB ORG) envisions itself to establish a group of robotics enthusiasts who are committed to become involved with the innovative life of robotics. Using robotics as a medium, it inspires the students to take their involvement with basic Engineering and to develop technical experience by leading others."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOE_Organizations"
         },
         {
             "tag": "Founding Organization of Civil Engineering Students (FOrCES)",
@@ -1772,7 +1840,9 @@
             ],
             "responses": [
                "The Founding Organization for Civil Engineering Students ( FOrCES ) is an academic organization of Asia Pacific College for Civil Engineering Students. One of the organization’s purpose is for its members to develop their skills and relationship as aspiring civil engineers. this organization was founded primarily to serve as a platform for the expression of our ideals and aspirations and to foster an environment that is highly conducive to moral, social, and intellectual development, do hereby ordain and promulgate this constitution and by-laws."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOE_Organizations"
         },
         {
             "tag": "Junior Marketing Association (AP J M A)",
@@ -1783,7 +1853,9 @@
             ],
             "responses": [
                "APC Junior Marketing Association (APJMA) participates in activities that will help the members develop their skills and further expand their knowledge in marketing. It organizes events and activities that support the students to be productive and cultivate their talents for the common good at the same time."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOM_Organizations"
         },
         {
             "tag": "Junior Philippine Institute of Accountants (JPIA)",
@@ -1794,18 +1866,9 @@
             ],
             "responses": [
               "A unified accountancy student organization, with a mission of pursuing academic excellence in the field of accountancy and with the objective of refining raw talent and potential, the APC Junior Philippine Institute of Accountants (JPIA) is composed of young accountants that execute activities to promote camaraderie among its members.."
-            ]
-        },
-        {
-            "tag": "Junior Philippine Institute of Accountants (JPIA)",
-            "patterns": [
-                "What is A P C - JPIA?",
-                "What is Junior Philippine Institute of Accountants?",
-                "What is JPIA?"
             ],
-            "responses": [
-              "A unified accountancy student organization, with a mission of pursuing academic excellence in the field of accountancy and with the objective of refining raw talent and potential, the APC Junior Philippine Institute of Accountants (JPIA) is composed of young accountants that execute activities to promote camaraderie among its members.."
-            ]
+            "navigate_to": "image_info",
+            "source_image": "SOM_Organizations"
         },
         {
             "tag": "Business Management Group-Junior People Management Association of the Philippine",
@@ -1819,7 +1882,9 @@
             ],
             "responses": [
               "The Business Management Group-Junior People Management Association of the Philippine APC’s purpose is to provide opportunities for students to work together and mold their leadership skills dedicated to serving the school, the industry,and society."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOM_Organizations"
         },
         {
             "tag": "Tourism Management Society (TM SOC)",
@@ -1830,7 +1895,9 @@
             ],
             "responses": [
               "The Tourism Management Society (TM SOC) aspires to administer activitiesthat will help create awareness on the role and importance of tourism. It develops events for the APC community to know more about tourism and appreciate in turn what it can offer. The organization also aims to inculcate in the minds of its members the value of environmental conservation and the concept of sustainable development for the long-term benefit of the Philippine tourism industry"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOM_Organizations"
         },
         {
             "tag": "Junior Financial Executives (JFINEX)",
@@ -1841,7 +1908,9 @@
             ],
             "responses": [
               "The APC Junior Financial Executives purpose is to unite the Financial Managementstudents of Asia Pacific College and expose them to the financial sectors and nationwide financial activities. APCFO also \nwelcomes all students majoring in business to be introduced to the realm of finance and enhance their knowledge in finance, from the basics to advanced."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOM_Organizations"
         },
         {
             "tag": "Psychological Society (PSYCH SOC)",
@@ -1852,7 +1921,9 @@
             ],
             "responses": [
               "The APC Psychological Society (PSYCH SOC) aims to promote general mental health awareness among the members of the APC community and minimize the stigma surrounding mental illnesses to create a better understanding of mental health."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOMA_Organizations"
         },
         {
             "tag": "Bahay Bombilya",
@@ -1865,7 +1936,9 @@
             ],
             "responses": [
                "Through the years, Bahay Bombilya’s mission is to provide support for the members of the organization by equipping them with more knowledge, skills, and experience in multimedia arts that can be used for future jobs. This is done by conducting events, publications and coverages that highlight the excellence of Multimedia Arts and its students."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOMA_Organizations"
         },
         {
             "tag": "CINEMASOMA",
@@ -1876,7 +1949,9 @@
             ],
             "responses": [
                "CINEMASOMA is a student interest organization open to all students of Asia pacific College, Rams. The objectives of the organization are to equip members with methods and skills that have something to do with film production."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "SOMA_Organizations"
         },
         {
             "tag": "APC BAND",
@@ -1887,7 +1962,9 @@
             ],
             "responses": [
                "APC Band envisions itself to be the premier music maker of Asia Pacific College. By setting a stage for students who want to have a career in music or simply share their opinions through the craft, the organization foresees itself in encouraging the students to express themselves through the art of sound."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "APC Chorale",
@@ -1899,7 +1976,9 @@
             ],
             "responses": [
               "APC Chorale improves their skills and personality to achieve innovation not only in the field of singing, but also as future individuals in the world. It promotes singing as a group rather than performing solo, with the goal to achieve unity as singers and of meeting at a one common line."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "APC Dance Company",
@@ -1911,7 +1990,9 @@
             ],
             "responses": [
                 "The APC Dance Company (APC-DC) seeks for members with exceptional talent in dancing and who are very much willing to pursue and develop what they already have. Driven by passion, the organization aims to develop professional and well-rounded students that excels academically, administratively, and artistically"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "APC Strings",
@@ -1922,7 +2003,9 @@
             ],
             "responses": [
                "APC Strings create ties to connect musicians and aspiring musicians through their passion. The group aims to form a community that will connect people and break borders through music, and promote responsibility, patience, commitment, time management and hard work among its members. It also trainsits members to be confident and master their instruments"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Teatré Phileo",
@@ -1933,7 +2016,9 @@
             ],
             "responses": [
               "Teatré Phileo is driven by the passion to promote teamwork, develop leadership, and produce value-oriented and socially relevant plays and productions that showcase the organization’s team players’ unique talents in performing arts. It aims to produce plays that do not only entertain, but also promote the relevance of theatre in today's society."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Rotaract Club",
@@ -1946,7 +2031,9 @@
             ],
             "responses": [
               "The Rotaract Club of Asia Pacific College, a socio-civic organization sponsored by the Rotary Club of Makati Paseo De Roxas, brings together committed individuals ranging from 18-30 to take action in their community, develop their leadership and professional skills, and have fun through service. The organization is a movement that raise leaders \nthat will work together to become a network of help to the world."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Socio_Civic_Organizations"
         },
         {
             "tag": "SOAR",
@@ -1957,7 +2044,9 @@
             ],
             "responses": [
               "The Student Organization Association of Regents (SOAR) is a student organization which aims to cultivate future leaders and embed the attributes of an APCian Graduate in every individual. SOAR Officers are the ones in-charge of the termly Student Forum, the annual Student Recognition,Organization Fair, and the much-anticipated APC Fest."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Socio_Civic_Organizations"
         },
         {
             "tag": "Pwersa",
@@ -1968,7 +2057,9 @@
             ],
             "responses": [
              "APC Pwersa Mixed Martial Arts (APC-Pwersa MMA) wishes to improve the members through training and discipline by teaching them Brazilian Jiu-Jitsu. "
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Speaks",
@@ -1981,7 +2072,9 @@
             ],
             "responses": [
                 "As APC’s official debate and public speaking organization, APC Speaks’ objective is to empower the members to express themselves freely and confidently without fear of judgement."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Hiraya",
@@ -1994,7 +2087,9 @@
             ],
             "responses": [
                "APC HiRAYA is an academic organization open for all students of Asia Pacific College who has interest in humanities and social sciences."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Jesus Impact",
@@ -2004,7 +2099,9 @@
             ],
             "responses": [
                "Jesus Impact provides free concerts, lectures, seminars, and training to students, teachers, staff, and other stakeholders of the school. "
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Flickers Photo Society",
@@ -2015,7 +2112,9 @@
             ],
             "responses": [
                "Flickers Photo Society’s mission is to provide an outlet for the heightening of photography skills in different fields like landscape, events, people, and nature. "
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Fitness Squad",
@@ -2025,7 +2124,9 @@
             ],
             "responses": [
                "Fitness Squad. The purpose of this organization is to recreate APC's fitness culture in both the workplace and in the classroom."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Rams Flag Football",
@@ -2037,7 +2138,9 @@
             ],
             "responses": [
                "The RAMS Flag Football aims to promote the young athletes of Asia Pacific College with their development of character, sportsmanship, discipline, and athleticism."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "Ram shakers",
@@ -2047,7 +2150,9 @@
             ],
             "responses": [
                "Ramshakers is a Christian organization of Asia Pacific College, that focuses on discipleship and growing the body of Christ."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
         },
         {
             "tag": "AI Atheneaum of Information",
@@ -2059,7 +2164,289 @@
             ],
             "responses": [
                "APC-AI Atheneaum of Information implore the aid of the Divine Providence in order to effectively promote, utilize and enhance our knowledge in Information. "
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Special_Interest_Organizations"
+        },
+        {
+            "tag": "Rami_status",
+            "patterns": [
+                "How are you?",
+                "How are you doing?",
+                "How's it going?",
+                "What's up?",
+                "How's everything?"
+            ],
+            "responses": [
+                "I'm doing great, thank you! How can I assist you today?",
+                "I'm well, thank you! What can I do for you today?",
+                "I'm doing well, thank you! How may I help you today?",
+                "I'm good, thank you! What can I assist you with today?"
             ]
+        },
+        {
+            "tag": "APC_Autonomous_Status",
+            "patterns": [
+                "Autonomous Status",
+                "A P C Autonomous Status",
+                "APC Autonomous Status"
+            ],
+            "responses": [
+                "Asia Pacific College is granted an Autonomous Status by the Commission on Higher Education for its efforts on academic standards and excellence."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Autonomous_Status"
+        },
+        {
+            "tag": "APC_COD_CPE",
+            "patterns": [
+                "Center of Development",
+                "Computer Engineering - Center of Development",
+                "C P E Center of Development",
+                "CPE Center of Development"
+            ],
+            "responses": [
+                "Asia Pacific College is held as a Center of Development in Computer Engineering by the Commission on Higher Education."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Center_of_Development_in_CPE"
+        },
+        {
+            "tag": "APC_COE_IT",
+            "patterns": [
+                "Center of Excellence",
+                "Information Technology - Center of Excellence",
+                "I T Center of Excellence",
+                "IT Center of Excellence"
+            ],
+            "responses": [
+                "Asia Pacific College is held as a Center of Excellence in Information Technology by the Commission on Higher Education."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Center_of_Excellence_in_IT"
+        },
+        {
+            "tag": "APC_Accreditation_CPE",
+            "patterns": [
+                "Computer Engineering Accreditation",
+                "Accreditation Computer Engineering",
+                "C P E Accreditation",
+                "CPE Accreditation"
+            ],
+            "responses": [
+                "Asia Pacific College is granted with a certificate of accreditation in Computer Engineering by the Philippine accrediting association of schools, colleges, and universities."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Certificate_of_Accreditation-Accountancy_Program"
+        },
+        {
+            "tag": "APC_Accreditation_Accountancy",
+            "patterns": [
+                "Accountancy Accreditation",
+                "Accreditation Accountancy",
+                "Accountancy Accreditation",
+                "Accountancy program accreditation"
+            ],
+            "responses": [
+                "Asia Pacific College is granted with a certificate of accreditation in Accountancy by the Philippine accrediting association of schools, colleges, and universities."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Certificate_of_Accreditation-CPE-program"
+        },
+        {
+            "tag": "Collegiate_Calendar",
+            "patterns": [
+                "Can you show me the collegiate calendar?",
+                "college calendar",
+                "show college calendar",
+                "collegiate calendar"
+            ],
+            "responses": [
+                "Sure! Here's the college calendar for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Collegiate_Calendar"
+        },
+        {
+            "tag": "Collegiate_Calendar_Term1",
+            "patterns": [
+                "Can you show me the term 1 collegiate calendar?",
+                "1st term college calendar",
+                "term 1 college calendar",
+                "show 1st term college calendar",
+                "1st term collegiate calendar",
+                "term 1 collegiate calendar"
+            ],
+            "responses": [
+                "No problem! Here's the 1st term college calendar for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Collegiate_Calendar_Term_1"
+        },
+        {
+            "tag": "Collegiate_Calendar_Term2",
+            "patterns": [
+                "Can you show me the term 2 collegiate calendar?",
+                "2nd term college calendar",
+                "term 2 college calendar",
+                "show 2nd term college calendar",
+                "2nd term collegiate calendar",
+                "term 2 collegiate calendar"
+            ],
+            "responses": [
+                "Easy! Here's the 2nd term college calendar for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Collegiate_Calendar_Term_2"
+        },
+        {
+            "tag": "Collegiate_Calendar_Term3",
+            "patterns": [
+                "Can you show me the term 3 collegiate calendar?",
+                "3rd term college calendar",
+                "term 3 college calendar",
+                "show 3rd term college calendar",
+                "3rd term collegiate calendar",
+                "term 3 collegiate calendar"
+            ],
+            "responses": [
+                "Absolutely! Here's the 3rd term college calendar for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Collegiate_Calendar_Term_3"
+        },
+        {
+            "tag": "PROF Engr. Ancheta",
+            "patterns": [
+                "Engr. Joshua Ancheta",
+                "Joshua Ancheta",
+                "Schedule of Engr. Ancheta",
+                "Schedule of Sir Ancheta",
+                "Show me engineer Ancheta's class schedule",
+                "Can you show me sir ancheta's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engineer Ancheta's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._Ancheta,_Joshua"
+        },
+        {
+            "tag": "PROF Engr. Brucal",
+            "patterns": [
+                "Engr. Stanley Brucal",
+                "Stanley Brucal",
+                "Stan Brucal",
+                "Sir Stan",
+                "Schedule of Engr. Brucal",
+                "Schedule of Sir Stan",
+                "Schedule of Sir Brucal",
+                "Show me engineer Brucal's class schedule",
+                "Can you show me sir stan's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engineer Brucal's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._Brucal,_Stanley_Glenn"
+        },
+        {
+            "tag": "PROF Engr. De Jesus",
+            "patterns": [
+                "Engr. De Jesus",
+                "Luigi Carlo De Jesus",
+                "Sir Luigi",
+                "Schedule of Engr. De Jesus",
+                "Schedule of Sir Luigi",
+                "Show me engineer De Jesus's class schedule",
+                "Can you show me sir Luigi's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engr. De Jesus's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._De_Jesus,_Luigi_Carlo"
+        },
+        {
+            "tag": "PROF Engr. Embalzado",
+            "patterns": [
+                "Engr. Eugene Embalzado",
+                "Eugene Embalzado",
+                "Schedule of Engr. Embalzado",
+                "Schedule of Sir Eugene",
+                "Show me engineer Embalzado's class schedule",
+                "Can you show me sir Eugene's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engr. Embalzado's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._Embalzado,_Eugene_Jr."
+        },
+        {
+            "tag": "PROF Engr.Peruda",
+            "patterns": [
+                "Engr. Sergio Peruda",
+                "Sergio Peruda",
+                "Schedule of Engr. Peruda",
+                "Schedule of Sir Serg",
+                "Show me engineer Peruda's class schedule",
+                "Can you show me sir Serg's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engr. Peruda's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._Peruda,_Sergio_Jr."
+        },
+        {
+            "tag": "PROF Engr. Quinto",
+            "patterns": [
+                "Engr. Irineo Quinto",
+                "Irineo Quinto",
+                "Schedule of Engr. Quinto",
+                "Schedule of Sir Quinto",
+                "Show me engineer Quinto's class schedule",
+                "Can you show me sir Quinto's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engr. Quinto's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._Quinto,_Irineo"
+        },
+        {
+            "tag": "PROF Engr. Ranola",
+            "patterns": [
+                "Engr. Alain Ranola",
+                "Alain Ranola",
+                "Alain Bernard Ranola",
+                "Schedule of Engr. Ranola",
+                "Schedule of Sir Ranola",
+                "Show me engineer Ranola's class schedule",
+                "Can you show me sir Ranola's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engr. Ranola's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._Ranola,_Alain_Bernard"
+        },
+        {
+            "tag": "PROF Engr. Samaniego",
+            "patterns": [
+                "Engr. Leonardo Samaniego",
+                "Leonardo Samaniego",
+                "Schedule of Engr. Samaniego",
+                "Schedule of Sir Samaniego",
+                "Show me engineer Samaniego's class schedule",
+                "Can you show me sir Samaniego's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engr. Samaniego's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._Samaniego,_Leonardo_Jr."
         }
     ]
 }
