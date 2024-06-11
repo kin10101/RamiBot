@@ -1328,6 +1328,20 @@
             ]
         },
         {
+            "tag":"APC_Tuition_Fee_Breakdown",
+            "patterns": [
+               "Where can I see the breakdown of my tuition fee?",
+                "Where can I access tuition fee breakdown?",
+                "Tuition fee breakdown",
+                "Total tuition fee",
+                "What is the breakdown of my tuition fee?"
+            ],
+            "responses": [
+                "Here's the list of all tuition free breakdown."
+            ],
+            "navigate_to": "Tuition_Fees"
+        },
+        {
             "tag":"APC_Online_Tuition_Fee_Payment",
             "patterns": [
                "Can I pay my tuition online?",
