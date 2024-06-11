@@ -123,7 +123,9 @@
                 "Who made you",
                 " who developed you",
                 " who programmed you",
-                " who created ramibot"
+                " who created ramibot",
+                "what group made you",
+                "what group made ramibot"
             ],
             "responses": [
                 "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
@@ -1091,7 +1093,7 @@
                 "What are the admission requirements"
             ],
             "responses": [
-                "Admission requirements for the B. Arch program may vary depending on the institution, but typically include a high school diploma or equivalent and passing the entrance exam."
+                "Admission requirements for the B. Arch program may vary depending on the institution, but typically include a high school diploma or equivalent."
             ]
         },
         {
@@ -1550,7 +1552,7 @@
                 "The SM Foundation Scholarship is a great opportunity for incoming freshmen at Asia Pacific College, especially those with strong academic records and facing financial limitations. It offers full tuition coverage, a monthly stipend, and even helps scholars find part-time jobs."
             ],
             "navigate_to": "image_info",
-            "source_image": "SM_Foundation"
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_SM_Group_Scholarship",
@@ -1564,7 +1566,7 @@
                 "The SM Group of Companies Scholarship is a scholarship program offered to children and siblings of SM employees. It provides 20% subsidy for those who are qualified."
             ],
             "navigate_to": "image_info",
-            "source_image": "SM_Group_of_Companies"
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_AFP_Scholarship",
@@ -1578,7 +1580,7 @@
                 "The Armed Forces of the Philippines (AFP) Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 60% or 100% subsidy to students who are dependents of AFP personnel."
             ],
             "navigate_to": "image_info",
-            "source_image": "AFP_Educational_Benefit_System"
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_AFP_Officers_Ladies_Club_Scholarship",
@@ -1591,7 +1593,7 @@
                 "The A F P Officers Ladies Club Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 30% subsidy to students who are dependents of AFP personnel."
             ],
             "navigate_to": "image_info",
-            "source_image": "AFP_Officers_Ladies_Club"
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_Entrance_Academic_Scholar",
@@ -1605,8 +1607,11 @@
             ],
             "responses": [
                 "The Entrance Academic Scholar is a scholarship program offered to Senior High School and college students of Asia Pacific College. It provides subsidy to students who excel academically and demonstrate leadership potential."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
+
         {
             "tag": "APC_PNP_Scholarship",
             "patterns": [
@@ -1619,7 +1624,7 @@
                 "The PNP Scholarship is a program where all children of active uniformed Philippine National Police personnel will have a 60% subsidy."
             ],
             "navigate_to": "image_info",
-            "source_image": "PNP_Scholarship"
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_IBM_Scholarship",
@@ -1631,7 +1636,9 @@
             ],
             "responses": [
                 "The IBM Scholarship is a program that offers a 40% subsidy for the top 5 high school graduates endorsed by IBM and a 20% subsidy for regular employees of IBM."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_Public_School_Grad_Financial_Assistance",
@@ -1645,7 +1652,7 @@
                 "The Public School Graduates Financial Assistance is a program that offers a 50% subsidy for High school graduates of any public school."
             ],
             "navigate_to": "image_info",
-            "source_image": "Public_Schools"
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_MaPSA_Financial_Assistance",
@@ -1659,7 +1666,7 @@
                 "The MaPSA or Parish School Graduate Financial Assistance is a program that offers a 35% subsidy for High school graduates (who has not attended any college/university) of any parish school."
             ],
             "navigate_to": "image_info",
-            "source_image": "MAPSA_Schools"
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_Socialized_Financial_Assistance",
@@ -1673,7 +1680,7 @@
                 "The Socialized Financial Assistance is a program that offers a 35% subsidy for students whose family aggregate annual income is less than P400,000 and a 20% subsidy for students whose family aggregate annual income is between P400,000 and P800,000."
             ],
             "navigate_to": "image_info",
-            "source_image": "Socialized_Financial_Assistance"
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "APC_Socialized_Financial_Assistance_Siblings",
@@ -1697,8 +1704,8 @@
             "responses": [
                 "The Senior High School Loyalty program offers a subsidy for graduating Senior High School student who will continue their college studies in Asia Pacific College."
             ],
-            "navigate_to": "image_info",
-            "source_image": "APC_SHS_Loyalty"
+             "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "Program_Duration",
@@ -2316,6 +2323,77 @@
             "source_image": "Collegiate_Calendar_Term_3"
         },
         {
+            "tag": "Senior_High_School_Calendar",
+            "patterns": [
+                "Can you show me the Senior High School calendar?",
+                "senior high calendar",
+                "senior high school calendar",
+                "SHS calendar"
+            ],
+            "responses": [
+                "Sure! Here's the senior high school calendar for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Senior_High_School_Calendar"
+        },
+        {
+            "tag": "Senior_High_School_Calendar_Term1",
+            "patterns": [
+                "Can you show me the term 1 senior high school calendar?",
+                "1st term SHS calendar",
+                "1st term senior high school calendar",
+                "term 1 senior high school calendar",
+                "show 1st term senior high school calendar",
+                "1st term senior high school calendar",
+                "term 1 senior high school calendar",
+                "show 1st term SHS calendar",
+                "1st term SHS calendar"
+            ],
+            "responses": [
+                "No problem! Here's the 1st term senior high school calendar for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Senior_High_School_Calendar_Term_1"
+        },
+        {
+            "tag": "Senior_High_School_Calendar_Term2",
+            "patterns": [
+                "Can you show me the term 2 senior high school calendar?",
+                "2nd term SHS calendar",
+                "2nd term senior high school calendar",
+                "term 2 senior high school calendar",
+                "show 2nd term senior high school calendar",
+                "2nd term senior high school calendar",
+                "term 2 senior high school calendar",
+                "show 2nd term SHS calendar",
+                "2nd term SHS calendar"
+            ],
+            "responses": [
+                "No problem! Here's the 2nd term senior high school calendar for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Senior_High_School_Calendar_Term_2"
+        },
+        {
+            "tag": "Senior_High_School_Calendar_Term3",
+            "patterns": [
+                "Can you show me the term 3 senior high school calendar?",
+                "3rd term SHS calendar",
+                "3rd term senior high school calendar",
+                "term 3 senior high school calendar",
+                "show 3rd term senior high school calendar",
+                "3rd term senior high school calendar",
+                "term 3 senior high school calendar",
+                "show 3rd term SHS calendar",
+                "3rd term SHS calendar"
+            ],
+            "responses": [
+                "No problem! Here's the 3rd term senior high school calendar for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Senior_High_School_Calendar_Term_3"
+        },
+        {
             "tag": "PROF Engr. Ancheta",
             "patterns": [
                 "Engr. Joshua Ancheta",
@@ -2447,6 +2525,50 @@
             ],
             "navigate_to": "image_info",
             "source_image": "Engr._Samaniego,_Leonardo_Jr."
+        },
+        {
+            "tag": "PROF Engr. Yong",
+            "patterns": [
+                "Engr. Einstein Yong",
+                "Einstein Yong",
+                "Schedule of Engr. Yong",
+                "Schedule of Sir Yong",
+                "Show me engineer Yong's class schedule",
+                "Can you show me sir Yong's class schedule"
+            ],
+            "responses": [
+                "Sure! Here's Engr. Yong's class schedule for your reference."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Engr._Yong,_Einstein"
+        },
+        {
+            "tag": "APC Quality Policy",
+            "patterns": [
+                "quality policy",
+                "apc quality policy",
+                "A P C quality policy"
+            ],
+            "responses": [
+                "No problem! Here's the Quality policy of A P C."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Quality_Policy"
+        },
+        {
+            "tag": "APC QS Rating",
+            "patterns": [
+                "rated for excellence",
+                "QS Stars",
+                "QS Stars Rating",
+                "QS rating"
+            ],
+            "responses": [
+                "No problem! Here's the Q S rating of of A P C."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Rated_for_Excellence"
         }
+
     ]
 }
