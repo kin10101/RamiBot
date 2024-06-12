@@ -87,6 +87,6 @@ def train_bot():
 
     print('done training')
 
-
-# Run the training function
-train_bot()
+if __name__ == '__main__':
+    # Run the training function
+    train_bot()

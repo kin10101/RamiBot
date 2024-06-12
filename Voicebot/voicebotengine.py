@@ -1,6 +1,7 @@
 import random
 import json
 import pickle
+import string
 
 import keras
 import numpy as np
@@ -8,6 +9,7 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 
+import pygtts
 from Voicebot import voicecommand_functions
 from queue import Queue, Empty
 
@@ -25,17 +27,25 @@ model = keras.models.load_model('../Integrated/voicebot_model.h5')
 # Get dict command mappings
 intent_methods = voicecommand_functions.command_mappings
 
+ERROR_THRESHOLD = 0.3  # Acceptable limit to output the response. Adjust if necessary
 
 def clean_up_sentence(sentence):
-    """Tokenize and lemmatize the sentence."""
-    stop_words = nltk.corpus.stopwords.words('english')
+    """Tokenize, remove punctuation, and lemmatize the sentence."""
+    stop_words = set(nltk.corpus.stopwords.words('english'))
 
+    # Tokenize the sentence
     sentence_words = nltk.word_tokenize(sentence)
-    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words if word not in stop_words]
-    print("sentence words", sentence_words)
+
+    # Remove punctuation and stop words, then lemmatize
+    sentence_words = [
+        lemmatizer.lemmatize(word.lower())
+        for word in sentence_words
+        if word not in stop_words and word not in string.punctuation
+    ]
+
+    print("sentence words:", sentence_words)
 
     return sentence_words
-
 
 def bag_of_words(sentence):
     """Create a bag of words from the sentence."""
@@ -49,7 +59,7 @@ def bag_of_words(sentence):
     return np.array(bag)
 
 
-def predict_class(sentence, error_threshold=0.65):
+def predict_class(sentence, error_threshold=ERROR_THRESHOLD):
     """Predict the intent of the sentence."""
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]
@@ -120,7 +130,7 @@ def get_tag(message):
     return tag
 
 
-def get_from_json(tag, filename='voicebotintents.json'):
+def get_from_json(tag, filename='../voicebotintents.json'):
     """Get response from JSON file based on the provided tag."""
     try:
         with open(filename) as file:
@@ -167,6 +177,7 @@ def run_chatbot():
             response = handle_request(message, context)  # get response from request()
 
             if response:  # if response is not empty
+                pygtts.speak_async(response)
                 print(response)
 
         except Exception as e:
