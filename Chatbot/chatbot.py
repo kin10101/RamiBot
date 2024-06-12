@@ -27,7 +27,8 @@ def clean_up_sentence(sentence):
     stop_words = nltk.corpus.stopwords.words('english')
 
     sentence_words = nltk.word_tokenize(sentence)
-    sentence_words = [lemmatizer.lemmatize(word) for word in sentence_words if word not in stop_words]
+    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words if word not in stop_words]
+    print("sentence words", sentence_words)
 
     return sentence_words
 
