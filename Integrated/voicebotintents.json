@@ -830,7 +830,9 @@
                 "room 908",
                 "room 909",
                 "dormitory",
-                "dorm room"
+                "dorm room",
+                "dorm",
+                "dorms"
             ],
             "responses": [
                 "it is located at the 9th floor"
@@ -944,6 +946,7 @@
                 "food",
                 "water",
                 "refill",
+                "cafeteria",
                 "caf",
                 "canteen",
                 "lunch",
@@ -1771,9 +1774,9 @@
         {
             "tag": "Association of Computer Engineering Students ( A C E S)",
             "patterns": [
-                "  A P C - A C E S",
-                "  Association of Computer Engineering Students",
-                "  A C E S"
+                "A P C - A C E S",
+                "Association of Computer Engineering Students",
+                "A C E S"
             ],
             "responses": [
                "The A P C Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
