@@ -21,6 +21,8 @@ model = keras.models.load_model('../Integrated/chatbot_model.h5')
 # Get dict command mappings
 intent_methods = command_functions.command_mappings
 
+ERROR_THRESHOLD = 0.3  # Acceptable limit to output the response. Adjust if necessary
+
 
 def clean_up_sentence(sentence):
     """Tokenize and lemmatize the sentence."""
@@ -49,7 +51,7 @@ def predict_class(sentence):
     """Predict the intent of the sentence."""
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]
-    ERROR_THRESHOLD = 0.7  # Acceptable limit to output the response. Adjust if necessary
+
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)  # sort by strength of probability
     return_list = []

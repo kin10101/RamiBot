@@ -16,7 +16,7 @@ Timeout_Queue = Queue()
 
 class VoiceAssistant:
     def __init__(self):
-        self.mic = sr.Microphone(device_index=5)
+        self.mic = sr.Microphone(device_index=6)
         self.pause_threshold = .8
         self.energy_threshold = 3500
         self.operation_timeout = 5000
@@ -38,7 +38,8 @@ class VoiceAssistant:
             "hi rami",
             "hi ronnie",
             "hello remy",
-            "hey siri"
+            "hey siri",
+            "hello"
         ]
 
     def listen_to_command(self, recognizer, source):

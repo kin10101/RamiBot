@@ -130,7 +130,7 @@ def get_tag(message):
     return tag
 
 
-def get_from_json(tag, filename='../voicebotintents.json'):
+def get_from_json(tag, filename='voicebotintents.json'):
     """Get response from JSON file based on the provided tag."""
     try:
         with open(filename) as file:
