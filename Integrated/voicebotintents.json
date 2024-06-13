@@ -313,7 +313,6 @@
                 "next question please!"
             ]
         },
-
         {
             "tag": "RULES id",
             "patterns": [
@@ -476,7 +475,7 @@
                 "the breakdown of my tuition fee"
             ],
             "responses": [
-                "Here's the list of all tuition free breakdown."
+                "Here's the list of all tuition fee breakdown."
             ],
             "navigate_to": "Tuition_Fees"
         },
@@ -488,8 +487,8 @@
                 " there an online process for tuition fee payment"
             ],
             "responses": [
-                "Yes! you can pay your tuition fee via the Rams Portal.",
-                "Absolutely! Each student has their own Rams Portal account  they can pay their tuition fee online."
+                "you can pay your tuition fee via the Rams Portal.",
+                "Each student has their own Rams Portal account where they can pay their tuition fee online."
             ]
         },
         {
