@@ -1245,25 +1245,14 @@
         {
             "tag": "PRG soar",
             "patterns": [
-                "architecture",
-                "soar",
-                "school of architecture and design"
-            ],
-            "responses": [
-                "The School of Architecture consists of BS Architecture"
-            ],
-            "navigate_to": "image_info",
-            "source_image": "School_of_Architecture"
-        },
-        {
-            "tag": "SOAR architecture",
-            "patterns": [
                 "archi",
                 "architecture",
                 "bs architecture",
                 "tell me more about architecture"
             ],
-            "responses": ["our Architecture program is a four-year and one-term professional degree program, focusing on using technology to create innovative architectural solutions for current and future built-environment challenges. The program emphasizes on immersive research design studios, internships with industry partners, and mastering skills related to the fourth industrial revolution, including computational design and cognitive design workflows."],
+            "responses": [
+                "our Architecture program is a four-year and one-term professional degree program, focusing on using technology to create innovative architectural solutions for current and future built-environment challenges. The program emphasizes on immersive research design studios, internships with industry partners, and mastering skills related to the fourth industrial revolution, including computational design and cognitive design workflows."
+            ],
             "navigate_to": "image_info",
             "source_image": "School_of_Architecture"
         },
@@ -1297,7 +1286,9 @@
         {
             "tag": "SOM tourism management",
             "patterns": [
-
+                "tourism management",
+                "bs tourism management",
+                "tell me more about tourism management"
             ],
             "responses": [
                 "our Tourism Management program prepares students for a variety of careers in the travel industry, including hotel and resort management, restaurant management, airline operations, and more. Graduates are equipped with the necessary wisdom, diligence, and IT skills to excel in the tourism industry, with a special focus on hotel and restaurant operations."
