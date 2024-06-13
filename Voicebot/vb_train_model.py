@@ -23,6 +23,7 @@ def train_bot():
     words = []
     classes = []
     documents = []
+
     ignore_punctuation = ['!', '?', '.', ',']
     stop_words = nltk.corpus.stopwords.words('english')
 
