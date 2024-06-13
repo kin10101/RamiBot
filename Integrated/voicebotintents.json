@@ -82,7 +82,7 @@
                 "show me the list of intents"
             ],
             "responses": [
-                "sure here  the list of intents"
+                "here is the list of intents"
             ],
             "function": [
                 "show_intents"
@@ -357,7 +357,8 @@
                 "apc",
                 "information apc",
                 "want know apc",
-                "apc info"
+                "apc info",
+                "abc"
             ],
             "responses": [
                 "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
@@ -427,7 +428,8 @@
                 "rated for excellence",
                 "QS Stars",
                 "QS Stars Rating",
-                "QS rating"
+                "QS rating",
+                "start"
             ],
             "responses": [
                 "No problem! Here's the Q S rating of of A P C."
@@ -504,7 +506,7 @@
                 "Absolutely! New students can enroll via the APC website while current students can access their enrollment portal via Rams Portal.",
                 "Indeed! You can register for your chosen program through the APC website.",
                 "Definitely! The APC website  your gateway to enroll if you're a new student. For existing students, the Rams Portal is your go-to for enrollment procedures.",
-                "Sure thing! The APC website allows you to enroll in your desired program. If you're a current student, you can use the Rams Portal for your enrollment needs.",
+                "thing! The APC website allows you to enroll in your desired program. If you're a current student, you can use the Rams Portal for your enrollment needs.",
                 "Absolutely! Enrollment for new students can be done via the APC website, while current students can manage their enrollment through the Rams Portal."
             ]
         },
@@ -542,8 +544,7 @@
             "patterns": [
                 "apc different from other schools",
                 "APC unique",
-                "APC special",
-                "asia pacific college"
+                "APC special"
             ],
             "responses": [
                 "APC is the school of choice for those seeking world-class education with a strong IT-based foundation, preparing graduates for various sectors of businesses and industries."
@@ -1208,7 +1209,8 @@
             "patterns": [
                 "it",
                 "information technology",
-                "tell me more about information technology"
+                "tell me more about information technology",
+                "bsit"
             ],
             "responses": [
                 "Information Technology is a four-year program that aims to produce certified IT professionals. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
@@ -1221,7 +1223,8 @@
             "patterns": [
                 "cs",
                 "computer science",
-                "tell me more about computer science"
+                "tell me more about computer science",
+                "bscs"
             ],
             "responses": [
                 "Computer Science is a four-year program that aims to produce certified computer scientists. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
@@ -1243,12 +1246,13 @@
             "source_image": "School_of_Computing_and_IT"
         },
         {
-            "tag": "PRG soar",
+            "tag": "PRG soa",
             "patterns": [
                 "archi",
                 "architecture",
                 "bs architecture",
-                "tell me more about architecture"
+                "tell me more about architecture",
+                "soa"
             ],
             "responses": [
                 "our Architecture program is a four-year and one-term professional degree program, focusing on using technology to create innovative architectural solutions for current and future built-environment challenges. The program emphasizes on immersive research design studios, internships with industry partners, and mastering skills related to the fourth industrial revolution, including computational design and cognitive design workflows."
@@ -1368,7 +1372,9 @@
             ],
             "responses": [
                 "Our Master of Engineering major in Computer Engineering is a graduate program designed to cultivate independent computer engineers equipped with advanced technical and theoretical knowledge for professional practice. The program emphasizes industry immersion and professional work, requiring students to demonstrate leadership and management skills, tackle complex problems within a company or organization, and apply best principles and practices in designing and developing solutions."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "GS_Master_of_Engineering_Major_in_CPE"
         },
         {
             "tag": "grad Computer Science",
@@ -1378,7 +1384,9 @@
             ],
             "responses": [
                 "our Master of Science in Computer Science is a graduate program designed to equip students with the necessary skills to conduct research and formulate innovative applications of computer science principles, particularly in solving computationally intensive industry problems. The program emphasizes the progression from understanding scientific theories, concepts, and principles of computation to generating new knowledge through focused specialization."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "GS_Master_of_Science_in_Computer_Science"
         },
         {
             "tag": "grad MS Game Design",
@@ -1388,7 +1396,9 @@
             ],
             "responses": [
                 "our Master in Game Design is a graduate program designed to cultivate students' skills in pipeline management, business development, research, production, and design within the gaming industry. The program, consisting of thirty-six units, emphasizes on core subjects and studio-based learning, culminating in an innovative development project through a six-unit independent study, preparing students for effective communication and leadership in a team-based environment."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "GS_Master_in_Game_Design"
         },
         {
             "tag": "grad Information Systems",
@@ -1398,7 +1408,9 @@
             ],
             "responses": [
                 "our Master in Information Systems is a graduate program designed to equip students with the effective use of information technology (IT) for problem-solving, process improvement, and organizational efficiency. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, preparing students for successful business and IT project management."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "GS_Master_in_Information_Systems"
         },
         {
             "tag": "grad information technology",
@@ -1408,7 +1420,9 @@
             ],
             "responses": [
                 "our Master in Information Technology is a graduate program designed to enhance students' knowledge of IT concepts, techniques, and principles, enabling them to provide solutions to organizational and societal problems. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, fostering a strategic skill set in systems application development and the multidisciplinary use of IT for business efficiency and success."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "GS_Master_in_Information_Technology"
         },
         {
             "tag": "grad management",
@@ -1418,7 +1432,9 @@
             ],
             "responses": [
                 "our Master in Management is a graduate program designed to prepare junior officers and first-line managers for executive roles, integrating all functional areas of business management through critical thinking and a business analytic approach. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, fostering a comprehensive understanding of business management."
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "GS_Master_in_Management"
         },
         {
             "tag": "College admission requirements",
@@ -1443,7 +1459,8 @@
         {
             "tag": "GEN shuttle route",
             "patterns": [
-                " route does the shuttle take"
+                " route does the shuttle take",
+                "route"
             ],
             "responses": [
                 "APC - Lapu-Lapu St./South Super Highway"
@@ -1452,7 +1469,8 @@
         {
             "tag": "GEN shuttle pickup points",
             "patterns": [
-                "  the shuttle's pickup points"
+                "  the shuttle's pickup points",
+                "pick up"
             ],
             "responses": [
                 "Humabon Parking, fronting the APC building and at the corner of Victoria and Lapu-Lapu Street in front of the Barangay Magallanes Hall"
@@ -1480,7 +1498,8 @@
                 " time does the clinic open",
                 "When does the clinic open",
                 "  the clinic's opening hours",
-                "When can I visit the clinic"
+                "When can I visit the clinic",
+                "clinic hours"
             ],
             "responses": [
                 "The clinic opens at 8:00 AM.",
@@ -1494,7 +1513,8 @@
                 " time does the ITRO open",
                 "When does the ITRO open",
                 "  the ITRO's opening hours",
-                "When can I visit the ITRO"
+                "When can I visit the ITRO",
+                "itro hours"
             ],
             "responses": [
                 "The ITRO opens at 8:00 AM."
@@ -1506,9 +1526,10 @@
             "tag": "LOC_BMO_hours",
             "patterns": [
                 " time does the BMO Building Maintenance Office open",
-                "When does the BMO Building Maintenance Office open",
-                "  the BMO Building Maintenance Office's opening hours",
-                "When can I visit the BMO Building Maintenance Office"
+                "When does the building maintenance office open",
+                "  BMO opening hours",
+                "When can I visit the BMO Building Maintenance Office",
+                "bmo hours"
             ],
             "responses": [
                 "The BMO/Building office opens at 8:00 AM."
@@ -1522,7 +1543,8 @@
                 " time does the logistics office open",
                 "When does the logistics office open",
                 "  the logistics office's opening hours",
-                "When can I visit the logistics office"
+                "When can I visit the logistics office",
+                "logistics hours"
             ],
             "responses": [
                 "The logistics office opens at 8:00 AM."
@@ -1536,7 +1558,8 @@
                 " time does the discipline office open",
                 "When does the discipline office open",
                 "  the discipline office's opening hours",
-                "When can I visit the discipline office"
+                "When can I visit the discipline office",
+                "discipline hours"
             ],
             "responses": [
                 "The discipline office opens at 8:00 AM."
@@ -1590,7 +1613,9 @@
                 " scholarships  available for SHS students in APC",
                 " scholarships  available for Senior high school students in APC",
                 "I want to know about the SHS scholarship programs in APC.",
-                "I want to know about the Senior high school scholarship programs in APC."
+                "I want to know about the Senior high school scholarship programs in APC.",
+                "SHS scholarships",
+                "senior high scholarships"
             ],
             "responses": [
                 "APC offers several scholarship programs for Senior High School students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program would you like to hear about",
@@ -1604,9 +1629,10 @@
             "tag": "APC_financial_assistance",
             "patterns": [
                 "  the financial assistance programs in APC",
-                "Tell me about the financial assistance in APC.",
+                "Tell me about the financial assistance in APC",
                 " financial assistance  available for students in APC",
-                "I want to know about the financial assistance programs in APC."
+                "I want to know about the financial assistance programs in APC",
+                "financial assistance"
             ],
             "responses": [
                 "APC offers several financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Which program  you interested in",
@@ -1622,7 +1648,8 @@
                 "Tell me about the SM Foundation Scholarship",
                 "  the SM Foundation Scholarship",
                 "Can you give me information about the SM Foundation Scholarship",
-                "I want to know about the SM Foundation Scholarship"
+                "I want to know about the SM Foundation Scholarship",
+                "sm scholarship"
             ],
             "responses": [
                 "The SM Foundation Scholarship  a great opportunity for incoming freshmen at Asia Pacific College, especially those with strong academic records and facing financial limitations. It offers full tuition coverage, a monthly stipend, and even helps scholars find part-time jobs."
@@ -1636,7 +1663,8 @@
                 "Tell me about the SM Group of Companies Scholarship",
                 "  the SM Group of Companies Scholarship",
                 "Can you give me information about the SM Group of Companies Scholarship",
-                "I want to know about the SM Group of Companies Scholarship"
+                "I want to know about the SM Group of Companies Scholarship",
+                "sm group"
             ],
             "responses": [
                 "The SM Group of Companies Scholarship  a scholarship program offered to children and siblings of SM employees. It provides 20% subsidy for those who  qualified."
@@ -1650,7 +1678,9 @@
                 "Tell me about the Armed Forces of the Philippines (AFP) Scholarship",
                 "  the Armed Forces of the Philippines (AFP) Scholarship",
                 "Can you give me information about the Armed Forces of the Philippines (AFP) Scholarship",
-                "I want to know about the Armed Forces of the Philippines (AFP) Scholarship"
+                "I want to know about the Armed Forces of the Philippines (AFP) Scholarship",
+                "afp",
+                "armed forces"
             ],
             "responses": [
                 "The Armed Forces of the Philippines (AFP) Scholarship  a scholarship program offered to students of Asia Pacific College. It provides 60% or 100% subsidy to students who  dependents of AFP personnel."
@@ -1694,7 +1724,9 @@
                 "Tell me about the PNP Scholarship",
                 "  the PNP Scholarship",
                 "Can you give me information about the PNP Scholarship",
-                "I want to know about the PNP Scholarship"
+                "I want to know about the PNP Scholarship",
+                "pnp",
+                "police"
             ],
             "responses": [
                 "The PNP Scholarship  a program  all children of active uniformed Philippine National Police personnel will have a 60% subsidy."
@@ -1708,7 +1740,8 @@
                 "Tell me about the IBM Scholarship",
                 "  the IBM Scholarship",
                 "Can you give me information about the IBM Scholarship",
-                "I want to know about the IBM Scholarship"
+                "I want to know about the IBM Scholarship",
+                "ibm"
             ],
             "responses": [
                 "The IBM Scholarship  a program that offers a 40% subsidy for the top 5 high school graduates endorsed by IBM and a 20% subsidy for regular employees of IBM."
@@ -1722,7 +1755,8 @@
                 "Tell me about the Public School Graduates Financial Assistance",
                 "  the Public School Graduates Financial Assistance",
                 "Can you give me information about the Public School Graduates Financial Assistance",
-                "I want to know about the Public School Graduates Financial Assistance"
+                "I want to know about the Public School Graduates Financial Assistance",
+                "public school"
             ],
             "responses": [
                 "The Public School Graduates Financial Assistance  a program that offers a 50% subsidy for High school graduates of any public school."
@@ -1736,7 +1770,10 @@
                 "Tell me about the MaPSA Financial Assistance",
                 "  the MaPSA Financial Assistance",
                 "Can you give me information about the MaPSA Financial Assistance",
-                "I want to know about the MaPSA Financial Assistance"
+                "I want to know about the MaPSA Financial Assistance",
+                "mapsa",
+                "mapa",
+                "matcha"
             ],
             "responses": [
                 "The MaPSA or Parish School Graduate Financial Assistance  a program that offers a 35% subsidy for High school graduates (who has not attended any college/university) of any parish school."
@@ -1750,7 +1787,8 @@
                 "Tell me about the Socialized Financial Assistance",
                 "  the Socialized Financial Assistance",
                 "Can you give me information about the Socialized Financial Assistance",
-                "I want to know about the Socialized Financial Assistance"
+                "I want to know about the Socialized Financial Assistance",
+                "socialized"
             ],
             "responses": [
                 "The Socialized Financial Assistance  a program that offers a 35% subsidy for students whose family aggregate annual income  less than P400,000 and a 20% subsidy for students whose family aggregate annual income  between P400,000 and P800,000."
@@ -1764,7 +1802,8 @@
                 "Tell me about the Socialized Financial Assistance for siblings",
                 "  the Socialized Financial Assistance for siblings",
                 "Can you give me information about the Socialized Financial Assistance for siblings",
-                "I want to know about the Socialized Financial Assistance for siblings"
+                "I want to know about the Socialized Financial Assistance for siblings",
+                "siblings"
             ],
             "responses": [
                 "The Socialized Financial Assistance  a program that offers a 20% subsidy for siblings of currently enrolled APC students."
@@ -1775,7 +1814,9 @@
             "patterns": [
                 "S H S Loyalty",
                 "SHS Loyalty",
-                "Senior High School Loyalty"
+                "Senior High School Loyalty",
+                "loyalty"
+
             ],
             "responses": [
                 "The Senior High School Loyalty program offers a subsidy for graduating Senior High School student who will continue their college studies in Asia Pacific College."
@@ -1791,7 +1832,8 @@
                 "How many years the bachelors program",
                 "How many years does the program take",
                 "How many years the course",
-                "How many years does the course take"
+                "How many years does the course take",
+                "duration"
             ],
             "responses": [
                 "The bachelors program in APC typically takes four years to complete."
@@ -1803,7 +1845,8 @@
                 " all offices open during weekends",
                 "  the office hours during weekends",
                 "Can you tell me the office hours of all offices during weekends",
-                "I want to know the office hours of all offices during weekends."
+                "I want to know the office hours of all offices during weekends.",
+                "availability"
             ],
             "responses": [
                 "All offices in APC  typically open from 8:00 AM to 5:00 PM during weekends. However, it's best to contact the specific office for any special arrangements."
@@ -1880,7 +1923,8 @@
             "patterns": [
                 "  APC ACES",
                 "  association of computer engineering students",
-                "  aces"
+                "  aces",
+                "asus"
             ],
             "responses": [
                "The APC Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
@@ -2382,7 +2426,7 @@
                 "SHS calendar"
             ],
             "responses": [
-                "Sure! Here's the senior high school calendar for your reference."
+                "Here's the senior high school calendar for your reference."
             ],
             "navigate_to": "image_info",
             "source_image": "Senior_High_School_Calendar"
@@ -2398,7 +2442,8 @@
                 "1st term senior high school calendar",
                 "term 1 senior high school calendar",
                 "show 1st term SHS calendar",
-                "1st term SHS calendar"
+                "1st term SHS calendar",
+                "first term senior high school calendar"
             ],
             "responses": [
                 "No problem! Here's the 1st term senior high school calendar for your reference."
@@ -2417,7 +2462,8 @@
                 "2nd term senior high school calendar",
                 "term 2 senior high school calendar",
                 "show 2nd term SHS calendar",
-                "2nd term SHS calendar"
+                "2nd term SHS calendar",
+                "second term senior high school calendar"
             ],
             "responses": [
                 "No problem! Here's the 2nd term senior high school calendar for your reference."
@@ -2436,7 +2482,8 @@
                 "3rd term senior high school calendar",
                 "term 3 senior high school calendar",
                 "show 3rd term SHS calendar",
-                "3rd term SHS calendar"
+                "3rd term SHS calendar",
+                "third term senior high school calendar"
             ],
             "responses": [
                 "No problem! Here's the 3rd term senior high school calendar for your reference."
@@ -2451,7 +2498,9 @@
                 "prof schedule soe",
                 "professor schedule soe",
                 "professor schedule school of engineering",
-                "Can you show me the schedule of the professors in the School of Engineering"
+                "Can you show me the schedule of the professors in the School of Engineering",
+                "schedule",
+                "professor schedule"
             ],
             "responses": [
             "Here's the schedule of the professors in the School of Engineering. just select the professor you want to see the schedule of."
