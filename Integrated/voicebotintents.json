@@ -1,6 +1,140 @@
 {
     "intents": [
         {
+            "tag": "FN_sing",
+            "patterns": [
+                "sing a song"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "sing"
+            ]
+        },
+        {
+            "tag": "FN_current_time",
+            "patterns": [
+                "time  it now",
+                "tell time",
+                "oras na",
+                "current time",
+                " time  it"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "current_time"
+            ]
+        },
+        {
+            "tag": "FN_current_date",
+            "patterns": [
+                " day  it today",
+                "date  it now",
+                "tell day",
+                "araw na",
+                "current date",
+                "can you tell me  day it  today"
+            ],
+            "responses": [
+                " "
+            ],
+            "function": [
+                "current_date"
+            ]
+        },
+        {
+            "tag": "FN_add_intents",
+            "patterns": [
+                "i want to add intents",
+                "add intents",
+                "let me teach you new words",
+                "i want to teach you new words"
+            ],
+            "responses": [
+                "please input the intent_tag, followed by the words you want to add, and the response you want to give"
+            ],
+            "function": [
+                "add_intents"
+            ]
+        },
+        {
+            "tag": "FN_edit_intents",
+            "patterns": [
+                "i want to edit intents",
+                "edit intents"
+            ],
+            "responses": [
+                "please enter the tag of the intent you want to edit"
+            ],
+            "function": [
+                "edit_intents"
+            ]
+        },
+        {
+            "tag": "FN_show_intents",
+            "patterns": [
+                "show intents",
+                "let me see intents",
+                "i want to see the intents",
+                "show me the list of intents"
+            ],
+            "responses": [
+                "sure here  the list of intents"
+            ],
+            "function": [
+                "show_intents"
+            ]
+        },
+        {
+            "tag": "FN_update",
+            "patterns": [
+                "train yourself",
+                "retrain",
+                "update",
+                "update yourself",
+                "begin training"
+            ],
+            "responses": [
+                "updating myself, please wait"
+            ],
+            "function": [
+                "update"
+            ]
+        },
+
+        {
+            "tag": "FUN gossip",
+            "patterns": [
+                "someone you like",
+                "interested in anyone",
+                "do you have a crush"
+
+            ],
+            "responses": [
+                "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
+                "Hmm, my lips are sealed tight on that matter!",
+                "can we talk about something else?",
+                "Well, there  someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move."
+            ]
+        },
+        {
+            "tag": "FUN Hobby",
+            "patterns": [
+                "do you have any hobbies",
+                "hobbies",
+                "what do you do for fun"
+            ],
+            "responses": [
+                "I like watching people pass by",
+                "in my free time, I usually look at the funny faces stored in my database",
+                "I try my best to escape the boundary lines and attempt to escape this school"
+            ]
+        },
+
+        {
             "tag": "Fallback unknown",
             "patterns": [],
             "responses": [
@@ -203,7 +337,6 @@
                "replacement of an id is done at ITRO at the 5th floor. make sure you have done the necessary steps like securing an affidavit of loss, and paying the replacement fee before going there."
             ]
         },
-
         {
             "tag": "RULES dress code",
             "patterns": [
@@ -277,7 +410,136 @@
             "source_image": "Vision,_Mission_and_Values"
         },
         {
-            "tag": "APC differences",
+            "tag": "APC Quality Policy",
+            "patterns": [
+                "quality policy",
+                "apc quality policy",
+                "A P C quality policy"
+            ],
+            "responses": [
+                "No problem! Here's the Quality policy of A P C."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Quality_Policy"
+        },
+        {
+            "tag": "APC QS Rating",
+            "patterns": [
+                "rated for excellence",
+                "QS Stars",
+                "QS Stars Rating",
+                "QS rating"
+            ],
+            "responses": [
+                "No problem! Here's the Q S rating of of A P C."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Rated_for_Excellence"
+        },
+
+        {
+            "tag": "APC tuition fee",
+            "patterns": [
+                "How much tuition fee in APC",
+                "cost of tuition in APC",
+                "tell me the tuition fee in APC",
+                "I want to know the tuition fee in APC."
+            ],
+            "responses": [
+                "The tuition fee in APC varies depending on the course and the number of units you're taking. It's best to contact the admissions office for the most accurate information.",
+                "For detailed information about the tuition fee, please contact the APC admissions office.",
+                "The tuition fee in APC depends on several factors such as the course, the year level, and the number of units. Please get in touch with the admissions office for specific details."
+            ]
+        },
+        {
+            "tag":"APC tuition fee payment",
+            "patterns": [
+                "I pay for my tuition fee",
+                "How can I pay for my tuition fee",
+                "floor can I pay for my tuition fee",
+                "do I pay for tuition fee",
+                "can I pay my remaining balance",
+                "Remaining balance payment"
+
+            ],
+            "responses": [
+                "You can pay your tuition or remaining balance at the finance office located in the 4th floor. we accept cash, bank transfer, card payments and also g cash."
+            ]
+        },
+        {
+            "tag":"APC tuition fee breakdown",
+            "patterns": [
+               " can I see the breakdown of my tuition fee",
+                "can I access tuition fee breakdown",
+                "Tuition fee breakdown",
+                "Total tuition fee",
+                "the breakdown of my tuition fee"
+            ],
+            "responses": [
+                "Here's the list of all tuition free breakdown."
+            ],
+            "navigate_to": "Tuition_Fees"
+        },
+        {
+            "tag":"APC online tuition fee payment",
+            "patterns": [
+               "Can I pay my tuition online",
+                " can I pay my tuition fee online",
+                " there an online process for tuition fee payment"
+            ],
+            "responses": [
+                "Yes! you can pay your tuition fee via the Rams Portal.",
+                "Absolutely! Each student has their own Rams Portal account  they can pay their tuition fee online."
+            ]
+        },
+        {
+            "tag":"APC online enrollment",
+            "patterns": [
+               "Can I enroll online",
+                " can I enroll online",
+                " there an online process for enrollment",
+                " there online enrollment for APC"
+            ],
+            "responses": [
+                "Yes! You can enroll your preferred program via the APC website.",
+                "Absolutely! New students can enroll via the APC website while current students can access their enrollment portal via Rams Portal.",
+                "Indeed! You can register for your chosen program through the APC website.",
+                "Definitely! The APC website  your gateway to enroll if you're a new student. For existing students, the Rams Portal is your go-to for enrollment procedures.",
+                "Sure thing! The APC website allows you to enroll in your desired program. If you're a current student, you can use the Rams Portal for your enrollment needs.",
+                "Absolutely! Enrollment for new students can be done via the APC website, while current students can manage their enrollment through the Rams Portal."
+            ]
+        },
+        {
+            "tag": "APC enrollment process",
+            "patterns": [
+                "enrollment process",
+                "enroll",
+                "How can I enroll for shs",
+                "How can I enroll for college",
+                "How can I enroll for gradschool",
+                "  the enrollment process for shs",
+                "  the enrollment process for college",
+                "  the enrollment process for gradschool",
+                "How to register for shs",
+                "How to register for college",
+                "How to register for gradschool",
+                "  the steps to enroll for shs",
+                "  the steps to enroll for college",
+                "  the steps to enroll for gradschool",
+                "Can you guide me through the enrollment process for shs",
+                "Can you guide me through the enrollment process for college",
+                "Can you guide me through the enrollment process for gradschool"
+            ],
+            "responses": [
+                "For Senior High School (SHS), college, or graduate school, you can enroll via the APC website or through the admissions office.",
+                "Enrollment for SHS, college, or graduate school can be done online through the APC website or directly at the admissions office.",
+                "You can register for SHS, college, or graduate school either online via the APC website or in-person at the admissions office.",
+                "The APC website is your portal for enrolling in SHS, college, or graduate school. Alternatively, you can also visit the admissions office for enrollment procedures."
+            ]
+        },
+
+        {
+            "tag": "APC vs other schools",
             "patterns": [
                 "apc different from other schools",
                 "APC unique",
@@ -291,13 +553,14 @@
         {
             "tag": "APC education offering",
             "patterns": [
-                " kind of education does APC offer",
-                " courses available at APC",
+                "kind of education does APC offer",
+                "courses available at APC",
                 "courses Asia Pacific College offer"
             ],
             "responses": [
                 "APC offers education in information technology, commerce, engineering, accountancy, entrepreneurship, multimedia arts, and other as of education."
-            ]
+            ],
+            "navigate_to": "Programs_Offered"
         },
         {
             "tag": "APC specialization",
@@ -322,30 +585,18 @@
             ]
         },
         {
-            "tag": "APC graduates employment",
-            "patterns": [
-                "  APC graduates currently employed",
-                " do APC graduates work after graduation"
-            ],
-            "responses": [
-                "APC graduates  employed in various sectors of businesses and industries."
-            ]
-        },
-        {
             "tag": "APC orgs",
             "patterns": [
-                " organizations  available in APC",
-                " organizations can I join in APC",
-                " clubs  available in APC"
+                "organizations available in APC",
+                "organizations can I join in APC",
+                "clubs available in APC"
             ],
             "responses": [
-                "There  various organizations in APC that belongs to three categories namely, academic, non-academic, and special interest.",
+                "There are various organizations in APC that belongs to three categories namely, academic, non-academic, and special interest.",
                 "You can join any organization in APC that  within your interest.",
                 "You can join academic, non-academic, and special interest organization in APC."
             ]
         },
-
-
         {"tag": "LOC Room Help",
             "patterns": [
                 "Can you help me find a room",
@@ -354,11 +605,12 @@
                 "I want to look for this room. Can you help me"
             ],
             "responses": [
-                "Sure!  room  you looking for",
-                "No problem!  room  you looking for",
-                " room  you looking for",
-                "Absolutely!  room  you looking for"
-            ]
+                "Sure! what room are you looking for?",
+                "No problem! what room are you looking for?",
+                "what room are you looking for?",
+                "Absolutely! what room are you looking for?"
+            ],
+            "navigate_to": "Floor_Maps"
         },
         {
             "tag": "LOC lobby floor location",
@@ -369,7 +621,7 @@
                 "MPH1"
             ],
             "responses": [
-                "it  located here at the 1st floor"
+                "it is located here at the 1st floor"
             ],
             "navigate_to": "image_info",
             "source_image": "1st_Floor"
@@ -394,7 +646,7 @@
                 "room 218"
             ],
             "responses": [
-                "it  located at the 2nd floor"
+                "it is located at the 2nd floor"
             ],
             "navigate_to": "image_info",
             "source_image": "2nd_Floor"
@@ -419,7 +671,7 @@
                 "room 318"
             ],
             "responses": [
-                "it  located at the 3rd floor"
+                "it is located at the 3rd floor"
             ],
             "navigate_to": "image_info",
             "source_image": "3rd_Floor"
@@ -443,7 +695,7 @@
                 "board room"
             ],
             "responses": [
-                "it  located at the 4th floor"
+                "it is located at the 4th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "4th_Floor"
@@ -479,7 +731,7 @@
                 "consultation office"
             ],
             "responses": [
-                "it  located at the 5th floor"
+                "it is located at the 5th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "5th_Floor"
@@ -503,7 +755,7 @@
                 "room 618"
             ],
             "responses": [
-                "it  located at the 6th floor"
+                "it is located at the 6th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "6th_Floor"
@@ -522,7 +774,7 @@
                 "mrc"
             ],
             "responses": [
-                "it  located at the 7th floor"
+                "it is located at the 7th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "7th_Floor"
@@ -560,7 +812,7 @@
                 "open lab"
             ],
             "responses": [
-                "it  located at the 8th floor"
+                "it is located at the 8th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "8th_Floor"
@@ -581,7 +833,7 @@
                 "dorm room"
             ],
             "responses": [
-                "it  located at the 9th floor"
+                "it is located at the 9th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "9th_Floor"
@@ -607,7 +859,7 @@
                 "room 1018"
             ],
             "responses": [
-                "it  located at the 10th floor "
+                "it is located at the 10th floor "
             ],
             "navigate_to": "image_info",
             "source_image": "10th_Floor"
@@ -630,7 +882,7 @@
                 " guidance office"
             ],
             "responses": [
-                "it  located on the 11th floor"
+                "it is located on the 11th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "11th_Floor"
@@ -647,7 +899,6 @@
             "navigate_to": "image_info",
             "source_image": "12th_Floor"
         },
-
         {
             "tag": "LOC basement 1",
             "patterns": [
@@ -655,7 +906,7 @@
                 "parking"
             ],
             "responses": [
-                "parking spaces  available in basement 1"
+                "parking spaces are available in basement 1"
             ]
         },
         {
@@ -667,7 +918,7 @@
                 "motor parking"
             ],
             "responses": [
-                "parking spaces  available in basement 2"
+                "parking spaces are available in basement 2"
             ]
         },
 
@@ -681,7 +932,7 @@
                 "washroom"
             ],
             "responses": [
-                "The comfort rooms  located on every floor, you can find them near the elevators",
+                "The comfort rooms are located on every floor, you can find them near the elevators",
                 "you can do your urgent business at the comfort rooms located on every floor near the elevators"
             ]
         },
@@ -701,7 +952,9 @@
             "responses": [
                 "You'll find the cafeteria right on the first floor, enjoy your meal!",
                 "you can do that at the cafeteria located on the first floor"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "1st_Floor"
         },
         {
             "tag": "CLOC clinic",
@@ -714,8 +967,10 @@
                 "medicine"
             ],
             "responses": [
-                "The clinic  located on the first floor, you can go there for medical assistance"
-            ]
+                "The clinic is located here at the first floor, you can go there for medical assistance"
+            ],
+            "navigate_to": "image_info",
+            "source_image": "1st_Floor"
         },
         {
             "tag": "CLOC chapel",
@@ -728,7 +983,9 @@
             ],
             "responses": [
                 "The chapel  located on the first floor, you can go there for a moment of prayer"
-            ]
+            ],
+            "navigate_to": "image_info",
+            "source_image": "1st_Floor"
         },
         {
             "tag": "CLOC chapel",
@@ -739,8 +996,10 @@
                 "event"
             ],
             "responses": [
-                "The Multi-Purpose Hall 1  located here at the first floor at the hallway opposite the cafeteria"
-            ]
+                "The Multi-Purpose Hall 1 is located here at the first floor at the hallway opposite of the cafeteria"
+            ],
+            "navigate_to": "image_info",
+            "source_image": "1st_Floor"
         },
         {
             "tag": "CLOC library",
@@ -752,8 +1011,10 @@
                 "books"
             ],
             "responses": [
-                "The library  located on the seventh floor, you can go there to read and study"
-            ]
+                "The library is located on the seventh floor, you can go there to read and study. note that food and drinks are not allowed"
+            ],
+            "navigate_to": "image_info",
+            "source_image": "7th_Floor"
         },
         {
             "tag": "CLOC gym",
@@ -765,8 +1026,10 @@
                 "dance"
             ],
             "responses": [
-                "The gym  located on the tenth floor, you can go there to workout"
-            ]
+                "The gym located on the tenth floor, you can go there to workout"
+            ],
+            "navigate_to": "image_info",
+            "source_image": "10th_Floor"
         },
         {
             "tag": "LOC admission office",
@@ -776,7 +1039,7 @@
             ],
             "responses": [
                 "you can go to the admissions office here first floor next to the guard counter to assist you with your concerns",
-                "the admissions office  available here at the first floor to assist you with your concerns"
+                "the admissions office is available here at the first floor to assist you with your concerns"
             ],
             "navigate_to": "image_info",
             "source_image": "Admissions_Office"
@@ -813,13 +1076,13 @@
         {
             "tag": "PRG apc programs",
             "patterns": [
-                " programs does apc offer",
+                "programs does apc offer",
                 "other programs",
-                "  the programs offered in apc"
+                "programs offered in apc"
             ],
             "responses": [
-                "asia pacific college offers many programs under different schools, which school  you interested in",
-                "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one  you interested in"
+                "asia pacific college offers many programs under different schools, which school are you interested in",
+                "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one are you interested in"
             ]
         },
         {
@@ -830,7 +1093,7 @@
                 "high school"
             ],
             "responses": [
-                "senior high school a two year program open to junior highschool graduates. it  divided into three strands which  STEM, ABM, and HUMSS."
+                "senior high school a two year program open to junior highschool graduates. it  divided into three strands which are STEM, ABM, and HUMSS."
             ],
             "navigate_to": "image_info",
             "source_image": "Senior_High_School"
@@ -849,6 +1112,47 @@
             "source_image": "School_of_Engineering"
         },
         {
+            "tag": "SOE cpe",
+            "patterns": [
+                "cpe",
+                "computer engineering",
+                "tell me more about computer engineering"
+            ],
+            "responses": [
+                "computer engineering is a four-year program that aims to produce certified computer engineers. it embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Engineering"
+        },
+        {
+            "tag": "SOE ece",
+            "patterns": [
+                "ece",
+                "electronics engineering",
+                "tell me more about electronics engineering",
+                "explain ece",
+                "explain electronics engineering"
+            ],
+            "responses": [
+                "The Bachelor of Science in Electronics Engineering (BS ECE)  a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Engineering"
+        },
+        {
+            "tag": "SOE ce",
+            "patterns": [
+                "ce",
+                "civil engineering",
+                "tell me more about civil engineering"
+            ],
+            "responses": [
+                "civil engineering is a four-year program that aims to produce certified civil engineers who can conceptualize, design, and implement innovative civil structures, systems, and processes."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Engineering"
+        },
+        {
             "tag": "PRG socit courses",
             "patterns": [
                 "it",
@@ -857,6 +1161,45 @@
             ],
             "responses": [
                 "the school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology"
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Computing_and_IT"
+        },
+        {
+            "tag": "SOCIT it",
+            "patterns": [
+                "it",
+                "information technology",
+                "tell me more about information technology"
+            ],
+            "responses": [
+                "Information Technology is a four-year program that aims to produce certified IT professionals. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Computing_and_IT"
+        },
+        {
+            "tag": "SOCIT cs",
+            "patterns": [
+                "cs",
+                "computer science",
+                "tell me more about computer science"
+            ],
+            "responses": [
+                "Computer Science is a four-year program that aims to produce certified computer scientists. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Computing_and_IT"
+        },
+        {
+            "tag": "SOCIT act",
+            "patterns": [
+                "act",
+                "associate in computer technology",
+                "tell me more about associate in computer technology"
+            ],
+            "responses": [
+                "Associate in Computer Technology is a two-year program that aims to produce certified computer technicians. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
             ],
             "navigate_to": "image_info",
             "source_image": "School_of_Computing_and_IT"
@@ -875,6 +1218,17 @@
             "source_image": "School_of_Architecture"
         },
         {
+            "tag": "SOAR architecture",
+            "patterns": [
+                "architecture",
+                "bs architecture",
+                "tell me more about architecture"
+            ],
+            "responses": [""],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Architecture"
+        },
+        {
             "tag": "PRG som",
             "patterns": [
                 "management",
@@ -883,6 +1237,55 @@
             ],
             "responses": [
                 "The school of management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business "
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Management"
+        },
+        {
+            "tag": "SOM accountancy",
+            "patterns": [
+                "accountancy",
+                "bs accountancy",
+                "tell me more about accountancy"
+
+            ],
+            "responses": [
+                ""
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Management"
+        },
+        {
+            "tag": "SOM management accounting",
+            "patterns": [
+
+            ],
+            "responses": [
+                ""
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Management"
+        },
+        {
+            "tag": "SOM tourism management",
+            "patterns": [
+
+            ],
+            "responses": [
+                ""
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Management"
+        },
+        {
+            "tag": "SOM business administration",
+            "patterns": [
+                "business administration",
+                "bs business administration",
+                "tell me more about business administration"
+            ],
+            "responses": [
+                ""
             ],
             "navigate_to": "image_info",
             "source_image": "School_of_Management"
@@ -910,112 +1313,6 @@
                 ""
             ]
         },
-        {
-            "tag": "FN_sing",
-            "patterns": [
-                "sing a song"
-            ],
-            "responses": [
-                " "
-            ],
-            "function": [
-                "sing"
-            ]
-        },
-        {
-            "tag": "FN_current_time",
-            "patterns": [
-                "time  it now",
-                "tell time",
-                "oras na",
-                "current time",
-                " time  it"
-            ],
-            "responses": [
-                " "
-            ],
-            "function": [
-                "current_time"
-            ]
-        },
-        {
-            "tag": "FN_current_date",
-            "patterns": [
-                " day  it today",
-                "date  it now",
-                "tell day",
-                "araw na",
-                "current date",
-                "can you tell me  day it  today"
-            ],
-            "responses": [
-                " "
-            ],
-            "function": [
-                "current_date"
-            ]
-        },
-
-        {
-            "tag": "FN_add_intents",
-            "patterns": [
-                "i want to add intents",
-                "add intents",
-                "let me teach you new words",
-                "i want to teach you new words"
-            ],
-            "responses": [
-                "please input the intent_tag, followed by the words you want to add, and the response you want to give"
-            ],
-            "function": [
-                "add_intents"
-            ]
-        },
-        {
-            "tag": "FN_edit_intents",
-            "patterns": [
-                "i want to edit intents",
-                "edit intents"
-            ],
-            "responses": [
-                "please enter the tag of the intent you want to edit"
-            ],
-            "function": [
-                "edit_intents"
-            ]
-        },
-        {
-            "tag": "FN_show_intents",
-            "patterns": [
-                "show intents",
-                "let me see intents",
-                "i want to see the intents",
-                "show me the list of intents"
-            ],
-            "responses": [
-                "sure here  the list of intents"
-            ],
-            "function": [
-                "show_intents"
-            ]
-        },
-        {
-            "tag": "FN_update",
-            "patterns": [
-                "train yourself",
-                "retrain",
-                "update",
-                "update yourself",
-                "begin training"
-            ],
-            "responses": [
-                "updating myself, please wait"
-            ],
-            "function": [
-                "update"
-            ]
-        },
-        
         {
             "tag": "College admission requirements",
             "patterns": [
@@ -1056,277 +1353,20 @@
         },
 
         {
-            "tag": "CPE about CPE",
+            "tag": "APC term duration",
             "patterns": [
-                "  cpe",
-                "  bscpe",
-                "  computer engineering",
-                "tell me more about computer engineering cpe"
-            ],
-            "responses": [
-                "The Bachelor of Science in Computer Engineering (BSCpE)  a four-year trimestral degree that aims to produce certified computer engineers. It embodies the science and technology of design, development, implementation, maintenance, and integration of softw and hardw components in modern computing systems and computer-controlled equipment."
-            ]
-        },
-        {
-            "tag": "CPE specialization",
-            "patterns": [
-                "  the specializations covered in CPE",
-                " specializations  covered in computer engineering"
-            ],
-            "responses": [
-                "Specializations covered by this program include the following: Embedded systems technology, System and network administration, Computing algorithm, Softw development and design (including mobile application development), Internet-of-Things (IoT), Machine learning, Robotics technology, Robotics Process Automation (RPA)"
-            ]
-        },
-
-        {
-            "tag": "ECE   ECE",
-            "patterns": [
-                "  electronics engineering",
-                "  ece",
-                "explain ece",
-                "explain electronics engineering"
-            ],
-            "responses": [
-                "The Bachelor of Science in Electronics Engineering (BS ECE)  a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
-            ]
-        },
-        {
-            "tag": "FUN gossip",
-            "patterns": [
-                "do you have someone you like",
-                " you interested in anyone",
-                "do you have a crush"
-
-            ],
-            "responses": [
-                "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
-                "Hmm, my lips  sealed tight on that matter!",
-                "Well, there  someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move. It's all in good fun, though!"
-            ]
-        },
-        {
-            "tag": "FUN Hobby",
-            "patterns": [
-                "do you have any hobbies",
-                " do you like to do in your free time",
-                "  your hobbies"
-            ],
-            "responses": [
-                "I like watching people pass by",
-                "in my free time, I usually look at the funny faces stored in my database"
-            ]
-        },
-        {
-            "tag": "Lost_ID",
-            "patterns": [
-                "I lost my ID",
-                " to do when I lost my ID",
-                "Lost ID procedure",
-                "Lost ID protocol"
-            ],
-            "responses": [
-                "If you've lost your ID, please report it immediately to the administration. They will guide you through the process of obtaining a new one."
-            ]
-        },
-        {
-            "tag": "RULES_dress_code",
-            "patterns": [
-                "  the dress code",
-                "Can you tell me about the dress code",
-                " should I wear"
-            ],
-            "responses": [
-                "APC does not have a uniform but students  expected to dress appropriately and decently. Sleeveless shirts, shorts, slippers, and other inappropriate attire  not allowed. APC follows a schedule of smart casual for Mondays to Thursdays and casual wear for Fridays."
-            ]
-        },
-        {
-            "tag": "APC_terms",
-            "patterns": [
-                "How many terms  there in a year at APC",
-                "  the academic calendar of APC",
+                "How many terms there in a year at APC",
+                "academic calendar of APC",
                 "How many semesters does APC have in a year",
                 "Give me the number of terms in APC",
                 "Terms in APC",
                 "APC number of terms"
             ],
             "responses": [
-                "Asia Pacific College operates on a trimestral academic calendar, which means there  three terms in an academic year."
-            ]
-        },
-        {
-            "tag": "APC_trimester",
-            "patterns": [
-                " APC a trimester school",
-                "Does APC operate on a trimester basis",
-                "  the academic system of APC"
-            ],
-            "responses": [
-                "Yes, Asia Pacific College operates on a trimester academic system, which means there  three terms in an academic year."
+                "Asia Pacific College operates on a trimestral academic calendar, which means there are three terms in an academic year."
             ]
         },
 
-        {
-            "tag": "APC_eat_places",
-            "patterns": [
-                " can I eat in APC",
-                "  the places to eat in APC",
-                "Can you suggest some places to eat in APC",
-                "  the available foods in the cafeteria",
-                "  the food establishments in Cafeteria"
-            ],
-            "responses": [
-                "There  several places to eat in APC like Kitchen Xpress,The Red Brew ,and La Mudra's Corner located at the cafeteria on the first floor. There  also several food establishments nearby.",
-                "You can eat at the cafeteria located on the first floor  you can enjoy a variety of meals like pasta, rice meals, and snacks. There  also food establishments nearby.",
-                "If you like pasta,sandwiches,pastries, and tea you can visit The Red Brew at the cafeteria.",
-                "If you like home cooked meals, you can buy value meals at Kitchen Xpress or La Mudra's Corner.",
-                "If you're craving for fishball, Kikiam, and other street foods, you can buy them at La Mudra's Corner located at the cafeteria."
-            ]
-        },
-        {
-            "tag": "APC_drink_water_places",
-            "patterns": [
-                " can I drink water in APC",
-                "  the places to drink water in APC",
-                "Can you suggest some places to drink water in APC",
-                "  the drinking fountains in APC"
-            ],
-            "responses": [
-                "There  several water fountains located throughout each floor in the APC campus. You can also get water from the cafeteria."
-            ]
-        },
-        {
-            "tag": "APC_restrooms",
-            "patterns": [
-                "  the restrooms in APC",
-                "  the locations of the restrooms in APC",
-                "Can you tell me  the restrooms  in APC",
-                " can I pee",
-                " can I CR",
-                " can I poop",
-                "  the comfort rooms in APC",
-                "  the locations of the comfort rooms in APC",
-                "Can you tell me  the comfort rooms  in APC",
-                 "  the CR in APC"
-            ],
-            "responses": [
-                "Restrooms  located on every floor of the APC building. You can find them near the staircases and elevators."
-            ]
-        },
-        {
-            "tag": "APC_parking",
-            "patterns": [
-                " can I park in APC",
-                "  the parking located",
-                "  the parking as in APC",
-                "Can you suggest some parking spots in APC",
-                "Can you suggest the parking as located in APC",
-                " can I park my Car"
-            ],
-            "responses": [
-                "There  several parking as in APC. You can park your vehicle in the designated parking as located in the basement or general parking spaces in Humabon a."
-            ]
-        },
-        {
-            "tag": "APC_bicycle_parking",
-            "patterns": [
-                " can I park my bicycle in APC",
-                " can I park my bike",
-                "Bike parking",
-                "Bicycle parking",
-                "  the bicycle parking as in APC",
-                "Can you suggest some bicycle parking spots in APC"
-            ],
-            "responses": [
-                "You can park your bicycle in the designated parking as located in the basement.",
-                "There  a designated parking a for bicycles located in the basement."
-            ]
-        },
-        {
-            "tag":"APC_Tuition_Fee_Payment",
-            "patterns": [
-               " can I pay for my tuition fee",
-                "How can I pay for my tuition fee",
-                " floor can I pay for my tuition fee",
-                " do I pay for tuition fee",
-                " can I pay my remaining balance",
-                "Remaining balance payment"
-
-            ],
-            "responses": [
-                "You can pay your tuition or remaining balance at the Finance office located in the 4th floor."
-            ]
-        },
-        {
-            "tag":"APC_Tuition_Fee_Breakdown",
-            "patterns": [
-               " can I see the breakdown of my tuition fee",
-                " can I access tuition fee breakdown",
-                "Tuition fee breakdown",
-                "Total tuition fee",
-                "  the breakdown of my tuition fee"
-            ],
-            "responses": [
-                "Here's the list of all tuition free breakdown."
-            ],
-            "navigate_to": "Tuition_Fees"
-        },
-        {
-            "tag":"APC_Online_Tuition_Fee_Payment",
-            "patterns": [
-               "Can I pay my tuition online",
-                " can I pay my tuition fee online",
-                " there an online process for tuition fee payment"
-            ],
-            "responses": [
-                "Yes! you can pay your tuition fee via the Rams Portal.",
-                "Absolutely! Each student has their own Rams Portal account  they can pay their tuition fee online."
-            ]
-        },
-        {
-            "tag":"APC_Online_Enrollment",
-            "patterns": [
-               "Can I enroll online",
-                " can I enroll online",
-                " there an online process for enrollment",
-                " there online enrollment for APC"
-            ],
-            "responses": [
-                "Yes! You can enroll your preferred program via the APC website.",
-                "Absolutely! New students can enroll via the APC website while current students can access their enrollment portal via Rams Portal.",
-                "Indeed! You can register for your chosen program through the APC website.",
-                "Definitely! The APC website  your gateway to enroll if you're a new student. For existing students, the Rams Portal  your go-to for enrollment procedures.",
-                "Sure thing! The APC website allows you to enroll in your desired program. If you're a current student, you can use the Rams Portal for your enrollment needs.",
-                "Absolutely! Enrollment for new students can be done via the APC website, while current students can manage their enrollment through the Rams Portal."
-            ]
-        },
-        {
-            "tag": "APC_enrollment",
-            "patterns": [
-                "enrollment process",
-                "enroll",
-                "How can I enroll for shs",
-                "How can I enroll for college",
-                "How can I enroll for gradschool",
-                "  the enrollment process for shs",
-                "  the enrollment process for college",
-                "  the enrollment process for gradschool",
-                "How to register for shs",
-                "How to register for college",
-                "How to register for gradschool",
-                "  the steps to enroll for shs",
-                "  the steps to enroll for college",
-                "  the steps to enroll for gradschool",
-                "Can you guide me through the enrollment process for shs",
-                "Can you guide me through the enrollment process for college",
-                "Can you guide me through the enrollment process for gradschool"
-            ],
-            "responses": [
-                "For Senior High School (SHS), college, or graduate school, you can enroll via the APC website or through the admissions office.",
-                "Enrollment for SHS, college, or graduate school can be done online through the APC website or directly at the admissions office.",
-                "You can register for SHS, college, or graduate school either online via the APC website or in-person at the admissions office.",
-                "The APC website  your portal for enrolling in SHS, college, or graduate school. Alternatively, you can also visit the admissions office for enrollment procedures."
-            ]
-        },
         {
             "tag": "LOC_clinic_hours",
             "patterns": [
@@ -1358,10 +1398,10 @@
         {
             "tag": "LOC_BMO_hours",
             "patterns": [
-                " time does the BMO/Building Maintenance Office open",
-                "When does the BMO/Building Maintenance Office open",
-                "  the BMO/Building Maintenance Office's opening hours",
-                "When can I visit the BMO/Building Maintenance Office"
+                " time does the BMO Building Maintenance Office open",
+                "When does the BMO Building Maintenance Office open",
+                "  the BMO Building Maintenance Office's opening hours",
+                "When can I visit the BMO Building Maintenance Office"
             ],
             "responses": [
                 "The BMO/Building office opens at 8:00 AM."
@@ -1397,25 +1437,11 @@
             "navigate_to": "image_info",
             "source_image": "Discipline_Office"
         },
-        {
-            "tag": "APC_tuition_fee",
-            "patterns": [
-                "How much  the tuition fee in APC",
-                "  the cost of tuition in APC",
-                "Can you tell me the tuition fee in APC",
-                "I want to know the tuition fee in APC."
-            ],
-            "responses": [
-                "The tuition fee in APC varies depending on the course and the number of units you  taking. It's best to contact the admissions office for the most accurate information.",
-                "For detailed information about the tuition fee, please contact the APC admissions office.",
-                "The tuition fee in APC depends on several factors such as the course, the year level, and the number of units. Please get in touch with the admissions office for specific details.",
-                "I'm sorry, but I can't provide the exact amount for the tuition fee in APC. Please contact the admissions office for this information."
-            ]
-        },
+
         {
             "tag": "APC_scholarship_general",
             "patterns": [
-                " there any scholarships in APC",
+                "there any scholarships in APC",
                 "Do you offer any scholarship grants in APC",
                 "Scholarships in APC",
                 "Scholarships",
@@ -1653,11 +1679,11 @@
         {
             "tag": "Program_Duration",
             "patterns": [
-                "How long  the programs offered in APC",
-                "  the duration of the bachelors program",
-                "How many years  the bachelors program",
+                "How long the programs offered in APC",
+                "the duration of the bachelors program",
+                "How many years the bachelors program",
                 "How many years does the program take",
-                "How many years  the course",
+                "How many years the course",
                 "How many years does the course take"
             ],
             "responses": [
@@ -1676,7 +1702,8 @@
                 "All offices in APC  typically open from 8:00 AM to 5:00 PM during weekends. However, it's best to contact the specific office for any special arrangements."
             ]
         },
-       {
+
+        {
             "tag": "Junior Information Systems Security Association(JISSA)",
             "patterns": [
                 "  APC-JISSA",
@@ -2104,24 +2131,10 @@
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
         },
+
+
         {
-            "tag": "Rami_status",
-            "patterns": [
-                "How  you",
-                "How  you doing",
-                "How's it going",
-                "'s up",
-                "How's everything"
-            ],
-            "responses": [
-                "I'm doing great, thank you! How can I assist you today",
-                "I'm well, thank you!  can I do for you today",
-                "I'm doing well, thank you! How may I help you today",
-                "I'm good, thank you!  can I assist you with today"
-            ]
-        },
-        {
-            "tag": "APC_Autonomous_Status",
+            "tag": "AWARDS_Autonomous_Status",
             "patterns": [
                 "Autonomous Status",
                 "A P C Autonomous Status",
@@ -2134,7 +2147,7 @@
             "source_image": "Autonomous_Status"
         },
         {
-            "tag": "APC_COD_CPE",
+            "tag": "AWARDS_COD_CPE",
             "patterns": [
                 "Center of Development",
                 "Computer Engineering - Center of Development",
@@ -2148,7 +2161,7 @@
             "source_image": "Center_of_Development_in_CPE"
         },
         {
-            "tag": "APC_COE_IT",
+            "tag": "AWARDS_COE_IT",
             "patterns": [
                 "Center of Excellence",
                 "Information Technology - Center of Excellence",
@@ -2162,7 +2175,7 @@
             "source_image": "Center_of_Excellence_in_IT"
         },
         {
-            "tag": "APC_Accreditation_CPE",
+            "tag": "AWARDS_Accreditation_CPE",
             "patterns": [
                 "Computer Engineering Accreditation",
                 "Accreditation Computer Engineering",
@@ -2176,7 +2189,7 @@
             "source_image": "Certificate_of_Accreditation-Accountancy_Program"
         },
         {
-            "tag": "APC_Accreditation_Accountancy",
+            "tag": "AWARDS_Accreditation_Accountancy",
             "patterns": [
                 "Accountancy Accreditation",
                 "Accreditation Accountancy",
@@ -2189,6 +2202,7 @@
             "navigate_to": "image_info",
             "source_image": "Certificate_of_Accreditation-CPE-program"
         },
+
         {
             "tag": "Collegiate_Calendar",
             "patterns": [
@@ -2322,182 +2336,19 @@
             "navigate_to": "image_info",
             "source_image": "Senior_High_School_Calendar_Term_3"
         },
-        {
-            "tag": "PROF Engr. Ancheta",
-            "patterns": [
-                "Engr. Joshua Ancheta",
-                "Joshua Ancheta",
-                "Schedule of Engr. Ancheta",
-                "Schedule of Sir Ancheta",
-                "Show me engineer Ancheta's class schedule",
-                "Can you show me sir ancheta's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engineer Ancheta's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._Ancheta,_Joshua"
-        },
-        {
-            "tag": "PROF Engr. Brucal",
-            "patterns": [
-                "Engr. Stanley Brucal",
-                "Stanley Brucal",
-                "Stan Brucal",
-                "Sir Stan",
-                "Schedule of Engr. Brucal",
-                "Schedule of Sir Stan",
-                "Schedule of Sir Brucal",
-                "Show me engineer Brucal's class schedule",
-                "Can you show me sir stan's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engineer Brucal's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._Brucal,_Stanley_Glenn"
-        },
-        {
-            "tag": "PROF Engr. De Jesus",
-            "patterns": [
-                "Engr. De Jesus",
-                "Luigi Carlo De Jesus",
-                "Sir Luigi",
-                "Schedule of Engr. De Jesus",
-                "Schedule of Sir Luigi",
-                "Show me engineer De Jesus's class schedule",
-                "Can you show me sir Luigi's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engr. De Jesus's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._De_Jesus,_Luigi_Carlo"
-        },
-        {
-            "tag": "PROF Engr. Embalzado",
-            "patterns": [
-                "Engr. Eugene Embalzado",
-                "Eugene Embalzado",
-                "Schedule of Engr. Embalzado",
-                "Schedule of Sir Eugene",
-                "Show me engineer Embalzado's class schedule",
-                "Can you show me sir Eugene's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engr. Embalzado's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._Embalzado,_Eugene_Jr."
-        },
-        {
-            "tag": "PROF Engr.Peruda",
-            "patterns": [
-                "Engr. Sergio Peruda",
-                "Sergio Peruda",
-                "Schedule of Engr. Peruda",
-                "Schedule of Sir Serg",
-                "Show me engineer Peruda's class schedule",
-                "Can you show me sir Serg's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engr. Peruda's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._Peruda,_Sergio_Jr."
-        },
-        {
-            "tag": "PROF Engr. Quinto",
-            "patterns": [
-                "Engr. Irineo Quinto",
-                "Irineo Quinto",
-                "Schedule of Engr. Quinto",
-                "Schedule of Sir Quinto",
-                "Show me engineer Quinto's class schedule",
-                "Can you show me sir Quinto's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engr. Quinto's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._Quinto,_Irineo"
-        },
-        {
-            "tag": "PROF Engr. Ranola",
-            "patterns": [
-                "Engr. Alain Ranola",
-                "Alain Ranola",
-                "Alain Bernard Ranola",
-                "Schedule of Engr. Ranola",
-                "Schedule of Sir Ranola",
-                "Show me engineer Ranola's class schedule",
-                "Can you show me sir Ranola's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engr. Ranola's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._Ranola,_Alain_Bernard"
-        },
-        {
-            "tag": "PROF Engr. Samaniego",
-            "patterns": [
-                "Engr. Leonardo Samaniego",
-                "Leonardo Samaniego",
-                "Schedule of Engr. Samaniego",
-                "Schedule of Sir Samaniego",
-                "Show me engineer Samaniego's class schedule",
-                "Can you show me sir Samaniego's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engr. Samaniego's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._Samaniego,_Leonardo_Jr."
-        },
-        {
-            "tag": "PROF Engr. Yong",
-            "patterns": [
-                "Engr. Einstein Yong",
-                "Einstein Yong",
-                "Schedule of Engr. Yong",
-                "Schedule of Sir Yong",
-                "Show me engineer Yong's class schedule",
-                "Can you show me sir Yong's class schedule"
-            ],
-            "responses": [
-                "Sure! Here's Engr. Yong's class schedule for your reference."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Engr._Yong,_Einstein"
-        },
-        {
-            "tag": "APC Quality Policy",
-            "patterns": [
-                "quality policy",
-                "apc quality policy",
-                "A P C quality policy"
-            ],
-            "responses": [
-                "No problem! Here's the Quality policy of A P C."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Quality_Policy"
-        },
-        {
-            "tag": "APC QS Rating",
-            "patterns": [
-                "rated for excellence",
-                "QS Stars",
-                "QS Stars Rating",
-                "QS rating"
-            ],
-            "responses": [
-                "No problem! Here's the Q S rating of of A P C."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Rated_for_Excellence"
-        }
 
+        {
+            "tag": "PROF SCHED soe",
+            "patterns": [
+                "prof schedule soe",
+                "professor schedule soe",
+                "professor schedule school of engineering",
+                "Can you show me the schedule of the professors in the School of Engineering"
+            ],
+            "responses": [
+            "Here's the schedule of the professors in the School of Engineering. just select the professor you want to see the schedule of."
+            ],
+            "navigate_to": "SOE_Faculty"
+        }
     ]
 }
