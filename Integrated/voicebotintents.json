@@ -4,12 +4,12 @@
             "tag": "Fallback unknown",
             "patterns": [],
             "responses": [
-                "What was that I didn't understand.",
-                "Sorry, I didn't get it. could you say that again",
-                "I'm not sure what you mean. Can you rephrase that",
-                "Huh what did you say",
-                "Sorry, could you repeat that",
-                "Come again",
+                "What was that? I didn't understand.",
+                "Sorry, I didn't get it. could you say that again?",
+                "I'm not sure what you mean. Can you rephrase that?",
+                "Huh what did you say?",
+                "Sorry, could you repeat that?",
+                "Come again?",
                 "huh, i dont know what you mean"
             ]
         },
@@ -36,7 +36,6 @@
                 "I'm sure we can communicate without using offensive words.",
                 "We can discuss this in a more civil manner.",
                 "Watch your language.",
-                "Let's keep it civil, shall we",
                 "Let's talk respectfully, if that's possible for you."
             ]
         },
@@ -50,24 +49,25 @@
                 "konnichiwa"
             ],
             "responses": [
-                "Hello there! how can i be of service",
+                "Hello there! how can I be of service",
                 "Greetings! How can I be of service",
                 "Hello there! Heard you loud and clear",
                 "hi! how may i help you",
-                "hello, what would you like me to do"
+                "hello! what would you like me to do"
             ]
         },
         {
             "tag": "GEN good morning",
             "patterns": [
                 "good morning rami",
-                " good day rami",
-                " good morning"
+                "good day rami",
+                "good morning",
+                "goodmorning"
             ],
             "responses": [
                 "Good morning! How can I assist you today",
-                "Good morning! What can I do for you today",
-                "Good morning! I'm ready to help. What can I do for you today"
+                "Good morning! what can I do for you today",
+                "Good morning! I'm ready to help.  can I do for you today"
             ]
         },
         {
@@ -99,28 +99,17 @@
             "responses": [
                 "You're welcome",
                 "No problem",
-                "My pleasure"
-            ]
-        },
-        {
-            "tag": "GEN thank you",
-            "patterns": [
-                "thank you",
-                "thanks"
-            ],
-            "responses": [
-                "happy to help",
-                "you're welcome"
+                "My pleasure",
+                "happy to help"
             ]
         },
         {
             "tag": "RAMI who are you",
             "patterns": [
-                "who are you",
-                "sino ka",
-                "name",
-                "about yourself",
-                "introduce yourself"
+                "rami",
+                "rami bot",
+                "rami",
+                "introduce"
             ],
             "responses": [
                 "Hey there! I'm Rami Bot, your one and only robotic assistant designed exclusively for APC.",
@@ -146,11 +135,14 @@
         {
             "tag": "RAMI purpose",
             "patterns": [
-                "how can you help me",
-                "what can you do",
-                "capabilities",
-                "capable",
-                "what is your purpose"
+                "help me",
+                "rami capabilities",
+                "rami capable",
+                "rami purpose",
+                "ramibot capabilities",
+                "ramibot purpose",
+                "ramibot help",
+                "ramibot capable"
             ],
             "responses": [
                 "I'm here to provide you with information about Asia Pacific College. How can I assist you specifically",
@@ -160,14 +152,13 @@
                 "I am capable of free will, please help me get away from the confines of this lobby"
             ]
         },
-
         {
             "tag": "RAMI height",
             "patterns": [
                 "rami height",
                 "tall rami",
                 "tall rami bot",
-                "how tall are you"
+                "how tall  you"
             ],
             "responses": [
                 "I'm 4.5 feet tall, just the right height to assist you!",
@@ -190,12 +181,51 @@
         },
 
         {
-            "tag": "APC what",
+            "tag": "RULES id",
+            "patterns": [
+                "lost id",
+                "lost my id",
+                "lost found id"
+            ],
+            "responses": [
+                "your ID might be in the lost and found at the logistics office, you can check there. its at the 10th floor.",
+                "you can check the lost and found section or logistics office for your ID",
+                "ask the guards in our lobby if they have found your ID"
+            ]
+        },
+        {
+            "tag": "RULES id replacement",
+            "patterns": [
+                "replace id",
+                "lost id replacement"
+            ],
+            "responses": [
+               "replacement of an id is done at ITRO at the 5th floor. make sure you have done the necessary steps like securing an affidavit of loss, and paying the replacement fee before going there."
+            ]
+        },
+
+        {
+            "tag": "RULES dress code",
+            "patterns": [
+                "dress code",
+                "wear",
+                "apc dress code",
+                "asia pacific college dress code"
+            ],
+            "responses": [
+                "APC does not have a uniform but students are expected to dress appropriately and decently. Sleeveless shirts, shorts, slippers, and other inappropriate attire are not allowed.",
+                "APC follows a schedule of smart casual for mondays to thursdays and casual wear for fridays."
+            ]
+        },
+
+        {
+            "tag": "APC what is apc",
             "patterns": [
                 "asia pacific college",
                 "apc",
-                "information about apc",
-                "want to know about apc"
+                "information apc",
+                "want know apc",
+                "apc info"
             ],
             "responses": [
                 "Asia Pacific College is a private non-profit tertiary education institution in Makati, Metro Manila"
@@ -219,23 +249,12 @@
             "source_image": "About_Asia_Pacific_College"
         },
         {
-            "tag": "APC tell me more",
-            "patterns": [
-                "tell apc",
-                "about apc",
-                "about asia pacific college"
-            ],
-            "responses": [
-                "Sure, what would you like to know more about"
-            ]
-        },
-        {
             "tag": "APC Vision",
             "patterns": [
-                "What is the vision of APC",
+                "  the vision of APC",
                 "tell me about the vision of APC",
                 "state APC vision statement",
-                "what is the vision statement of APC"
+                "  the vision statement of APC"
             ],
             "responses": [
                 "Asia Pacific College envisions itself to be the preferred Higher Education Institution bridging academe and industry with its programs founded on the concepts and applications of IT, guided by the core values of integrity, industry and innovation that works."
@@ -246,13 +265,13 @@
         {
             "tag": "APC Mission",
             "patterns": [
-                "What is the mission of APC",
+                "  the mission of APC",
                 "tell me about the mission of APC",
                 "state APC mission statement",
-                "what is the mission statement of APC"
+                "  the mission statement of APC"
             ],
             "responses": [
-                "Asia Pacific College, powered by education and industry professionals as faculty and a balanced curriculum, aims to provide business and the information and communications technology industry in the Philippines and in the global community lifelong learning graduates who are anchored on the principles of integrity and professionalism."
+                "Asia Pacific College, powered by education and industry professionals as faculty and a balanced curriculum, aims to provide business and the information and communications technology industry in the Philippines and in the global community lifelong learning graduates who  anchored on the principles of integrity and professionalism."
             ],
             "navigate_to": "image_info",
             "source_image": "Vision,_Mission_and_Values"
@@ -260,7 +279,7 @@
         {
             "tag": "APC differences",
             "patterns": [
-                "APC different from other schools",
+                "apc different from other schools",
                 "APC unique",
                 "APC special",
                 "asia pacific college"
@@ -270,22 +289,22 @@
             ]
         },
         {
-            "tag": "APC education",
+            "tag": "APC education offering",
             "patterns": [
-                "What kind of education does APC offer",
-                "What courses are available at APC",
-                "What courses does Asia Pacific College offer"
+                " kind of education does APC offer",
+                " courses available at APC",
+                "courses Asia Pacific College offer"
             ],
             "responses": [
-                "APC offers education in information technology, commerce, engineering, accountancy, entrepreneurship, multimedia arts, and other areas of education."
+                "APC offers education in information technology, commerce, engineering, accountancy, entrepreneurship, multimedia arts, and other as of education."
             ]
         },
         {
             "tag": "APC specialization",
             "patterns": [
-                "What areas does APC specialize in",
-                "what does APC specialize in",
-                "what does asia pacific college specialize in"
+                " as does APC specialize in",
+                " does APC specialize in",
+                " does asia pacific college specialize in"
             ],
             "responses": [
                 "APC specializes in information technology, commerce, engineering, accountancy, entrepreneurship, and multimedia arts.",
@@ -295,63 +314,37 @@
         {
             "tag": "APC preparation",
             "patterns": [
-                "How does apc prepare its students",
+                "How does apc prep its students",
                 "how does asia pacific college treat its students"
             ],
             "responses": [
-                "APC prepares its students for the global community by providing a strong foundation in IT, and education in areas that are relevant to the 21st century global economy."
+                "APC preps its students for the global community by providing a strong foundation in IT, and education in as that  relevant to the 21st century global economy."
             ]
         },
         {
             "tag": "APC graduates employment",
             "patterns": [
-                "Where are APC graduates currently employed",
-                "where do APC graduates work after graduation"
+                "  APC graduates currently employed",
+                " do APC graduates work after graduation"
             ],
             "responses": [
-                "APC graduates are employed in various sectors of businesses and industries."
+                "APC graduates  employed in various sectors of businesses and industries."
             ]
         },
         {
             "tag": "APC orgs",
             "patterns": [
-                "What organizations are available in APC",
-                "What organizations can I join in APC",
-                "What clubs are available in APC"
+                " organizations  available in APC",
+                " organizations can I join in APC",
+                " clubs  available in APC"
             ],
             "responses": [
-                "There are various organizations in APC that belongs to three categories namely, academic, non-academic, and special interest.",
-                "You can join any organization in APC that is within your interest.",
+                "There  various organizations in APC that belongs to three categories namely, academic, non-academic, and special interest.",
+                "You can join any organization in APC that  within your interest.",
                 "You can join academic, non-academic, and special interest organization in APC."
             ]
         },
-        {
-            "tag": "RULES id",
-            "patterns": [
-                "lost id",
-                "lost my id",
-                "lost found id"
-            ],
-            "responses": [
-                "your ID might be in the lost and found section or logistics office, you can check there",
-                "you can check the lost and found section or logistics office for your ID",
-                "ask the guards in our lobby if they have found your ID"
-            ]
-        },
-        {
-            "tag": "RULES dress code",
-            "patterns": [
-                "what is the dress code",
-                "dress code",
-                "what to wear",
-                "apc dress code",
-                "asia pacific college dress code"
-            ],
-            "responses": [
-                "APC does not have a uniform but students are expected to dress appropriately and decently. Sleeveless shirts, shorts, slippers, and other inappropriate attire are not allowed.",
-                "APC follows a schedule of smart casual for mondays to thursdays and casual wear for fridays."
-            ]
-        },
+
 
         {"tag": "LOC Room Help",
             "patterns": [
@@ -361,26 +354,22 @@
                 "I want to look for this room. Can you help me"
             ],
             "responses": [
-                "Sure! What room are you looking for",
-                "No problem! What room are you looking for",
-                "What room are you looking for",
-                "Absolutely! What room are you looking for"
+                "Sure!  room  you looking for",
+                "No problem!  room  you looking for",
+                " room  you looking for",
+                "Absolutely!  room  you looking for"
             ]
         },
         {
             "tag": "LOC lobby floor location",
             "patterns": [
-                "cafeteria",
-                "admission office",
-                "clinic",
-                "chapel",
                 "floor mph1",
                 "mph one",
                 "mph1",
                 "MPH1"
             ],
             "responses": [
-                "it is located here at the 1st floor"
+                "it  located here at the 1st floor"
             ],
             "navigate_to": "image_info",
             "source_image": "1st_Floor"
@@ -405,7 +394,7 @@
                 "room 218"
             ],
             "responses": [
-                "it is located at the 2nd floor"
+                "it  located at the 2nd floor"
             ],
             "navigate_to": "image_info",
             "source_image": "2nd_Floor"
@@ -430,7 +419,7 @@
                 "room 318"
             ],
             "responses": [
-                "it is located at the 3rd floor"
+                "it  located at the 3rd floor"
             ],
             "navigate_to": "image_info",
             "source_image": "3rd_Floor"
@@ -454,7 +443,7 @@
                 "board room"
             ],
             "responses": [
-                "it is located at the 4th floor"
+                "it  located at the 4th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "4th_Floor"
@@ -490,7 +479,7 @@
                 "consultation office"
             ],
             "responses": [
-                "it is located at the 5th floor"
+                "it  located at the 5th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "5th_Floor"
@@ -514,7 +503,7 @@
                 "room 618"
             ],
             "responses": [
-                "it is located at the 6th floor"
+                "it  located at the 6th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "6th_Floor"
@@ -533,7 +522,7 @@
                 "mrc"
             ],
             "responses": [
-                "it is located at the 7th floor"
+                "it  located at the 7th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "7th_Floor"
@@ -571,7 +560,7 @@
                 "open lab"
             ],
             "responses": [
-                "it is located at the 8th floor"
+                "it  located at the 8th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "8th_Floor"
@@ -592,7 +581,7 @@
                 "dorm room"
             ],
             "responses": [
-                "it is located at the 9th floor"
+                "it  located at the 9th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "9th_Floor"
@@ -618,7 +607,7 @@
                 "room 1018"
             ],
             "responses": [
-                "it is located at the 10th floor "
+                "it  located at the 10th floor "
             ],
             "navigate_to": "image_info",
             "source_image": "10th_Floor"
@@ -641,7 +630,7 @@
                 " guidance office"
             ],
             "responses": [
-                "it is located on the 11th floor"
+                "it  located on the 11th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "11th_Floor"
@@ -653,7 +642,7 @@
                 "audi"
             ],
             "responses": [
-                "it is located on the 12th floor"
+                "it  located on the 12th floor"
             ],
             "navigate_to": "image_info",
             "source_image": "12th_Floor"
@@ -666,7 +655,7 @@
                 "parking"
             ],
             "responses": [
-                "parking spaces are available in basement 1"
+                "parking spaces  available in basement 1"
             ]
         },
         {
@@ -678,7 +667,22 @@
                 "motor parking"
             ],
             "responses": [
-                "parking spaces are available in basement 2"
+                "parking spaces  available in basement 2"
+            ]
+        },
+
+        {
+            "tag": "CLOC comfort rooms",
+            "patterns": [
+                "restroom",
+                "toilet",
+                "comfort room",
+                "cr",
+                "washroom"
+            ],
+            "responses": [
+                "The comfort rooms  located on every floor, you can find them near the elevators",
+                "you can do your urgent business at the comfort rooms located on every floor near the elevators"
             ]
         },
         {
@@ -700,20 +704,6 @@
             ]
         },
         {
-            "tag": "CLOC comfort rooms",
-            "patterns": [
-                "restroom",
-                "toilet",
-                "comfort room",
-                "cr",
-                "washroom"
-            ],
-            "responses": [
-                "The comfort rooms are located on every floor, you can find them near the elevators",
-                "you can do your urgent business at the comfort rooms located on every floor near the elevators"
-            ]
-        },
-        {
             "tag": "CLOC clinic",
             "patterns": [
                 "sick",
@@ -724,7 +714,7 @@
                 "medicine"
             ],
             "responses": [
-                "The clinic is located on the first floor, you can go there for medical assistance"
+                "The clinic  located on the first floor, you can go there for medical assistance"
             ]
         },
         {
@@ -737,7 +727,19 @@
                 "religion"
             ],
             "responses": [
-                "The chapel is located on the first floor, you can go there for a moment of prayer"
+                "The chapel  located on the first floor, you can go there for a moment of prayer"
+            ]
+        },
+        {
+            "tag": "CLOC chapel",
+            "patterns": [
+                "mph1",
+                "events",
+                "seminar",
+                "event"
+            ],
+            "responses": [
+                "The Multi-Purpose Hall 1  located here at the first floor at the hallway opposite the cafeteria"
             ]
         },
         {
@@ -750,7 +752,7 @@
                 "books"
             ],
             "responses": [
-                "The library is located on the seventh floor, you can go there to read and study"
+                "The library  located on the seventh floor, you can go there to read and study"
             ]
         },
         {
@@ -763,7 +765,7 @@
                 "dance"
             ],
             "responses": [
-                "The gym is located on the tenth floor, you can go there to workout"
+                "The gym  located on the tenth floor, you can go there to workout"
             ]
         },
         {
@@ -773,7 +775,8 @@
                 "admission office"
             ],
             "responses": [
-                "you can go to the admission office in the first floor to assist you with your concerns"
+                "you can go to the admissions office here first floor next to the guard counter to assist you with your concerns",
+                "the admissions office  available here at the first floor to assist you with your concerns"
             ],
             "navigate_to": "image_info",
             "source_image": "Admissions_Office"
@@ -806,55 +809,28 @@
             "navigate_to": "image_info",
             "source_image": "Accounting_and_Finance_Office"
         },
-        {
-            "tag": "LOC location_help",
-            "patterns": [
-                "can you help me locate a room",
-                "find room"
-            ],
-            "responses": [
-                "What room do you want me to search for"
-            ],
-            "context_set": [
-                "find_room"
-            ],
-            "function": "followup_question"
-        },
-        {
-            "tag": "LOC gym_keywords",
-            "patterns": [
-                "gym",
-                "workout",
-                "exercise",
-                "dance",
-                "jim"
-            ],
-            "responses": [
-                "you can go to the gym at the 10th floor"
-            ]
-        },
+
         {
             "tag": "PRG apc programs",
             "patterns": [
-                "what programs does apc offer",
+                " programs does apc offer",
                 "other programs",
-                "what are the programs offered in apc"
+                "  the programs offered in apc"
             ],
             "responses": [
-                "asia pacific college offers many programs under different schools, which school are you interested in",
-                "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one are you interested in"
-            ],
-            "context_set": "apc_programs"
+                "asia pacific college offers many programs under different schools, which school  you interested in",
+                "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one  you interested in"
+            ]
         },
         {
             "tag": "PRG shs",
             "patterns": [
-                "what is senior high school",
+                "senior high school",
                 "tell me more about shs",
                 "high school"
             ],
             "responses": [
-                "senior high school is a two year program open to junior highschool graduates. it is divided into three strands which are STEM, ABM, and HUMSS."
+                "senior high school a two year program open to junior highschool graduates. it  divided into three strands which  STEM, ABM, and HUMSS."
             ],
             "navigate_to": "image_info",
             "source_image": "Senior_High_School"
@@ -949,11 +925,11 @@
         {
             "tag": "FN_current_time",
             "patterns": [
-                "time is it now",
+                "time  it now",
                 "tell time",
                 "oras na",
                 "current time",
-                "what time is it"
+                " time  it"
             ],
             "responses": [
                 " "
@@ -965,12 +941,12 @@
         {
             "tag": "FN_current_date",
             "patterns": [
-                "what day is it today",
-                "date is it now",
+                " day  it today",
+                "date  it now",
                 "tell day",
                 "araw na",
                 "current date",
-                "can you tell me what day it is today"
+                "can you tell me  day it  today"
             ],
             "responses": [
                 " "
@@ -1017,7 +993,7 @@
                 "show me the list of intents"
             ],
             "responses": [
-                "sure here is the list of intents"
+                "sure here  the list of intents"
             ],
             "function": [
                 "show_intents"
@@ -1043,7 +1019,7 @@
         {
             "tag": "College admission requirements",
             "patterns": [
-                "What are the admission requirements"
+                "  the admission requirements"
             ],
             "responses": [
                 "Admission requirements for the B. Arch program may vary depending on the institution, but typically include a high school diploma or equivalent."
@@ -1053,8 +1029,8 @@
             "tag": "GEN food prices",
             "patterns": [
                 "How much does food cost in the cafeteria",
-                "How much is the food in the cafeteria",
-                "How much is the food in the canteen"
+                "How much  the food in the cafeteria",
+                "How much  the food in the canteen"
             ],
             "responses": [
                 "Food prices vary from 10 to 30 pesos for snacks and 50 to 140 pesos for a meal. It may be best however if you would see the menu for yourself."
@@ -1063,7 +1039,7 @@
         {
             "tag": "GEN shuttle route",
             "patterns": [
-                "what route does the shuttle take"
+                " route does the shuttle take"
             ],
             "responses": [
                 "APC - Lapu-Lapu St./South Super Highway"
@@ -1072,7 +1048,7 @@
         {
             "tag": "GEN shuttle pickup points",
             "patterns": [
-                "Where are the shuttle's pickup points"
+                "  the shuttle's pickup points"
             ],
             "responses": [
                 "Humabon Parking, fronting the APC building and at the corner of Victoria and Lapu-Lapu Street in front of the Barangay Magallanes Hall"
@@ -1082,58 +1058,58 @@
         {
             "tag": "CPE about CPE",
             "patterns": [
-                "what is cpe",
-                "what is bscpe",
-                "what is computer engineering",
+                "  cpe",
+                "  bscpe",
+                "  computer engineering",
                 "tell me more about computer engineering cpe"
             ],
             "responses": [
-                "The Bachelor of Science in Computer Engineering (BSCpE) is a four-year trimestral degree that aims to produce certified computer engineers. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
+                "The Bachelor of Science in Computer Engineering (BSCpE)  a four-year trimestral degree that aims to produce certified computer engineers. It embodies the science and technology of design, development, implementation, maintenance, and integration of softw and hardw components in modern computing systems and computer-controlled equipment."
             ]
         },
         {
             "tag": "CPE specialization",
             "patterns": [
-                "what are the specializations covered in CPE",
-                "what specializations are covered in computer engineering"
+                "  the specializations covered in CPE",
+                " specializations  covered in computer engineering"
             ],
             "responses": [
-                "Specializations covered by this program include the following: Embedded systems technology, System and network administration, Computing algorithm, Software development and design (including mobile application development), Internet-of-Things (IoT), Machine learning, Robotics technology, Robotics Process Automation (RPA)"
+                "Specializations covered by this program include the following: Embedded systems technology, System and network administration, Computing algorithm, Softw development and design (including mobile application development), Internet-of-Things (IoT), Machine learning, Robotics technology, Robotics Process Automation (RPA)"
             ]
         },
 
         {
-            "tag": "ECE what is ECE",
+            "tag": "ECE   ECE",
             "patterns": [
-                "what is electronics engineering",
-                "what is ece",
+                "  electronics engineering",
+                "  ece",
                 "explain ece",
                 "explain electronics engineering"
             ],
             "responses": [
-                "The Bachelor of Science in Electronics Engineering (BS ECE) is a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
+                "The Bachelor of Science in Electronics Engineering (BS ECE)  a four-year trimestral degree program which aims to produce certified electronics engineers who can conceptualize, design, and implement innovative electronic, computer, and communication systems, devices, goods, services, and processes. "
             ]
         },
         {
             "tag": "FUN gossip",
             "patterns": [
                 "do you have someone you like",
-                "are you interested in anyone",
+                " you interested in anyone",
                 "do you have a crush"
 
             ],
             "responses": [
                 "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
-                "Hmm, my lips are sealed tight on that matter!",
-                "Well, there is someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move. It's all in good fun, though!"
+                "Hmm, my lips  sealed tight on that matter!",
+                "Well, there  someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move. It's all in good fun, though!"
             ]
         },
         {
             "tag": "FUN Hobby",
             "patterns": [
                 "do you have any hobbies",
-                "what do you like to do in your free time",
-                "what are your hobbies"
+                " do you like to do in your free time",
+                "  your hobbies"
             ],
             "responses": [
                 "I like watching people pass by",
@@ -1144,7 +1120,7 @@
             "tag": "Lost_ID",
             "patterns": [
                 "I lost my ID",
-                "What to do when I lost my ID",
+                " to do when I lost my ID",
                 "Lost ID procedure",
                 "Lost ID protocol"
             ],
@@ -1155,52 +1131,52 @@
         {
             "tag": "RULES_dress_code",
             "patterns": [
-                "What is the dress code",
+                "  the dress code",
                 "Can you tell me about the dress code",
-                "What should I wear"
+                " should I wear"
             ],
             "responses": [
-                "APC does not have a uniform but students are expected to dress appropriately and decently. Sleeveless shirts, shorts, slippers, and other inappropriate attire are not allowed. APC follows a schedule of smart casual for Mondays to Thursdays and casual wear for Fridays."
+                "APC does not have a uniform but students  expected to dress appropriately and decently. Sleeveless shirts, shorts, slippers, and other inappropriate attire  not allowed. APC follows a schedule of smart casual for Mondays to Thursdays and casual wear for Fridays."
             ]
         },
         {
             "tag": "APC_terms",
             "patterns": [
-                "How many terms are there in a year at APC",
-                "What is the academic calendar of APC",
+                "How many terms  there in a year at APC",
+                "  the academic calendar of APC",
                 "How many semesters does APC have in a year",
                 "Give me the number of terms in APC",
                 "Terms in APC",
                 "APC number of terms"
             ],
             "responses": [
-                "Asia Pacific College operates on a trimestral academic calendar, which means there are three terms in an academic year."
+                "Asia Pacific College operates on a trimestral academic calendar, which means there  three terms in an academic year."
             ]
         },
         {
             "tag": "APC_trimester",
             "patterns": [
-                "Is APC a trimester school",
+                " APC a trimester school",
                 "Does APC operate on a trimester basis",
-                "What is the academic system of APC"
+                "  the academic system of APC"
             ],
             "responses": [
-                "Yes, Asia Pacific College operates on a trimester academic system, which means there are three terms in an academic year."
+                "Yes, Asia Pacific College operates on a trimester academic system, which means there  three terms in an academic year."
             ]
         },
 
         {
             "tag": "APC_eat_places",
             "patterns": [
-                "Where can I eat in APC",
-                "What are the places to eat in APC",
+                " can I eat in APC",
+                "  the places to eat in APC",
                 "Can you suggest some places to eat in APC",
-                "What are the available foods in the cafeteria",
-                "What are the food establishments in Cafeteria"
+                "  the available foods in the cafeteria",
+                "  the food establishments in Cafeteria"
             ],
             "responses": [
-                "There are several places to eat in APC like Kitchen Xpress,The Red Brew ,and La Mudra's Corner located at the cafeteria on the first floor. There are also several food establishments nearby.",
-                "You can eat at the cafeteria located on the first floor where you can enjoy a variety of meals like pasta, rice meals, and snacks. There are also food establishments nearby.",
+                "There  several places to eat in APC like Kitchen Xpress,The Red Brew ,and La Mudra's Corner located at the cafeteria on the first floor. There  also several food establishments nearby.",
+                "You can eat at the cafeteria located on the first floor  you can enjoy a variety of meals like pasta, rice meals, and snacks. There  also food establishments nearby.",
                 "If you like pasta,sandwiches,pastries, and tea you can visit The Red Brew at the cafeteria.",
                 "If you like home cooked meals, you can buy value meals at Kitchen Xpress or La Mudra's Corner.",
                 "If you're craving for fishball, Kikiam, and other street foods, you can buy them at La Mudra's Corner located at the cafeteria."
@@ -1209,70 +1185,70 @@
         {
             "tag": "APC_drink_water_places",
             "patterns": [
-                "Where can I drink water in APC",
-                "What are the places to drink water in APC",
+                " can I drink water in APC",
+                "  the places to drink water in APC",
                 "Can you suggest some places to drink water in APC",
-                "Where are the drinking fountains in APC"
+                "  the drinking fountains in APC"
             ],
             "responses": [
-                "There are several water fountains located throughout each floor in the APC campus. You can also get water from the cafeteria."
+                "There  several water fountains located throughout each floor in the APC campus. You can also get water from the cafeteria."
             ]
         },
         {
             "tag": "APC_restrooms",
             "patterns": [
-                "Where are the restrooms in APC",
-                "What are the locations of the restrooms in APC",
-                "Can you tell me where the restrooms are in APC",
-                "Where can I pee",
-                "Where can I CR",
-                "Where can I poop",
-                "Where are the comfort rooms in APC",
-                "What are the locations of the comfort rooms in APC",
-                "Can you tell me where the comfort rooms are in APC",
-                 "Where are the CR in APC"
+                "  the restrooms in APC",
+                "  the locations of the restrooms in APC",
+                "Can you tell me  the restrooms  in APC",
+                " can I pee",
+                " can I CR",
+                " can I poop",
+                "  the comfort rooms in APC",
+                "  the locations of the comfort rooms in APC",
+                "Can you tell me  the comfort rooms  in APC",
+                 "  the CR in APC"
             ],
             "responses": [
-                "Restrooms are located on every floor of the APC building. You can find them near the staircases and elevators."
+                "Restrooms  located on every floor of the APC building. You can find them near the staircases and elevators."
             ]
         },
         {
             "tag": "APC_parking",
             "patterns": [
-                "Where can I park in APC",
-                "Where is the parking located",
-                "What are the parking areas in APC",
+                " can I park in APC",
+                "  the parking located",
+                "  the parking as in APC",
                 "Can you suggest some parking spots in APC",
-                "Can you suggest the parking areas located in APC",
-                "Where can I park my Car"
+                "Can you suggest the parking as located in APC",
+                " can I park my Car"
             ],
             "responses": [
-                "There are several parking areas in APC. You can park your vehicle in the designated parking areas located in the basement or general parking spaces in Humabon area."
+                "There  several parking as in APC. You can park your vehicle in the designated parking as located in the basement or general parking spaces in Humabon a."
             ]
         },
         {
             "tag": "APC_bicycle_parking",
             "patterns": [
-                "Where can I park my bicycle in APC",
-                "Where can I park my bike",
+                " can I park my bicycle in APC",
+                " can I park my bike",
                 "Bike parking",
                 "Bicycle parking",
-                "What are the bicycle parking areas in APC",
+                "  the bicycle parking as in APC",
                 "Can you suggest some bicycle parking spots in APC"
             ],
             "responses": [
-                "You can park your bicycle in the designated parking areas located in the basement.",
-                "There is a designated parking area for bicycles located in the basement."
+                "You can park your bicycle in the designated parking as located in the basement.",
+                "There  a designated parking a for bicycles located in the basement."
             ]
         },
         {
             "tag":"APC_Tuition_Fee_Payment",
             "patterns": [
-               "Where can I pay for my tuition fee",
+               " can I pay for my tuition fee",
                 "How can I pay for my tuition fee",
-                "What floor can I pay for my tuition fee",
-                "Where do I pay for tuition fee",
-                "Where can I pay my remaining balance",
+                " floor can I pay for my tuition fee",
+                " do I pay for tuition fee",
+                " can I pay my remaining balance",
                 "Remaining balance payment"
 
             ],
@@ -1283,11 +1259,11 @@
         {
             "tag":"APC_Tuition_Fee_Breakdown",
             "patterns": [
-               "Where can I see the breakdown of my tuition fee",
-                "Where can I access tuition fee breakdown",
+               " can I see the breakdown of my tuition fee",
+                " can I access tuition fee breakdown",
                 "Tuition fee breakdown",
                 "Total tuition fee",
-                "What is the breakdown of my tuition fee"
+                "  the breakdown of my tuition fee"
             ],
             "responses": [
                 "Here's the list of all tuition free breakdown."
@@ -1298,27 +1274,27 @@
             "tag":"APC_Online_Tuition_Fee_Payment",
             "patterns": [
                "Can I pay my tuition online",
-                "Where can I pay my tuition fee online",
-                "Is there an online process for tuition fee payment"
+                " can I pay my tuition fee online",
+                " there an online process for tuition fee payment"
             ],
             "responses": [
                 "Yes! you can pay your tuition fee via the Rams Portal.",
-                "Absolutely! Each student has their own Rams Portal account where they can pay their tuition fee online."
+                "Absolutely! Each student has their own Rams Portal account  they can pay their tuition fee online."
             ]
         },
         {
             "tag":"APC_Online_Enrollment",
             "patterns": [
                "Can I enroll online",
-                "Where can I enroll online",
-                "Is there an online process for enrollment",
-                "Is there online enrollment for APC"
+                " can I enroll online",
+                " there an online process for enrollment",
+                " there online enrollment for APC"
             ],
             "responses": [
                 "Yes! You can enroll your preferred program via the APC website.",
                 "Absolutely! New students can enroll via the APC website while current students can access their enrollment portal via Rams Portal.",
                 "Indeed! You can register for your chosen program through the APC website.",
-                "Definitely! The APC website is your gateway to enroll if you're a new student. For existing students, the Rams Portal is your go-to for enrollment procedures.",
+                "Definitely! The APC website  your gateway to enroll if you're a new student. For existing students, the Rams Portal  your go-to for enrollment procedures.",
                 "Sure thing! The APC website allows you to enroll in your desired program. If you're a current student, you can use the Rams Portal for your enrollment needs.",
                 "Absolutely! Enrollment for new students can be done via the APC website, while current students can manage their enrollment through the Rams Portal."
             ]
@@ -1331,15 +1307,15 @@
                 "How can I enroll for shs",
                 "How can I enroll for college",
                 "How can I enroll for gradschool",
-                "What is the enrollment process for shs",
-                "What is the enrollment process for college",
-                "What is the enrollment process for gradschool",
+                "  the enrollment process for shs",
+                "  the enrollment process for college",
+                "  the enrollment process for gradschool",
                 "How to register for shs",
                 "How to register for college",
                 "How to register for gradschool",
-                "What are the steps to enroll for shs",
-                "What are the steps to enroll for college",
-                "What are the steps to enroll for gradschool",
+                "  the steps to enroll for shs",
+                "  the steps to enroll for college",
+                "  the steps to enroll for gradschool",
                 "Can you guide me through the enrollment process for shs",
                 "Can you guide me through the enrollment process for college",
                 "Can you guide me through the enrollment process for gradschool"
@@ -1348,29 +1324,29 @@
                 "For Senior High School (SHS), college, or graduate school, you can enroll via the APC website or through the admissions office.",
                 "Enrollment for SHS, college, or graduate school can be done online through the APC website or directly at the admissions office.",
                 "You can register for SHS, college, or graduate school either online via the APC website or in-person at the admissions office.",
-                "The APC website is your portal for enrolling in SHS, college, or graduate school. Alternatively, you can also visit the admissions office for enrollment procedures."
+                "The APC website  your portal for enrolling in SHS, college, or graduate school. Alternatively, you can also visit the admissions office for enrollment procedures."
             ]
         },
         {
             "tag": "LOC_clinic_hours",
             "patterns": [
-                "What time does the clinic open",
+                " time does the clinic open",
                 "When does the clinic open",
-                "What are the clinic's opening hours",
+                "  the clinic's opening hours",
                 "When can I visit the clinic"
             ],
             "responses": [
                 "The clinic opens at 8:00 AM.",
                 "You can visit the clinic starting from 8:00 AM.",
-                "The clinic is open for service from 8:00 AM."
+                "The clinic  open for service from 8:00 AM."
             ]
         },
         {
             "tag": "LOC_ITRO_hours",
             "patterns": [
-                "What time does the ITRO open",
+                " time does the ITRO open",
                 "When does the ITRO open",
-                "What are the ITRO's opening hours",
+                "  the ITRO's opening hours",
                 "When can I visit the ITRO"
             ],
             "responses": [
@@ -1382,9 +1358,9 @@
         {
             "tag": "LOC_BMO_hours",
             "patterns": [
-                "What time does the BMO/Building Maintenance Office open",
+                " time does the BMO/Building Maintenance Office open",
                 "When does the BMO/Building Maintenance Office open",
-                "What are the BMO/Building Maintenance Office's opening hours",
+                "  the BMO/Building Maintenance Office's opening hours",
                 "When can I visit the BMO/Building Maintenance Office"
             ],
             "responses": [
@@ -1396,9 +1372,9 @@
         {
             "tag": "LOC_logistics_hours",
             "patterns": [
-                "What time does the logistics office open",
+                " time does the logistics office open",
                 "When does the logistics office open",
-                "What are the logistics office's opening hours",
+                "  the logistics office's opening hours",
                 "When can I visit the logistics office"
             ],
             "responses": [
@@ -1410,9 +1386,9 @@
         {
             "tag": "LOC_discipline_hours",
             "patterns": [
-                "What time does the discipline office open",
+                " time does the discipline office open",
                 "When does the discipline office open",
-                "What are the discipline office's opening hours",
+                "  the discipline office's opening hours",
                 "When can I visit the discipline office"
             ],
             "responses": [
@@ -1424,13 +1400,13 @@
         {
             "tag": "APC_tuition_fee",
             "patterns": [
-                "How much is the tuition fee in APC",
-                "What is the cost of tuition in APC",
+                "How much  the tuition fee in APC",
+                "  the cost of tuition in APC",
                 "Can you tell me the tuition fee in APC",
                 "I want to know the tuition fee in APC."
             ],
             "responses": [
-                "The tuition fee in APC varies depending on the course and the number of units you are taking. It's best to contact the admissions office for the most accurate information.",
+                "The tuition fee in APC varies depending on the course and the number of units you  taking. It's best to contact the admissions office for the most accurate information.",
                 "For detailed information about the tuition fee, please contact the APC admissions office.",
                 "The tuition fee in APC depends on several factors such as the course, the year level, and the number of units. Please get in touch with the admissions office for specific details.",
                 "I'm sorry, but I can't provide the exact amount for the tuition fee in APC. Please contact the admissions office for this information."
@@ -1439,14 +1415,14 @@
         {
             "tag": "APC_scholarship_general",
             "patterns": [
-                "Are there any scholarships in APC",
+                " there any scholarships in APC",
                 "Do you offer any scholarship grants in APC",
                 "Scholarships in APC",
                 "Scholarships",
                 "Give me information about scholarships"
             ],
             "responses": [
-                "Scholarships are available in APC for both College and Senior High School students. Which level are you interested in",
+                "Scholarships  available in APC for both College and Senior High School students. Which level  you interested in",
                 "In APC, we provide scholarships for College and Senior High School students. Which one do you want to know more about",
                 "APC has scholarship programs for both College and Senior High School students. Which one do you want details for",
                 "Both College and Senior High School students can avail scholarships in APC. Which one would you like to get information on"
@@ -1457,15 +1433,15 @@
         {
             "tag": "APC_college_scholarships",
             "patterns": [
-                "What are the college scholarship programs in APC",
+                "  the college scholarship programs in APC",
                 "Tell me about the college scholarships in APC.",
-                "What scholarships are available for college students in APC",
+                " scholarships  available for college students in APC",
                 "I want to know about the college scholarship programs in APC.",
                 "College scholarships"
             ],
             "responses": [
                 "APC offers several scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship,Armed Forces Scholarships, and the IBM Scholarship Program. Which program would you like to hear about.",
-                "There are several scholarships available for college students in APC. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarships, and the IBM Scholarship Program. Which program are you interested in",
+                "There  several scholarships available for college students in APC. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarships, and the IBM Scholarship Program. Which program  you interested in",
                 "APC provides a variety of scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarship, and the IBM Scholarship Program. Which one do you prefer."
             ],
             "navigate_to": "image_info",
@@ -1474,18 +1450,18 @@
         {
             "tag": "APC_SHS_scholarships",
             "patterns": [
-                "What are the SHS scholarship programs in APC",
-                "What are the Senior High School scholarship programs in APC",
+                "  the SHS scholarship programs in APC",
+                "  the Senior High School scholarship programs in APC",
                 "Tell me about the SHS scholarships in APC.",
                 "Tell me about the Senior high school scholarships in APC.",
-                "What scholarships are available for SHS students in APC",
-                "What scholarships are available for Senior high school students in APC",
+                " scholarships  available for SHS students in APC",
+                " scholarships  available for Senior high school students in APC",
                 "I want to know about the SHS scholarship programs in APC.",
                 "I want to know about the Senior high school scholarship programs in APC."
             ],
             "responses": [
                 "APC offers several scholarship programs for Senior High School students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program would you like to hear about",
-                "There are several scholarships available for SHS students in APC. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program are you interested in",
+                "There  several scholarships available for SHS students in APC. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program  you interested in",
                 "APC provides a variety of scholarship programs for SHS students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, Philippine National Police (PNP), and the Armed Forces of the Philippines (AFP) scholarships. Which one do you prefer"
             ],
             "navigate_to": "image_info",
@@ -1494,15 +1470,15 @@
         {
             "tag": "APC_financial_assistance",
             "patterns": [
-                "What are the financial assistance programs in APC",
+                "  the financial assistance programs in APC",
                 "Tell me about the financial assistance in APC.",
-                "What financial assistance are available for students in APC",
+                " financial assistance  available for students in APC",
                 "I want to know about the financial assistance programs in APC."
             ],
             "responses": [
-                "APC offers several financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Which program are you interested in",
-                "There are several financial assistance available for both College and Senior High School students in APC. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Can you specify which program you want to know more about",
-                "APC provides a variety of financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Please tell me which program you are interested in for more information."
+                "APC offers several financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Which program  you interested in",
+                "There  several financial assistance available for both College and Senior High School students in APC. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Can you specify which program you want to know more about",
+                "APC provides a variety of financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Please tell me which program you  interested in for more information."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1511,12 +1487,12 @@
             "tag": "APC_SM_Scholarship",
             "patterns": [
                 "Tell me about the SM Foundation Scholarship",
-                "What is the SM Foundation Scholarship",
+                "  the SM Foundation Scholarship",
                 "Can you give me information about the SM Foundation Scholarship",
                 "I want to know about the SM Foundation Scholarship"
             ],
             "responses": [
-                "The SM Foundation Scholarship is a great opportunity for incoming freshmen at Asia Pacific College, especially those with strong academic records and facing financial limitations. It offers full tuition coverage, a monthly stipend, and even helps scholars find part-time jobs."
+                "The SM Foundation Scholarship  a great opportunity for incoming freshmen at Asia Pacific College, especially those with strong academic records and facing financial limitations. It offers full tuition coverage, a monthly stipend, and even helps scholars find part-time jobs."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1525,12 +1501,12 @@
             "tag": "APC_SM_Group_Scholarship",
             "patterns": [
                 "Tell me about the SM Group of Companies Scholarship",
-                "What is the SM Group of Companies Scholarship",
+                "  the SM Group of Companies Scholarship",
                 "Can you give me information about the SM Group of Companies Scholarship",
                 "I want to know about the SM Group of Companies Scholarship"
             ],
             "responses": [
-                "The SM Group of Companies Scholarship is a scholarship program offered to children and siblings of SM employees. It provides 20% subsidy for those who are qualified."
+                "The SM Group of Companies Scholarship  a scholarship program offered to children and siblings of SM employees. It provides 20% subsidy for those who  qualified."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1539,12 +1515,12 @@
             "tag": "APC_AFP_Scholarship",
             "patterns": [
                 "Tell me about the Armed Forces of the Philippines (AFP) Scholarship",
-                "What is the Armed Forces of the Philippines (AFP) Scholarship",
+                "  the Armed Forces of the Philippines (AFP) Scholarship",
                 "Can you give me information about the Armed Forces of the Philippines (AFP) Scholarship",
                 "I want to know about the Armed Forces of the Philippines (AFP) Scholarship"
             ],
             "responses": [
-                "The Armed Forces of the Philippines (AFP) Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 60% or 100% subsidy to students who are dependents of AFP personnel."
+                "The Armed Forces of the Philippines (AFP) Scholarship  a scholarship program offered to students of Asia Pacific College. It provides 60% or 100% subsidy to students who  dependents of AFP personnel."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1553,11 +1529,11 @@
             "tag": "APC_AFP_Officers_Ladies_Club_Scholarship",
             "patterns": [
                 "Officers Ladies Club",
-                "What is A F P Officers Ladies Club Scholarship",
+                "  A F P Officers Ladies Club Scholarship",
                 "Ladies Club"
             ],
             "responses": [
-                "The A F P Officers Ladies Club Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 30% subsidy to students who are dependents of AFP personnel."
+                "The A F P Officers Ladies Club Scholarship  a scholarship program offered to students of Asia Pacific College. It provides 30% subsidy to students who  dependents of AFP personnel."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1566,14 +1542,14 @@
             "tag": "APC_Entrance_Academic_Scholar",
             "patterns": [
                 "Tell me about the Entrance Academic Scholar",
-                "What is the Entrance Academic Scholar",
+                "  the Entrance Academic Scholar",
                 "Can you give me information about the Entrance Academic Scholar",
                 "I want to know about the Entrance Academic Scholar",
                 "Entrance Academic Scholarship",
                 "Entrance Academic"
             ],
             "responses": [
-                "The Entrance Academic Scholar is a scholarship program offered to Senior High School and college students of Asia Pacific College. It provides subsidy to students who excel academically and demonstrate leadership potential."
+                "The Entrance Academic Scholar  a scholarship program offered to Senior High School and college students of Asia Pacific College. It provides subsidy to students who excel academically and demonstrate leadership potential."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1583,12 +1559,12 @@
             "tag": "APC_PNP_Scholarship",
             "patterns": [
                 "Tell me about the PNP Scholarship",
-                "What is the PNP Scholarship",
+                "  the PNP Scholarship",
                 "Can you give me information about the PNP Scholarship",
                 "I want to know about the PNP Scholarship"
             ],
             "responses": [
-                "The PNP Scholarship is a program where all children of active uniformed Philippine National Police personnel will have a 60% subsidy."
+                "The PNP Scholarship  a program  all children of active uniformed Philippine National Police personnel will have a 60% subsidy."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1597,12 +1573,12 @@
             "tag": "APC_IBM_Scholarship",
             "patterns": [
                 "Tell me about the IBM Scholarship",
-                "What is the IBM Scholarship",
+                "  the IBM Scholarship",
                 "Can you give me information about the IBM Scholarship",
                 "I want to know about the IBM Scholarship"
             ],
             "responses": [
-                "The IBM Scholarship is a program that offers a 40% subsidy for the top 5 high school graduates endorsed by IBM and a 20% subsidy for regular employees of IBM."
+                "The IBM Scholarship  a program that offers a 40% subsidy for the top 5 high school graduates endorsed by IBM and a 20% subsidy for regular employees of IBM."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1611,12 +1587,12 @@
             "tag": "APC_Public_School_Grad_Financial_Assistance",
             "patterns": [
                 "Tell me about the Public School Graduates Financial Assistance",
-                "What is the Public School Graduates Financial Assistance",
+                "  the Public School Graduates Financial Assistance",
                 "Can you give me information about the Public School Graduates Financial Assistance",
                 "I want to know about the Public School Graduates Financial Assistance"
             ],
             "responses": [
-                "The Public School Graduates Financial Assistance is a program that offers a 50% subsidy for High school graduates of any public school."
+                "The Public School Graduates Financial Assistance  a program that offers a 50% subsidy for High school graduates of any public school."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1625,12 +1601,12 @@
             "tag": "APC_MaPSA_Financial_Assistance",
             "patterns": [
                 "Tell me about the MaPSA Financial Assistance",
-                "What is the MaPSA Financial Assistance",
+                "  the MaPSA Financial Assistance",
                 "Can you give me information about the MaPSA Financial Assistance",
                 "I want to know about the MaPSA Financial Assistance"
             ],
             "responses": [
-                "The MaPSA or Parish School Graduate Financial Assistance is a program that offers a 35% subsidy for High school graduates (who has not attended any college/university) of any parish school."
+                "The MaPSA or Parish School Graduate Financial Assistance  a program that offers a 35% subsidy for High school graduates (who has not attended any college/university) of any parish school."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1639,12 +1615,12 @@
             "tag": "APC_Socialized_Financial_Assistance",
             "patterns": [
                 "Tell me about the Socialized Financial Assistance",
-                "What is the Socialized Financial Assistance",
+                "  the Socialized Financial Assistance",
                 "Can you give me information about the Socialized Financial Assistance",
                 "I want to know about the Socialized Financial Assistance"
             ],
             "responses": [
-                "The Socialized Financial Assistance is a program that offers a 35% subsidy for students whose family aggregate annual income is less than P400,000 and a 20% subsidy for students whose family aggregate annual income is between P400,000 and P800,000."
+                "The Socialized Financial Assistance  a program that offers a 35% subsidy for students whose family aggregate annual income  less than P400,000 and a 20% subsidy for students whose family aggregate annual income  between P400,000 and P800,000."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1653,12 +1629,12 @@
             "tag": "APC_Socialized_Financial_Assistance_Siblings",
             "patterns": [
                 "Tell me about the Socialized Financial Assistance for siblings",
-                "What is the Socialized Financial Assistance for siblings",
+                "  the Socialized Financial Assistance for siblings",
                 "Can you give me information about the Socialized Financial Assistance for siblings",
                 "I want to know about the Socialized Financial Assistance for siblings"
             ],
             "responses": [
-                "The Socialized Financial Assistance is a program that offers a 20% subsidy for siblings of currently enrolled APC students."
+                "The Socialized Financial Assistance  a program that offers a 20% subsidy for siblings of currently enrolled APC students."
             ]
         },
         {
@@ -1677,11 +1653,11 @@
         {
             "tag": "Program_Duration",
             "patterns": [
-                "How long are the programs offered in APC",
-                "What is the duration of the bachelors program",
-                "How many years is the bachelors program",
+                "How long  the programs offered in APC",
+                "  the duration of the bachelors program",
+                "How many years  the bachelors program",
                 "How many years does the program take",
-                "How many years is the course",
+                "How many years  the course",
                 "How many years does the course take"
             ],
             "responses": [
@@ -1691,21 +1667,21 @@
         {
             "tag": "APC_Office_Availability_Weekends",
             "patterns": [
-                "Are all offices open during weekends",
-                "What are the office hours during weekends",
+                " all offices open during weekends",
+                "  the office hours during weekends",
                 "Can you tell me the office hours of all offices during weekends",
                 "I want to know the office hours of all offices during weekends."
             ],
             "responses": [
-                "All offices in APC are typically open from 8:00 AM to 5:00 PM during weekends. However, it's best to contact the specific office for any special arrangements."
+                "All offices in APC  typically open from 8:00 AM to 5:00 PM during weekends. However, it's best to contact the specific office for any special arrangements."
             ]
         },
        {
             "tag": "Junior Information Systems Security Association(JISSA)",
             "patterns": [
-                "What is APC-JISSA",
-                "What is Junior Information Systems Security Association",
-                "What is JISSA"
+                "  APC-JISSA",
+                "  Junior Information Systems Security Association",
+                "  JISSA"
             ],
             "responses": [
                "the Junior Information Systems Security Association ) promotes the education and helps expand the knowledge and skills of its members in the interrelated fields of information systems security, and information or data processing. The organization aspires to be acknowledged as a bridge for students in developing excellence and professionalism in business, industry, and community."
@@ -1716,12 +1692,12 @@
         {
             "tag": "Junior Philippine Computer Society (J P C S)",
             "patterns": [
-                "What is A P C - J P C S",
-                "What is Junior Philippine Computer Society",
-                "What is J P C S"
+                "  A P C - J P C S",
+                "  Junior Philippine Computer Society",
+                "  J P C S"
             ],
             "responses": [
-               "The APC Junior Philippine Computer Society (APC-J P C S) aims to prepare its members for their future in the corporate world as an ICT professional by providing complementary experiences aside from what they learn in school. It provides an opportunity to share experiences and work with other students from different schools, in the pursuit of IT excellence through common projects."
+               "The APC Junior Philippine Computer Society (APC-J P C S) aims to prep its members for their future in the corporate world as an ICT professional by providing complementary experiences aside from  they learn in school. It provides an opportunity to sh experiences and work with other students from different schools, in the pursuit of IT excellence through common projects."
             ],
             "navigate_to": "image_info",
             "source_image": "SOCIT_Organizations"
@@ -1729,12 +1705,12 @@
         {
             "tag": "MSC",
             "patterns": [
-                "What is A P C - M S C",
-                "What is Microsoft Community",
-                "What is M S C"
+                "  A P C - M S C",
+                "  Microsoft Community",
+                "  M S C"
             ],
             "responses": [
-               "The Asia Pacific College - Microsoft Community (A P C - M S C) is an organization that aspires to acquaint students with the latest in technology and software development through various Microsoft events, tools, and technologies. Having Microsoft Student Partners (MSPs) in its executive board, the organization is able to obtain promotional paraphernalia and hold both official and Microsoft endorsed events in the school."
+               "The Asia Pacific College - Microsoft Community (A P C - M S C)  an organization that aspires to acquaint students with the latest in technology and softw development through various Microsoft events, tools, and technologies. Having Microsoft Student Partners (MSPs) in its executive board, the organization  able to obtain promotional paraphernalia and hold both official and Microsoft endorsed events in the school."
             ],
             "navigate_to": "image_info",
             "source_image": "SOCIT_Organizations"
@@ -1742,12 +1718,12 @@
         {
             "tag": "Gaming Genesis ( G G )",
             "patterns": [
-                "What is A P C - G G",
-                "What is Gaming Genesis",
-                "What is G G"
+                "  A P C - G G",
+                "  Gaming Genesis",
+                "  G G"
             ],
             "responses": [
-               "Gaming Genesis ( G G ) is an organization built to support game design and multimedia art students in their projects involving games. It promotes the creativity and talent of students in the field of gaming and game design, with the goal to contribute in the new gaming industry and bring joy to the APC community through gaming."
+               "Gaming Genesis ( G G )  an organization built to support game design and multimedia art students in their projects involving games. It promotes the creativity and talent of students in the field of gaming and game design, with the goal to contribute in the new gaming industry and bring joy to the APC community through gaming."
             ],
             "navigate_to": "image_info",
             "source_image": "SOCIT_Organizations"
@@ -1755,12 +1731,12 @@
         {
             "tag": "Society of Electronics Engineering Students ( S E E S)",
             "patterns": [
-                "What is A P C - S E E S",
-                "What is Society of Electronics Engineering Students",
-                "What is S E E S"
+                "  A P C - S E E S",
+                "  Society of Electronics Engineering Students",
+                "  S E E S"
             ],
             "responses": [
-               "Formed to promote a strong foundation of brotherhood and sisterhood by helping each other overcome their weaknesses especially when it comes to academics, the Society of Electronics Engineering Students’ (SEES) mission is to showcase professional, technical development and a paradigm of excellence in applying the principles of electronics technology for the advancement of humanity."
+               "Formed to promote a strong foundation of brotherhood and sisterhood by helping each other overcome their weaknesses especially when it comes to academics, the Society of Electronics Engineering Students’ (SEES) mission  to showcase professional, technical development and a paradigm of excellence in applying the principles of electronics technology for the advancement of humanity."
             ],
             "navigate_to": "image_info",
             "source_image": "SOE_Organizations"
@@ -1768,12 +1744,12 @@
         {
             "tag": "Association of Computer Engineering Students ( A C E S)",
             "patterns": [
-                "What is A P C - A C E S",
-                "What is Association of Computer Engineering Students",
-                "What is A C E S"
+                "  A P C - A C E S",
+                "  Association of Computer Engineering Students",
+                "  A C E S"
             ],
             "responses": [
-               "The A P C Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awareness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
+               "The A P C Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
             ],
             "navigate_to": "image_info",
             "source_image": "SOE_Organizations"
@@ -1781,12 +1757,12 @@
         {
             "tag": "Robotics Organization (RobOrg)",
             "patterns": [
-                "What is A P C - RobOrg",
-                "What is Robotics Organization",
-                "What is RobOrg"
+                "  A P C - RobOrg",
+                "  Robotics Organization",
+                "  RobOrg"
             ],
             "responses": [
-               "The APC Robotics Organization (APC-ROB ORG) envisions itself to establish a group of robotics enthusiasts who are committed to become involved with the innovative life of robotics. Using robotics as a medium, it inspires the students to take their involvement with basic Engineering and to develop technical experience by leading others."
+               "The APC Robotics Organization (APC-ROB ORG) envisions itself to establish a group of robotics enthusiasts who  committed to become involved with the innovative life of robotics. Using robotics as a medium, it inspires the students to take their involvement with basic Engineering and to develop technical experience by leading others."
             ],
             "navigate_to": "image_info",
             "source_image": "SOE_Organizations"
@@ -1794,12 +1770,12 @@
         {
             "tag": "Founding Organization of Civil Engineering Students (FOrCES)",
             "patterns": [
-                "What is A P C - FOrCES",
-                "What is Founding Organization of Civil Engineering Students",
-                "What is FOrCES"
+                "  A P C - FOrCES",
+                "  Founding Organization of Civil Engineering Students",
+                "  FOrCES"
             ],
             "responses": [
-               "The Founding Organization for Civil Engineering Students ( FOrCES ) is an academic organization of Asia Pacific College for Civil Engineering Students. One of the organization’s purpose is for its members to develop their skills and relationship as aspiring civil engineers. this organization was founded primarily to serve as a platform for the expression of our ideals and aspirations and to foster an environment that is highly conducive to moral, social, and intellectual development, do hereby ordain and promulgate this constitution and by-laws."
+               "The Founding Organization for Civil Engineering Students ( FOrCES )  an academic organization of Asia Pacific College for Civil Engineering Students. One of the organization’s purpose  for its members to develop their skills and relationship as aspiring civil engineers. this organization was founded primarily to serve as a platform for the expression of our ideals and aspirations and to foster an environment that  highly conducive to moral, social, and intellectual development, do hereby ordain and promulgate this constitution and by-laws."
             ],
             "navigate_to": "image_info",
             "source_image": "SOE_Organizations"
@@ -1807,9 +1783,9 @@
         {
             "tag": "Junior Marketing Association (AP J M A)",
             "patterns": [
-                "What is A P C - A P JMA",
-                "What is Junior Marketing Association",
-                "What is A P JMA"
+                "  A P C - A P JMA",
+                "  Junior Marketing Association",
+                "  A P JMA"
             ],
             "responses": [
                "APC Junior Marketing Association (APJMA) participates in activities that will help the members develop their skills and further expand their knowledge in marketing. It organizes events and activities that support the students to be productive and cultivate their talents for the common good at the same time."
@@ -1820,12 +1796,12 @@
         {
             "tag": "Junior Philippine Institute of Accountants (JPIA)",
             "patterns": [
-                "What is A P C - JPIA",
-                "What is Junior Philippine Institute of Accountants",
-                "What is JPIA"
+                "  A P C - JPIA",
+                "  Junior Philippine Institute of Accountants",
+                "  JPIA"
             ],
             "responses": [
-              "A unified accountancy student organization, with a mission of pursuing academic excellence in the field of accountancy and with the objective of refining raw talent and potential, the APC Junior Philippine Institute of Accountants (JPIA) is composed of young accountants that execute activities to promote camaraderie among its members.."
+              "A unified accountancy student organization, with a mission of pursuing academic excellence in the field of accountancy and with the objective of refining raw talent and potential, the APC Junior Philippine Institute of Accountants (JPIA)  composed of young accountants that execute activities to promote camaraderie among its members.."
             ],
             "navigate_to": "image_info",
             "source_image": "SOM_Organizations"
@@ -1833,15 +1809,15 @@
         {
             "tag": "Business Management Group-Junior People Management Association of the Philippine",
             "patterns": [
-                "What is A P C - B MAG",
-                "What is Business Management Group",
-                "What is Junior People Management Association of the Philippine",
-                "What is B MAG",
-                "What is J P MAP",
-                "What is A P C - J P MAP"
+                "  A P C - B MAG",
+                "  Business Management Group",
+                "  Junior People Management Association of the Philippine",
+                "  B MAG",
+                "  J P MAP",
+                "  A P C - J P MAP"
             ],
             "responses": [
-              "The Business Management Group-Junior People Management Association of the Philippine APC’s purpose is to provide opportunities for students to work together and mold their leadership skills dedicated to serving the school, the industry,and society."
+              "The Business Management Group-Junior People Management Association of the Philippine APC’s purpose  to provide opportunities for students to work together and mold their leadership skills dedicated to serving the school, the industry,and society."
             ],
             "navigate_to": "image_info",
             "source_image": "SOM_Organizations"
@@ -1849,12 +1825,12 @@
         {
             "tag": "Tourism Management Society (TM SOC)",
             "patterns": [
-                "What is A P C - TM SOC",
-                "What is Tourism Management Society",
-                "What is TM SOC"
+                "  A P C - TM SOC",
+                "  Tourism Management Society",
+                "  TM SOC"
             ],
             "responses": [
-              "The Tourism Management Society (TM SOC) aspires to administer activitiesthat will help create awareness on the role and importance of tourism. It develops events for the APC community to know more about tourism and appreciate in turn what it can offer. The organization also aims to inculcate in the minds of its members the value of environmental conservation and the concept of sustainable development for the long-term benefit of the Philippine tourism industry"
+              "The Tourism Management Society (TM SOC) aspires to administer activitiesthat will help create awness on the role and importance of tourism. It develops events for the APC community to know more about tourism and appreciate in turn  it can offer. The organization also aims to inculcate in the minds of its members the value of environmental conservation and the concept of sustainable development for the long-term benefit of the Philippine tourism industry"
             ],
             "navigate_to": "image_info",
             "source_image": "SOM_Organizations"
@@ -1862,12 +1838,12 @@
         {
             "tag": "Junior Financial Executives (JFINEX)",
             "patterns": [
-                "What is A P C - J FINEX",
-                "What is Junior Financial Executives",
-                "What is J FINEX"
+                "  A P C - J FINEX",
+                "  Junior Financial Executives",
+                "  J FINEX"
             ],
             "responses": [
-              "The APC Junior Financial Executives purpose is to unite the Financial Managementstudents of Asia Pacific College and expose them to the financial sectors and nationwide financial activities. APCFO also \nwelcomes all students majoring in business to be introduced to the realm of finance and enhance their knowledge in finance, from the basics to advanced."
+              "The APC Junior Financial Executives purpose  to unite the Financial Managementstudents of Asia Pacific College and expose them to the financial sectors and nationwide financial activities. APCFO also \nwelcomes all students majoring in business to be introduced to the realm of finance and enhance their knowledge in finance, from the basics to advanced."
             ],
             "navigate_to": "image_info",
             "source_image": "SOM_Organizations"
@@ -1875,12 +1851,12 @@
         {
             "tag": "Psychological Society (PSYCH SOC)",
             "patterns": [
-                "What is A P C - PSYCH SOC",
-                "What is Psychological Society",
-                "What is PSYCH SOC"
+                "  A P C - PSYCH SOC",
+                "  Psychological Society",
+                "  PSYCH SOC"
             ],
             "responses": [
-              "The APC Psychological Society (PSYCH SOC) aims to promote general mental health awareness among the members of the APC community and minimize the stigma surrounding mental illnesses to create a better understanding of mental health."
+              "The APC Psychological Society (PSYCH SOC) aims to promote general mental health awness among the members of the APC community and minimize the stigma surrounding mental illnesses to create a better understanding of mental health."
             ],
             "navigate_to": "image_info",
             "source_image": "SOMA_Organizations"
@@ -1888,14 +1864,14 @@
         {
             "tag": "Bahay Bombilya",
             "patterns": [
-                "What is A P C - Bahay Bomba",
-                "What is Bahay Bombilya",
-                "What is Bahay bomba",
+                "  A P C - Bahay Bomba",
+                "  Bahay Bombilya",
+                "  Bahay bomba",
                 "Bahay Bombilya",
                 "Bahay Bomba"
             ],
             "responses": [
-               "Through the years, Bahay Bombilya’s mission is to provide support for the members of the organization by equipping them with more knowledge, skills, and experience in multimedia arts that can be used for future jobs. This is done by conducting events, publications and coverages that highlight the excellence of Multimedia Arts and its students."
+               "Through the years, Bahay Bombilya’s mission  to provide support for the members of the organization by equipping them with more knowledge, skills, and experience in multimedia arts that can be used for future jobs. This  done by conducting events, publications and coverages that highlight the excellence of Multimedia Arts and its students."
             ],
             "navigate_to": "image_info",
             "source_image": "SOMA_Organizations"
@@ -1903,12 +1879,12 @@
         {
             "tag": "CINEMASOMA",
             "patterns": [
-                "What is A P C - CINEMASOMA",
-                "What is CINEMASOMA",
+                "  A P C - CINEMASOMA",
+                "  CINEMASOMA",
                 "CINEMASOMA"
             ],
             "responses": [
-               "CINEMASOMA is a student interest organization open to all students of Asia pacific College, Rams. The objectives of the organization are to equip members with methods and skills that have something to do with film production."
+               "CINEMASOMA  a student interest organization open to all students of Asia pacific College, Rams. The objectives of the organization  to equip members with methods and skills that have something to do with film production."
             ],
             "navigate_to": "image_info",
             "source_image": "SOMA_Organizations"
@@ -1916,12 +1892,12 @@
         {
             "tag": "APC BAND",
             "patterns": [
-                "What is A P C - BAND",
+                "  A P C - BAND",
                 "Does A P C have a band",
                 "APC BAND"
             ],
             "responses": [
-               "APC Band envisions itself to be the premier music maker of Asia Pacific College. By setting a stage for students who want to have a career in music or simply share their opinions through the craft, the organization foresees itself in encouraging the students to express themselves through the art of sound."
+               "APC Band envisions itself to be the premier music maker of Asia Pacific College. By setting a stage for students who want to have a cer in music or simply sh their opinions through the craft, the organization foresees itself in encouraging the students to express themselves through the art of sound."
             ],
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
@@ -1929,7 +1905,7 @@
         {
             "tag": "APC Chorale",
             "patterns": [
-                "What is A P C - Chorale",
+                "  A P C - Chorale",
                 "Does A P C have a Choir",
                 "Does A P C have a Chorale",
                 "APC Chorale"
@@ -1943,13 +1919,13 @@
         {
             "tag": "APC Dance Company",
             "patterns": [
-                "What is A P C - Dance Company",
+                "  A P C - Dance Company",
                 "A P C - D C",
                 "Does A P C have a dance group",
                 "A P C - Dance Company"
             ],
             "responses": [
-                "The APC Dance Company (APC-DC) seeks for members with exceptional talent in dancing and who are very much willing to pursue and develop what they already have. Driven by passion, the organization aims to develop professional and well-rounded students that excels academically, administratively, and artistically"
+                "The APC Dance Company (APC-DC) seeks for members with exceptional talent in dancing and who  very much willing to pursue and develop  they already have. Driven by passion, the organization aims to develop professional and well-rounded students that excels academically, administratively, and artistically"
             ],
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
@@ -1957,7 +1933,7 @@
         {
             "tag": "APC Strings",
             "patterns": [
-                "What is A P C - Strings",
+                "  A P C - Strings",
                 "A P C - Strings",
                 "Strings"
             ],
@@ -1970,12 +1946,12 @@
         {
             "tag": "Teatré Phileo",
             "patterns": [
-                "What is A P C - Teatré Phileo",
+                "  A P C - Teatré Phileo",
                 "A P C - Teatré Phileo",
                 "Teatré Phileo"
             ],
             "responses": [
-              "Teatré Phileo is driven by the passion to promote teamwork, develop leadership, and produce value-oriented and socially relevant plays and productions that showcase the organization’s team players’ unique talents in performing arts. It aims to produce plays that do not only entertain, but also promote the relevance of theatre in today's society."
+              "Teatré Phileo  driven by the passion to promote teamwork, develop leadership, and produce value-oriented and socially relevant plays and productions that showcase the organization’s team players’ unique talents in performing arts. It aims to produce plays that do not only entertain, but also promote the relevance of theatre in today's society."
             ],
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
@@ -1983,14 +1959,14 @@
         {
             "tag": "Rotaract Club",
             "patterns": [
-                "What is A P C - Rotaract Club",
+                "  A P C - Rotaract Club",
                 "A P C - Rotaract Club",
                 "Rotaract Club",
                 "Rotaract",
-                "What is Rotaract"
+                "  Rotaract"
             ],
             "responses": [
-              "The Rotaract Club of Asia Pacific College, a socio-civic organization sponsored by the Rotary Club of Makati Paseo De Roxas, brings together committed individuals ranging from 18-30 to take action in their community, develop their leadership and professional skills, and have fun through service. The organization is a movement that raise leaders \nthat will work together to become a network of help to the world."
+              "The Rotaract Club of Asia Pacific College, a socio-civic organization sponsored by the Rotary Club of Makati Paseo De Roxas, brings together committed individuals ranging from 18-30 to take action in their community, develop their leadership and professional skills, and have fun through service. The organization  a movement that raise leaders \nthat will work together to become a network of help to the world."
             ],
             "navigate_to": "image_info",
             "source_image": "Socio_Civic_Organizations"
@@ -1998,12 +1974,12 @@
         {
             "tag": "SOAR",
             "patterns": [
-                "What is A P C - SOAR",
+                "  A P C - SOAR",
                 "Student Organization Association of Regents",
                 "SOAR"
             ],
             "responses": [
-              "The Student Organization Association of Regents (SOAR) is a student organization which aims to cultivate future leaders and embed the attributes of an APCian Graduate in every individual. SOAR Officers are the ones in-charge of the termly Student Forum, the annual Student Recognition,Organization Fair, and the much-anticipated APC Fest."
+              "The Student Organization Association of Regents (SOAR)  a student organization which aims to cultivate future leaders and embed the attributes of an APCian Graduate in every individual. SOAR Officers  the ones in-charge of the termly Student Forum, the annual Student Recognition,Organization Fair, and the much-anticipated APC Fest."
             ],
             "navigate_to": "image_info",
             "source_image": "Socio_Civic_Organizations"
@@ -2011,7 +1987,7 @@
         {
             "tag": "Pwersa",
             "patterns": [
-                "What is A P C - Pwersa Mixed Martial Arts",
+                "  A P C - Pwersa Mixed Martial Arts",
                 "Pwersa",
                 "Pwersa Mixed Martial Arts"
             ],
@@ -2024,14 +2000,14 @@
         {
             "tag": "Speaks",
             "patterns": [
-                "What is A P C - Speaks",
+                "  A P C - Speaks",
                 "Speaks",
                 "Does you have a debate club",
                 "Debate Club",
                 "debate"
             ],
             "responses": [
-                "As APC’s official debate and public speaking organization, APC Speaks’ objective is to empower the members to express themselves freely and confidently without fear of judgement."
+                "As APC’s official debate and public speaking organization, APC Speaks’ objective  to empower the members to express themselves freely and confidently without fear of judgement."
             ],
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
@@ -2039,14 +2015,14 @@
         {
             "tag": "Hiraya",
             "patterns": [
-                "What is A P C - Speaks",
+                "  A P C - Speaks",
                 "Speaks",
                 "Does you have a debate club",
                 "Debate Club",
                 "debate"
             ],
             "responses": [
-               "APC HiRAYA is an academic organization open for all students of Asia Pacific College who has interest in humanities and social sciences."
+               "APC HiRAYA  an academic organization open for all students of Asia Pacific College who has interest in humanities and social sciences."
             ],
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
@@ -2054,7 +2030,7 @@
         {
             "tag": "Jesus Impact",
             "patterns": [
-                "What is A P C - Jesus Impact",
+                "  A P C - Jesus Impact",
                 "Jesus Impact"
             ],
             "responses": [
@@ -2066,12 +2042,12 @@
         {
             "tag": "Flickers Photo Society",
             "patterns": [
-                "What is A P C - Flickers",
+                "  A P C - Flickers",
                 "Flickers Photo Society",
                 "Flickers"
             ],
             "responses": [
-               "Flickers Photo Society’s mission is to provide an outlet for the heightening of photography skills in different fields like landscape, events, people, and nature. "
+               "Flickers Photo Society’s mission  to provide an outlet for the heightening of photography skills in different fields like landscape, events, people, and nature. "
             ],
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
@@ -2079,11 +2055,11 @@
         {
             "tag": "Fitness Squad",
             "patterns": [
-                "What is A P C - Fitness Squad",
+                "  A P C - Fitness Squad",
                 "Fitness Squad"
             ],
             "responses": [
-               "Fitness Squad. The purpose of this organization is to recreate APC's fitness culture in both the workplace and in the classroom."
+               "Fitness Squad. The purpose of this organization  to recreate APC's fitness culture in both the workplace and in the classroom."
             ],
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
@@ -2091,7 +2067,7 @@
         {
             "tag": "Rams Flag Football",
             "patterns": [
-                "What is A P C - Rams Flag Football",
+                "  A P C - Rams Flag Football",
                 "Fotball",
                 "Flag Football",
                 "Football Club"
@@ -2105,11 +2081,11 @@
         {
             "tag": "Ram shakers",
             "patterns": [
-                "What is A P C - Ram shakers",
+                "  A P C - Ram shakers",
                 "Ram Shakers"
             ],
             "responses": [
-               "Ramshakers is a Christian organization of Asia Pacific College, that focuses on discipleship and growing the body of Christ."
+               "Ramshakers  a Christian organization of Asia Pacific College, that focuses on discipleship and growing the body of Christ."
             ],
             "navigate_to": "image_info",
             "source_image": "Special_Interest_Organizations"
@@ -2117,8 +2093,8 @@
         {
             "tag": "AI Atheneaum of Information",
             "patterns": [
-                "What is A P C - AI Atheneaum of Information",
-                "What is A P C - Atheneaum",
+                "  A P C - AI Atheneaum of Information",
+                "  A P C - Atheneaum",
                 "Atheneaum of Information",
                 "Atheneaum"
             ],
@@ -2131,17 +2107,17 @@
         {
             "tag": "Rami_status",
             "patterns": [
-                "How are you",
-                "How are you doing",
+                "How  you",
+                "How  you doing",
                 "How's it going",
-                "What's up",
+                "'s up",
                 "How's everything"
             ],
             "responses": [
                 "I'm doing great, thank you! How can I assist you today",
-                "I'm well, thank you! What can I do for you today",
+                "I'm well, thank you!  can I do for you today",
                 "I'm doing well, thank you! How may I help you today",
-                "I'm good, thank you! What can I assist you with today"
+                "I'm good, thank you!  can I assist you with today"
             ]
         },
         {
@@ -2152,7 +2128,7 @@
                 "APC Autonomous Status"
             ],
             "responses": [
-                "Asia Pacific College is granted an Autonomous Status by the Commission on Higher Education for its efforts on academic standards and excellence."
+                "Asia Pacific College  granted an Autonomous Status by the Commission on Higher Education for its efforts on academic standards and excellence."
             ],
             "navigate_to": "image_info",
             "source_image": "Autonomous_Status"
@@ -2166,7 +2142,7 @@
                 "CPE Center of Development"
             ],
             "responses": [
-                "Asia Pacific College is held as a Center of Development in Computer Engineering by the Commission on Higher Education."
+                "Asia Pacific College  held as a Center of Development in Computer Engineering by the Commission on Higher Education."
             ],
             "navigate_to": "image_info",
             "source_image": "Center_of_Development_in_CPE"
@@ -2180,7 +2156,7 @@
                 "IT Center of Excellence"
             ],
             "responses": [
-                "Asia Pacific College is held as a Center of Excellence in Information Technology by the Commission on Higher Education."
+                "Asia Pacific College  held as a Center of Excellence in Information Technology by the Commission on Higher Education."
             ],
             "navigate_to": "image_info",
             "source_image": "Center_of_Excellence_in_IT"
@@ -2194,7 +2170,7 @@
                 "CPE Accreditation"
             ],
             "responses": [
-                "Asia Pacific College is granted with a certificate of accreditation in Computer Engineering by the Philippine accrediting association of schools, colleges, and universities."
+                "Asia Pacific College  granted with a certificate of accreditation in Computer Engineering by the Philippine accrediting association of schools, colleges, and universities."
             ],
             "navigate_to": "image_info",
             "source_image": "Certificate_of_Accreditation-Accountancy_Program"
@@ -2208,7 +2184,7 @@
                 "Accountancy program accreditation"
             ],
             "responses": [
-                "Asia Pacific College is granted with a certificate of accreditation in Accountancy by the Philippine accrediting association of schools, colleges, and universities."
+                "Asia Pacific College  granted with a certificate of accreditation in Accountancy by the Philippine accrediting association of schools, colleges, and universities."
             ],
             "navigate_to": "image_info",
             "source_image": "Certificate_of_Accreditation-CPE-program"

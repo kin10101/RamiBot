@@ -27,7 +27,7 @@ model = keras.models.load_model('../Integrated/voicebot_model.h5')
 # Get dict command mappings
 intent_methods = voicecommand_functions.command_mappings
 
-ERROR_THRESHOLD = 0.3  # Acceptable limit to output the response. Adjust if necessary
+ERROR_THRESHOLD = 0.5  # Acceptable limit to output the response. Adjust if necessary
 
 def clean_up_sentence(sentence):
     """Tokenize, remove punctuation, and lemmatize the sentence."""

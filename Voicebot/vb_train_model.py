@@ -81,7 +81,7 @@ def train_bot():
     # Train the model with validation data
     hist = model.fit(
         np.array(train_x), np.array(train_y),
-        epochs=200, batch_size=5, verbose=2
+        epochs=250, batch_size=5, verbose=2
     )
     model.save('../Integrated/voicebot_model.h5')
 
