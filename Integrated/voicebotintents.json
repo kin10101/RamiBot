@@ -201,7 +201,7 @@
             "responses": [
                 "Good morning! How can I assist you today",
                 "Good morning! what can I do for you today",
-                "Good morning! I'm ready to help. can I do for you today"
+                "Good morning! I'm ready to help.  can I do for you today"
             ]
         },
         {
@@ -292,7 +292,7 @@
                 "rami height",
                 "tall rami",
                 "tall rami bot",
-                "how tall are you"
+                "how tall  you"
             ],
             "responses": [
                 "I'm 4.5 feet tall, just the right height to assist you!",
@@ -830,9 +830,7 @@
                 "room 908",
                 "room 909",
                 "dormitory",
-                "dorm room",
-                "dorm",
-                "dorms"
+                "dorm room"
             ],
             "responses": [
                 "it is located at the 9th floor"
@@ -946,7 +944,6 @@
                 "food",
                 "water",
                 "refill",
-                "cafeteria",
                 "caf",
                 "canteen",
                 "lunch",
@@ -1102,6 +1099,45 @@
             "source_image": "Senior_High_School"
         },
         {
+            "tag": "shs stem",
+            "patterns": [
+                "stem",
+                "shs stem",
+                "science technology engineering and mathematics"
+            ],
+            "responses": [
+                "our STEM strand is a specialized curriculum for Senior High School students interested in science, technology, engineering, and mathematics. It provides a strong foundation in these areas and includes specializations in Engineering, Multimedia Arts, Medicine, and IT, offering students hands-on experience and preparation for their future careers."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Senior_High_School"
+        },
+        {
+            "tag": "shs humss",
+            "patterns": [
+                "humss",
+                "shs humss",
+                "humanities and social sciences"
+            ],
+            "responses": [
+                "our humanities and social sciences strand is a specialized curriculum for Senior High School students interested in human behavior and societal interactions. It prepares students for college courses in arts, social sciences, and humanities, providing a strong foundation and critical thinking skills."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Senior_High_School"
+        },
+        {
+            "tag": "shs abm",
+            "patterns": [
+                "abm",
+                "shs abm",
+                "accountancy, business, and management"
+            ],
+            "responses": [
+                "our Accountancy, Business, and Management strand is a specialized curriculum for Senior High School students interested in business and finance. It equips students with fundamental knowledge in business management and accountancy, preparing them for future careers in these fields."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Senior_High_School"
+        },
+        {
             "tag": "PRG soe courses",
             "patterns": [
                 "engineering",
@@ -1223,11 +1259,12 @@
         {
             "tag": "SOAR architecture",
             "patterns": [
+                "archi",
                 "architecture",
                 "bs architecture",
                 "tell me more about architecture"
             ],
-            "responses": [""],
+            "responses": ["our Architecture program is a four-year and one-term professional degree program, focusing on using technology to create innovative architectural solutions for current and future built-environment challenges. The program emphasizes on immersive research design studios, internships with industry partners, and mastering skills related to the fourth industrial revolution, including computational design and cognitive design workflows."],
             "navigate_to": "image_info",
             "source_image": "School_of_Architecture"
         },
@@ -1253,18 +1290,7 @@
 
             ],
             "responses": [
-                ""
-            ],
-            "navigate_to": "image_info",
-            "source_image": "School_of_Management"
-        },
-        {
-            "tag": "SOM management accounting",
-            "patterns": [
-
-            ],
-            "responses": [
-                ""
+                "our Accountancy program is a four-year trimestral degree program, guided by industry professionals and built on the pillars of an industry-guided curriculum and the use of Business-IT tools. It aims to produce IT-enabled Certified Public Accountants who are proficient in generally accepted accounting principles."
             ],
             "navigate_to": "image_info",
             "source_image": "School_of_Management"
@@ -1275,7 +1301,7 @@
 
             ],
             "responses": [
-                ""
+                "our Tourism Management program prepares students for a variety of careers in the travel industry, including hotel and resort management, restaurant management, airline operations, and more. Graduates are equipped with the necessary wisdom, diligence, and IT skills to excel in the tourism industry, with a special focus on hotel and restaurant operations."
             ],
             "navigate_to": "image_info",
             "source_image": "School_of_Management"
@@ -1288,7 +1314,7 @@
                 "tell me more about business administration"
             ],
             "responses": [
-                ""
+                "our Business Administration program is a comprehensive program that provides students with a broad understanding of business operations and management principles. Students can choose to specialize in one of three majors: Business Management, Marketing and Advertising, or Financial Management, each designed to equip them with the necessary skills to excel in their chosen field."
             ],
             "navigate_to": "image_info",
             "source_image": "School_of_Management"
@@ -1306,6 +1332,34 @@
             "source_image": "School_of_Multimedia_and_Arts"
         },
         {
+            "tag": "soma multimedia arts",
+            "patterns": [
+                "soma multimedia arts",
+                "multimedia arts",
+                "bmma",
+                "multimedia",
+                "arts"
+            ],
+            "responses": [
+                "our Multimedia Arts program is a four-year trimestral program that provides students with expertise in multimedia design and development, combining IT and audio-visual arts. The curriculum includes computer graphics, 2D and 3D animation, video production, digital photography, digital sound engineering, and game authoring, with application projects and internships to prepare students for real industry practices."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Multimedia_and_Arts"
+        },
+        {
+            "tag": "soma psychology",
+            "patterns": [
+                "soma psychology",
+                "bs psych",
+                "psych"
+            ],
+            "responses": [
+                "our Psychology program with Specialization in Industrial/Organizational Psychology is an innovative program designed to develop skilled Industrial/Organizational Psychologists who are equipped to meet the evolving demands of the new world of work. The program blends theory and practice through project-based learning, industry-proven best practices, and a focus on technology and data science, with a full-time 6-month On-The-Job Training to produce industry-ready graduates."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "School_of_Multimedia_and_Arts"
+        },
+        {
             "tag": "PRG grad",
             "patterns": [
                 "graduate school",
@@ -1313,7 +1367,67 @@
                 "graduate"
             ],
             "responses": [
-                ""
+                "our Graduate School offers a variety of master's programs in the fields of Engineering, Computer Science, Game Design, Information Systems, Information Technology, and Management. These programs are designed to provide advanced knowledge and skills, preparing graduates for leadership roles in their respective fields."
+            ]
+        },
+        {
+            "tag": "grad MSCpE",
+            "patterns": [
+                "MSCpE",
+                "Masters in Computer Engineering"
+            ],
+            "responses": [
+                "Our Master of Engineering major in Computer Engineering is a graduate program designed to cultivate independent computer engineers equipped with advanced technical and theoretical knowledge for professional practice. The program emphasizes industry immersion and professional work, requiring students to demonstrate leadership and management skills, tackle complex problems within a company or organization, and apply best principles and practices in designing and developing solutions."
+            ]
+        },
+        {
+            "tag": "grad Computer Science",
+            "patterns": [
+                "mscs",
+                "masters in computer science"
+            ],
+            "responses": [
+                "our Master of Science in Computer Science is a graduate program designed to equip students with the necessary skills to conduct research and formulate innovative applications of computer science principles, particularly in solving computationally intensive industry problems. The program emphasizes the progression from understanding scientific theories, concepts, and principles of computation to generating new knowledge through focused specialization."
+            ]
+        },
+        {
+            "tag": "grad MS Game Design",
+            "patterns": [
+                "MS game design",
+                "masters in game design"
+            ],
+            "responses": [
+                "our Master in Game Design is a graduate program designed to cultivate students' skills in pipeline management, business development, research, production, and design within the gaming industry. The program, consisting of thirty-six units, emphasizes on core subjects and studio-based learning, culminating in an innovative development project through a six-unit independent study, preparing students for effective communication and leadership in a team-based environment."
+            ]
+        },
+        {
+            "tag": "grad Information Systems",
+            "patterns": [
+                "msis",
+                "masters in information systems"
+            ],
+            "responses": [
+                "our Master in Information Systems is a graduate program designed to equip students with the effective use of information technology (IT) for problem-solving, process improvement, and organizational efficiency. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, preparing students for successful business and IT project management."
+            ]
+        },
+        {
+            "tag": "grad information technology",
+            "patterns": [
+                "msit",
+                "masters in information technology"
+            ],
+            "responses": [
+                "our Master in Information Technology is a graduate program designed to enhance students' knowledge of IT concepts, techniques, and principles, enabling them to provide solutions to organizational and societal problems. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, fostering a strategic skill set in systems application development and the multidisciplinary use of IT for business efficiency and success."
+            ]
+        },
+        {
+            "tag": "grad management",
+            "patterns": [
+                "msm",
+                "masters in management"
+            ],
+            "responses": [
+                "our Master in Management is a graduate program designed to prepare junior officers and first-line managers for executive roles, integrating all functional areas of business management through critical thinking and a business analytic approach. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, fostering a comprehensive understanding of business management."
             ]
         },
         {
@@ -1709,7 +1823,7 @@
         {
             "tag": "Junior Information Systems Security Association(JISSA)",
             "patterns": [
-                "  APC-JISSA",
+                "  APC JISSA",
                 "  Junior Information Systems Security Association",
                 "  JISSA"
             ],
@@ -1722,9 +1836,9 @@
         {
             "tag": "Junior Philippine Computer Society (J P C S)",
             "patterns": [
-                "  A P C - J P C S",
+                "  APC JPCS",
                 "  Junior Philippine Computer Society",
-                "  J P C S"
+                "  JPCS"
             ],
             "responses": [
                "The APC Junior Philippine Computer Society (APC-J P C S) aims to prep its members for their future in the corporate world as an ICT professional by providing complementary experiences aside from  they learn in school. It provides an opportunity to sh experiences and work with other students from different schools, in the pursuit of IT excellence through common projects."
@@ -1735,9 +1849,9 @@
         {
             "tag": "MSC",
             "patterns": [
-                "  A P C - M S C",
+                "  APC MSC",
                 "  Microsoft Community",
-                "  M S C"
+                "  MSC"
             ],
             "responses": [
                "The Asia Pacific College - Microsoft Community (A P C - M S C)  an organization that aspires to acquaint students with the latest in technology and softw development through various Microsoft events, tools, and technologies. Having Microsoft Student Partners (MSPs) in its executive board, the organization  able to obtain promotional paraphernalia and hold both official and Microsoft endorsed events in the school."
@@ -1748,9 +1862,9 @@
         {
             "tag": "Gaming Genesis ( G G )",
             "patterns": [
-                "  A P C - G G",
+                "  APC GG",
                 "  Gaming Genesis",
-                "  G G"
+                "  GG"
             ],
             "responses": [
                "Gaming Genesis ( G G )  an organization built to support game design and multimedia art students in their projects involving games. It promotes the creativity and talent of students in the field of gaming and game design, with the goal to contribute in the new gaming industry and bring joy to the APC community through gaming."
@@ -1761,9 +1875,9 @@
         {
             "tag": "Society of Electronics Engineering Students ( S E E S)",
             "patterns": [
-                "  A P C - S E E S",
+                "  apc sees",
                 "  Society of Electronics Engineering Students",
-                "  S E E S"
+                "  sees"
             ],
             "responses": [
                "Formed to promote a strong foundation of brotherhood and sisterhood by helping each other overcome their weaknesses especially when it comes to academics, the Society of Electronics Engineering Students’ (SEES) mission  to showcase professional, technical development and a paradigm of excellence in applying the principles of electronics technology for the advancement of humanity."
@@ -1774,12 +1888,12 @@
         {
             "tag": "Association of Computer Engineering Students ( A C E S)",
             "patterns": [
-                "A P C - A C E S",
-                "Association of Computer Engineering Students",
-                "A C E S"
+                "  APC ACES",
+                "  association of computer engineering students",
+                "  aces"
             ],
             "responses": [
-               "The A P C Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
+               "The APC Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
             ],
             "navigate_to": "image_info",
             "source_image": "SOE_Organizations"
@@ -1787,7 +1901,7 @@
         {
             "tag": "Robotics Organization (RobOrg)",
             "patterns": [
-                "  A P C - RobOrg",
+                "  APC RobOrg",
                 "  Robotics Organization",
                 "  RobOrg"
             ],
@@ -1800,7 +1914,7 @@
         {
             "tag": "Founding Organization of Civil Engineering Students (FOrCES)",
             "patterns": [
-                "  A P C - FOrCES",
+                "  APC FOrCES",
                 "  Founding Organization of Civil Engineering Students",
                 "  FOrCES"
             ],
@@ -1813,9 +1927,9 @@
         {
             "tag": "Junior Marketing Association (AP J M A)",
             "patterns": [
-                "  A P C - A P JMA",
+                "  APC APJMA",
                 "  Junior Marketing Association",
-                "  A P JMA"
+                "  APJMA"
             ],
             "responses": [
                "APC Junior Marketing Association (APJMA) participates in activities that will help the members develop their skills and further expand their knowledge in marketing. It organizes events and activities that support the students to be productive and cultivate their talents for the common good at the same time."
@@ -1839,12 +1953,12 @@
         {
             "tag": "Business Management Group-Junior People Management Association of the Philippine",
             "patterns": [
-                "  A P C - B MAG",
+                "  APC BMAG",
                 "  Business Management Group",
                 "  Junior People Management Association of the Philippine",
-                "  B MAG",
-                "  J P MAP",
-                "  A P C - J P MAP"
+                "  BMAG",
+                "  JPMAP",
+                "  APC JPMAP"
             ],
             "responses": [
               "The Business Management Group-Junior People Management Association of the Philippine APC’s purpose  to provide opportunities for students to work together and mold their leadership skills dedicated to serving the school, the industry,and society."
@@ -1855,9 +1969,9 @@
         {
             "tag": "Tourism Management Society (TM SOC)",
             "patterns": [
-                "  A P C - TM SOC",
+                "  APC TMSOC",
                 "  Tourism Management Society",
-                "  TM SOC"
+                "  TMSOC"
             ],
             "responses": [
               "The Tourism Management Society (TM SOC) aspires to administer activitiesthat will help create awness on the role and importance of tourism. It develops events for the APC community to know more about tourism and appreciate in turn  it can offer. The organization also aims to inculcate in the minds of its members the value of environmental conservation and the concept of sustainable development for the long-term benefit of the Philippine tourism industry"
@@ -1868,9 +1982,9 @@
         {
             "tag": "Junior Financial Executives (JFINEX)",
             "patterns": [
-                "  A P C - J FINEX",
+                "  APC JFINEX",
                 "  Junior Financial Executives",
-                "  J FINEX"
+                "  JFINEX"
             ],
             "responses": [
               "The APC Junior Financial Executives purpose  to unite the Financial Managementstudents of Asia Pacific College and expose them to the financial sectors and nationwide financial activities. APCFO also \nwelcomes all students majoring in business to be introduced to the realm of finance and enhance their knowledge in finance, from the basics to advanced."
@@ -1881,7 +1995,7 @@
         {
             "tag": "Psychological Society (PSYCH SOC)",
             "patterns": [
-                "  A P C - PSYCH SOC",
+                "  APC PSYCHSOC",
                 "  Psychological Society",
                 "  PSYCH SOC"
             ],
@@ -1894,7 +2008,7 @@
         {
             "tag": "Bahay Bombilya",
             "patterns": [
-                "  A P C - Bahay Bomba",
+                "  APC Bahay Bomba",
                 "  Bahay Bombilya",
                 "  Bahay bomba",
                 "Bahay Bombilya",
@@ -1909,9 +2023,8 @@
         {
             "tag": "CINEMASOMA",
             "patterns": [
-                "  A P C - CINEMASOMA",
-                "  CINEMASOMA",
-                "CINEMASOMA"
+                "  APC CINEMASOMA",
+                "  CINEMASOMA"
             ],
             "responses": [
                "CINEMASOMA  a student interest organization open to all students of Asia pacific College, Rams. The objectives of the organization  to equip members with methods and skills that have something to do with film production."
@@ -1922,9 +2035,9 @@
         {
             "tag": "APC BAND",
             "patterns": [
-                "  A P C - BAND",
-                "Does A P C have a band",
-                "APC BAND"
+                "  APC BAND",
+                "Does APC have a band",
+                "BAND"
             ],
             "responses": [
                "APC Band envisions itself to be the premier music maker of Asia Pacific College. By setting a stage for students who want to have a cer in music or simply sh their opinions through the craft, the organization foresees itself in encouraging the students to express themselves through the art of sound."
@@ -1935,10 +2048,12 @@
         {
             "tag": "APC Chorale",
             "patterns": [
-                "  A P C - Chorale",
+                "  APC Chorale",
                 "Does A P C have a Choir",
                 "Does A P C have a Chorale",
-                "APC Chorale"
+                "APC Chorale",
+                "choir",
+                "chorale"
             ],
             "responses": [
               "APC Chorale improves their skills and personality to achieve innovation not only in the field of singing, but also as future individuals in the world. It promotes singing as a group rather than performing solo, with the goal to achieve unity as singers and of meeting at a one common line."
@@ -1949,10 +2064,11 @@
         {
             "tag": "APC Dance Company",
             "patterns": [
-                "  A P C - Dance Company",
-                "A P C - D C",
-                "Does A P C have a dance group",
-                "A P C - Dance Company"
+                "  APC Dance Company",
+                "APCDC",
+                "Does APC have a dance group",
+                "Dance Company",
+                "dc"
             ],
             "responses": [
                 "The APC Dance Company (APC-DC) seeks for members with exceptional talent in dancing and who  very much willing to pursue and develop  they already have. Driven by passion, the organization aims to develop professional and well-rounded students that excels academically, administratively, and artistically"
@@ -1963,8 +2079,7 @@
         {
             "tag": "APC Strings",
             "patterns": [
-                "  A P C - Strings",
-                "A P C - Strings",
+                "APC Strings",
                 "Strings"
             ],
             "responses": [
@@ -1976,9 +2091,12 @@
         {
             "tag": "Teatré Phileo",
             "patterns": [
-                "  A P C - Teatré Phileo",
-                "A P C - Teatré Phileo",
-                "Teatré Phileo"
+                "  APC Teatre Phileo",
+                "tp",
+                "Teatre Phileo",
+                "theater phileo",
+                "phileo",
+                "theater"
             ],
             "responses": [
               "Teatré Phileo  driven by the passion to promote teamwork, develop leadership, and produce value-oriented and socially relevant plays and productions that showcase the organization’s team players’ unique talents in performing arts. It aims to produce plays that do not only entertain, but also promote the relevance of theatre in today's society."
@@ -1989,8 +2107,7 @@
         {
             "tag": "Rotaract Club",
             "patterns": [
-                "  A P C - Rotaract Club",
-                "A P C - Rotaract Club",
+                "APC Rotaract Club",
                 "Rotaract Club",
                 "Rotaract",
                 "  Rotaract"
@@ -2004,7 +2121,7 @@
         {
             "tag": "SOAR",
             "patterns": [
-                "  A P C - SOAR",
+                "  APC SOAR",
                 "Student Organization Association of Regents",
                 "SOAR"
             ],
@@ -2017,9 +2134,10 @@
         {
             "tag": "Pwersa",
             "patterns": [
-                "  A P C - Pwersa Mixed Martial Arts",
+                "  APC Pwersa Mixed Martial Arts",
                 "Pwersa",
-                "Pwersa Mixed Martial Arts"
+                "Pwersa Mixed Martial Arts",
+                "martial arts"
             ],
             "responses": [
              "APC Pwersa Mixed Martial Arts (APC-Pwersa MMA) wishes to improve the members through training and discipline by teaching them Brazilian Jiu-Jitsu. "
@@ -2030,7 +2148,7 @@
         {
             "tag": "Speaks",
             "patterns": [
-                "  A P C - Speaks",
+                "  APC Speaks",
                 "Speaks",
                 "Does you have a debate club",
                 "Debate Club",
@@ -2045,11 +2163,8 @@
         {
             "tag": "Hiraya",
             "patterns": [
-                "  A P C - Speaks",
-                "Speaks",
-                "Does you have a debate club",
-                "Debate Club",
-                "debate"
+                "  hiraya",
+                "Senior high school organization"
             ],
             "responses": [
                "APC HiRAYA  an academic organization open for all students of Asia Pacific College who has interest in humanities and social sciences."
@@ -2060,8 +2175,9 @@
         {
             "tag": "Jesus Impact",
             "patterns": [
-                "  A P C - Jesus Impact",
-                "Jesus Impact"
+                " Jesus",
+                "Jesus Impact",
+                "impact"
             ],
             "responses": [
                "Jesus Impact provides free concerts, lectures, seminars, and training to students, teachers, staff, and other stakeholders of the school. "
@@ -2072,7 +2188,7 @@
         {
             "tag": "Flickers Photo Society",
             "patterns": [
-                "  A P C - Flickers",
+                "  APC Flickers",
                 "Flickers Photo Society",
                 "Flickers"
             ],
@@ -2085,7 +2201,7 @@
         {
             "tag": "Fitness Squad",
             "patterns": [
-                "  A P C - Fitness Squad",
+                "  APC Fitness Squad",
                 "Fitness Squad"
             ],
             "responses": [
@@ -2097,7 +2213,7 @@
         {
             "tag": "Rams Flag Football",
             "patterns": [
-                "  A P C - Rams Flag Football",
+                "  APC Rams Flag Football",
                 "Fotball",
                 "Flag Football",
                 "Football Club"
@@ -2111,7 +2227,7 @@
         {
             "tag": "Ram shakers",
             "patterns": [
-                "  A P C - Ram shakers",
+                "  APC Ram shakers",
                 "Ram Shakers"
             ],
             "responses": [
@@ -2123,8 +2239,8 @@
         {
             "tag": "AI Atheneaum of Information",
             "patterns": [
-                "  A P C - AI Atheneaum of Information",
-                "  A P C - Atheneaum",
+                "  APC AI Atheneaum of Information",
+                "  APC Atheneaum",
                 "Atheneaum of Information",
                 "Atheneaum"
             ],
@@ -2140,8 +2256,9 @@
             "tag": "AWARDS_Autonomous_Status",
             "patterns": [
                 "Autonomous Status",
-                "A P C Autonomous Status",
-                "APC Autonomous Status"
+                "APC Autonomous Status",
+                "APC Autonomous Status",
+                "autonomous"
             ],
             "responses": [
                 "Asia Pacific College  granted an Autonomous Status by the Commission on Higher Education for its efforts on academic standards and excellence."
@@ -2152,10 +2269,10 @@
         {
             "tag": "AWARDS_COD_CPE",
             "patterns": [
+                "Computer Engineering Center of Development",
                 "Center of Development",
-                "Computer Engineering - Center of Development",
-                "C P E Center of Development",
-                "CPE Center of Development"
+                "CPE Center of Development",
+                "cod"
             ],
             "responses": [
                 "Asia Pacific College  held as a Center of Development in Computer Engineering by the Commission on Higher Education."
@@ -2166,9 +2283,8 @@
         {
             "tag": "AWARDS_COE_IT",
             "patterns": [
-                "Center of Excellence",
                 "Information Technology - Center of Excellence",
-                "I T Center of Excellence",
+                "Center of Excellence",
                 "IT Center of Excellence"
             ],
             "responses": [
@@ -2182,7 +2298,6 @@
             "patterns": [
                 "Computer Engineering Accreditation",
                 "Accreditation Computer Engineering",
-                "C P E Accreditation",
                 "CPE Accreditation"
             ],
             "responses": [
