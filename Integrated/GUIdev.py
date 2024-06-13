@@ -33,8 +33,9 @@ detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 HOST_IP = 'http://192.168.80.4:5000'
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
-TIMEOUT_DURATION = 30
+TIMEOUT_DURATION = 15
 ANNOUNCEMENT_TIMEOUT = 60
+CAMERA_INDEX = 2
 
 
 class MainApp(MDApp):
@@ -42,7 +43,7 @@ class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.timeout = None
-        self.camera = cv2.VideoCapture(0)
+        self.camera = cv2.VideoCapture(CAMERA_INDEX)
 
         self.Main_Menu = sql_module.get_column_data("button_list", "main_menu")
         self.Office_Schedule = sql_module.get_column_data("button_list", "office_schedule")
@@ -210,7 +211,7 @@ class MainApp(MDApp):
 
     # GUI MODIFIERS -------------------------------------
 
-    def update_label(self, screen_name, id, text):  # TODO add transcribed text showing
+    def update_label(self, screen_name, id, text):
         """Update labels in mapscreen"""
         screen_name = self.root.get_screen(screen_name)
         try:
@@ -284,7 +285,7 @@ class MainApp(MDApp):
     def await_recharge_change(self, dt):
         """periodically check if return to charger status is low and change screen accordingly"""
         try:
-            state = sql_module.show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
+            state = sql_module.show_value_as_bool("admin_control", "LCD_state", "ID", 1)
 
             if state:
                 # print("read one")
@@ -318,11 +319,11 @@ class MainApp(MDApp):
                 print("stop")
 
     def await_transcription_queue(self, dt):
-        """periodically check if an item is in queue and change screen accordingly"""
+        """periodically check if an item is in queue and change the label in the current screen accordingly"""
         if not Transcription_Queue.empty():
             item = Transcription_Queue.get_nowait()
             print(item)
-            self.update_label(screen_manager.current, 'transcribed_text', "What I heard was: " + item)
+            self.update_label(screen_manager.current, 'transcribed_text', item)
             Clock.schedule_once(self.clear_label, 5)
         else:
             pass
@@ -376,9 +377,9 @@ class MainApp(MDApp):
     def face_recognition_module(self):
         print(face_recog_module.person_detected)
 
-        if not sql_module.show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1):
+        if not sql_module.show_value_as_bool("admin_control", "LCD_state", "ID", 1):
             print('ACTIVE FACE SCANNING')
-            self.camera = cv2.VideoCapture(0)
+            self.camera = cv2.VideoCapture(CAMERA_INDEX)
             detected = face_recog_module.realtime_face_recognition(self.camera)
 
             if detected:
@@ -479,7 +480,7 @@ class MainApp(MDApp):
         sql_module.change_value("admin_control", "MOTOR_state", 1, "ID", 1)
 
     def read_low_battery_state(self):
-        sql_module.show_value("admin_control", "RamiBot_Return", "ID", 1)
+        sql_module.show_value("admin_control", "LCD_state", "ID", 1)
 
     # TIMER FUNCTIONS --------------------------------
     def start_timer(self):

@@ -4,12 +4,12 @@ import time
 from deepface import DeepFace
 import cv2
 
-# Initialize global variables
 person_detected = False
 running = False
 
-#start of face recognition module--------------------------------------------------------------------------------------
+
 def realtime_face_recognition(video):
+    print("face recog thread running")
     global person_detected
     global running
     running = True
@@ -22,9 +22,8 @@ def realtime_face_recognition(video):
         try:
             ret, frame = video.read()
             if not ret:
-                print("Can't receive frame (stream end?). Exiting...")
+                print("Can't receive frame. Exiting...")
                 break
-
 
             # Get the dimensions of the frame
             height, width, _ = frame.shape
@@ -55,13 +54,11 @@ def realtime_face_recognition(video):
                     greeting = greet_new_user()
                     return greeting
 
-
-                #else:
-                    # print("face not in center")
+                # else:
+                # print("face not in center")
         except Exception as e:
             person_detected = False
             # print(f"An error occurred: {e}")
-
 
         # display
         # cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
@@ -74,16 +71,19 @@ def realtime_face_recognition(video):
     video.release()
     cv2.destroyAllWindows()
 
+
 def greet_new_user():
     greetings = [
-        "Hello there, I'm Rami bot!",
-        "Hello friend! my name is Rami bot!",
-        "Good day, I'm Rami bot!",
-        "Hi there, I'm Rami bot!",
-        "Greetings, I'm Rami bot!"
+        "Hello there, I'm Rami bot, nice to meet you",
+        "hello! i am rami with the bot, Rami bot",
+        "excuse me, could you please move, you're blocking my view",
+        "oops, almost didn't see you there, hi! i'm Rami bot",
+        "well hello there, i'm Rami bot, how can i help you today?",
+        "Hey! I'm Rami bot, nice to meet you",
 
     ]
     return random.choice(greetings)
+
 
 def get_camera_list(max_cameras=10):
     """Get a list of available camera devices and their index."""
@@ -95,4 +95,6 @@ def get_camera_list(max_cameras=10):
         cap.release()
     return cameras
 
-get_camera_list(5)
+
+if __name__ == '__main__':
+    get_camera_list()

@@ -22,4 +22,4 @@ def play_audio_file(file):
     playsound(file)
 
 
-speak("hello im ramibot")
+speak("")
