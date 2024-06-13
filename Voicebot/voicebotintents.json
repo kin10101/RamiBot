@@ -1756,7 +1756,8 @@
                 "What are the office hours during weekends",
                 "Can you tell me the office hours of all offices during weekends",
                 "I want to know the office hours of all offices during weekends.",
-                "office availability"
+                "office availability",
+                "availability"
             ],
             "responses": [
                 "All offices in APC are typically open from 8:00 AM to 5:00 PM during weekends. However, it's best to contact the specific office for any special arrangements."
