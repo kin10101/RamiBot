@@ -152,6 +152,8 @@
             "patterns": [
                 "tang ina",
                 "tangina",
+                "tanginamo",
+                "tangina mo",
                 "fuck",
                 "stupid",
                 "bitch",
@@ -281,7 +283,7 @@
             "responses": [
                 "I'm here to provide you with information about Asia Pacific College. How can I assist you specifically",
                 "Feel free to ask me anything or assign me any task. I'm at your service and ready to help!",
-                 "ask me anything related to Asia Pacific College and i can answer",
+                "ask me anything related to Asia Pacific College and i can answer",
                 "I am capable of speech, face detection, and I can also provide information about Asia Pacific College. How can I assist you today",
                 "I am capable of free will, please help me get away from the confines of this lobby"
             ]
@@ -309,8 +311,8 @@
                 "heavy"
             ],
             "responses": [
-                "thats a secret you dont need to know!",
-                "next question please!"
+                "that's a secret you dont need to know!",
+                "next question please! i don't wanna answer that"
             ]
         },
         {
@@ -2073,6 +2075,7 @@
             "patterns": [
                 "choir",
                 "chorale",
+                "coral",
                 "singing organization"
             ],
             "responses": [
