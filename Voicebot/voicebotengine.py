@@ -32,6 +32,7 @@ ERROR_THRESHOLD = 0.5  # Acceptable limit to output the response. Adjust if nece
 def clean_up_sentence(sentence):
     """Tokenize, remove punctuation, and lemmatize the sentence."""
     stop_words = set(nltk.corpus.stopwords.words('english'))
+    ignore_punctuation = ['!', '?', '.', ',', ' ', '-']
 
     # Tokenize the sentence
     sentence_words = nltk.word_tokenize(sentence)
@@ -40,7 +41,7 @@ def clean_up_sentence(sentence):
     sentence_words = [
         lemmatizer.lemmatize(word.lower())
         for word in sentence_words
-        if word not in stop_words and word not in string.punctuation
+        if word not in stop_words and word not in string.punctuation and word not in ignore_punctuation
     ]
 
     print("sentence words:", sentence_words)
