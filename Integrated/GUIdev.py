@@ -7,7 +7,7 @@ from queue import Queue, Empty
 # Third party imports
 import cv2
 import requests
-
+from requests.exceptions import Timeout
 import gpio
 import pygtts
 import sql_module
@@ -33,6 +33,7 @@ detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 HOST_IP = 'http://192.168.80.4:5000'
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
+REQUEST_TIMEOUT = 2
 TIMEOUT_DURATION = 30
 ANNOUNCEMENT_TIMEOUT = 60
 CAMERA_INDEX = 0
@@ -113,42 +114,53 @@ class MainApp(MDApp):
 
     def on_start(self):
         sql_module.connect()
-        Clock.schedule_interval(self.await_change_screen, .3)
-        Clock.schedule_interval(self.await_image_change, .5)
+        Clock.schedule_interval(self.await_change_gui_elements, .3)
         Clock.schedule_interval(self.await_recharge_change, .5)
         Clock.schedule_interval(self.await_timeout_change, .5)
         Clock.schedule_interval(self.await_transcription_queue, .5)
-        start_voice_thread()
+
+        #start_voice_thread()
 
     def on_stop(self):
         sql_module.disconnect()
 
-    def request_image(self, image):
-        """Request an image from the server and save it locally. Takes in the image path (with extension) as a
-        parameter."""
+    def request_image(self, image, timeout=REQUEST_TIMEOUT):
+        """
+        Request an image from the server and save it locally.
+
+        Args:
+        image (str): The image path (with or without extension)
+        timeout (int): The timeout for the request in seconds (default 10)
+        """
         try:
             # Check if the image path ends with .png, if not add .png
             if not image.endswith('.png'):
                 image += '.png'
 
-            # Send the request to the server
-            response = requests.get(f'{HOST_IP}/get_image/{image}')
+            # Send the request to the server with a timeout
+            response = requests.get(f'{HOST_IP}/get_image/{image}', timeout=timeout)
 
             if response.status_code == 200:
                 # Write to temp file
                 with open(IMAGE_PATH, 'wb') as f:
                     f.write(response.content)
                     print("Image downloaded successfully")
-                    screen_manager.get_screen('image_info').ids.img.source = IMAGE_PATH
-                    screen_manager.get_screen('image_info').ids.img.reload()
+                screen_manager.get_screen('image_info').ids.img.source = IMAGE_PATH
+                screen_manager.get_screen('image_info').ids.img.reload()
             else:
                 print(f"Failed to load image: {response.status_code}")
-                screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
-                screen_manager.get_screen('image_info').ids.img.reload()
+                self._set_missing_image()
+        except Timeout:
+            print(f"Request timed out after {timeout} seconds")
+            self._set_missing_image()
         except Exception as e:
             print(f"Failed to load image: {e}")
-            screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
-            screen_manager.get_screen('image_info').ids.img.reload()
+            self._set_missing_image()
+
+    def _set_missing_image(self):
+        """Helper method to set the missing image"""
+        screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
+        screen_manager.get_screen('image_info').ids.img.reload()
 
     # GUI BUTTONS -------------------------------------
     def back_button(self):
@@ -248,9 +260,9 @@ class MainApp(MDApp):
 
     # AWAIT FUNCTIONS -------------------------------------
 
-    def await_change_screen(self, dt):
-        """periodically check if an item is in queue and change screen according to the screen name corresponding to
-        the item in queue"""
+    def await_change_gui_elements(self, dt):
+
+
         if not screen_queue.empty():
             item = screen_queue.get_nowait()
             print(item)
@@ -261,8 +273,7 @@ class MainApp(MDApp):
         else:
             pass
 
-    def await_image_change(self, dt):
-        """periodically check if an item is in queue and change image accordingly. for image infos"""
+        # check if there is an item in the queue and change image accordingly
         if not image_queue.empty():
             current_screen = screen_manager.current
             if current_screen == 'image_info':
@@ -270,6 +281,7 @@ class MainApp(MDApp):
                 self.request_image(image_path)  # request image from server
         else:
             pass
+
 
     def await_face_change(self, dt):
         """periodically check if an item is in queue and change face image accordingly"""
@@ -288,17 +300,18 @@ class MainApp(MDApp):
             state = sql_module.show_value_as_bool("admin_control", "LCD_state", "ID", 1)
 
             if state:
-                # print("read one")
+
                 if screen_manager.current != 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'lowbatteryscreen')
                 else:
                     pass
             if not state:
-                # print("read zero")
+
                 if screen_manager.current == 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'idlescreen')
                 else:
                     pass
+
         except:
             print("pin reading error")
             pass
@@ -337,6 +350,7 @@ class MainApp(MDApp):
         if screen_manager.current == 'idlescreen':
             blink_probability = random.randint(1, 10)  # Generate a random number between 1 and 10
             if blink_probability > 8:
+                print("Blinking")
                 put_in_queue(image_queue, 'rami_faces/blink.png')
                 put_in_queue(image_queue, 'rami_faces/smile.png')
 
@@ -346,6 +360,7 @@ class MainApp(MDApp):
         if screen_manager.current != 'idlescreen':
             Clock.unschedule(self.face_blink)
             Clock.unschedule(self.await_face_change)
+            print("unscheduled face blink")
 
     def change_face_and_speak(self, text, face_path):
         # Change the face
@@ -373,8 +388,8 @@ class MainApp(MDApp):
         print("Current Screen is ", screen_manager.current)
         return screen_manager.current
 
-    # FACE detection ---------------------------------
-    def face_recognition_module(self):
+    # FACE DETECTION --------------------------------------
+    def face_detection_module(self):
         print(face_recog_module.person_detected)
 
         if not sql_module.show_value_as_bool("admin_control", "LCD_state", "ID", 1):
@@ -394,7 +409,7 @@ class MainApp(MDApp):
     def close_camera(self):
         self.camera.release()
 
-    # CHATBOT -----------------------------------------
+    # CHATBOT --------------------------------------
 
     def send_message(self):
         """Send a message."""
@@ -462,7 +477,13 @@ class MainApp(MDApp):
 
         screen_manager.do_layout()
 
-    # GPIO -------------------------------------------
+    # VOICEBOT --------------------------------------
+
+    def tap_to_talk(self):
+        print("talk with rami button pressed")
+        voicebot.voice_assistant_tap_to_speak()
+
+    # GPIO --------------------------------------
 
     def gpio_cleanup(self):
         print('cleared pin values')
@@ -482,7 +503,7 @@ class MainApp(MDApp):
     def read_low_battery_state(self):
         sql_module.show_value("admin_control", "LCD_state", "ID", 1)
 
-    # TIMER FUNCTIONS --------------------------------
+    # TIMER FUNCTIONS --------------------------------------
     def start_timer(self):
         self.timeout = Clock.schedule_once(self.timeout_reset, TIMEOUT_DURATION)
 
@@ -537,7 +558,7 @@ def get_from_queue(myqueue):
 def face_thread():
     print("face thread active")
     if not MainApp.stop_face.is_set():
-        app.face_recognition_module()
+        app.face_detection_module()
     else:
         print("FACE THREAD DISABLED")
 

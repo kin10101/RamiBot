@@ -16,7 +16,8 @@ Timeout_Queue = Queue()
 
 class VoiceAssistant:
     def __init__(self):
-        self.mic = sr.Microphone(device_index= 1)
+        self.mic = sr.Microphone()  # leave blank to use default microphone, or specify the device index to use a
+        # specific microphone
         self.pause_threshold = .8
         self.energy_threshold = 3500
         self.operation_timeout = 5000
@@ -136,6 +137,55 @@ class VoiceAssistant:
                             if not active_state.is_set():
                                 break
 
+    def voice_assistant_tap_to_speak(self):
+        """Handle a single voice interaction for tap-to-speak mode."""
+
+        print("Current mic being used: ", self.mic)
+        recognizer = sr.Recognizer()
+        recognizer.pause_threshold = self.pause_threshold
+        recognizer.energy_threshold = self.energy_threshold
+        recognizer.operation_timeout = self.operation_timeout
+        recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
+
+        state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
+
+        if state:
+            print("Voice assistant deactivated")
+            return
+
+        print("Tap-to-speak mode activated")
+        Timeout_Queue.put("stop")  # stop the idle screen timer
+
+        try:
+            with self.mic as source:
+                # audio confirmation that the voice assistant is active
+                ts.play_audio_file('audio/activate.wav')
+
+                # greet = voicebotengine.get_from_json("GEN hello")
+                # ts.speak(greet)
+                print('Speak now')
+                text = self.listen_to_command(recognizer, source)
+                print("Audio received to text: " + text)
+
+                # Process the main command
+                response = self.handle_command(text, [""])  # Empty context
+                if response is not None:
+                    ts.speak(response)
+                    ts.play_audio_file("audio/deactivate.wav")  # Sound to indicate that the interaction is over
+
+        except sr.RequestError:
+            print("Could not request results from Google Speech Recognition service")
+            ts.speak("sorry, the network blocked me again.")
+        except sr.UnknownValueError:
+            print("Unable to recognize speech")
+            ts.speak("sorry, I couldn't understand you.")
+        except sr.WaitTimeoutError:
+            print("Timeout error while waiting for speech input")
+            ts.speak("sorry, I couldn't hear you.")
+
+        finally:
+            Timeout_Queue.put("start")
+
     def run_once(self):
         recognizer = sr.Recognizer()
         recognizer.pause_threshold = self.pause_threshold
@@ -167,8 +217,9 @@ class VoiceAssistant:
 if __name__ == "__main__":
     Voicebot = VoiceAssistant()
     # Voicebot.voice_assistant_loop()
+    Voicebot.voice_assistant_tap_to_speak()
 
-
-    for index, name in enumerate(sr.Microphone.list_microphone_names()):
-        print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
-
+    #
+    # for index, name in enumerate(sr.Microphone.list_microphone_names()):
+    #     print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
+    #

@@ -69,7 +69,9 @@ MDScreen:
             size: 390, 234
             user_font_size: "200sp"
             pos_hint: {'center_x': 0.12, 'center_y': 0.1}
-            on_press: app.root.current = 'chatscreen'
+            on_press:
+                # app.root.current = 'voicescreen' # screen not created yet
+                app.tap_to_talk()
             Image:
                 source: 'Assets/voicebot_button.png'
                 size: 100, 100
