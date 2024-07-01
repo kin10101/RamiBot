@@ -16,9 +16,9 @@ Timeout_Queue = Queue()
 
 class VoiceAssistant:
     def __init__(self):
-        self.mic = sr.Microphone(device_index=6)
+        self.mic = sr.Microphone(device_index= 1)
         self.pause_threshold = .8
-        self.energy_threshold = 3000
+        self.energy_threshold = 3500
         self.operation_timeout = 5000
         self.dynamic_energy_threshold = False
         self.listen_timeout = 3

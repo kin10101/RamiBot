@@ -35,7 +35,7 @@ HOST_IP = 'http://192.168.80.4:5000'
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
 TIMEOUT_DURATION = 30
 ANNOUNCEMENT_TIMEOUT = 60
-CAMERA_INDEX = 2
+CAMERA_INDEX = 0
 
 
 class MainApp(MDApp):

@@ -5,11 +5,18 @@ from mysql.connector import Error
 def connect():
     try:
         connection = mysql.connector.connect(
-            host="airhub-soe.apc.edu.ph",
-            user="marj",
-            password="RAMIcpe211",
-            database="ramibot",
-            autocommit=True
+            # host="airhub-soe.apc.edu.ph",
+            # user="marj",
+            # password="RAMIcpe211",
+            # database="ramibot",
+            # autocommit=True
+            #
+            # database access for local testing
+            host = "localhost",
+            user = "kin",
+            password = "asdf",
+            database = "ramibot_local",
+            autocommit = True
         )
         if connection.is_connected():
             return connection
