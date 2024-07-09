@@ -38,6 +38,14 @@ MDScreen:
         app.clear_chat()
 
     MDFloatLayout:
+
+        Image: # Background image
+            id: bg
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
         MDFloatLayout:
             md_bg_color: .003, .4, .6, 1 #245/255, 245/255, 245/255, 1
             size_hint_y: .11
@@ -59,6 +67,7 @@ MDScreen:
                 pos_hint: {'center_x': 0.07, 'center_y': 0.5}
 
                 on_press:
+                    app.play_button_sound()
                     app.root.current = app.previous_screen
                 Image:
                     source: 'Assets/back_button.png'
@@ -106,11 +115,12 @@ MDScreen:
                     height: self.minimum_height
                     multiline: False
                     cursor_color: .003, .4, .6, 1
-
-                    cursor_width: "2sp"
+                    cursor_width: "1.5sp"
                     foreground_color: .003, .4, .6, 1
                     background_color: 1, 1, 1, 0  # Set a white background color
-                    padding: 15
+                    padding: [15, 26] # [padding_left, padding_top, padding_right, padding_bottom]
+                    halign: 'left'
+                    valign: 'middle'
                     on_focus:
                         app.move_text_box()
                     on_text_validate:
@@ -126,6 +136,7 @@ MDScreen:
                 text_color: 1, 1, 1, 1
                 md_bg_color: .003, .4, .6, 1
                 on_release:
+                    app.play_button_sound()
                     app.send_message()
 
 

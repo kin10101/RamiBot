@@ -1,0 +1,73 @@
+MDScreen:
+
+    name: "voicescreen"
+
+    on_enter:
+
+
+    MDFloatLayout:
+
+        Image: # Background image
+            id: bg
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+        MDFloatLayout:
+            md_bg_color: .003, .4, .6, 1 #245/255, 245/255, 245/255, 1
+            size_hint_y: .11
+            pos_hint: {"center_y": .95}
+
+            MDLabel:
+                id: bot_name
+                text: "Chat with Rami"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                halign: "center"
+                font_size: "30sp"
+                font_name: "Poppins"
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+
+            #Back Button
+            MDFlatButton:
+                size: 125, 125
+                pos_hint: {'center_x': 0.07, 'center_y': 0.5}
+
+                on_press:
+                    app.root.current = app.previous_screen
+                Image:
+                    source: 'Assets/back_button.png'
+
+            MDRoundFlatIconButton:
+                icon: "microphone"
+                id: help_button
+                size: 125, 125
+                pos_hint: {'center_x': 0.93, 'center_y': 0.5}
+
+
+        MDBoxLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+
+            Image: # Background image
+                id: img
+                source: "../Integrated/Assets/missing.png"
+                allow_stretch: True
+                keep_ratio: True
+                size_hint: 1, 1
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        MDIconButton:
+            _no_ripple_effect: True
+            pos_hint: {"center_x": .5, "center_y": .5}
+            icon: "microphone"
+            icon_size: "250sp"
+            style: "fill"
+            theme_font_size: "Custom"
+            user_font_size: "250sp"
+

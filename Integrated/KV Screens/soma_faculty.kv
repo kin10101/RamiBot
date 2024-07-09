@@ -24,6 +24,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.5}
 
             on_press:
+                app.play_button_sound()
                 app.root.current = "Faculty_Schedule"
             Image:
                 source: 'Assets/back_button.png'
@@ -64,7 +65,9 @@ MDScreen:
             size: 390, 234
             user_font_size: "200sp"
             pos_hint: {'center_x': 0.88, 'center_y': 0.1}
-            on_press: app.root.current = 'chatscreen'
+            on_press:
+                app.play_button_sound()
+                app.root.current = 'chatscreen'
             Image:
                 source: 'Assets/chatbot_button.png'
                 size: 100, 100

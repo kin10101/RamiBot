@@ -23,6 +23,7 @@ MDScreen:
             pos_hint: {'center_x': 0.1, 'center_y': 0.5}
 
             on_press:
+                app.play_button_sound()
                 app.root.current = "Main_Menu"
             Image:
                 source: 'Assets/back_button.png'

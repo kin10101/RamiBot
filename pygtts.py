@@ -21,5 +21,9 @@ def speak_async(text):
 def play_audio_file(file):
     playsound(file)
 
+def play_audio_file_async(file):
+    thread = threading.Thread(target=play_audio_file, args=(file,))
+    thread.start()
+
 
 speak("")

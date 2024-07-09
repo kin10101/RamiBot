@@ -7,6 +7,7 @@ from queue import Queue, Empty
 # Third party imports
 import cv2
 import requests
+from kivy.core.audio import SoundLoader
 from requests.exceptions import Timeout
 import gpio
 import pygtts
@@ -43,6 +44,7 @@ class MainApp(MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.button_sound = SoundLoader.load('audio/button_click.mp3')
         self.timeout = None
         self.camera = cv2.VideoCapture(CAMERA_INDEX)
 
@@ -85,6 +87,7 @@ class MainApp(MDApp):
         # MAY BUTTON LIST
         screen_manager.add_widget(Builder.load_file('KV Screens/main.kv'))
         screen_manager.add_widget(Builder.load_file('KV Screens/chatscreen.kv'))
+        screen_manager.add_widget(Builder.load_file('KV Screens/voicescreen.kv'))
         screen_manager.add_widget(Builder.load_file('KV Screens/office_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('KV Screens/faculty_schedule.kv'))
         screen_manager.add_widget(Builder.load_file('KV Screens/programs_offered.kv'))
@@ -163,7 +166,13 @@ class MainApp(MDApp):
         screen_manager.get_screen('image_info').ids.img.reload()
 
     # GUI BUTTONS -------------------------------------
+
+    def play_button_sound(self):
+        if self.button_sound:
+            self.button_sound.play()
+
     def back_button(self):
+        self.button_sound()
         screen_manager.current = self.previous_screen
 
     def create_button_list_to_button_list(self, button_list):
@@ -187,6 +196,8 @@ class MainApp(MDApp):
     def on_list_to_list(self, button_text):
         # Handle button press here
         print(f"Button {button_text} pressed")
+        if self.button_sound:
+            self.button_sound.play()
         screen_manager.current = button_text
 
     def create_button_list_to_image_info(self, button_list):
@@ -210,6 +221,8 @@ class MainApp(MDApp):
 
     def on_list_to_image(self, button_text):
         print(f"Button {button_text} pressed")
+        if self.button_sound:
+            self.button_sound.play()
         screen_manager.current = "image_info"  # navigate to image info screen
         self.request_image(button_text)  # request image from server
 
@@ -404,7 +417,7 @@ class MainApp(MDApp):
 
                 put_in_queue(screen_queue, 'greetscreen')
 
-                # TODO: fix the lagging face screen
+
 
     def close_camera(self):
         self.camera.release()
