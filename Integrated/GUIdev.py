@@ -494,6 +494,22 @@ class MainApp(MDApp):
 
     def tap_to_talk(self):
         print("talk with rami button pressed")
+        # change button_box color to indicate listening
+        screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.1745, .55, .2685, 1)
+        screen_manager.get_screen("voicescreen").ids.button_box.text = "Listening..."
+
+        # change bot_icon image to indicate listening
+        screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/listening.png"
+        # reload the image
+        screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
+
+        # if voice not heard, change the color to red and text to "No voice detected"
+
+
+        # change button
+        Clock.schedule_once(self.run_voice_assistant)
+
+    def run_voice_assistant(self, dt):
         voicebot.voice_assistant_tap_to_speak()
 
     # GPIO --------------------------------------

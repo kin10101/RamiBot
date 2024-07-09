@@ -151,6 +151,7 @@ class VoiceAssistant:
 
         if state:
             print("Voice assistant deactivated")
+            # callback('deactivated', None)
             return
 
         print("Tap-to-speak mode activated")
