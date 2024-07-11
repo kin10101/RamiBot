@@ -2,7 +2,8 @@ MDScreen:
 
     name: "voicescreen"
 
-    on_enter:
+    on_pre_leave:
+        app.update_voice_gui_to_default()
 
 
     MDFloatLayout:
@@ -18,7 +19,7 @@ MDScreen:
 
 # HEADER
         MDFloatLayout:
-            md_bg_color: .003, .4, .6, 1 #245/255, 245/255, 245/255, 1
+            md_bg_color: .003, .4, .6, 1
             size_hint_y: .11
             pos_hint: {"center_y": .95}
 
@@ -44,6 +45,7 @@ MDScreen:
             radius: [45]
 
             MDLabel:
+                id: button_box_text
                 text: "Press the microphone to start"
                 pos_hint: {"center_x": .5, "center_y": .85}
                 halign: "center"
@@ -54,6 +56,7 @@ MDScreen:
 
 
             MDIconButton:
+                id: mic_button
                 _no_ripple_effect: True
                 pos_hint: {"center_x": .5, "center_y": .5}
                 icon: "microphone"
@@ -67,13 +70,14 @@ MDScreen:
                     app.tap_to_talk()
 
         MDRoundFlatIconButton:
+            id: back_button
             text: "Back"
-            font_size: "30sp"
+            font_size: "26sp"
             font_name: "Poppins"
             pos_hint: {"center_x": .5, "center_y": .2}
             text_color: 1,1,1,1
             md_bg_color: .003, .4, .6, 1
-            size_hint: .3, .1
+            size_hint: .2, .09
             radius: [30]
 
             on_press:
@@ -86,7 +90,7 @@ MDScreen:
             allow_stretch: False
             keep_ratio: True
             size_hint: .3, .3
-            pos_hint: {'center_x': 0.5, 'center_y': 0.79}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.788}
 
 
 #        MDBoxLayout: # Square transparent container

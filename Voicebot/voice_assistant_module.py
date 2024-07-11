@@ -137,7 +137,7 @@ class VoiceAssistant:
                             if not active_state.is_set():
                                 break
 
-    def voice_assistant_tap_to_speak(self):
+    def voice_assistant_tap_to_speak(self, callback):
         """Handle a single voice interaction for tap-to-speak mode."""
 
         print("Current mic being used: ", self.mic)
@@ -151,7 +151,7 @@ class VoiceAssistant:
 
         if state:
             print("Voice assistant deactivated")
-            # callback('deactivated', None)
+            callback('deactivated', None)
             return
 
         print("Tap-to-speak mode activated")
@@ -171,16 +171,24 @@ class VoiceAssistant:
                 # Process the main command
                 response = self.handle_command(text, [""])  # Empty context
                 if response is not None:
+                    callback('success', text)  #
                     ts.speak(response)
                     ts.play_audio_file("audio/deactivate.wav")  # Sound to indicate that the interaction is over
 
+
+
         except sr.RequestError:
+            callback('error', "Could not request results from Google Speech Recognition service")
             print("Could not request results from Google Speech Recognition service")
             ts.speak("sorry, the network blocked me again.")
+
         except sr.UnknownValueError:
+            callback('error', "Unable to recognize speech")
             print("Unable to recognize speech")
             ts.speak("sorry, I couldn't understand you.")
+
         except sr.WaitTimeoutError:
+            callback('error', "Unable to recognize speech")
             print("Timeout error while waiting for speech input")
             ts.speak("sorry, I couldn't hear you.")
 

@@ -494,25 +494,92 @@ class MainApp(MDApp):
 
     def tap_to_talk(self):
         print("talk with rami button pressed")
+
+        # Disable the mic button
+        mic_button = screen_manager.get_screen("voicescreen").ids.mic_button
+        mic_button.disabled = True
+
+        # Hide the back button
+        back_button = screen_manager.get_screen("voicescreen").ids.back_button
+        back_button.opacity = 0  # Make the button invisible
+        back_button.disabled = True  # Disable the button
+
         # change button_box color to indicate listening
         screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.1745, .55, .2685, 1)
-        screen_manager.get_screen("voicescreen").ids.button_box.text = "Listening..."
+        screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Listening..."
 
         # change bot_icon image to indicate listening
         screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/listening.png"
-        # reload the image
         screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
 
-        # if voice not heard, change the color to red and text to "No voice detected"
+        # Schedule the "Please wait" message after a delay of 3 seconds
+        self.wait_event = Clock.schedule_once(self.show_wait_message, 5)
+
+        # Start a new thread for the voice assistant function
+        voice_thread = threading.Thread(target=self.run_voice_assistant)
+        voice_thread.start()
+
+    def show_wait_message(self, dt):
+        screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.5, .5, .5, 1)  # Grey color
+        screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Please wait..."
 
 
-        # change button
-        Clock.schedule_once(self.run_voice_assistant)
+    def run_voice_assistant(self):
+        voicebot.voice_assistant_tap_to_speak(self.update_gui_after_voice_command)
 
-    def run_voice_assistant(self, dt):
-        voicebot.voice_assistant_tap_to_speak()
+    def update_gui_after_voice_command(self, status, message):
 
-    # GPIO --------------------------------------
+        # This function is called from a different thread, so we need to schedule the GUI update on the main thread
+        Clock.schedule_once(lambda dt: self._update_gui(status, message))
+
+    def _update_gui(self, status, message):
+
+        if status == 'success':
+            # Handle success, update GUI accordingly
+            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (0.17, 0.55, 0.27, 1)  # Green color
+            screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Command received: " + message
+            # change bot_icon image to indicate success
+            screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/start.png"
+            screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
+
+        elif status == 'error':
+            # Handle error, update GUI accordingly
+            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (1, 0, 0, 1)  # Red color
+            screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Error: " + message
+            # change bot_icon image to indicate error
+            screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/error.png"
+            screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
+        elif status == 'deactivated':
+            # Handle deactivation, update GUI accordingly
+            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (1, 1, 0, 1)  # Yellow color
+            screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Voice assistant deactivated"
+            # change bot_icon image to indicate error
+            screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/error.png"
+            screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
+
+
+        # Re-enable the mic button
+        mic_button = screen_manager.get_screen("voicescreen").ids.mic_button
+        mic_button.disabled = False # Show the back button
+
+        back_button = screen_manager.get_screen("voicescreen").ids.back_button
+        back_button.opacity = 1  # Make the button visible
+        back_button.disabled = False  # Enable the button
+
+
+
+    def update_voice_gui_to_default(self):
+        # change bot_icon image to default
+        screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/start.png"
+        screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
+
+        screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.003, .4, .6, 1)
+        screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Press the microphone to start"
+
+
+
+
+        # GPIO --------------------------------------
 
     def gpio_cleanup(self):
         print('cleared pin values')
