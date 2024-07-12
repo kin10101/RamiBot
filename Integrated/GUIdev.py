@@ -36,8 +36,9 @@ HOST_IP = 'http://192.168.80.4:5000'
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
 REQUEST_TIMEOUT = 2
 TIMEOUT_DURATION = 30
-ANNOUNCEMENT_TIMEOUT = 60
+ANNOUNCEMENT_INTERVAL = 60
 CAMERA_INDEX = 0
+halign = "center"
 
 
 class MainApp(MDApp):
@@ -119,8 +120,9 @@ class MainApp(MDApp):
         sql_module.connect()
         Clock.schedule_interval(self.await_change_gui_elements, .3)
         Clock.schedule_interval(self.await_recharge_change, .5)
-        Clock.schedule_interval(self.await_timeout_change, .5)
-        Clock.schedule_interval(self.await_transcription_queue, .5)
+        #Clock.schedule_interval(self.await_transcription_queue, .5)
+
+        #Clock.schedule_interval(self.await_timeout_change, .5)
 
         #start_voice_thread()
 
@@ -392,7 +394,7 @@ class MainApp(MDApp):
     def schedule_idle_announcement(self):
         print("Current Screen: ", screen_manager.current)
         if screen_manager.current == 'idlescreen':
-            Clock.schedule_interval(self.idle_announcement, ANNOUNCEMENT_TIMEOUT)
+            Clock.schedule_interval(self.idle_announcement, ANNOUNCEMENT_INTERVAL)
 
     def unschedule_idle_announcement(self):
         Clock.unschedule(self.idle_announcement)
@@ -416,8 +418,6 @@ class MainApp(MDApp):
                 pygtts.speak_async(detected)  # Speak the greeting for the detected person
 
                 put_in_queue(screen_queue, 'greetscreen')
-
-
 
     def close_camera(self):
         self.camera.release()
@@ -485,7 +485,7 @@ class MainApp(MDApp):
             text_box.pos_hint = {"center_y": 0.05}
             self.keyboard_status = False
         else:
-            text_box.pos_hint = {"center_y": 0.58}
+            text_box.pos_hint = {"center_y": 0.558}
             self.keyboard_status = True
 
         screen_manager.do_layout()
@@ -494,6 +494,9 @@ class MainApp(MDApp):
 
     def tap_to_talk(self):
         print("talk with rami button pressed")
+
+        screen_manager.get_screen("voicescreen").ids.retry_message.opacity = 0
+        self.update_voice_gui_to_default()
 
         # Disable the mic button
         mic_button = screen_manager.get_screen("voicescreen").ids.mic_button
@@ -512,43 +515,78 @@ class MainApp(MDApp):
         screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/listening.png"
         screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
 
-        # Schedule the "Please wait" message after a delay of 3 seconds
-        self.wait_event = Clock.schedule_once(self.show_wait_message, 5)
+        # Schedule the wait message
+        Clock.schedule_once(self.show_wait_message, 5)
+        # Schedule again for extra 3 seconds
+        self.wait_event = Clock.schedule_once(self.show_wait_message, 8)
+
 
         # Start a new thread for the voice assistant function
         voice_thread = threading.Thread(target=self.run_voice_assistant)
         voice_thread.start()
 
     def show_wait_message(self, dt):
+        wait_message = ["Please wait...", "Any second now...", "Processing your audio...", "Analyzing your command...",
+                        "Almost there...", "Just a moment...", "Processing...", "Analyzing...", "Just a sec..."]
+        random_wait_message = random.choice(wait_message)
         screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.5, .5, .5, 1)  # Grey color
-        screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Please wait..."
+        screen_manager.get_screen("voicescreen").ids.button_box_text.text = random_wait_message
 
 
     def run_voice_assistant(self):
         voicebot.voice_assistant_tap_to_speak(self.update_gui_after_voice_command)
 
-    def update_gui_after_voice_command(self, status, message):
-
+    def update_gui_after_voice_command(self, status, message, response):
         # This function is called from a different thread, so we need to schedule the GUI update on the main thread
-        Clock.schedule_once(lambda dt: self._update_gui(status, message))
+        Clock.schedule_once(lambda dt: self._update_gui(status, message, response))
 
-    def _update_gui(self, status, message):
+    def _update_gui(self, status, message, response=None):
+        screen_manager.get_screen("voicescreen").ids.retry_message.opacity = 0
+
+        self.stop_timer()
+
+        self.wait_event.cancel()
 
         if status == 'success':
-            # Handle success, update GUI accordingly
-            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (0.17, 0.55, 0.27, 1)  # Green color
-            screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Command received: " + message
-            # change bot_icon image to indicate success
-            screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/start.png"
+            # hide button box
+            screen_manager.get_screen("voicescreen").ids.button_box.opacity = 0
+            screen_manager.get_screen("voicescreen").ids.button_box_text.opacity = 0
+            # hide bot image
+            screen_manager.get_screen("voicescreen").ids.bot_icon.opacity = 0
+            screen_manager.get_screen("voicescreen").ids.bot_icon.source = ""
             screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
+
+            # show transcription
+            screen_manager.get_screen("voicescreen").ids.audio_received_box.opacity = 1
+            screen_manager.get_screen("voicescreen").ids.audio_received_text.opacity = 1
+            screen_manager.get_screen("voicescreen").ids.transcribed_text.opacity = 1
+            screen_manager.get_screen("voicescreen").ids.transcribed_text.text = message
+
+            # show bot response
+            screen_manager.get_screen("voicescreen").ids.bot_response_box.opacity = 1
+            screen_manager.get_screen("voicescreen").ids.bot_response.opacity = 1
+            screen_manager.get_screen("voicescreen").ids.bot_response.text = response
+
+
+            # show and reactivate try again button
+            screen_manager.get_screen("voicescreen").ids.try_again_button.opacity = 1
+            screen_manager.get_screen("voicescreen").ids.try_again_button.disabled = False
+
+
+            # move back button to the side
+            screen_manager.get_screen("voicescreen").ids.back_button.pos_hint = {"center_x": .6}
+
 
         elif status == 'error':
             # Handle error, update GUI accordingly
-            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (1, 0, 0, 1)  # Red color
+            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.003, .4, .6, 1)  # Red color
             screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Error: " + message
             # change bot_icon image to indicate error
             screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/error.png"
             screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
+            screen_manager.get_screen("voicescreen").ids.retry_message.opacity = 1
+
+
         elif status == 'deactivated':
             # Handle deactivation, update GUI accordingly
             screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (1, 1, 0, 1)  # Yellow color
@@ -566,17 +604,39 @@ class MainApp(MDApp):
         back_button.opacity = 1  # Make the button visible
         back_button.disabled = False  # Enable the button
 
+        # Schedule the GUI to start timeout again
+        Clock.schedule_once(self.start_timer, 5)
 
-
-    def update_voice_gui_to_default(self):
-        # change bot_icon image to default
+    def update_voice_gui_to_default(self, dt=None):
+        # return bot image
+        screen_manager.get_screen("voicescreen").ids.bot_icon.opacity = 1
         screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/start.png"
         screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
 
+        # return button box to default
+        screen_manager.get_screen("voicescreen").ids.button_box.opacity = 1
+        screen_manager.get_screen("voicescreen").ids.button_box_text.opacity = 1
         screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.003, .4, .6, 1)
         screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Press the microphone to start"
 
+        # hide transcription bar
+        screen_manager.get_screen("voicescreen").ids.audio_received_box.opacity = 0
+        screen_manager.get_screen("voicescreen").ids.audio_received_text.opacity = 0
+        screen_manager.get_screen("voicescreen").ids.transcribed_text.opacity = 0
 
+        # hide bot response
+        screen_manager.get_screen("voicescreen").ids.bot_response_box.opacity = 0
+        screen_manager.get_screen("voicescreen").ids.bot_response.opacity = 0
+
+        # hide retry message elements
+        screen_manager.get_screen("voicescreen").ids.retry_message.opacity = 0
+
+        # hide and deactivate try again button
+        screen_manager.get_screen("voicescreen").ids.try_again_button.opacity = 0
+        screen_manager.get_screen("voicescreen").ids.try_again_button.disabled = True
+
+        # move back button to the center
+        screen_manager.get_screen("voicescreen").ids.back_button.pos_hint = {"center_x": .5}
 
 
         # GPIO --------------------------------------
@@ -600,14 +660,17 @@ class MainApp(MDApp):
         sql_module.show_value("admin_control", "LCD_state", "ID", 1)
 
     # TIMER FUNCTIONS --------------------------------------
-    def start_timer(self):
+    def start_timer(self, dt=None):
+        print("idle timer started")
         self.timeout = Clock.schedule_once(self.timeout_reset, TIMEOUT_DURATION)
 
     def reset_timer(self):
-        self.timeout.cancel()
+        print("idle timer reset")
+        self.stop_timer()
         self.start_timer()
 
     def stop_timer(self):
+        print("idle timer stopped")
         self.timeout.cancel()
 
     def timeout_reset(self, dt):

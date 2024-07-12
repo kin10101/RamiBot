@@ -20,12 +20,12 @@ MDScreen:
 # HEADER
         MDFloatLayout:
             md_bg_color: .003, .4, .6, 1
-            size_hint_y: .11
+            size_hint_y: .1
             pos_hint: {"center_y": .95}
 
             MDLabel:
-                id: bot_name
-                text: "Chat with Rami"
+                id: header_label
+                text: "Talk to Rami"
                 pos_hint: {"center_x": .5, "center_y": .5}
                 halign: "center"
                 font_size: "30sp"
@@ -33,13 +33,67 @@ MDScreen:
                 theme_text_color: "Custom"
                 text_color: 1,1,1,1
 
+# TRANSPARENT BOX
+        MDBoxLayout:
+            id: bot_response_box
+            orientation: 'vertical'
+            size_hint: .8, .65
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 20
+            radius: [15]
+            opacity: 0
+
+            MDLabel:
+                id: bot_response
+                text: "The Bachelor of Science in Computer Engineering (BSCpE) is a four-year trimestral degree that aims to produce certified computer engineers. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
+                font_name: 'Poppins'
+                font_size: "48sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                size_hint: 1, .2
+                bold: True
+                opacity: 0
+
+# AUDIO RECEIVED
+        MDFloatLayout:
+            id: audio_received_box
+            size_hint: .4, .3
+            pos_hint: {'center_x': 0.5, 'center_y': 1}
+            md_bg_color: .003, .4, .6, 1
+            padding: 10
+            radius: [45]
+            opacity: 0
+
+            MDLabel:
+                id: audio_received_text
+                text: "Audio Received"
+                pos_hint: {"center_x": .5, "center_y": .4}
+                halign: "center"
+                font_size: "22sp"
+                font_name: "Poppins"
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                opacity: 0
+
+            MDLabel:
+                id: transcribed_text
+                text: "where is the admissions office located"
+                pos_hint: {"center_x": .5, "center_y": .2}
+                halign: "center"
+                font_size: "28sp"
+                font_name: "Poppins"
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                opacity: 0
 
 
 # BUTTON BOX
         MDFloatLayout:
             id: button_box
             size_hint: .4, .3
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.43}
             md_bg_color: .003, .4, .6, 1
             padding: 10
             radius: [45]
@@ -54,6 +108,16 @@ MDScreen:
                 theme_text_color: "Custom"
                 text_color: 1,1,1,1
 
+            MDLabel:
+                id: retry_message
+                text: "Tap the mic button to try again."
+                pos_hint: {"center_x": .5, "center_y": .25}
+                halign: "center"
+                font_size: "18sp"
+                font_name: "Poppins"
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                opacity: 0
 
             MDIconButton:
                 id: mic_button
@@ -63,21 +127,38 @@ MDScreen:
                 theme_icon_color: "Custom"
                 icon_size: "80sp"
                 icon_color: .003, .4, .6, 1
-
                 md_bg_color: 1,1,1,1
                 style: "fill"
                 on_press:
                     app.tap_to_talk()
 
         MDRoundFlatIconButton:
-            id: back_button
-            text: "Back"
+            id: try_again_button
+            text: "Ask again"
             font_size: "26sp"
             font_name: "Poppins"
-            pos_hint: {"center_x": .5, "center_y": .2}
+            pos_hint: {"center_x": .4, "center_y": .1}
             text_color: 1,1,1,1
             md_bg_color: .003, .4, .6, 1
-            size_hint: .2, .09
+            size_hint: .15, .08
+            radius: [30]
+            opacity: 0
+            disabled: True
+
+
+            on_press:
+                app.play_button_sound()
+                app.tap_to_talk()
+
+        MDRoundFlatIconButton:
+            id: back_button
+            text: "Back to menu"
+            font_size: "26sp"
+            font_name: "Poppins"
+            pos_hint: {"center_x": .5, "center_y": .1}
+            text_color: 1,1,1,1
+            md_bg_color: .003, .4, .6, 1
+            size_hint: .15, .08
             radius: [30]
 
             on_press:
@@ -90,24 +171,9 @@ MDScreen:
             allow_stretch: False
             keep_ratio: True
             size_hint: .3, .3
-            pos_hint: {'center_x': 0.5, 'center_y': 0.788}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7185}
 
 
-#        MDBoxLayout: # Square transparent container
-#            orientation: 'vertical'
-#            size_hint: .8, .9
-#            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-#            md_bg_color: 0.1, 0.1, 0.1, 0.1
-#            padding: 10
-#            radius: [15]
-#
-#            Image: # Background image
-#                id: img
-#                source: "../Integrated/Assets/missing.png"
-#                allow_stretch: True
-#                keep_ratio: True
-#                size_hint: 1, 1
-#                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
 
 

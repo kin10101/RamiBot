@@ -151,11 +151,11 @@ class VoiceAssistant:
 
         if state:
             print("Voice assistant deactivated")
-            callback('deactivated', None)
+            callback('deactivated', None, None)
             return
 
         print("Tap-to-speak mode activated")
-        Timeout_Queue.put("stop")  # stop the idle screen timer
+        #Timeout_Queue.put("stop")  # stop the idle screen timer
 
         try:
             with self.mic as source:
@@ -171,29 +171,27 @@ class VoiceAssistant:
                 # Process the main command
                 response = self.handle_command(text, [""])  # Empty context
                 if response is not None:
-                    callback('success', text)  #
+                    callback('success', text, response)  #
                     ts.speak(response)
                     ts.play_audio_file("audio/deactivate.wav")  # Sound to indicate that the interaction is over
 
-
-
         except sr.RequestError:
-            callback('error', "Could not request results from Google Speech Recognition service")
+            callback('error', "Could not request results from Google Speech Recognition service", None)
             print("Could not request results from Google Speech Recognition service")
-            ts.speak("sorry, the network blocked me again.")
+            ts.speak("the APC network blocked me again! tell I T R O to fix it.")
 
         except sr.UnknownValueError:
-            callback('error', "Unable to recognize speech")
+            callback('error', "Unable to recognize speech", None)
             print("Unable to recognize speech")
-            ts.speak("sorry, I couldn't understand you.")
+            ts.speak("learn to speak properly next time. I'm sure you're at least capable of that.")
 
         except sr.WaitTimeoutError:
-            callback('error', "Unable to recognize speech")
+            callback('error', "Unable to recognize speech", None)
             print("Timeout error while waiting for speech input")
             ts.speak("sorry, I couldn't hear you.")
 
-        finally:
-            Timeout_Queue.put("start")
+        #finally:
+            #Timeout_Queue.put("start")
 
     def run_once(self):
         recognizer = sr.Recognizer()
