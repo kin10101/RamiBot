@@ -190,6 +190,11 @@ class VoiceAssistant:
             print("Timeout error while waiting for speech input")
             ts.speak("sorry, I couldn't hear you.")
 
+        except AssertionError as e:
+            callback('error_wait', "Hey! I was still speaking!", None)
+            print("Microphone is already in use")
+            # ts.speak("Can't you wait? i was still speaking.")
+
         #finally:
             #Timeout_Queue.put("start")
 

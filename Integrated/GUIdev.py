@@ -327,6 +327,7 @@ class MainApp(MDApp):
         """periodically check if return to charger status is low and change screen accordingly"""
         try:
             state = sql_module.show_value_as_bool("admin_control", "LCD_state", "ID", 1)
+            state = 0
 
             if state:
 
@@ -597,12 +598,28 @@ class MainApp(MDApp):
 
         elif status == 'error':
             # Handle error, update GUI accordingly
-            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.003, .4, .6, 1)  # Red color
+            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.003, .4, .6, 1)
             screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Error: " + message
             # change bot_icon image to indicate error
             screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/error.png"
             screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
             screen_manager.get_screen("voicescreen").ids.retry_message.opacity = 1
+
+        elif status == 'error_wait':
+            self.wait_event.cancel()
+
+            mic_button = screen_manager.get_screen("voicescreen").ids.mic_button
+            mic_button.disabled = True
+
+
+            screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.5, .5, .5, 1)  # Grey color
+            screen_manager.get_screen("voicescreen").ids.button_box_text.text = message
+            # change bot_icon image to indicate error
+            screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/error.png"
+            screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
+
+
+            Clock.schedule_once(self.update_voice_gui_to_default, 6)
 
 
         elif status == 'deactivated':
@@ -616,7 +633,7 @@ class MainApp(MDApp):
 
         # Re-enable the mic button
         mic_button = screen_manager.get_screen("voicescreen").ids.mic_button
-        mic_button.disabled = False # Show the back button
+        mic_button.disabled = False
 
         back_button = screen_manager.get_screen("voicescreen").ids.back_button
         back_button.opacity = 1  # Make the button visible
@@ -624,6 +641,7 @@ class MainApp(MDApp):
 
         # Schedule the GUI to start timeout again
         Clock.schedule_once(self.start_timer, 10)
+
 
     def update_voice_gui_to_default(self, dt=None):
         # return bot image

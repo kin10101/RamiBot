@@ -13,7 +13,7 @@ def connect():
             # password="RAMIcpe211",
             # database="ramibot",
             # autocommit=True
-            #
+
             # database access for local testing
             host="localhost",
             user="kin",

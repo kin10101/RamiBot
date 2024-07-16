@@ -1,7 +1,12 @@
-
+import pydub
 import subprocess
 from playsound import playsound
 import threading
+
+from pydub import AudioSegment
+from pydub.playback import play
+
+
 # if not working, try: pip install piper-tts
 
 def speak(text):
@@ -18,8 +23,14 @@ def speak_async(text):
     thread = threading.Thread(target=speak, args=(text,))
     thread.start()
 
+
 def play_audio_file(file):
-    playsound(file)
+    # Load your audio file
+    audio = AudioSegment.from_file(file)
+
+    # Play the audio file
+    play(audio)
+
 
 def play_audio_file_async(file):
     thread = threading.Thread(target=play_audio_file, args=(file,))
