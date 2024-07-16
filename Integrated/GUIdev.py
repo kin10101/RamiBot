@@ -33,7 +33,7 @@ Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 HOST_IP = 'http://192.168.80.4:5000'
-HOST_IP = "http://192.168.254.169:5000"
+# HOST_IP = "http://192.168.254.169:5000"
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
 REQUEST_TIMEOUT = 2
 TIMEOUT_DURATION = 30
