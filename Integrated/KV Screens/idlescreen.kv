@@ -10,6 +10,7 @@ MDScreen:
     on_pre_leave:
         app.off_motor()
         app.close_camera()
+        app.start_timer()
 
         app.unschedule_idle_announcement()
 

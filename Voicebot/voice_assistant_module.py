@@ -183,7 +183,7 @@ class VoiceAssistant:
         except sr.UnknownValueError:
             callback('error', "Unable to recognize speech", None)
             print("Unable to recognize speech")
-            ts.speak("learn to speak properly next time. I'm sure you're at least capable of that.")
+            ts.play_audio_file("audio/jp_couldnt_hear.mp3")
 
         except sr.WaitTimeoutError:
             callback('error', "Unable to recognize speech", None)

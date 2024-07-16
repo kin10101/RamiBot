@@ -2,9 +2,6 @@ MDScreen:
 
     name: "voicescreen"
 
-    on_pre_leave:
-        app.update_voice_gui_to_default()
-
 
     MDFloatLayout:
 
@@ -37,7 +34,7 @@ MDScreen:
         MDBoxLayout:
             id: bot_response_box
             orientation: 'vertical'
-            size_hint: .8, .65
+            size_hint: .65, .65
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             md_bg_color: 0.1, 0.1, 0.1, 0.1
             padding: 20
@@ -132,12 +129,12 @@ MDScreen:
                 on_press:
                     app.tap_to_talk()
 
-        MDRoundFlatIconButton:
+        MDRoundFlatButton:
             id: try_again_button
             text: "Ask again"
             font_size: "26sp"
             font_name: "Poppins"
-            pos_hint: {"center_x": .4, "center_y": .1}
+            pos_hint: {"center_x": .25, "center_y": .1}
             text_color: 1,1,1,1
             md_bg_color: .003, .4, .6, 1
             size_hint: .15, .08
@@ -150,7 +147,7 @@ MDScreen:
                 app.play_button_sound()
                 app.tap_to_talk()
 
-        MDRoundFlatIconButton:
+        MDRoundFlatButton:
             id: back_button
             text: "Back to menu"
             font_size: "26sp"
@@ -163,7 +160,8 @@ MDScreen:
 
             on_press:
                 app.play_button_sound()
-                app.root.current = app.previous_screen
+                app.root.current = "Main_Menu"
+                app.update_voice_gui_to_default()
 
         Image:
             id: bot_icon
@@ -172,6 +170,35 @@ MDScreen:
             keep_ratio: True
             size_hint: .3, .3
             pos_hint: {'center_x': 0.5, 'center_y': 0.7185}
+
+        MDRoundFlatIconButton:
+            id: image_info_button
+            text: "More info"
+            font_size: "26sp"
+            font_name: "Poppins"
+            pos_hint: {"center_x": .5, "center_y": .1}
+            text_color: 1,1,1,1
+            md_bg_color: .003, .4, .6, 1
+            size_hint: .15, .08
+            opacity: 0
+            disabled: False
+
+            on_press:
+                app.play_button_sound()
+                app.root.current = "image_info"
+                app.previous_screen = "voicescreen"
+
+
+#        Image:
+#            id: success_icon
+#            source: 'Assets/success.png'
+#            allow_stretch: False
+#            keep_ratio: True
+#            size_hint: .3, .3
+#            pos_hint: {'center_x': 0.5, 'center_y': .03}
+
+
+
 
 
 

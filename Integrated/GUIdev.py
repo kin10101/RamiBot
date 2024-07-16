@@ -33,6 +33,7 @@ Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 HOST_IP = 'http://192.168.80.4:5000'
+HOST_IP = "http://192.168.254.169:5000"
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
 REQUEST_TIMEOUT = 2
 TIMEOUT_DURATION = 30
@@ -72,6 +73,11 @@ class MainApp(MDApp):
         self.keyboard_status = False
         self.current_screen = None
         self.previous_screen = None
+
+        self.timeout_trigger = Clock.create_trigger(self.timeout_reset, TIMEOUT_DURATION)
+        self.trigger_idle_start = Clock.create_trigger(self.start_timer)
+        self.trigger_idle_stop = Clock.create_trigger(self.stop_timer)
+        self.trigger_idle_reset = Clock.create_trigger(self.reset_timer)
 
     stop_voice = threading.Event()
     stop_face = threading.Event()
@@ -124,7 +130,15 @@ class MainApp(MDApp):
 
         #Clock.schedule_interval(self.await_timeout_change, .5)
 
+        Clock.schedule_interval(self.show_active_threads, 5)
+
+
         #start_voice_thread()
+
+    def show_active_threads(self, dt=None):
+        print("\nActive Threads:")
+        for thread in threading.enumerate():
+            print(f"Thread Name: {thread.name}, Thread ID: {thread.ident}, Daemon: {thread.daemon}")
 
     def on_stop(self):
         sql_module.disconnect()
@@ -415,7 +429,8 @@ class MainApp(MDApp):
             if detected:
                 # gpio.set_gpio_pin(4, 1)
                 self.on_motor()
-                pygtts.speak_async(detected)  # Speak the greeting for the detected person
+                #pygtts.speak_async(detected)  # Speak the greeting for the detected person
+                pygtts.play_audio_file_async(detected)
 
                 put_in_queue(screen_queue, 'greetscreen')
 
@@ -567,14 +582,17 @@ class MainApp(MDApp):
             screen_manager.get_screen("voicescreen").ids.bot_response.opacity = 1
             screen_manager.get_screen("voicescreen").ids.bot_response.text = response
 
+            if not image_queue.empty():
+                screen_manager.get_screen("voicescreen").ids.image_info_button.opacity = 1
+                screen_manager.get_screen("voicescreen").ids.image_info_button.disabled = False
 
             # show and reactivate try again button
             screen_manager.get_screen("voicescreen").ids.try_again_button.opacity = 1
             screen_manager.get_screen("voicescreen").ids.try_again_button.disabled = False
 
-
             # move back button to the side
-            screen_manager.get_screen("voicescreen").ids.back_button.pos_hint = {"center_x": .6}
+            screen_manager.get_screen("voicescreen").ids.back_button.pos_hint = {"center_x": .75}
+
 
 
         elif status == 'error':
@@ -605,7 +623,7 @@ class MainApp(MDApp):
         back_button.disabled = False  # Enable the button
 
         # Schedule the GUI to start timeout again
-        Clock.schedule_once(self.start_timer, 5)
+        Clock.schedule_once(self.start_timer, 10)
 
     def update_voice_gui_to_default(self, dt=None):
         # return bot image
@@ -618,6 +636,9 @@ class MainApp(MDApp):
         screen_manager.get_screen("voicescreen").ids.button_box_text.opacity = 1
         screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.003, .4, .6, 1)
         screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Press the microphone to start"
+        screen_manager.get_screen("voicescreen").ids.mic_button.disabled = False
+
+
 
         # hide transcription bar
         screen_manager.get_screen("voicescreen").ids.audio_received_box.opacity = 0
@@ -632,6 +653,9 @@ class MainApp(MDApp):
         screen_manager.get_screen("voicescreen").ids.retry_message.opacity = 0
 
         # hide and deactivate try again button
+        screen_manager.get_screen("voicescreen").ids.image_info_button.opacity = 0
+        screen_manager.get_screen("voicescreen").ids.image_info_button.disabled = True
+
         screen_manager.get_screen("voicescreen").ids.try_again_button.opacity = 0
         screen_manager.get_screen("voicescreen").ids.try_again_button.disabled = True
 
@@ -662,7 +686,7 @@ class MainApp(MDApp):
     # TIMER FUNCTIONS --------------------------------------
     def start_timer(self, dt=None):
         print("idle timer started")
-        self.timeout = Clock.schedule_once(self.timeout_reset, TIMEOUT_DURATION)
+        self.timeout_trigger()
 
     def reset_timer(self):
         print("idle timer reset")
@@ -671,9 +695,10 @@ class MainApp(MDApp):
 
     def stop_timer(self):
         print("idle timer stopped")
-        self.timeout.cancel()
+        self.timeout_trigger.cancel()
 
     def timeout_reset(self, dt):
+        self.stop_timer()
         self.on_motor()
         self.change_screen('idlescreen')
 
@@ -738,6 +763,7 @@ def start_voice_thread():
     voice.daemon = True
     voice.start()
     print("voice thread now activeid")
+
 
 
 if __name__ == "__main__":
