@@ -27,6 +27,7 @@ whisper~=1.1.10
 nltk~=3.8.1
 keras~=3.3.3
 tensorflow~=2.16.1
+tf-keras~=2.16.0
 numpy~=1.26.4
 matplotlib~=3.9.0
 
