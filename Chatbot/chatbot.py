@@ -64,7 +64,7 @@ def predict_class(sentence):
     return return_list
 
 
-def get_response(intents_list, intents_json, context):
+def get_response(intents_list, intents_json):
     tag = intents_list[0]['intent']
     list_of_intents = intents_json['intents']
 
@@ -72,11 +72,6 @@ def get_response(intents_list, intents_json, context):
 
     for i in list_of_intents:
         if i['tag'] == tag:
-            if 'context_filter' in i and i['context_filter'] not in context:
-                continue
-
-            if 'context_set' in i:  # set context
-                context[0] = i['context_set']
 
             if 'function' in i:
                 result = "running function..."  # remove this line before deployment. should run a function instead of returning a string
@@ -91,17 +86,28 @@ def get_response(intents_list, intents_json, context):
     return result
 
 
-def handle_request(message, context):
+
+def handle_request(message):
     """Determine whether the predicted intent corresponds to a custom command function
     or a standard response and return the appropriate output."""
     predicted_intents = predict_class(message)
     print("PREDICTED INTENTS", predicted_intents)
-    check_response = get_response(predicted_intents, intents, context)
 
-    if predicted_intents[0]['intent'] in intent_methods.keys():  # if predicted intent is mapped to a function
-        intent_methods[predicted_intents[0]['intent']]()  # call the function
+    # Print the confidence score of the predicted intent
+    confidence_score = predicted_intents[0]['probability']
+    print(f"Confidence score: {confidence_score}")
 
-    return check_response
+    # Get the intent tag
+    intent_tag = predicted_intents[0]['intent']
+    print(f"Intent tag: {intent_tag}")
+
+    check_response = get_response(predicted_intents, intents)
+
+    if intent_tag in intent_methods.keys():  # if predicted intent is mapped to a function
+        intent_methods[intent_tag]()  # call the function
+
+    return check_response, confidence_score, intent_tag
+
 
 
 def get_from_json(tag):
@@ -138,7 +144,7 @@ def run_chatbot():
             if message == "stop":
                 print('input received')
 
-            response = handle_request(message, context)  # get response from request()
+            response, confidence_score, intent_tag = handle_request(message)  # get response from request()
 
             if response:  # if response is not empty
                 print(response)

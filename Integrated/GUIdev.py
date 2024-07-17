@@ -425,12 +425,27 @@ class MainApp(MDApp):
 
     def send_message(self):
         """Send a message."""
+        start_time = time.time()
+
         self.input_text = screen_manager.get_screen("chatscreen").text_input.text.strip()
         if self.input_text:
             self.add_message_to_chat()
         screen_manager.get_screen("chatscreen").text_input.text = ""
         self.get_text_input()
-        self.response()
+        response, confidence_score, intent_tag = self.response()
+
+        end_time = time.time()  # End time after the function execution
+        execution_time = end_time - start_time  # Calculate the execution time
+
+        # log the chatbot results
+        sql_module.add_row_to_chatbot_results(response_time=execution_time,
+                                              intent_recognized=intent_tag,
+                                              confidence_score=confidence_score,
+                                              received_text=self.input_text,
+                                              bot_response=response,
+                                              query_time=time.strftime("%H:%M:%S"),
+                                              query_date=time.strftime("%Y-%m-%d"),
+                                              error_code="None")
 
     def add_message_to_chat(self):
         """Add the message to the chat list."""
@@ -469,10 +484,11 @@ class MainApp(MDApp):
     def response(self, *args):
         """Generate and display a response."""
         response = ""
-        context = [""]
-        response = handle_request(self.input_text.lower(), context)
+        response, confidence_score, intent_tag = handle_request(self.input_text.lower())
+
         screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
+        return response, confidence_score, intent_tag
 
     def clear_chat(self):
         screen_manager.get_screen("chatscreen").ids.chat_list.clear_widgets()

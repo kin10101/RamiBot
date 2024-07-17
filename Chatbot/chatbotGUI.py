@@ -95,8 +95,7 @@ class ChatBot(MDApp):
 
     def response(self, *args):
         response = ""
-        context = [""]
-        response = handle_request(self.input_text.lower(), context)
+        response, confidence_score, intent_tag = handle_request(self.input_text.lower())
         screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))
 

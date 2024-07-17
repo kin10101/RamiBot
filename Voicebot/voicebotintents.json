@@ -1417,10 +1417,10 @@
         {
             "tag": "LOC_BMO_hours",
             "patterns": [
-                "What time does the BMO/Building Maintenance Office open",
-                "When does the BMO/Building Maintenance Office open",
-                "What are the BMO/Building Maintenance Office's opening hours",
-                "When can I visit the BMO/Building Maintenance Office",
+                "What time does the BMO/Building Maintenance open",
+                "When does the BMO/Building Maintenanceopen",
+                "What are the BMO/Building Maintenance opening hours",
+                "When can I visit the BMO/Building Maintenance",
                 "bmo hours",
                 "building maintenance"
             ],

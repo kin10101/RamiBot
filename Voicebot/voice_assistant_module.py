@@ -1,4 +1,6 @@
 import sys
+import time
+
 import speech_recognition as sr
 import Voicebot.voicebotengine as voicebotengine
 import pygtts as ts
@@ -8,7 +10,7 @@ import threading
 import sounddevice # import this to remove warnings
 from queue import Queue
 
-from sql_module import show_value_as_bool
+from sql_module import show_value_as_bool, add_row_to_voicebot_results
 
 active_state = threading.Event()
 Transcription_Queue = Queue()
@@ -44,17 +46,16 @@ class VoiceAssistant:
         ]
 
     def listen_to_command(self, recognizer, source):
-
         audio = recognizer.listen(source=source, timeout=self.listen_timeout, phrase_time_limit=self.phrase_time_limit)
         text = recognizer.recognize_google(audio)
         return text.lower()
 
-    def handle_command(self, text, context):
+    def handle_command(self, text):
         try:
             if text is not None:
-                response = voicebotengine.handle_request(text, context)
+                response, confidence_score, intent_tag = voicebotengine.handle_request(text)
                 if response is not None:
-                    return response
+                    return response, confidence_score, intent_tag
         except Exception as e:
             print(f"Error handling command: {e}")
 
@@ -146,6 +147,7 @@ class VoiceAssistant:
         recognizer.energy_threshold = self.energy_threshold
         recognizer.operation_timeout = self.operation_timeout
         recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
+        error_code = None
 
         state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
 
@@ -159,6 +161,9 @@ class VoiceAssistant:
 
         try:
             with self.mic as source:
+                # record time from here
+                start_time = time.time()
+
                 # audio confirmation that the voice assistant is active
                 ts.play_audio_file('audio/activate.wav')
 
@@ -169,9 +174,13 @@ class VoiceAssistant:
                 print("Audio received to text: " + text)
 
                 # Process the main command
-                response = self.handle_command(text, [""])  # Empty context
+                response, confidence_score, intent_tag = self.handle_command(text)  # Empty context
                 if response is not None:
-                    callback('success', text, response)  #
+                    callback('success', text, response)
+                    end_time = time.time()  # End time after the function execution
+                    execution_time = end_time - start_time  # Calculate the execution time
+                    print(f"The voice_assistant_tap_to_speak function took {execution_time} seconds to execute")
+
                     ts.speak(response)
                     ts.play_audio_file("audio/deactivate.wav")  # Sound to indicate that the interaction is over
 
@@ -179,53 +188,38 @@ class VoiceAssistant:
             callback('error', "Could not request results from Google Speech Recognition service", None)
             print("Could not request results from Google Speech Recognition service")
             ts.speak("the APC network blocked me again! tell I T R O to fix it.")
+            error_code = "RequestError: Could not request results from Google Speech Recognition service."
 
         except sr.UnknownValueError:
             callback('error', "Unable to recognize speech", None)
             print("Unable to recognize speech")
             ts.speak("sorry, I couldn't hear you.")
             #ts.play_audio_file("audio/jp_couldnt_hear.mp3")
+            error_code = "UnknownValueError: Unable to recognize speech."
 
         except sr.WaitTimeoutError:
             callback('error', "Unable to recognize speech", None)
             print("Timeout error while waiting for speech input")
             ts.speak("sorry, I couldn't hear you.")
+            error_code = "TimeoutError: the user took too long to respond."
 
         except AssertionError as e:
             callback('error_wait', "Hey! I was still speaking!", None)
             print("Microphone is already in use")
             ts.speak("Can't you wait? i was still speaking.")
+            error_code = "AssertionError: User clicked the button while the bot was still speaking."
 
-        #finally:
-            #Timeout_Queue.put("start")
-
-    def run_once(self):
-        recognizer = sr.Recognizer()
-        recognizer.pause_threshold = self.pause_threshold
-        recognizer.energy_threshold = self.energy_threshold
-        recognizer.operation_timeout = self.operation_timeout
-        recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
-
-        print("Current mic being used: ", self.mic)
-        context = [""]  # need to remove this
-
-        if gpio.read_gpio_pin(17) == 0:
-            print("voice assistant activated")
-            with self.mic as source:
-                print('speak now')
-                try:
-                    text = self.listen_to_command(recognizer, source)
-                    print("Audio received to text: " + text)
-                    response = self.handle_command(text, context)
-                    if response is not None:
-                        ts.speak(response)
-
-                except sr.UnknownValueError:
-                    print("Unable to recognize speech")
-                except sr.WaitTimeoutError:
-                    print("Timeout error while waiting for speech input")
-        else:
-            print("voice assistant deactivated")
+        finally:
+            print("tap_to_speak function end. logging in results to database")
+            # log results to database
+            add_row_to_voicebot_results(response_time=execution_time,
+                                        intent_recognized=intent_tag,
+                                        confidence_score=confidence_score,
+                                        transcribed_text=text,
+                                        bot_response=response,
+                                        query_time=time.strftime("%H:%M:%S"),
+                                        query_date=time.strftime("%Y-%m-%d"),
+                                        error_code=error_code)
 
 if __name__ == "__main__":
     Voicebot = VoiceAssistant()
