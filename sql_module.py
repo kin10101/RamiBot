@@ -8,18 +8,18 @@ from mysql.connector import Error
 def connect():
     try:
         connection = mysql.connector.connect(
-            # host="airhub-soe.apc.edu.ph",
-            # user="marj",
-            # password="RAMIcpe211",
-            # database="ramibot",
-            # autocommit=True
+            host="airhub-soe.apc.edu.ph",
+            user="marj",
+            password="RAMIcpe211",
+            database="ramibot",
+            autocommit=True
 
             # database access for local testing
-            host="localhost",
-            user="kin",
-            password="asdf",
-            database="ramibot_local",
-            autocommit=True
+            # host="localhost",
+            # user="kin",
+            # password="asdf",
+            # database="ramibot_local",
+            # autocommit=True
         )
         if connection.is_connected():
             return connection
@@ -38,50 +38,19 @@ def check_connection():
     print(conn.is_connected())
     conn.close()
 
-
-# def query(query):
-#     try:
-#         conn = connect()
-#         if conn is None:
-#             raise Exception("Failed to connect to the database")
-#
-#         cursor = conn.cursor()
-#         cursor.execute(query)
-#         result = cursor.fetchall()
-#         return result
-#     except Error as e:
-#         print(f"Error: {e}")
-#         return None
-
-
-def execute_query(sql_query, result_queue):
+def sql_query(query):
     try:
         conn = connect()
         if conn is None:
             raise Exception("Failed to connect to the database")
 
         cursor = conn.cursor()
-        cursor.execute(sql_query)
+        cursor.execute(query)
         result = cursor.fetchall()
-        result_queue.put((result, None))  # Put the result in the queue
+        return result
     except Error as e:
         print(f"Error: {e}")
-        result_queue.put((None, e))  # Put the error in the queue
-
-
-def sql_query(query):
-    i = 1
-    result_queue = queue.Queue()
-    thread = threading.Thread(target=execute_query, args=(query, result_queue))
-    thread.start()
-    result, error = result_queue.get()  # Wait for the result
-
-    if error:
-        print(f"Query error: {error}")
         return None
-
-    return result
-
 
 def show_tables():
     tables = sql_query("SHOW TABLES;")

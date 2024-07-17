@@ -74,20 +74,20 @@ def realtime_face_recognition(video):
 
 
 def greet_new_user():
-    # greetings = [
-    #     "Hello there, I'm Rami bot, nice to meet you",
-    #     "hello! i am rami with the bot, Rami bot",
-    #     "excuse me, could you please move, you're blocking my view",
-    #     "oops, almost didn't see you there, hi! i'm Rami bot",
-    #     "well hello there, i'm Rami bot, how can i help you today?",
-    #     "Hey! I'm Rami bot, nice to meet you",
-    # ]
+    greetings = [
+        "hi, I'm Rami bot, nice to meet you",
+        "hello! i am rami with the bot, Rami bot",
+        "excuse me, could you please move, you're blocking my view",
+        "almost didn't see you there, hi! i'm Rami bot",
+        "hello there, i'm Rami bot, how can i help you today?",
+        "Hey! I'm Rami bot, nice to meet you",
+    ]
 
-    folder_path = "../Integrated/audio/jp_greeting"
-    greetings = []
-    for filename in os.listdir(folder_path):
-        if filename.endswith(".mp3"):
-            greetings.append(os.path.join(folder_path, filename))
+    # folder_path = "../Integrated/audio/jp_greeting"
+    # greetings = []
+    # for filename in os.listdir(folder_path):
+    #     if filename.endswith(".mp3"):
+    #         greetings.append(os.path.join(folder_path, filename))
 
     return random.choice(greetings)
 

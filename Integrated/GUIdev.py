@@ -33,13 +33,19 @@ Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 HOST_IP = 'http://192.168.80.4:5000'
-# HOST_IP = "http://192.168.254.169:5000"
+# HOST_IP = "http://192.168.254.169:5000" # laptop IP
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
 REQUEST_TIMEOUT = 2
 TIMEOUT_DURATION = 30
-ANNOUNCEMENT_INTERVAL = 60
+ANNOUNCEMENT_INTERVAL = 120
 CAMERA_INDEX = 0
 halign = "center"
+
+
+def _set_missing_image():
+    """Helper method to set the missing image"""
+    screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
+    screen_manager.get_screen('image_info').ids.img.reload()
 
 
 class MainApp(MDApp):
@@ -79,7 +85,6 @@ class MainApp(MDApp):
         self.trigger_idle_stop = Clock.create_trigger(self.stop_timer)
         self.trigger_idle_reset = Clock.create_trigger(self.reset_timer)
 
-    stop_voice = threading.Event()
     stop_face = threading.Event()
 
     def build(self):
@@ -126,14 +131,10 @@ class MainApp(MDApp):
         sql_module.connect()
         Clock.schedule_interval(self.await_change_gui_elements, .3)
         Clock.schedule_interval(self.await_recharge_change, .5)
-        #Clock.schedule_interval(self.await_transcription_queue, .5)
 
         #Clock.schedule_interval(self.await_timeout_change, .5)
 
         Clock.schedule_interval(self.show_active_threads, 5)
-
-
-        #start_voice_thread()
 
     def show_active_threads(self, dt=None):
         print("\nActive Threads:")
@@ -168,18 +169,13 @@ class MainApp(MDApp):
                 screen_manager.get_screen('image_info').ids.img.reload()
             else:
                 print(f"Failed to load image: {response.status_code}")
-                self._set_missing_image()
+                _set_missing_image()
         except Timeout:
             print(f"Request timed out after {timeout} seconds")
-            self._set_missing_image()
+            _set_missing_image()
         except Exception as e:
             print(f"Failed to load image: {e}")
-            self._set_missing_image()
-
-    def _set_missing_image(self):
-        """Helper method to set the missing image"""
-        screen_manager.get_screen('image_info').ids.img.source = "Assets/missing.png"
-        screen_manager.get_screen('image_info').ids.img.reload()
+            _set_missing_image()
 
     # GUI BUTTONS -------------------------------------
 
@@ -330,7 +326,6 @@ class MainApp(MDApp):
             state = 0
 
             if state:
-
                 if screen_manager.current != 'lowbatteryscreen':
                     put_in_queue(screen_queue, 'lowbatteryscreen')
                 else:
@@ -361,18 +356,6 @@ class MainApp(MDApp):
                 self.stop_timer()
                 print("stop")
 
-    def await_transcription_queue(self, dt):
-        """periodically check if an item is in queue and change the label in the current screen accordingly"""
-        if not Transcription_Queue.empty():
-            item = Transcription_Queue.get_nowait()
-            print(item)
-            self.update_label(screen_manager.current, 'transcribed_text', item)
-            Clock.schedule_once(self.clear_label, 5)
-        else:
-            pass
-
-    def clear_label(self, dt):
-        self.update_label(screen_manager.current, 'transcribed_text', 'What can I help you with?')
 
     # FACE FUNCTIONS -------------------------------------
 
@@ -536,7 +519,6 @@ class MainApp(MDApp):
         # Schedule again for extra 3 seconds
         self.wait_event = Clock.schedule_once(self.show_wait_message, 8)
 
-
         # Start a new thread for the voice assistant function
         voice_thread = threading.Thread(target=self.run_voice_assistant)
         voice_thread.start()
@@ -593,8 +575,6 @@ class MainApp(MDApp):
 
             # move back button to the side
             screen_manager.get_screen("voicescreen").ids.back_button.pos_hint = {"center_x": .75}
-
-
 
         elif status == 'error':
             # Handle error, update GUI accordingly
@@ -764,31 +744,10 @@ def face_thread():
     else:
         print("FACE THREAD DISABLED")
 
-
-def voice_thread():
-    print("voice thread active")
-    while True:
-        if not MainApp.stop_voice.is_set():
-            voicebot.voice_assistant_loop()
-        else:
-            print("VOICE THREAD DISABLED")
-            pass
-
-
-def start_voice_thread():
-    print("starting voice thread")
-    voice = threading.Thread(target=voice_thread)
-    voice.daemon = True
-    voice.start()
-    print("voice thread now activeid")
-
-
-
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Fonts/Poppins-SemiBold.ttf")
 
     # Queues
-    event_queue = Queue()
     screen_queue = voicebotengine.Speech_Queue
     image_queue = voicebotengine.Image_Queue
 

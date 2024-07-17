@@ -183,7 +183,8 @@ class VoiceAssistant:
         except sr.UnknownValueError:
             callback('error', "Unable to recognize speech", None)
             print("Unable to recognize speech")
-            ts.play_audio_file("audio/jp_couldnt_hear.mp3")
+            ts.speak("sorry, I couldn't hear you.")
+            #ts.play_audio_file("audio/jp_couldnt_hear.mp3")
 
         except sr.WaitTimeoutError:
             callback('error', "Unable to recognize speech", None)
@@ -193,7 +194,7 @@ class VoiceAssistant:
         except AssertionError as e:
             callback('error_wait', "Hey! I was still speaking!", None)
             print("Microphone is already in use")
-            # ts.speak("Can't you wait? i was still speaking.")
+            ts.speak("Can't you wait? i was still speaking.")
 
         #finally:
             #Timeout_Queue.put("start")
