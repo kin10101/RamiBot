@@ -3,9 +3,8 @@
 
 # MainApp.py
 WINDOW_SIZE = (1920, 1080)
-HOST_IP = 'http://192.168.80.4:5000'
-# HOST_IP = "http://192.168.254.169:5000" # laptop IP
-IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
+HOST_IP = 'http://192.168.80.4:5000' # "http://192.168.254.169:5000" # laptop ip
+IMAGE_PATH = 'downloaded_image.jpg'  # to prevent storage bloat
 REQUEST_TIMEOUT = 2
 TIMEOUT_DURATION = 20
 ANNOUNCEMENT_INTERVAL = 120

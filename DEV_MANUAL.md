@@ -1,4 +1,4 @@
-# RamiBot - User Manual
+# RamiBot - Dev Manual
 ## Table of Contents
 1. [How to run the program](#how-to-run-the-program)
 2. [Configuring ports](#Configuring-ports)
@@ -7,7 +7,9 @@
 5. [Changing the intent responses](#Changing-the-intent-responses)
 6. [Activating the image server](#Activating-the-image-server)
 7. [Changing image server contents](#Changing-image-server-contents)
-8. [Changing Voice](#Changing-Voice)
+8. [Changing voice model](#Changing-voice-model)
+9. [Modifying Announcements](#Modifying-Announcements)
+10. [Modifying GUI Buttons](#Modifying-GUI-Buttons)
 
 ## How to run the program
 Navigate to the Integrated package directory and run the following python module:
@@ -203,16 +205,39 @@ Example:
     Incorrect: "sample image.png"
 ```
 
-## Changing Voice
+## Changing voice model
 PiperTTS is the text-to-speech engine used by RamiBot. 
-To change the voice of the text-to-speech engine, you need to modify the following lines in the Integrated/voicebot/voice_assistant_module.py file:
+To change the voice of the text-to-speech engine, you need to modify the following line in config.py:
 ```
-    def speak(text):
-        tts = gTTS(text=text, lang='en')
-        filename = 'temp.mp3'
-        tts.save(filename)
-        playsound(filename)
-        os.remove(filename)
+    # speech recog parameters
+    VOICE_MODEL = "../en_US-lessac-medium.onnx"
+```
+Do note that you should have the actual model downloaded in your device. 
+You can download different voice models from this [link](https://github.com/rhasspy/piper/blob/master/VOICES.md).
+
+## Modifying voice model parameters
+A json configuration file is included with the voice model. See the [PiperTTS documentation](https://github.com/rhasspy/piper) for more information on how to modify the voice model parameters.
+Personally I only needed to change the voice speed, so I only modified the following lines in the json file with the same name of the model.
+```
+    "length_scale": 1.2
 ```
 
+## Modifying Announcements
+Announcements are stored in a table in the school database. 
+To modify the announcements, you need to access the school database and 
+modify the contents of the announcements table.
+You can use a PHPMyAdmin tool to access the database, 
+or directly access the database using MySQL commands.
 
+To access the APC mysql server, you need to be connected to the APC network.
+you can access the database through PHPMyAdmin by typing the following URL in your browser:
+```
+https://airhub-soe.apc.edu.ph:1000/phpmyadmin/
+```
+
+## GUI Buttons
+These buttons are loaded from the school database and are displayed in the GUI. This was done to make the GUI more dynamic and be able to change the buttons without changing the code.
+## Modifying GUI Buttons
+Modifying the buttons involves changing the contents of the buttons table in the school database.
+Same as the announcements, you can access the database through PHPMyAdmin or directly through MySQL commands.
+Follow the naming convention of the buttons to avoid errors in the program. refer to the [GUI Buttons](#GUI-Buttons) section for more information.

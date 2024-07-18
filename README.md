@@ -1,7 +1,6 @@
 # RamiBot - Asia Pacific College Robotic Concierge
 
 # Table of Contents
-# <!-- TOC -->
 1. [Introduction](#introduction)    
 2. [Installation](#installation)
 3. [Model Training](#model-training)
@@ -9,21 +8,16 @@
 5. [Acknowledgements](#acknowledgements)
 <!-- TOC -->
 
-# TODO
-- [ ] setup image server
-- 
-
-
 # Introduction
 RamiBot is a robotic concierge that is designed to assist students and faculty members of Asia Pacific College. 
 It is capable of answering frequently asked questions, providing information about the school, and assisting users in navigating the campus building.
 This repository contains the source code for the software side of the RamiBot project. 
 
 The project is divided into four main modules:
-1. Chatbot Module - A chatbot that can answer frequently asked questions and provide information about the school.
-2. Voice Recognition Module - A voice recognition module that allows users to interact with the chatbot using voice commands. extension of the chatbot module.
-3. Face Recognition Module - A face recognition module that allows the chatbot to recognize and greet a user if the bot sees a user's face.
-4. GUI Module - A graphical user interface that allows users to interact with Rami through a touch screen interface. The Kivy framework is used to create the GUI.
+1. __Chatbot Module__ - A chatbot that can answer frequently asked questions and provide information about the school.
+2. __Speech Recognition Module__ - A voice recognition module that allows users to interact with the chatbot using voice commands. extension of the chatbot module.
+3. __Face Recognition Module__ - A face recognition module that allows the chatbot to recognize and greet a user if the bot sees a user's face.
+4. __GUI Module__ - A graphical user interface that allows users to interact with Rami through a touch screen interface. The Kivy framework is used to create the GUI.
 
 ## Chatbot Module
 a rule-based chatbot that uses a bag-of-words model to classify user input into different intents. 
@@ -104,7 +98,7 @@ The training data used for both the chatbot and voicebot features are stored in 
                 "I was created by a team consisting of Computer and Electronic Engineering students from the School of Engineering Department. They collaborated to design and develop me combining their expertise in programming and artificial intelligence. Together they brought me to life as your robot assistant."
             ],
             "navigate_to": "image_info",
-            "src_img": "Assets/Image Infos/The_Ramibot_Team.png"
+            "source_image": "The_Ramibot_Team"
         }
   ]
 }
