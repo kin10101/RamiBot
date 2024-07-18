@@ -25,11 +25,29 @@ Sometimes, the default port configuration for peripherals like the microphone or
 ```
     
 ```
-To see what ports are assigned to your peripherals, run the following functions under either the 
+To see what ports are assigned to your peripherals, run the following functions under either the Voicebot or Facerecog packages:
+
+in Facerecog/face_recog_module:
+
 ```
-    ls /dev
+    if __name__ == '__main__':
+    get_camera_list()
+```
+sometimes this function doesn't work, so just iterate through the camera list manually by changing the index in the following line until you find the correct camera index:
+```
+    cap = cv2.VideoCapture(0 #change this number to iterate through the camera list)
 ```
 
+
+in Voicebot/voice_assistant_module:
+
+```
+    if __name__ == '__main__':
+    
+    
+        for index, name in enumerate(sr.Microphone.list_microphone_names()):
+            print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
+```
 
 ## Activating the image server
 Images are stored in the Assets folder and are served by the image server. To activate the image server, run the following python module:

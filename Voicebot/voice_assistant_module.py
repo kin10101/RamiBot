@@ -232,11 +232,7 @@ class VoiceAssistant:
                                         error_code=error_code)
 
 if __name__ == "__main__":
-    Voicebot = VoiceAssistant()
-    # Voicebot.voice_assistant_loop()
-    # Voicebot.voice_assistant_tap_to_speak()
-
-    #
+    # get a list of available microphones and their index
     for index, name in enumerate(sr.Microphone.list_microphone_names()):
         print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
-    #
+

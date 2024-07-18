@@ -3,23 +3,17 @@ import threading
 
 import mysql.connector
 from mysql.connector import Error
+from Integrated import config as config
 
 
 def connect():
     try:
         connection = mysql.connector.connect(
-        #     host="airhub-soe.apc.edu.ph",
-        #     user="marj",
-        #     password="RAMIcpe211",
-        #     database="ramibot",
-        #     autocommit=True
-
-            #database access for local testing
-            host="localhost",
-            user="kin",
-            password="asdf",
-            database="ramibot_local",
-            autocommit=True
+            host=config.HOST,
+            user=config.USER,
+            password=config.PASSWORD,
+            database=config.DATABASE,
+            autocommit=config.AUTOCOMMIT
         )
         if connection.is_connected():
             return connection
@@ -38,6 +32,7 @@ def check_connection():
     print(conn.is_connected())
     conn.close()
 
+
 def sql_query(query):
     try:
         conn = connect()
@@ -51,6 +46,7 @@ def sql_query(query):
     except Error as e:
         print(f"Error: {e}")
         return None
+
 
 def show_tables():
     tables = sql_query("SHOW TABLES;")
@@ -97,7 +93,8 @@ def show_value_as_bool(table, column, condition_column, condition_value):
         return None
 
 
-def add_row_to_voicebot_results(response_time, intent_recognized, confidence_score, transcribed_text, bot_response, query_time, query_date, error_code):
+def add_row_to_voicebot_results(response_time, intent_recognized, confidence_score, transcribed_text, bot_response,
+                                query_time, query_date, error_code):
     """Add a row of data to the voicebot_results table."""
     query = f"""
     INSERT INTO voicebot_results (response_time, intent_recognized, confidence_score, transcribed_text, bot_response, query_time, query_date, error_code)
@@ -107,7 +104,8 @@ def add_row_to_voicebot_results(response_time, intent_recognized, confidence_sco
     print("Row added to voicebot_results table.")
 
 
-def add_row_to_chatbot_results(response_time, intent_recognized, confidence_score, received_text, bot_response, query_time, query_date, error_code):
+def add_row_to_chatbot_results(response_time, intent_recognized, confidence_score, received_text, bot_response,
+                               query_time, query_date, error_code):
     """Add a row of data to the chatbot_results table."""
     query = f"""
     INSERT INTO chatbot_results (response_time, intent_recognized, confidence_score, received_text, bot_response, query_time, query_date, error_code)
@@ -123,10 +121,7 @@ if __name__ == "__main__":
     print("-------------------------------")
     show_columns("admin_control")
     print("-------------------------------")
-    #change_value("admin_control", "LCD_state", 0, "ID", 1)
-
-
-
+    # change_value("admin_control", "LCD_state", 0, "ID", 1)
 
     # print(show_value_as_bool("admin_control", "MOTOR_state", "ID", 1))
     # state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)

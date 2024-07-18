@@ -29,17 +29,20 @@ from Facerecog import face_recog_module
 from Voicebot import voicebotengine
 from Voicebot.voice_assistant_module import VoiceAssistant, active_state, Transcription_Queue, Timeout_Queue
 
-Window.size = (1920, 1080)
+import config
+
+Window.size = config.WINDOW_SIZE
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
-HOST_IP = 'http://192.168.80.4:5000'
-# HOST_IP = "http://192.168.254.169:5000" # laptop IP
-IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
-REQUEST_TIMEOUT = 2
-TIMEOUT_DURATION = 20
-ANNOUNCEMENT_INTERVAL = 120
-CAMERA_INDEX = 2
+HOST_IP = config.HOST_IP
+IMAGE_PATH = config.IMAGE_PATH
+REQUEST_TIMEOUT = config.REQUEST_TIMEOUT
+TIMEOUT_DURATION = config.TIMEOUT_DURATION
+ANNOUNCEMENT_INTERVAL = config.ANNOUNCEMENT_INTERVAL
+
+CAMERA_INDEX = config.CAMERA_INDEX
+
 halign = "center"
 
 
