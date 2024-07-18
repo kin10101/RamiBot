@@ -299,7 +299,6 @@ class MainApp(MDApp):
 
     def await_change_gui_elements(self, dt):
 
-
         if not screen_queue.empty():
             item = screen_queue.get_nowait()
             print(item)
@@ -335,7 +334,6 @@ class MainApp(MDApp):
         """periodically check if return to charger status is low and change screen accordingly"""
         try:
             state = sql_module.show_value_as_bool("admin_control", "LCD_state", "ID", 1)
-            state = 0
 
             if state:
                 if screen_manager.current != 'lowbatteryscreen':
