@@ -51,14 +51,16 @@ def realtime_face_recognition(video):
                 # If the distance is less than a certain threshold, consider it as a valid detection
                 if distance < 50:  # You can adjust this value as needed
                     person_detected = True
-                    print("person detected")
+                    #print("person detected")
                     greeting = greet_new_user()
                     return greeting
 
                 # else:
-                # print("face not in center")
+                #     print("face not in center")
+
         except Exception as e:
             person_detected = False
+            print("no face")
             # print(f"An error occurred: {e}")
 
         # display
@@ -69,8 +71,8 @@ def realtime_face_recognition(video):
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    video.release()
-    cv2.destroyAllWindows()
+    #video.release()
+    #cv2.destroyAllWindows()
 
 
 def greet_new_user():
