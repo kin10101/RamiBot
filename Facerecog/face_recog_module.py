@@ -111,8 +111,5 @@ if __name__ == '__main__':
 
     if available_cameras:
         video_capture = cv2.VideoCapture(available_cameras[0])
-        greeting = realtime_face_recognition(video_capture)
-        if greeting:
-            print(greeting)
     else:
         print("No cameras found")
