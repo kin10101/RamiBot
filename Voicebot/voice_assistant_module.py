@@ -12,13 +12,16 @@ from queue import Queue
 
 from sql_module import show_value_as_bool, add_row_to_voicebot_results
 
+from Integrated import config
+
 active_state = threading.Event()
 Transcription_Queue = Queue()
 Timeout_Queue = Queue()
 
+
 class VoiceAssistant:
     def __init__(self):
-        self.mic = sr.Microphone(device_index=5)  # leave blank to use default microphone, or specify the device index to use a
+        self.mic = sr.Microphone(device_index=config.DEVICE_INDEX)  # leave blank to use default microphone, or specify the device index to use a
         # specific microphone
         self.pause_threshold = .8
         self.energy_threshold = 3500

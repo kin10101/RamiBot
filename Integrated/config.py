@@ -9,8 +9,12 @@ IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to p
 REQUEST_TIMEOUT = 2
 TIMEOUT_DURATION = 20
 ANNOUNCEMENT_INTERVAL = 120
-# face recog parameters
+
+# face recognition
 CAMERA_INDEX = 0
+
+# speech recognition
+DEVICE_INDEX = 3
 
 # speech recog parameters
 PAUSE_THRESHOLD = .8
