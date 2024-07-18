@@ -9,7 +9,7 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-import pygtts
+import TTS
 from Voicebot import voicecommand_functions
 from queue import Queue
 
@@ -19,7 +19,7 @@ Image_Queue = Queue()
 # Load data
 lemmatizer = WordNetLemmatizer()
 
-intents = json.loads(open('../Integrated/voicebotintents.json').read())
+intents = json.loads(open('../Integrated/intents.json').read())
 words = pickle.load(open('../Integrated/words.pkl', 'rb'))
 classes = pickle.load(open('../Integrated/classes.pkl', 'rb'))
 model = keras.models.load_model('../Integrated/voicebot_model.h5')
@@ -135,7 +135,7 @@ def get_tag(message):
     return tag
 
 
-def get_from_json(tag, filename='voicebotintents.json'):
+def get_from_json(tag, filename='intents.json'):
     """Get response from JSON file based on the provided tag."""
     try:
         with open(filename) as file:
@@ -180,7 +180,7 @@ def run_chatbot():
             response, confidence_score, intent_tag = handle_request(message)  # get response from request()
 
             if response:  # if response is not empty
-                pygtts.speak_async(response)
+                TTS.speak_async(response)
                 print(response)
 
         except Exception as e:

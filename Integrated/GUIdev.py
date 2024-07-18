@@ -11,7 +11,7 @@ from kivy.core.audio import SoundLoader
 from kivymd.uix.dialog import MDDialog
 from requests.exceptions import Timeout
 import gpio
-import pygtts
+import TTS
 import sql_module
 from kivy.clock import Clock
 from kivy.core.text import LabelBase
@@ -188,8 +188,9 @@ class MainApp(MDApp):
 
     def submit_suggestion(self, suggestion):
         """Submit a suggestion to the database."""
-        #TODO add sql query to insert suggestion
         print(suggestion)
+        sql_module.add_row_to_suggestions(suggestion, time.strftime("%H:%M:%S"), time.strftime("%Y-%m-%d"))
+        print("Suggestion submitted")
 
     def play_button_sound(self):
         if self.button_sound:
@@ -335,7 +336,6 @@ class MainApp(MDApp):
         """periodically check if return to charger status is low and change screen accordingly"""
         try:
             state = sql_module.show_value_as_bool("admin_control", "LCD_state", "ID", 1)
-            state = 0
 
             if state:
                 if screen_manager.current != 'lowbatteryscreen':
@@ -391,7 +391,7 @@ class MainApp(MDApp):
         # Change the face
         put_in_queue(image_queue, face_path)
         # Start the thread
-        pygtts.speak_async(text)
+        TTS.speak_async(text)
 
     def idle_announcement(self, dt):
         column_data = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
@@ -425,8 +425,8 @@ class MainApp(MDApp):
             if detected:
                 # gpio.set_gpio_pin(4, 1)
                 self.on_motor()
-                pygtts.speak_async(detected)  # Speak the greeting for the detected person
-                #pygtts.play_audio_file_async(detected)
+                TTS.speak_async(detected)  # Speak the greeting for the detected person
+                #TTS.play_audio_file_async(detected)
 
                 put_in_queue(screen_queue, 'greetscreen')
 
@@ -774,7 +774,6 @@ def face_thread():
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Fonts/Poppins-SemiBold.ttf")
-
     # Queues
     screen_queue = voicebotengine.Speech_Queue
     image_queue = voicebotengine.Image_Queue

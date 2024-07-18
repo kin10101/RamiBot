@@ -3,7 +3,7 @@ import time
 
 import speech_recognition as sr
 import Voicebot.voicebotengine as voicebotengine
-import pygtts as ts
+import TTS as ts
 import gpio as gpio
 from Voicebot.voicebotengine import Speech_Queue as Speech_Queue
 import threading
@@ -217,7 +217,7 @@ class VoiceAssistant:
 
             callback('error_wait', "Hey! I was still speaking!", None)
             print("Microphone is already in use")
-            ts.speak("Can't you wait? i was still speaking.")
+            ts.speak("Hey! i was still speaking.")
             error_code = "AssertionError: User clicked the button while the bot was still speaking."
 
         finally:

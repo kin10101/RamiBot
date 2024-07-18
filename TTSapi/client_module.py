@@ -1,7 +1,7 @@
 from whisper_live.client import TranscriptionClient
 import os
 import subprocess
-import pygtts
+import TTS
 import sounddevice as sd
 from Voicebot.voice_assistant_module import VoiceAssistant
 
@@ -28,7 +28,7 @@ def sample_callback(text, is_final):
             client.paused = True
             context =[""]
             out = voice_assistant.handle_command(text[-1],context)
-            pygtts.speak(out)
+            TTS.speak(out)
             client.paused = False
         else:
             clear_console()

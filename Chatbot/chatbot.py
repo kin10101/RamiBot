@@ -13,7 +13,7 @@ from Chatbot import command_functions
 # Load data
 lemmatizer = WordNetLemmatizer()
 
-intents = json.loads(open('../Integrated/voicebotintents.json').read())
+intents = json.loads(open('../Integrated/intents.json').read())
 words = pickle.load(open('../Integrated/words.pkl', 'rb'))
 classes = pickle.load(open('../Integrated/classes.pkl', 'rb'))
 model = keras.models.load_model('../Integrated/chatbot_model.h5')

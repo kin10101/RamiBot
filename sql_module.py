@@ -115,6 +115,15 @@ def add_row_to_chatbot_results(response_time, intent_recognized, confidence_scor
     print("Row added to chatbot_results table.")
 
 
+def add_row_to_suggestions(suggestion, submission_time, submission_date):
+    """Add a row of data to the suggestions table."""
+    query = f"""
+    INSERT INTO suggestions (suggestion, submission_time, submission_date)
+    VALUES ('{suggestion}', '{submission_time}', '{submission_date}');
+    """
+    sql_query(query)
+
+
 if __name__ == "__main__":
     connect()
     show_tables()

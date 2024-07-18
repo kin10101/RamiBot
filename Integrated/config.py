@@ -14,27 +14,29 @@ ANNOUNCEMENT_INTERVAL = 120
 CAMERA_INDEX = 0
 
 # speech recognition
-DEVICE_INDEX = 3
+DEVICE_INDEX = None
 
 # speech recog parameters
 PAUSE_THRESHOLD = .8
 ENERGY_THRESHOLD = 3500
 OPERATION_TIMEOUT = 5000
 DYNAMIC_ENERGY_THRESHOLD = False
-LISTEN_TIMEOUT = 3
+LISTEN_TIMEOUT = 5
 PHRASE_TIME_LIMIT = 5
 
+MODEL_PATH = "../en_US-lessac-medium.onnx"  # Update this with the path to your local model file
+
 # SQL profile for Local laptop
-# HOST = "localhost"
-# USER = "kin"
-# PASSWORD = "asdf"
-# DATABASE ="ramibot_local"
-# AUTOCOMMIT = True
+HOST = "localhost"
+USER = "kin"
+PASSWORD = "asdf"
+DATABASE ="ramibot_local"
+AUTOCOMMIT = True
 
 # SQL profile for APC Network
-HOST = "airhub-soe.apc.edu.ph"
-USER = "marj"
-PASSWORD = "RAMIcpe211"
-DATABASE ="ramibot"
-AUTOCOMMIT = True
+# HOST = "airhub-soe.apc.edu.ph"
+# USER = "marj"
+# PASSWORD = "RAMIcpe211"
+# DATABASE ="ramibot"
+# AUTOCOMMIT = True
 

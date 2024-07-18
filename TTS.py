@@ -4,14 +4,14 @@ import threading
 
 from pydub import AudioSegment
 from pydub.playback import play
+from Integrated import config
 
 # if not working, try: pip install piper-tts
 
-MODEL_PATH = "../en_US-lessac-medium.onnx"  # Update this with the path to your local model file
 
 
 def speak(text):
-    model_path = MODEL_PATH
+    model_path = config.MODEL_PATH
 
 
     # Define the command to be run with the local model path

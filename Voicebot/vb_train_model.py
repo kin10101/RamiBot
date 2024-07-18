@@ -18,7 +18,7 @@ from nltk.stem import WordNetLemmatizer
 def train_bot():
     lemmatizer = WordNetLemmatizer()
 
-    intents = json.loads(open('../Integrated/voicebotintents.json').read())
+    intents = json.loads(open('../Integrated/intents.json').read())
 
     words = []
     classes = []

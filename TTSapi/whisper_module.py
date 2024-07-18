@@ -30,7 +30,7 @@ from faster_whisper import WhisperModel
 import pyaudio
 import wave
 
-import pygtts
+import TTS
 
 
 def record_audio(duration, filename):

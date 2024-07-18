@@ -1,7 +1,7 @@
 import json
 
 # Load the JSON data
-with open('/home/rami/PycharmProjects/RamiBot/Integrated/voicebotintents.json') as f:
+with open('/home/rami/PycharmProjects/RamiBot/Integrated/intents.json') as f:
     data = json.load(f)
 
 # Iterate over the intents
