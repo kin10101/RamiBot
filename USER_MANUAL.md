@@ -25,6 +25,10 @@ Sometimes, the default port configuration for peripherals like the microphone or
 ```
     
 ```
+To see what ports are assigned to your peripherals, run the following functions under either the 
+```
+    ls /dev
+```
 
 
 ## Activating the image server
