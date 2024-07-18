@@ -38,3 +38,6 @@ set_gpio_pin(4, GPIO.HIGH)
 time.sleep(5)
 GPIO.cleanup()
 '''
+if __name__== "__main__":
+    import tensorflow as tf
+    print(tf.__version__)
