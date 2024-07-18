@@ -20,9 +20,17 @@ DYNAMIC_ENERGY_THRESHOLD = False
 LISTEN_TIMEOUT = 3
 PHRASE_TIME_LIMIT = 5
 
-# SQL profile
-HOST = "localhost"
-USER = "kin"
-PASSWORD = "asdf"
-DATABASE ="ramibot_local"
+# SQL profile for Local laptop
+# HOST = "localhost"
+# USER = "kin"
+# PASSWORD = "asdf"
+# DATABASE ="ramibot_local"
+# AUTOCOMMIT = True
+
+# SQL profile for APC Network
+HOST = "airhub-soe.apc.edu.ph"
+USER = "marj"
+PASSWORD = "RAMIcpe211"
+DATABASE ="ramibot"
 AUTOCOMMIT = True
+
