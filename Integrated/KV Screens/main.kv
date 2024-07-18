@@ -83,6 +83,23 @@ MDScreen:
                 keep_ratio: False
                 size_hint: 1, 1
 
+        MDFlatButton:
+            id: suggestions_button
+            size: 390, 234
+            user_font_size: "200sp"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            on_press:
+                app.play_button_sound()
+                app.root.current = 'suggestions'
+
+            Image:
+                source: 'Assets/suggestions_button.png'
+                size: 100, 100
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: 1, 1
+
 
 
 

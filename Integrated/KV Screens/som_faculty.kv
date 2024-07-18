@@ -7,6 +7,7 @@ MDScreen:
         app.previous_screen = 'SOM_Faculty'
 
     MDFloatLayout: # main layout
+      
 
 
         orientation: 'vertical'
@@ -59,33 +60,3 @@ MDScreen:
                     spacing: 25
                     size_hint_y: None
                     height: self.minimum_height
-
-        MDFlatButton:
-            id: chatbot_button
-            size: 390, 234
-            user_font_size: "200sp"
-            pos_hint: {'center_x': 0.88, 'center_y': 0.1}
-            on_press: app.root.current = 'chatscreen'
-            Image:
-                source: 'Assets/chatbot_button.png'
-                size: 100, 100
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: 1, 1
-
-        MDFlatButton:
-            id: voicebot_button
-            size: 390, 234
-            user_font_size: "200sp"
-            pos_hint: {'center_x': 0.12, 'center_y': 0.1}
-            on_press: app.root.current = 'chatscreen'
-            Image:
-                source: 'Assets/voicebot_button.png'
-                size: 100, 100
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: 1, 1
-
-

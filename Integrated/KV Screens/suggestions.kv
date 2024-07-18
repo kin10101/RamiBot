@@ -1,0 +1,86 @@
+MDScreen:
+    name: 'suggestions'
+
+    on_enter:
+        print(app.previous_screen)
+
+    MDFloatLayout: # main layout
+        orientation: 'vertical'
+
+        Image: # Background image
+            source: 'Assets/main_bg.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+
+        MDFloatLayout: # Square transparent container
+            orientation: 'vertical'
+            size_hint: .8, .9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            md_bg_color: 0.1, 0.1, 0.1, 0.1
+            padding: 10
+            radius: [15]
+            # Title
+            MDLabel:
+                text: "Greetings from the RamiBot team!"
+                font_name: 'Poppins'
+                font_size: "38sp"
+                halign: 'center'
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .92}
+                bold: True
+
+            # Subtitle
+            MDLabel:
+                text: "Thank you for using RamiBot! Please take a moment to share your thoughts, suggestions, or any issues you've encountered. Your input will help us improve RamiBot to better meet your needs."
+                font_name: 'Poppins'
+                font_size: "22sp"
+                halign: 'center'
+                text_color: 1, 1, 1, .8
+                pos_hint: {"center_x": .5, "center_y": .85}
+                size_hint: 0.8, 0.2
+                bold: True
+
+            # text box
+            MDTextField:
+                id: suggestion_text
+                hint_text: "Enter your suggestion here"
+                hint_text_color: 1, 1, 1, 0.5
+                font_name: 'Poppins'
+                font_size: "18sp"
+                bold: True
+                size_hint: 0.8, 0.18
+                pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+                multiline: True
+                mode: "fill"
+                max_text_length: 1000
+
+            # submit button
+            MDRoundFlatIconButton:
+                id: submit_button
+                text: "Submit"
+                font_size: "18sp"
+                halign: 'center'
+                font_name: "Poppins"
+                pos_hint: {"center_x": .5, "center_y": .56}
+                text_color: 1,1,1,1
+                md_bg_color: .003, .4, .6, 1
+                size_hint: .13, .07
+
+                on_press:
+                    app.play_button_sound()
+                    app.submit_suggestion(suggestion_text.text)
+                    suggestion_text.text = ""
+                    app.root.current = app.previous_screen
+
+    #Back Button
+    MDFlatButton:
+        size: 125, 125
+        pos_hint: {'center_x': 0.07, 'center_y': 0.5}
+
+        on_press:
+            app.play_button_sound()
+            app.root.current = app.previous_screen
+        Image:
+            source: 'Assets/back_button.png'
+

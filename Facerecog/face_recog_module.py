@@ -106,5 +106,4 @@ def get_camera_list(max_cameras=10):
 
 
 if __name__ == '__main__':
-    print(greet_new_user())
-    #get_camera_list()
+    get_camera_list()

@@ -948,7 +948,9 @@
                 "caf",
                 "canteen",
                 "lunch",
-                "snack"
+                "snack",
+                "cafeteria",
+                "caf"
             ],
             "responses": [
                 "You'll find the cafeteria right on the first floor, enjoy your meal!",

@@ -7,7 +7,7 @@ import pygtts as ts
 import gpio as gpio
 from Voicebot.voicebotengine import Speech_Queue as Speech_Queue
 import threading
-import sounddevice # import this to remove warnings
+import sounddevice  # import this to remove warnings
 from queue import Queue
 
 from sql_module import show_value_as_bool, add_row_to_voicebot_results
@@ -18,7 +18,7 @@ Timeout_Queue = Queue()
 
 class VoiceAssistant:
     def __init__(self):
-        self.mic = sr.Microphone()  # leave blank to use default microphone, or specify the device index to use a
+        self.mic = sr.Microphone(device_index=5)  # leave blank to use default microphone, or specify the device index to use a
         # specific microphone
         self.pause_threshold = .8
         self.energy_threshold = 3500
@@ -175,22 +175,26 @@ class VoiceAssistant:
 
                 # Process the main command
                 response, confidence_score, intent_tag = self.handle_command(text)  # Empty context
+                end_time = time.time()  # End time after the function execution
+                execution_time = end_time - start_time  # Calculate the execution time
+
                 if response is not None:
                     callback('success', text, response)
-                    end_time = time.time()  # End time after the function execution
-                    execution_time = end_time - start_time  # Calculate the execution time
                     print(f"The voice_assistant_tap_to_speak function took {execution_time} seconds to execute")
 
                     ts.speak(response)
                     ts.play_audio_file("audio/deactivate.wav")  # Sound to indicate that the interaction is over
 
         except sr.RequestError:
+            end_time = time.time()  # End time after the function execution
             callback('error', "Could not request results from Google Speech Recognition service", None)
             print("Could not request results from Google Speech Recognition service")
             ts.speak("the APC network blocked me again! tell I T R O to fix it.")
             error_code = "RequestError: Could not request results from Google Speech Recognition service."
 
         except sr.UnknownValueError:
+            end_time = time.time()  # End time after the function execution
+
             callback('error', "Unable to recognize speech", None)
             print("Unable to recognize speech")
             ts.speak("sorry, I couldn't hear you.")
@@ -198,12 +202,16 @@ class VoiceAssistant:
             error_code = "UnknownValueError: Unable to recognize speech."
 
         except sr.WaitTimeoutError:
+            end_time = time.time()  # End time after the function execution
+
             callback('error', "Unable to recognize speech", None)
             print("Timeout error while waiting for speech input")
             ts.speak("sorry, I couldn't hear you.")
             error_code = "TimeoutError: the user took too long to respond."
 
         except AssertionError as e:
+            end_time = time.time()  # End time after the function execution
+
             callback('error_wait', "Hey! I was still speaking!", None)
             print("Microphone is already in use")
             ts.speak("Can't you wait? i was still speaking.")
@@ -211,6 +219,8 @@ class VoiceAssistant:
 
         finally:
             print("tap_to_speak function end. logging in results to database")
+            execution_time = end_time - start_time  # Calculate the execution time
+
             # log results to database
             add_row_to_voicebot_results(response_time=execution_time,
                                         intent_recognized=intent_tag,
@@ -224,9 +234,9 @@ class VoiceAssistant:
 if __name__ == "__main__":
     Voicebot = VoiceAssistant()
     # Voicebot.voice_assistant_loop()
-    Voicebot.voice_assistant_tap_to_speak()
+    # Voicebot.voice_assistant_tap_to_speak()
 
     #
-    # for index, name in enumerate(sr.Microphone.list_microphone_names()):
-    #     print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
+    for index, name in enumerate(sr.Microphone.list_microphone_names()):
+        print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
     #

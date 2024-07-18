@@ -130,9 +130,13 @@ MDScreen:
                 on_press:
                     app.tap_to_talk()
 
-        MDRoundFlatButton:
+        MDRoundFlatIconButton:
             id: try_again_button
-            text: "Ask again"
+            icon: "microphone"
+            theme_icon_color: "Custom"
+            icon_size: "26sp"
+            icon_color: .003, .4, .6, 1
+            text: "Try again"
             font_size: "26sp"
             font_name: "Poppins"
             pos_hint: {"center_x": .25, "center_y": .1}
@@ -142,7 +146,6 @@ MDScreen:
             radius: [30]
             opacity: 0
             disabled: True
-
 
             on_press:
                 app.play_button_sound()
@@ -188,20 +191,6 @@ MDScreen:
                 app.play_button_sound()
                 app.root.current = "image_info"
                 app.previous_screen = "voicescreen"
-
-
-#        Image:
-#            id: success_icon
-#            source: 'Assets/success.png'
-#            allow_stretch: False
-#            keep_ratio: True
-#            size_hint: .3, .3
-#            pos_hint: {'center_x': 0.5, 'center_y': .03}
-
-
-
-
-
 
 
 

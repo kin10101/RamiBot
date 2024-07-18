@@ -8,6 +8,7 @@ from queue import Queue, Empty
 import cv2
 import requests
 from kivy.core.audio import SoundLoader
+from kivymd.uix.dialog import MDDialog
 from requests.exceptions import Timeout
 import gpio
 import pygtts
@@ -19,7 +20,7 @@ from kivy.graphics.texture import Texture
 from kivy.lang import Builder
 from kivy.uix.screenmanager import NoTransition, ScreenManager
 from kivymd.app import MDApp
-from kivymd.uix.button import MDFillRoundFlatButton
+from kivymd.uix.button import MDFillRoundFlatButton, MDFlatButton
 
 # Local application imports
 from Chatbot.chatbot import handle_request
@@ -36,9 +37,9 @@ HOST_IP = 'http://192.168.80.4:5000'
 # HOST_IP = "http://192.168.254.169:5000" # laptop IP
 IMAGE_PATH = 'downloaded_image.jpg'  # Define a constant path for the image to prevent storage bloat
 REQUEST_TIMEOUT = 2
-TIMEOUT_DURATION = 30
+TIMEOUT_DURATION = 20
 ANNOUNCEMENT_INTERVAL = 120
-CAMERA_INDEX = 0
+CAMERA_INDEX = 2
 halign = "center"
 
 
@@ -64,7 +65,7 @@ class MainApp(MDApp):
         self.SOAR_Faculty = sql_module.get_column_data("button_list", "soar_faculty")
         self.SOCIT_Faculty = sql_module.get_column_data("button_list", "socit_faculty")
         self.SOM_Faculty = sql_module.get_column_data("button_list", "som_faculty")
-        self.SOMAFaculty = sql_module.get_column_data("button_list", "soma_faculty")
+        self.SOMA_Faculty = sql_module.get_column_data("button_list", "soma_faculty")
         self.GS_Faculty = sql_module.get_column_data("button_list", "gs_faculty")
         self.Programs_Offered = sql_module.get_column_data("button_list", "programs_offered")
         self.School_Information = sql_module.get_column_data("button_list", "school_information")
@@ -119,6 +120,9 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file('KV Screens/floor_maps.kv'))
 
         screen_manager.add_widget(Builder.load_file('KV Screens/image_info.kv'))
+
+        screen_manager.add_widget(Builder.load_file('KV Screens/suggestions.kv'))
+
 
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
@@ -178,6 +182,11 @@ class MainApp(MDApp):
             _set_missing_image()
 
     # GUI BUTTONS -------------------------------------
+
+    def submit_suggestion(self, suggestion):
+        """Submit a suggestion to the database."""
+        #TODO add sql query to insert suggestion
+        print(suggestion)
 
     def play_button_sound(self):
         if self.button_sound:
@@ -413,8 +422,8 @@ class MainApp(MDApp):
             if detected:
                 # gpio.set_gpio_pin(4, 1)
                 self.on_motor()
-                #pygtts.speak_async(detected)  # Speak the greeting for the detected person
-                pygtts.play_audio_file_async(detected)
+                pygtts.speak_async(detected)  # Speak the greeting for the detected person
+                #pygtts.play_audio_file_async(detected)
 
                 put_in_queue(screen_queue, 'greetscreen')
 
