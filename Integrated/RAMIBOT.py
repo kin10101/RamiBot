@@ -126,7 +126,6 @@ class MainApp(MDApp):
 
         screen_manager.add_widget(Builder.load_file('KV Screens/suggestions.kv'))
 
-
         Window.bind(on_touch_down=self.on_touch_down)
         print("built")
         return screen_manager
@@ -139,7 +138,7 @@ class MainApp(MDApp):
         Clock.schedule_interval(self.await_change_gui_elements, .3)
         Clock.schedule_interval(self.await_recharge_change, .5)
 
-        #Clock.schedule_interval(self.await_timeout_change, .5)
+        # Clock.schedule_interval(self.await_timeout_change, .5)
 
         Clock.schedule_interval(self.show_active_threads, 5)
 
@@ -319,7 +318,6 @@ class MainApp(MDApp):
         else:
             pass
 
-
     def await_face_change(self, dt):
         """periodically check if an item is in queue and change face image accordingly"""
         if not image_queue.empty():
@@ -366,7 +364,6 @@ class MainApp(MDApp):
             if item == 'stop':
                 self.stop_timer()
                 print("stop")
-
 
     # FACE FUNCTIONS -------------------------------------
 
@@ -425,7 +422,7 @@ class MainApp(MDApp):
                 # gpio.set_gpio_pin(4, 1)
                 self.on_motor()
                 TTS.speak_async(detected)  # Speak the greeting for the detected person
-                #TTS.play_audio_file_async(detected)
+                # TTS.play_audio_file_async(detected)
 
                 put_in_queue(screen_queue, 'greetscreen')
 
@@ -557,7 +554,6 @@ class MainApp(MDApp):
         screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.5, .5, .5, 1)  # Grey color
         screen_manager.get_screen("voicescreen").ids.button_box_text.text = random_wait_message
 
-
     def run_voice_assistant(self):
         voicebot.voice_assistant_tap_to_speak(self.update_gui_after_voice_command)
 
@@ -618,13 +614,11 @@ class MainApp(MDApp):
             mic_button = screen_manager.get_screen("voicescreen").ids.mic_button
             mic_button.disabled = True
 
-
             screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.5, .5, .5, 1)  # Grey color
             screen_manager.get_screen("voicescreen").ids.button_box_text.text = message
             # change bot_icon image to indicate error
             screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/error.png"
             screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
-
 
             Clock.schedule_once(self.update_voice_gui_to_default, 6)
 
@@ -637,7 +631,6 @@ class MainApp(MDApp):
             screen_manager.get_screen("voicescreen").ids.bot_icon.source = "Assets/error.png"
             screen_manager.get_screen("voicescreen").ids.bot_icon.reload()
 
-
         # Re-enable the mic button
         mic_button = screen_manager.get_screen("voicescreen").ids.mic_button
         mic_button.disabled = False
@@ -648,7 +641,6 @@ class MainApp(MDApp):
 
         # Schedule the GUI to start timeout again
         Clock.schedule_once(self.start_timer, 10)
-
 
     def update_voice_gui_to_default(self, dt=None):
         # return bot image
@@ -662,8 +654,6 @@ class MainApp(MDApp):
         screen_manager.get_screen("voicescreen").ids.button_box.md_bg_color = (.003, .4, .6, 1)
         screen_manager.get_screen("voicescreen").ids.button_box_text.text = "Press the microphone to start"
         screen_manager.get_screen("voicescreen").ids.mic_button.disabled = False
-
-
 
         # hide transcription bar
         screen_manager.get_screen("voicescreen").ids.audio_received_box.opacity = 0
@@ -686,7 +676,6 @@ class MainApp(MDApp):
 
         # move back button to the center
         screen_manager.get_screen("voicescreen").ids.back_button.pos_hint = {"center_x": .5}
-
 
         # GPIO --------------------------------------
 
@@ -770,6 +759,7 @@ def face_thread():
         app.face_detection_module()
     else:
         print("FACE THREAD DISABLED")
+
 
 if __name__ == "__main__":
     LabelBase.register(name='Poppins', fn_regular="Assets/Fonts/Poppins-SemiBold.ttf")

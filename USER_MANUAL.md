@@ -12,7 +12,7 @@
 ## How to run the program
 Navigate to the Integrated package directory and run the following python module:
 ```
-    python3 MainApp.py
+    python3 RAMIBOT.py
 ```
 If you're using Pycharm, you can run the program by right-clicking on the MainApp.py file and selecting "Run MainApp".
 
