@@ -300,7 +300,6 @@ class MainApp(MDApp):
 
     def await_change_gui_elements(self, dt):
 
-
         if not screen_queue.empty():
             item = screen_queue.get_nowait()
             print(item)
