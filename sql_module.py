@@ -4,13 +4,15 @@ import threading
 
 import mysql.connector
 from mysql.connector import Error
+from dotenv import load_dotenv
 
 
 def connect():
     try:
+        load_dotenv()
         connection = mysql.connector.connect(
-            host=os.getenv('HOST'),
-            user=os.getenv('USER'),
+            host=os.getenv('SQL_HOST'),
+            user=os.getenv('SQL_USER'),
             password=os.getenv('PASSWORD'),
             database=os.getenv('DATABASE'),
             autocommit=os.getenv('AUTOCOMMIT') == 'True'

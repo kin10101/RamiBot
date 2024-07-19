@@ -3,6 +3,8 @@ import sys
 import time
 
 import speech_recognition as sr
+from dotenv import load_dotenv
+
 import Voicebot.voicebotengine as voicebotengine
 import TTS as ts
 import gpio as gpio
@@ -20,6 +22,7 @@ Timeout_Queue = Queue()
 
 class VoiceAssistant:
     def __init__(self):
+        load_dotenv()
         self.mic = sr.Microphone(device_index=os.getenv('DEVICE_INDEX')) # leave blank to use default microphone, or specify the device index to use a specific microphone
         self.pause_threshold = float(os.getenv('PAUSE_THRESHOLD'))
         self.energy_threshold = int(os.getenv('ENERGY_THRESHOLD'))
@@ -65,7 +68,6 @@ class VoiceAssistant:
         """if in idle screen, only listen for wakeword. if in active state, listen for any other convo."""
 
         print("Current mic being used: ", self.mic)
-        context = [""]  # need to remove this
         recognizer = sr.Recognizer()
         recognizer.pause_threshold = self.pause_threshold
         recognizer.energy_threshold = self.energy_threshold
@@ -127,7 +129,7 @@ class VoiceAssistant:
                             # generate a response from the chatbot
                             if text2 is not None:
                                 try:
-                                    response2 = self.handle_command(text2, context)
+                                    response2 = self.handle_command(text2)
                                 except:
                                     response2 = None
                                     pass
