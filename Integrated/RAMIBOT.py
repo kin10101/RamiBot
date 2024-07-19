@@ -1,4 +1,5 @@
 # Standard library imports
+import os
 import random
 import threading
 import time
@@ -27,22 +28,24 @@ from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import Command, Response
 from Facerecog import face_recog_module
 from Voicebot import voicebotengine
-from Voicebot.voice_assistant_module import VoiceAssistant, active_state, Transcription_Queue, Timeout_Queue
+from Voicebot.voice_assistant_module import VoiceAssistant, active_state, Timeout_Queue
+from dotenv import load_dotenv
 
-import config
 
-Window.size = config.WINDOW_SIZE
+load_dotenv()
+
+
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
-HOST_IP = config.HOST_IP
-IMAGE_PATH = config.IMAGE_PATH
-REQUEST_TIMEOUT = config.REQUEST_TIMEOUT
-TIMEOUT_DURATION = config.TIMEOUT_DURATION
-ANNOUNCEMENT_INTERVAL = config.ANNOUNCEMENT_INTERVAL
+WINDOW_SIZE = tuple(map(int, os.getenv('WINDOW_SIZE').strip('()').split(',')))
+HOST_IP = os.getenv('HOST_IP')
+IMAGE_PATH = os.getenv('IMAGE_PATH')
+REQUEST_TIMEOUT = int(os.getenv('REQUEST_TIMEOUT'))
+TIMEOUT_DURATION = int(os.getenv('TIMEOUT_DURATION'))
+ANNOUNCEMENT_INTERVAL = int(os.getenv('ANNOUNCEMENT_INTERVAL'))
 
-CAMERA_INDEX = config.CAMERA_INDEX
-
+CAMERA_INDEX = int(os.getenv('CAMERA_INDEX'))
 halign = "center"
 
 

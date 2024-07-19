@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 
@@ -12,8 +13,6 @@ from queue import Queue
 
 from sql_module import show_value_as_bool, add_row_to_voicebot_results
 
-from Integrated import config
-
 active_state = threading.Event()
 Transcription_Queue = Queue()
 Timeout_Queue = Queue()
@@ -21,14 +20,14 @@ Timeout_Queue = Queue()
 
 class VoiceAssistant:
     def __init__(self):
-        self.mic = sr.Microphone(device_index=config.DEVICE_INDEX)  # leave blank to use default microphone, or specify the device index to use a
-        # specific microphone
-        self.pause_threshold = .8
-        self.energy_threshold = 3500
-        self.operation_timeout = 5000
-        self.dynamic_energy_threshold = False
-        self.listen_timeout = 3
-        self.phrase_time_limit = 5
+        self.mic = sr.Microphone(device_index=os.getenv('DEVICE_INDEX')) # leave blank to use default microphone, or specify the device index to use a specific microphone
+        self.pause_threshold = float(os.getenv('PAUSE_THRESHOLD'))
+        self.energy_threshold = int(os.getenv('ENERGY_THRESHOLD'))
+        self.operation_timeout = int(os.getenv('OPERATION_TIMEOUT'))
+        self.dynamic_energy_threshold = os.getenv('DYNAMIC_ENERGY_THRESHOLD') == 'True'
+        self.listen_timeout = int(os.getenv('LISTEN_TIMEOUT'))
+        self.phrase_time_limit = int(os.getenv('PHRASE_TIME_LIMIT'))
+
         self.wake_word_variations = [
             "hello ram",
             "hello mommy",

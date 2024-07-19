@@ -1,18 +1,16 @@
-
+import os
 import subprocess
 import threading
 
 from pydub import AudioSegment
 from pydub.playback import play
-from Integrated import config
 
 # if not working, try: pip install piper-tts
 
 
 
 def speak(text):
-    model_path = config.MODEL_PATH
-
+    model_path = os.getenv('MODEL_PATH')
 
     # Define the command to be run with the local model path
     command = f'echo "{text}" | piper --model {model_path} --output-raw | aplay -r 16000 -f S16_LE -t raw -'

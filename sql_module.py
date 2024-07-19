@@ -1,19 +1,19 @@
+import os
 import queue
 import threading
 
 import mysql.connector
 from mysql.connector import Error
-from Integrated import config as config
 
 
 def connect():
     try:
         connection = mysql.connector.connect(
-            host=config.HOST,
-            user=config.USER,
-            password=config.PASSWORD,
-            database=config.DATABASE,
-            autocommit=config.AUTOCOMMIT
+            host=os.getenv('HOST'),
+            user=os.getenv('USER'),
+            password=os.getenv('PASSWORD'),
+            database=os.getenv('DATABASE'),
+            autocommit=os.getenv('AUTOCOMMIT') == 'True'
         )
         if connection.is_connected():
             return connection
