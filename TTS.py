@@ -15,7 +15,7 @@ def speak(text):
 
 
     # Define the command to be run with the local model path
-    command = f'echo "{text}" | piper --model {model_path} --output-raw | aplay -r 22050 -f S16_LE -t raw -'
+    command = f'echo "{text}" | piper --model {model_path} --output-raw | aplay -r 16000 -f S16_LE -t raw -'
 
     # Run the command
     subprocess.run(command, shell=True, check=True)

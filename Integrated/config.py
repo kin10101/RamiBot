@@ -1,29 +1,42 @@
+import os
+from dotenv import load_dotenv
+
 # Description: This file contains the configuration settings for the application.
+
+# Load the .env file
+load_dotenv()
 
 
 # MainApp.py
-WINDOW_SIZE = (1920, 1080)
-HOST_IP = 'http://192.168.80.4:5000' # "http://192.168.254.169:5000" # laptop ip
-IMAGE_PATH = 'downloaded_image.jpg'  # to prevent storage bloat
-REQUEST_TIMEOUT = 2
-TIMEOUT_DURATION = 20
-ANNOUNCEMENT_INTERVAL = 120
+WINDOW_SIZE = tuple(map(int, os.getenv('WINDOW_SIZE').strip('()').split(',')))
+HOST_IP = os.getenv('HOST_IP')
+IMAGE_PATH = os.getenv('IMAGE_PATH')
+REQUEST_TIMEOUT = int(os.getenv('REQUEST_TIMEOUT'))
+TIMEOUT_DURATION = int(os.getenv('TIMEOUT_DURATION'))
+ANNOUNCEMENT_INTERVAL = int(os.getenv('ANNOUNCEMENT_INTERVAL'))
 
 # face recognition
-CAMERA_INDEX = 0
+CAMERA_INDEX = int(os.getenv('CAMERA_INDEX'))
 
 # speech recognition
-DEVICE_INDEX = None
+DEVICE_INDEX = os.getenv('DEVICE_INDEX')
 
 # speech recog parameters
-PAUSE_THRESHOLD = .8
-ENERGY_THRESHOLD = 3500
-OPERATION_TIMEOUT = 5000
-DYNAMIC_ENERGY_THRESHOLD = False
-LISTEN_TIMEOUT = 5
-PHRASE_TIME_LIMIT = 5
+PAUSE_THRESHOLD = float(os.getenv('PAUSE_THRESHOLD'))
+ENERGY_THRESHOLD = int(os.getenv('ENERGY_THRESHOLD'))
+OPERATION_TIMEOUT = int(os.getenv('OPERATION_TIMEOUT'))
+DYNAMIC_ENERGY_THRESHOLD = os.getenv('DYNAMIC_ENERGY_THRESHOLD') == 'True'
+LISTEN_TIMEOUT = int(os.getenv('LISTEN_TIMEOUT'))
+PHRASE_TIME_LIMIT = int(os.getenv('PHRASE_TIME_LIMIT'))
 
-MODEL_PATH = "../en_US-lessac-medium.onnx"  # Update this with the path to your local model file
+MODEL_PATH = os.getenv('MODEL_PATH')
+
+# SQL profile for Local laptop
+HOST = os.getenv('HOST')
+USER = os.getenv('USER')
+PASSWORD = os.getenv('PASSWORD')
+DATABASE = os.getenv('DATABASE')
+AUTOCOMMIT = os.getenv('AUTOCOMMIT') == 'True'
 
 # SQL profile for Local laptop
 HOST = "localhost"
