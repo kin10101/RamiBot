@@ -8,9 +8,8 @@ import cv2
 person_detected = False
 running = False
 
-
 def realtime_face_recognition(video):
-    print("face recog thread running")
+    print("face recognition thread running")
     global person_detected
     global running
     running = True
@@ -26,12 +25,18 @@ def realtime_face_recognition(video):
                 print("Can't receive frame. Exiting...")
                 break
 
-            # Get the dimensions of the frame
             height, width, _ = frame.shape
 
-            # Calculate the center point of the frame
-            center_x = width // 2
-            center_y = height // 2
+            # Define the center rectangle's boundaries
+            rect_width = width // 2
+            rect_height = height // 1
+            left = (width - rect_width) // 2
+            top = (height - rect_height) // 2
+            right = left + rect_width
+            bottom = top + rect_height
+
+            # Draw the rectangle on the frame
+            cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
 
             detections = DeepFace.extract_faces(img_path=frame, detector_backend='yunet')
             for face in detections:
@@ -41,27 +46,16 @@ def realtime_face_recognition(video):
                 w = facial_area['w']
                 h = facial_area['h']
 
-                # Calculate the center point of the face
-                face_center_x = x + w // 2
-                face_center_y = y + h // 2
-
-                # Calculate the Euclidean distance between the center of the face and the center of the frame
-                distance = np.sqrt((face_center_x - center_x) ** 2 + (face_center_y - center_y) ** 2)
-
-                # If the distance is less than a certain threshold, consider it as a valid detection
-                if distance < 50:  # You can adjust this value as needed
+                # Check if the face is within the center rectangle
+                if left <= x + w // 2 <= right and top <= y + h // 2 <= bottom:
                     person_detected = True
-                    #print("person detected")
+                    print("Face detected")
                     greeting = greet_new_user()
                     return greeting
 
-                # else:
-                #     print("face not in center")
-
         except Exception as e:
             person_detected = False
-            print("no face")
-            # print(f"An error occurred: {e}")
+            #print("No face detected")
 
         # display
         # cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
@@ -71,8 +65,8 @@ def realtime_face_recognition(video):
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    #video.release()
-    #cv2.destroyAllWindows()
+    # video.release()
+    # cv2.destroyAllWindows()
 
 
 def greet_new_user():
@@ -92,8 +86,6 @@ def greet_new_user():
     #         greetings.append(os.path.join(folder_path, filename))
 
     return random.choice(greetings)
-
-
 
 
 def get_camera_list(max_cameras=10):
