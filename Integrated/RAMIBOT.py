@@ -198,6 +198,7 @@ class MainApp(MDApp):
         sql_module.add_row_to_suggestions(suggestion, time.strftime("%H:%M:%S"), time.strftime("%Y-%m-%d"))
         print("Suggestion submitted")
 
+
     def play_button_sound(self):
         if self.button_sound:
             self.button_sound.play()

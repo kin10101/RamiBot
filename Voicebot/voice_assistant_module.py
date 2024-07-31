@@ -23,7 +23,7 @@ Timeout_Queue = Queue()
 class VoiceAssistant:
     def __init__(self):
         load_dotenv()
-        self.mic = sr.Microphone(device_index=os.getenv('DEVICE_INDEX')) # leave blank to use default microphone, or specify the device index to use a specific microphone
+        self.mic = sr.Microphone(device_index=int(os.getenv('DEVICE_INDEX'))) # leave blank to use default microphone, or specify the device index to use a specific microphone
         self.pause_threshold = float(os.getenv('PAUSE_THRESHOLD'))
         self.energy_threshold = int(os.getenv('ENERGY_THRESHOLD'))
         self.operation_timeout = int(os.getenv('OPERATION_TIMEOUT'))
@@ -142,6 +142,7 @@ class VoiceAssistant:
                             if not active_state.is_set():
                                 break
 
+
     def voice_assistant_tap_to_speak(self, callback):
         """Handle a single voice interaction for tap-to-speak mode."""
 
@@ -186,8 +187,8 @@ class VoiceAssistant:
                     callback('success', text, response)
                     print(f"The voice_assistant_tap_to_speak function took {execution_time} seconds to execute")
 
-                    ts.speak(response)
                     ts.play_audio_file_async("audio/deactivate.wav")  # Sound to indicate that the interaction is over
+                    ts.speak(response)
 
         except sr.RequestError:
             end_time = time.time()  # End time after the function execution
@@ -201,6 +202,8 @@ class VoiceAssistant:
 
             callback('error', "Unable to recognize speech", None)
             print("Unable to recognize speech")
+            ts.play_audio_file_async("audio/deactivate.wav")  # Sound to indicate that the interaction is over
+
             ts.speak("sorry, I couldn't hear you.")
             #ts.play_audio_file("audio/jp_couldnt_hear.mp3")
             error_code = "UnknownValueError: Unable to recognize speech."
@@ -226,17 +229,19 @@ class VoiceAssistant:
             execution_time = end_time - start_time  # Calculate the execution time
 
             # log results to database
-            add_row_to_voicebot_results(response_time=execution_time,
-                                        intent_recognized=intent_tag,
-                                        confidence_score=confidence_score,
-                                        transcribed_text=text,
-                                        bot_response=response,
-                                        query_time=time.strftime("%H:%M:%S"),
-                                        query_date=time.strftime("%Y-%m-%d"),
-                                        error_code=error_code)
+            # add_row_to_voicebot_results(response_time=execution_time,
+            #                             intent_recognized=intent_tag,
+            #                             confidence_score=confidence_score,
+            #                             transcribed_text=text,
+            #                             bot_response=response,
+            #                             query_time=time.strftime("%H:%M:%S"),
+            #                             query_date=time.strftime("%Y-%m-%d"),
+            #                             error_code=error_code)
 
 if __name__ == "__main__":
-    # get a list of available microphones and their index
+    #get a list of available microphones and their index
     for index, name in enumerate(sr.Microphone.list_microphone_names()):
         print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
+    ts.play_audio_file_async('audio/activate.wav')
+    ts.play_audio_file_async('audio/deactivate.wav')
 

@@ -65,8 +65,8 @@ def realtime_face_recognition(video):
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    # video.release()
-    # cv2.destroyAllWindows()
+    video.release()
+    cv2.destroyAllWindows()
 
 
 def greet_new_user():
