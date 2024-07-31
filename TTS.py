@@ -12,7 +12,7 @@ from pydub.playback import play
 def speak(text):
     model_path = os.getenv('MODEL_PATH')
 
-    # Define the command to be run with the local model path
+    # params -r = sample rate, -f = format, -t = type
     command = f'echo "{text}" | piper --model {model_path} --output-raw | aplay -r 16000 -f S16_LE -t raw -'
 
     # Run the command
@@ -36,6 +36,6 @@ def play_audio_file_async(file):
 
 
 if __name__ == '__main__':
-    MODEL_PATH = "./en_US-lessac-medium.onnx"  # path for running the model from this directory
+    MODEL_PATH = "/en_US-lessac-low.onnx"  # path for running the model from this directory
     # Module testing
     speak("Hello, how are you?")

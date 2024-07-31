@@ -367,7 +367,8 @@
             "tag": "LOC lobby floor location",
             "patterns": [
                 "cafeteria",
-                "admission office",
+                "admission",
+                "admissions",
                 "clinic",
                 "chapel",
                 "floor mph1",
@@ -444,7 +445,7 @@
                 "room 417",
                 "room 418",
                 "part time room",
-                "the registrars office",
+                "registrars",
                 "registrar",
                 "faculty",
                 "board room"
@@ -459,8 +460,7 @@
             "tag": "LOC fifth floor location",
             "patterns": [
                 "room 501",
-                "itro office",
-                "ITRO office",
+                "itro",
                 "i t r o",
                 "room 502",
                 "room 504",
@@ -478,12 +478,11 @@
                 "photography room",
                 "apc center",
                 "APC center",
-                "documentation office",
-                "hr office",
-                "human resource office",
-                "hr office",
-                "consulting office",
-                "consultation office"
+                "hr",
+                "human resource",
+                "hr",
+                "consulting",
+                "consultation"
             ],
             "responses": [
                 "it is located at the 5th floor"
@@ -523,7 +522,7 @@
                 "shs faculty",
                 "senior high school faculty",
                 "library",
-                "library office",
+                "library ",
                 "technical library",
                 "avr",
                 "mrc"
@@ -604,12 +603,12 @@
                 "room 1007",
                 "shower room",
                 "room 1008",
-                "logistics office",
+                "logistics",
                 "room 1011",
                 "bmo",
                 "kitchen",
-                "discipline office",
-                "disciplinary office",
+                "discipline",
+                "disciplinary",
                 "room 1013",
                 "room 1014",
                 "room 1015",
@@ -638,7 +637,7 @@
                 " room 1118",
                 " chem lab",
                 " chemistry lab",
-                " guidance office"
+                " guidance"
             ],
             "responses": [
                 "it is located on the 11th floor"
@@ -725,13 +724,13 @@
             ]
         },
         {
-            "tag": "LOC admission office",
+            "tag": "LOC admission",
             "patterns": [
                 "admission",
-                "admission office"
+                "admission"
             ],
             "responses": [
-                "you can go to the admission office in the first floor to assist you with your concerns"
+                "you can go to the admissions office in the first floor to assist you with your concerns"
             ],
             "navigate_to": "image_info",
             "source_image": "Admissions_Office"
@@ -754,9 +753,9 @@
             "tag": "LOC finance",
             "patterns": [
                 "finance",
-                "finance office",
+                "finance",
                 "How can I pay onsite?",
-                "accounting and finance office"
+                "accounting and finance"
             ],
             "responses": [
                 "you can go to the finance office in the fourth floor to assist you with your concerns"
@@ -1384,6 +1383,26 @@
                 "The APC website is your portal for enrolling in SHS, college, or graduate school. Alternatively, you can also visit the admissions office for enrollment procedures."
             ]
         },
+         {
+            "tag": "APC_enrollment_steps",
+            "patterns": [
+              "enrollment steps",
+                "steps to enroll"
+            ],
+            "responses": [
+               "this information may be false. to enroll, you must first visit the APC website or the admissions office to fill out the application form. After submitting the form, you will be required to take an entrance exam and attend an interview. Once you pass these steps, you will be given an enrollment schedule."
+            ]
+        },
+         {
+            "tag": "APC_required_documents",
+            "patterns": [
+              "required documents", "documents needed for enrollment",
+                "forms needed for enrollment"
+            ],
+            "responses": [
+                "prepare the following documents for enrollment: photocopy of your report card, photocopy of your birth certificate, 2x2 ID picture, and other requirements specified by the admissions office."
+            ]
+        },
         {
             "tag": "LOC_clinic_hours",
             "patterns": [
@@ -1433,11 +1452,10 @@
         {
             "tag": "LOC_logistics_hours",
             "patterns": [
-                "What time does the logistics office open",
-                "When does the logistics office open",
-                "What are the logistics office's opening hours",
-                "When can I visit the logistics office",
-                "logistics office hours",
+                "What time does the logistics open",
+                "When does the logistics open",
+                "What are the logistics opening hours",
+                "When can I visit the logistics",
                 "logistics hours"
             ],
             "responses": [
@@ -1449,11 +1467,11 @@
         {
             "tag": "LOC_discipline_hours",
             "patterns": [
-                "What time does the discipline office open",
-                "When does the discipline office open",
-                "What are the discipline office's opening hours",
-                "When can I visit the discipline office",
-                "discipline office hours",
+                "What time does the discipline open",
+                "When does the discipline open",
+                "What are the discipline opening hours",
+                "When can I visit the discipline",
+                "discipline hours",
                 "do hours"
             ],
             "responses": [
@@ -1493,156 +1511,6 @@
                 "In APC, we provide scholarships for College and Senior High School students. Which one do you want to know more about?",
                 "APC has scholarship programs for both College and Senior High School students. Which one do you want details for?",
                 "Both College and Senior High School students can avail scholarships in APC. Which one would you like to get information on?"
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-        {
-            "tag": "APC_college_scholarships",
-            "patterns": [
-                "What are the college scholarship programs in APC",
-                "Tell me about the college scholarships in APC",
-                "What scholarships are available for college students in APC",
-                "I want to know about the college scholarship programs in APC",
-                "College scholarships"
-            ],
-            "responses": [
-                "APC offers several scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship,Armed Forces Scholarships, and the IBM Scholarship Program. Which program would you like to hear about?.",
-                "There are several scholarships available for college students in APC. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarships, and the IBM Scholarship Program. Which program are you interested in?",
-                "APC provides a variety of scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarship, and the IBM Scholarship Program. Which one do you prefer?."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-        {
-            "tag": "APC_SHS_scholarships",
-            "patterns": [
-                "What are the SHS scholarship programs in APC",
-                "What are the Senior High School scholarship programs in APC",
-                "Tell me about the SHS scholarships in APC",
-                "Tell me about the Senior high school scholarships in APC",
-                "What scholarships are available for SHS students in APC",
-                "What scholarships are available for Senior high school students in APC",
-                "I want to know about the SHS scholarship programs in APC",
-                "I want to know about the Senior high school scholarship programs in APC",
-                "shs scholarships",
-                "senior high school scholarships"
-            ],
-            "responses": [
-                "APC offers several scholarship programs for Senior High School students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program would you like to hear about?",
-                "There are several scholarships available for SHS students in APC. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program are you interested in?",
-                "APC provides a variety of scholarship programs for SHS students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, Philippine National Police (PNP), and the Armed Forces of the Philippines (AFP) scholarships. Which one do you prefer?"
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-        {
-            "tag": "APC_financial_assistance",
-            "patterns": [
-                "What are the financial assistance programs in APC",
-                "Tell me about the financial assistance in APC",
-                "What financial assistance are available for students in APC",
-                "I want to know about the financial assistance programs in APC",
-                "financial assistance"
-            ],
-            "responses": [
-                "APC offers several financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Which program are you interested in?",
-                "There are several financial assistance available for both College and Senior High School students in APC. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Can you specify which program you want to know more about?",
-                "APC provides a variety of financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Please tell me which program you are interested in for more information."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-        {
-            "tag": "APC_SM_Scholarship",
-            "patterns": [
-                "Tell me about the SM Foundation Scholarship",
-                "What is the SM Foundation Scholarship",
-                "Can you give me information about the SM Foundation Scholarship",
-                "I want to know about the SM Foundation Scholarship",
-                "sm scholarship",
-                "sm scholar",
-                "sm"
-            ],
-            "responses": [
-                "The SM Foundation Scholarship is a great opportunity for incoming freshmen at Asia Pacific College, especially those with strong academic records and facing financial limitations. It offers full tuition coverage, a monthly stipend, and even helps scholars find part-time jobs."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-        {
-            "tag": "APC_SM_Group_Scholarship",
-            "patterns": [
-                "Tell me about the SM Group of Companies Scholarship",
-                "What is the SM Group of Companies Scholarship",
-                "Can you give me information about the SM Group of Companies Scholarship",
-                "I want to know about the SM Group of Companies Scholarship",
-                "sm group",
-                "sm group scholarship"
-            ],
-            "responses": [
-                "The SM Group of Companies Scholarship is a scholarship program offered to children and siblings of SM employees. It provides 20% subsidy for those who are qualified."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-        {
-            "tag": "APC_AFP_Scholarship",
-            "patterns": [
-                "Tell me about the Armed Forces of the Philippines (AFP) Scholarship",
-                "What is the Armed Forces of the Philippines (AFP) Scholarship",
-                "Can you give me information about the Armed Forces of the Philippines (AFP) Scholarship",
-                "I want to know about the Armed Forces of the Philippines (AFP) Scholarship",
-                "afp",
-                "afp scholarship",
-                "afp scholar"
-            ],
-            "responses": [
-                "The Armed Forces of the Philippines (AFP) Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 60% or 100% subsidy to students who are dependents of AFP personnel."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-        {
-            "tag": "APC_AFP_Officers_Ladies_Club_Scholarship",
-            "patterns": [
-                "Officers Ladies Club",
-                "What is AFP Officers Ladies Club Scholarship",
-                "Ladies Club"
-            ],
-            "responses": [
-                "The A F P Officers Ladies Club Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 30% subsidy to students who are dependents of AFP personnel."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-        {
-            "tag": "APC_Entrance_Academic_Scholar",
-            "patterns": [
-                "Tell me about the Entrance Academic Scholar",
-                "What is the Entrance Academic Scholar",
-                "Can you give me information about the Entrance Academic Scholar",
-                "I want to know about the Entrance Academic Scholar",
-                "Entrance Academic Scholarship",
-                "Entrance Academic"
-            ],
-            "responses": [
-                "The Entrance Academic Scholar is a scholarship program offered to Senior High School and college students of Asia Pacific College. It provides subsidy to students who excel academically and demonstrate leadership potential."
-            ],
-            "navigate_to": "image_info",
-            "source_image": "Scholarship_Grants_and_Financial_Aid"
-        },
-
-        {
-            "tag": "APC_PNP_Scholarship",
-            "patterns": [
-                "Tell me about the PNP Scholarship",
-                "What is the PNP Scholarship",
-                "Can you give me information about the PNP Scholarship",
-                "I want to know about the PNP Scholarship"
-            ],
-            "responses": [
-                "The PNP Scholarship is a program where all children of active uniformed Philippine National Police personnel will have a 60% subsidy."
             ],
             "navigate_to": "image_info",
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1890,6 +1758,157 @@
             ],
             "navigate_to": "image_info",
             "source_image": "SOE_Organizations"
+        },
+
+        {
+            "tag": "APC_college_scholarships",
+            "patterns": [
+                "What are the college scholarship programs in APC",
+                "Tell me about the college scholarships in APC",
+                "What scholarships are available for college students in APC",
+                "I want to know about the college scholarship programs in APC",
+                "College scholarships"
+            ],
+            "responses": [
+                "APC offers several scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship,Armed Forces Scholarships, and the IBM Scholarship Program. Which program would you like to hear about?.",
+                "There are several scholarships available for college students in APC. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarships, and the IBM Scholarship Program. Which program are you interested in?",
+                "APC provides a variety of scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarship, and the IBM Scholarship Program. Which one do you prefer?."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
+        },
+        {
+            "tag": "APC_SHS_scholarships",
+            "patterns": [
+                "What are the SHS scholarship programs in APC",
+                "What are the Senior High School scholarship programs in APC",
+                "Tell me about the SHS scholarships in APC",
+                "Tell me about the Senior high school scholarships in APC",
+                "What scholarships are available for SHS students in APC",
+                "What scholarships are available for Senior high school students in APC",
+                "I want to know about the SHS scholarship programs in APC",
+                "I want to know about the Senior high school scholarship programs in APC",
+                "shs scholarships",
+                "senior high school scholarships"
+            ],
+            "responses": [
+                "APC offers several scholarship programs for Senior High School students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program would you like to hear about?",
+                "There are several scholarships available for SHS students in APC. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program are you interested in?",
+                "APC provides a variety of scholarship programs for SHS students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, Philippine National Police (PNP), and the Armed Forces of the Philippines (AFP) scholarships. Which one do you prefer?"
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
+        },
+        {
+            "tag": "APC_financial_assistance",
+            "patterns": [
+                "What are the financial assistance programs in APC",
+                "Tell me about the financial assistance in APC",
+                "What financial assistance are available for students in APC",
+                "I want to know about the financial assistance programs in APC",
+                "financial assistance"
+            ],
+            "responses": [
+                "APC offers several financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Which program are you interested in?",
+                "There are several financial assistance available for both College and Senior High School students in APC. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Can you specify which program you want to know more about?",
+                "APC provides a variety of financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Please tell me which program you are interested in for more information."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
+        },
+        {
+            "tag": "APC_SM_Scholarship",
+            "patterns": [
+                "Tell me about the SM Foundation Scholarship",
+                "What is the SM Foundation Scholarship",
+                "Can you give me information about the SM Foundation Scholarship",
+                "I want to know about the SM Foundation Scholarship",
+                "sm scholarship",
+                "sm scholar",
+                "sm"
+            ],
+            "responses": [
+                "The SM Foundation Scholarship is a great opportunity for incoming freshmen at Asia Pacific College, especially those with strong academic records and facing financial limitations. It offers full tuition coverage, a monthly stipend, and even helps scholars find part-time jobs."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
+        },
+        {
+            "tag": "APC_SM_Group_Scholarship",
+            "patterns": [
+                "Tell me about the SM Group of Companies Scholarship",
+                "What is the SM Group of Companies Scholarship",
+                "Can you give me information about the SM Group of Companies Scholarship",
+                "I want to know about the SM Group of Companies Scholarship",
+                "sm group",
+                "sm group scholarship"
+            ],
+            "responses": [
+                "The SM Group of Companies Scholarship is a scholarship program offered to children and siblings of SM employees. It provides 20% subsidy for those who are qualified."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
+        },
+        {
+            "tag": "APC_AFP_Scholarship",
+            "patterns": [
+                "Tell me about the Armed Forces of the Philippines (AFP) Scholarship",
+                "What is the Armed Forces of the Philippines (AFP) Scholarship",
+                "Can you give me information about the Armed Forces of the Philippines (AFP) Scholarship",
+                "I want to know about the Armed Forces of the Philippines (AFP) Scholarship",
+                "afp",
+                "afp scholarship",
+                "afp scholar"
+            ],
+            "responses": [
+                "The Armed Forces of the Philippines (AFP) Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 60% or 100% subsidy to students who are dependents of AFP personnel."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
+        },
+        {
+            "tag": "APC_AFP_Officers_Ladies_Club_Scholarship",
+            "patterns": [
+                "Officers Ladies Club",
+                "What is AFP Officers Ladies Club Scholarship",
+                "Ladies Club"
+            ],
+            "responses": [
+                "The A F P Officers Ladies Club Scholarship is a scholarship program offered to students of Asia Pacific College. It provides 30% subsidy to students who are dependents of AFP personnel."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
+        },
+        {
+            "tag": "APC_Entrance_Academic_Scholar",
+            "patterns": [
+                "Tell me about the Entrance Academic Scholar",
+                "What is the Entrance Academic Scholar",
+                "Can you give me information about the Entrance Academic Scholar",
+                "I want to know about the Entrance Academic Scholar",
+                "Entrance Academic Scholarship",
+                "Entrance Academic"
+            ],
+            "responses": [
+                "The Entrance Academic Scholar is a scholarship program offered to Senior High School and college students of Asia Pacific College. It provides subsidy to students who excel academically and demonstrate leadership potential."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
+        },
+
+        {
+            "tag": "APC_PNP_Scholarship",
+            "patterns": [
+                "Tell me about the PNP Scholarship",
+                "What is the PNP Scholarship",
+                "Can you give me information about the PNP Scholarship",
+                "I want to know about the PNP Scholarship"
+            ],
+            "responses": [
+                "The PNP Scholarship is a program where all children of active uniformed Philippine National Police personnel will have a 60% subsidy."
+            ],
+            "navigate_to": "image_info",
+            "source_image": "Scholarship_Grants_and_Financial_Aid"
         },
         {
             "tag": "Junior Marketing Association (AP J M A)",
