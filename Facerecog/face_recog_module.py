@@ -57,6 +57,8 @@ def realtime_face_recognition(video):
             person_detected = False
             #print("No face detected")
 
+
+
         # display
         # cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
         # cv2.resizeWindow('frame', 800, 600)
@@ -64,19 +66,24 @@ def realtime_face_recognition(video):
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+    #
+    # video.release()
+    # cv2.destroyAllWindows()
 
-    video.release()
-    cv2.destroyAllWindows()
+
+
 
 
 def greet_new_user():
     greetings = [
         "hi, I'm Rami bot, nice to meet you",
         "hello! i am rami with the bot, Rami bot",
-        "excuse me, could you please move, you're blocking my view",
         "almost didn't see you there, hi! i'm Rami bot",
         "hello there, i'm Rami bot, how can i help you today?",
         "Hey! I'm Rami bot, nice to meet you",
+        "psst, hey! look at me!",
+        "Rami bot here, how can i help you today?",
+        "i saw you with my eyes, hello! i'm Rami bot"
     ]
 
     # folder_path = "../Integrated/audio/jp_greeting"

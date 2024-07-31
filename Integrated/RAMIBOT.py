@@ -9,7 +9,6 @@ from queue import Queue, Empty
 import cv2
 import requests
 from kivy.core.audio import SoundLoader
-from kivymd.uix.dialog import MDDialog
 from requests.exceptions import Timeout
 import gpio
 import TTSapi
@@ -17,7 +16,6 @@ import sql_module
 from kivy.clock import Clock
 from kivy.core.text import LabelBase
 from kivy.core.window import Window
-from kivy.graphics.texture import Texture
 from kivy.lang import Builder
 from kivy.uix.screenmanager import NoTransition, ScreenManager
 from kivymd.app import MDApp
@@ -430,10 +428,11 @@ class MainApp(MDApp):
             if detected:
                 # gpio.set_gpio_pin(4, 1)
                 self.on_motor()
+                self.stop_timer()
                 TTSapi.speak_async(detected)  # Speak the greeting for the detected person
                 # TTSapi.play_audio_file_async(detected)
-
                 put_in_queue(screen_queue, 'greetscreen')
+                self.close_camera()
 
     def close_camera(self):
         self.camera.release()
