@@ -26,7 +26,7 @@ from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import Command, Response
 from Facerecog import face_recog_module
 from Voicebot import voicebotengine
-from Voicebot.voice_assistant_module import VoiceAssistant, Timeout_Queue
+from Voicebot.voice_assistant_module import VoiceAssistant, active_state, Timeout_Queue
 from dotenv import load_dotenv
 
 
@@ -736,6 +736,14 @@ class MainApp(MDApp):
         face = threading.Thread(target=face_thread)
         face.daemon = True
         face.start()
+
+    def set_event(self, event=active_state):
+        event.set()
+        print("active_set")
+
+    def clear_event(self, event=active_state):
+        event.clear()
+        print("cleared")
 
 
 
