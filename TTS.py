@@ -7,8 +7,6 @@ from pydub.playback import play
 
 # if not working, try: pip install piper-tts
 
-
-
 def speak(text):
     model_path = os.getenv('MODEL_PATH')
 

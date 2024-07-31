@@ -12,7 +12,7 @@ from kivy.core.audio import SoundLoader
 from kivymd.uix.dialog import MDDialog
 from requests.exceptions import Timeout
 import gpio
-import TTS
+import TTSapi
 import sql_module
 from kivy.clock import Clock
 from kivy.core.text import LabelBase
@@ -28,12 +28,14 @@ from Chatbot.chatbot import handle_request
 from Chatbot.chatbotGUI import Command, Response
 from Facerecog import face_recog_module
 from Voicebot import voicebotengine
-from Voicebot.voice_assistant_module import VoiceAssistant, active_state, Timeout_Queue
+from Voicebot.voice_assistant_module import VoiceAssistant, Timeout_Queue
 from dotenv import load_dotenv
 
 
 load_dotenv()
 
+screen_queue = voicebotengine.Speech_Queue
+image_queue = voicebotengine.Image_Queue
 
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
@@ -44,6 +46,8 @@ IMAGE_PATH = os.getenv('IMAGE_PATH')
 REQUEST_TIMEOUT = int(os.getenv('REQUEST_TIMEOUT'))
 TIMEOUT_DURATION = int(os.getenv('TIMEOUT_DURATION'))
 ANNOUNCEMENT_INTERVAL = int(os.getenv('ANNOUNCEMENT_INTERVAL'))
+LabelBase.register(name='Poppins', fn_regular="Assets/Fonts/Poppins-SemiBold.ttf")
+
 
 CAMERA_INDEX = int(os.getenv('CAMERA_INDEX'))
 halign = "center"
@@ -138,12 +142,12 @@ class MainApp(MDApp):
 
     def on_start(self):
         sql_module.connect()
-        Clock.schedule_interval(self.await_change_gui_elements, .3)
+        Clock.schedule_interval(self.await_change_gui_elements, .5)
         Clock.schedule_interval(self.await_recharge_change, .5)
 
         # Clock.schedule_interval(self.await_timeout_change, .5)
 
-        Clock.schedule_interval(self.show_active_threads, 5)
+        # Clock.schedule_interval(self.show_active_threads, 5)
 
     def show_active_threads(self, dt=None):
         print("\nActive Threads:")
@@ -379,6 +383,7 @@ class MainApp(MDApp):
                 put_in_queue(image_queue, 'rami_faces/smile.png')
 
     def set_face_blink(self):
+
         Clock.schedule_interval(self.await_face_change, .8)
         Clock.schedule_interval(self.face_blink, 3)
         if screen_manager.current != 'idlescreen':
@@ -390,7 +395,7 @@ class MainApp(MDApp):
         # Change the face
         put_in_queue(image_queue, face_path)
         # Start the thread
-        TTS.speak_async(text)
+        TTSapi.speak_async(text)
 
     def idle_announcement(self, dt):
         column_data = sql_module.get_column_data("text_to_voice_announcements", "announcement_name")
@@ -424,8 +429,8 @@ class MainApp(MDApp):
             if detected:
                 # gpio.set_gpio_pin(4, 1)
                 self.on_motor()
-                TTS.speak_async(detected)  # Speak the greeting for the detected person
-                # TTS.play_audio_file_async(detected)
+                TTSapi.speak_async(detected)  # Speak the greeting for the detected person
+                # TTSapi.play_audio_file_async(detected)
 
                 put_in_queue(screen_queue, 'greetscreen')
 
@@ -731,13 +736,6 @@ class MainApp(MDApp):
         face.daemon = True
         face.start()
 
-    def set_event(self, event=active_state):
-        event.set()
-        print("active_set")
-
-    def clear_event(self, event=active_state):
-        event.clear()
-        print("cleared")
 
 
 def put_in_queue(myqueue, item):
@@ -764,17 +762,47 @@ def face_thread():
         print("FACE THREAD DISABLED")
 
 
+# if __name__ == "__main__":
+#     # Queues
+
+#
+#     # inter thread communication
+#     # a clocked function checks and gets the items in the queue periodically
+#
+#     # Classes
+
+#
+#     app.run()
+
+
+import cProfile
+import pstats
+import io
+
+def main():
+    # Your main function logic
+    app = MainApp()
+    app.run()
+
 if __name__ == "__main__":
-    LabelBase.register(name='Poppins', fn_regular="Assets/Fonts/Poppins-SemiBold.ttf")
-    # Queues
-    screen_queue = voicebotengine.Speech_Queue
-    image_queue = voicebotengine.Image_Queue
-
-    # inter thread communication
-    # a clocked function checks and gets the items in the queue periodically
-
-    # Classes
     voicebot = VoiceAssistant()
     app = MainApp()
+    # Create a profile object
+    pr = cProfile.Profile()
+    pr.enable()  # Start profiling
 
-    app.run()
+    main()  # Run your main function
+
+    pr.disable()  # Stop profiling
+
+    # Create a stream to hold the profiling results
+    s = io.StringIO()
+    # Create a Stats object to format the results
+    sortby = 'cumulative'
+    ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+    ps.print_stats()
+
+    # Print the profiling results
+    with open("profile_results.txt", "w") as f:
+        f.write(s.getvalue())
+    print("Profiling results saved to profile_results.txt")

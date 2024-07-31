@@ -6,7 +6,7 @@ import speech_recognition as sr
 from dotenv import load_dotenv
 
 import Voicebot.voicebotengine as voicebotengine
-import TTS as ts
+import TTSapi as ts
 import gpio as gpio
 from Voicebot.voicebotengine import Speech_Queue as Speech_Queue
 import threading
@@ -97,7 +97,7 @@ class VoiceAssistant:
                                 gpio.set_gpio_pin(4, 1)  # set GPIO pin to HIGH to stop the motor wheel from moving
 
                                 # greet user
-                                ts.play_audio_file('audio/activate.wav')
+                                ts.play_audio_file_async('audio/activate.wav')
                                 Speech_Queue.put("greetscreen")
                                 wake_word_response = voicebotengine.get_from_json("GEN hello")
                                 ts.speak(wake_word_response)
@@ -136,7 +136,7 @@ class VoiceAssistant:
 
                             if response2 is not None:
                                 ts.speak(response2)
-                                ts.play_audio_file("audio/deactivate.wav")  # sound to indicate that the conversation is over
+                                ts.play_audio_file_async("audio/deactivate.wav")  # sound to indicate that the conversation is over
                                 Timeout_Queue.put("start")
                                 break
                             if not active_state.is_set():
@@ -169,7 +169,7 @@ class VoiceAssistant:
                 start_time = time.time()
 
                 # audio confirmation that the voice assistant is active
-                ts.play_audio_file('audio/activate.wav')
+                ts.play_audio_file_async('audio/activate.wav')
 
                 # greet = voicebotengine.get_from_json("GEN hello")
                 # ts.speak(greet)
@@ -187,7 +187,7 @@ class VoiceAssistant:
                     print(f"The voice_assistant_tap_to_speak function took {execution_time} seconds to execute")
 
                     ts.speak(response)
-                    ts.play_audio_file("audio/deactivate.wav")  # Sound to indicate that the interaction is over
+                    ts.play_audio_file_async("audio/deactivate.wav")  # Sound to indicate that the interaction is over
 
         except sr.RequestError:
             end_time = time.time()  # End time after the function execution
