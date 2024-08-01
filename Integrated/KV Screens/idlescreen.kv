@@ -2,11 +2,11 @@ MDScreen:
     name: 'idlescreen'
     on_enter:
         app.start_face_thread()
-        app.start_timer()
+        app.stop_timer()
         app.schedule_idle_announcement()
     on_pre_leave:
         app.off_motor()
-        #app.close_camera()
+        app.close_camera()
         app.start_timer()
 
         app.unschedule_idle_announcement()

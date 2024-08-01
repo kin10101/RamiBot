@@ -141,7 +141,7 @@ class MainApp(MDApp):
     def on_start(self):
         sql_module.connect()
         Clock.schedule_interval(self.await_change_gui_elements, .5)
-        Clock.schedule_interval(self.await_recharge_change, .5)
+        Clock.schedule_interval(self.await_recharge_change, .3)
 
         # Clock.schedule_interval(self.await_timeout_change, .5)
 
@@ -342,6 +342,7 @@ class MainApp(MDApp):
 
             if state:
                 if screen_manager.current != 'lowbatteryscreen':
+                    self.close_camera()
                     put_in_queue(screen_queue, 'lowbatteryscreen')
                 else:
                     pass
