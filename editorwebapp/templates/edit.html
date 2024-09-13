@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Intent</title>
+    <link rel="stylesheet" href="static/edit.css">
+</head>
+<body>
+    <h1>Edit Intent</h1>
+    <form id="intent-form">
+        <label>Tag:</label>
+        <input type="text" id="tag" required>
+
+        <h3>Patterns</h3>
+        <div id="patterns-list"></div>
+        <button type="button" onclick="addField('patterns-list', 'patterns')">Add Pattern</button>
+
+        <h3>Responses</h3>
+        <div id="responses-list"></div>
+        <button type="button" onclick="addField('responses-list', 'responses')">Add Response</button>
+
+        <button type="submit">Save</button>
+    </form>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const tag = urlParams.get('tag');
+        let intents = JSON.parse(localStorage.getItem('intents')) || [];
+        let currentIntent = intents.find(i => i.tag === tag) || { tag: '', patterns: [], responses: [] };
+
+        document.getElementById('tag').value = currentIntent.tag;
+
+        // Load existing patterns and responses
+        currentIntent.patterns.forEach(pattern => addField('patterns-list', 'patterns', pattern));
+        currentIntent.responses.forEach(response => addField('responses-list', 'responses', response));
+
+        // Add a field dynamically
+        function addField(listId, fieldName, value = '') {
+            const container = document.getElementById(listId);
+            const div = document.createElement('div');
+            div.className = 'input-group';
+            div.innerHTML = `
+                <input type="text" name="${fieldName}" value="${value}" required>
+                <button type="button" class="delete-button" onclick="removeField(this)">×</button>
+            `;
+            container.appendChild(div);
+        }
+
+        // Remove a field
+        function removeField(button) {
+            button.parentElement.remove();
+        }
+
+        // Handle form submission
+        document.getElementById('intent-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const updatedIntent = {
+                tag: document.getElementById('tag').value,
+                patterns: [...document.querySelectorAll('#patterns-list input')].map(input => input.value),
+                responses: [...document.querySelectorAll('#responses-list input')].map(input => input.value),
+            };
+
+            if (tag) {
+                // Update existing intent
+                const index = intents.findIndex(i => i.tag === tag);
+                intents[index] = updatedIntent;
+            } else {
+                // Add new intent
+                intents.push(updatedIntent);
+            }
+
+            localStorage.setItem('intents', JSON.stringify(intents));
+            alert('Intent saved!');
+            location.href = '/';
+        });
+    </script>
+</body>
+</html>

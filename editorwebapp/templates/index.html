@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intent Tags</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+</head>
+<body>
+    <h1>Intent Tags</h1>
+    <ul id="tags-list"></ul> <!-- List to display intent tags -->
+
+    <script>
+        // Fetch and display the tags from the Flask backend
+        async function loadTags() {
+            try {
+                const response = await fetch('/api/tags'); // Fetch tags from the new endpoint
+                const tags = await response.json(); // Parse the JSON response
+
+                const tagsList = document.getElementById('tags-list');
+                tagsList.innerHTML = ''; // Clear any existing content
+
+                // Populate the list with tags
+                tags.forEach(tag => {
+                    const li = document.createElement('li');
+                    li.textContent = tag;
+                    tagsList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error fetching tags:', error);
+            }
+        }
+
+        // Call the function to load tags on page load
+        document.addEventListener('DOMContentLoaded', loadTags);
+    </script>
+</body>
+</html>

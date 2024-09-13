@@ -45,6 +45,7 @@ REQUEST_TIMEOUT = int(os.getenv('REQUEST_TIMEOUT'))
 TIMEOUT_DURATION = int(os.getenv('TIMEOUT_DURATION'))
 ANNOUNCEMENT_INTERVAL = int(os.getenv('ANNOUNCEMENT_INTERVAL'))
 LabelBase.register(name='Poppins', fn_regular="Assets/Fonts/Poppins-SemiBold.ttf")
+BUTTON_LIST_FONT_SIZE = 35
 
 
 CAMERA_INDEX = int(os.getenv('CAMERA_INDEX'))
@@ -212,7 +213,7 @@ class MainApp(MDApp):
             button = MDFillRoundFlatButton(
                 text=button_title,
                 font_name='Poppins',
-                font_size=24,
+                font_size=BUTTON_LIST_FONT_SIZE,
                 halign='center',
                 text_color=(1, 1, 1, 1),
                 md_bg_color=(0.003, 0.4, 0.6, 1),
@@ -238,7 +239,7 @@ class MainApp(MDApp):
             button = MDFillRoundFlatButton(
                 text=button_title,
                 font_name='Poppins',
-                font_size=24,
+                font_size=BUTTON_LIST_FONT_SIZE,
                 halign='center',
                 text_color=(1, 1, 1, 1),
                 md_bg_color=(0.003, 0.4, 0.6, 1),

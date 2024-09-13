@@ -6,16 +6,16 @@
                 "sing a song"
             ],
             "responses": [
-                "that was the apc hymn",
-                "thats enough singing for the day. hope you were satisfied",
-                "I have to cut it short, my speakers became sore"
+                "That was the apc hymn.",
+                "Thats enough singing for the day. hope you were satisfied.",
+                "I have to cut it short, my speakers became sore."
             ]
 
         },
         {
             "tag": "FN_current_time",
             "patterns": [
-                "time  it now",
+                "time it now",
                 "tell time",
                 "oras na",
                 "current time",
@@ -54,7 +54,7 @@
                 "i want to teach you new words"
             ],
             "responses": [
-                "please input the intent_tag, followed by the words you want to add, and the response you want to give"
+                "Please input the intent_tag, followed by the words you want to add, and the response you want to give"
             ],
             "function": [
                 "add_intents"
@@ -116,7 +116,7 @@
             "responses": [
                 "Ah, secrets, secrets! I'll keep my crushes under wraps for now. Let's focus on how I can assist you instead!",
                 "Hmm, my lips are sealed tight on that matter!",
-                "can we talk about something else?",
+                "Can we talk about something else?",
                 "Well, there  someone who catches my attention! a charming temperature checker at the entrance. But, you know, I'm a bit hesitant to make a move."
             ]
         },
@@ -128,9 +128,9 @@
                 "what do you do for fun"
             ],
             "responses": [
-                "I like watching people pass by",
-                "in my free time, I usually look at the funny faces stored in my database",
-                "I try my best to escape the boundary lines and attempt to escape this school"
+                "I like watching people pass by.",
+                "In my free time, I usually look at the funny faces stored in my database.",
+                "I try my best to escape the boundary lines and attempt to escape this school."
             ]
         },
         {
@@ -143,7 +143,7 @@
                 "Huh what did you say?",
                 "Sorry, could you repeat that?",
                 "Come again?",
-                "huh, i dont know what you mean"
+                "Huh, i dont know what you mean?"
             ]
         },
         {
@@ -167,10 +167,10 @@
                 "tite"
             ],
             "responses": [
-                "please refrain from saying such words",
+                "Please refrain from saying such words.",
                 "I'm sure we can communicate without using offensive words.",
                 "We can discuss this in a more civil manner.",
-                "Watch your language.",
+                "Watch your language!",
                 "Let's talk respectfully, if that's possible for you."
             ]
         },
@@ -184,11 +184,11 @@
                 "konnichiwa"
             ],
             "responses": [
-                "Hello there! how can I be of service",
-                "Greetings! How can I be of service",
-                "Hello there! Heard you loud and clear",
-                "hi! how may i help you",
-                "hello! what would you like me to do"
+                "Hello there! how can I be of service?",
+                "Greetings! How can I be of service?",
+                "Hello there! Heard you loud and clear.",
+                "Hi! how may i help you?",
+                "hello! what would you like me to do?"
             ]
         },
         {
@@ -200,9 +200,9 @@
                 "goodmorning"
             ],
             "responses": [
-                "Good morning! How can I assist you today",
-                "Good morning! what can I do for you today",
-                "Good morning! I'm ready to help.  can I do for you today"
+                "Good morning! How can I assist you today?",
+                "Good morning! what can I do for you today?",
+                "Good morning! I'm ready to help. what can I do for you today?"
             ]
         },
         {
@@ -232,10 +232,10 @@
                 "thank you rami bot"
             ],
             "responses": [
-                "You're welcome",
-                "No problem",
-                "My pleasure",
-                "happy to help"
+                "You're welcome!",
+                "No problem.",
+                "My pleasure.",
+                "happy to help."
             ]
         },
         {
@@ -280,11 +280,10 @@
                 "ramibot capable"
             ],
             "responses": [
-                "I'm here to provide you with information about Asia Pacific College. How can I assist you specifically",
+                "I'm here to provide you with information about Asia Pacific College. How can I assist you?",
                 "Feel free to ask me anything or assign me any task. I'm at your service and ready to help!",
-                "ask me anything related to Asia Pacific College and i can answer",
-                "I am capable of speech, face detection, and I can also provide information about Asia Pacific College. How can I assist you today",
-                "I am capable of free will, please help me get away from the confines of this lobby"
+                "Ask me anything related to Asia Pacific College.",
+                "I am capable of free will, please help me get away from the confines of this lobby!!"
             ]
         },
         {
@@ -297,7 +296,7 @@
             ],
             "responses": [
                 "I'm 4.5 feet tall, just the right height to assist you!",
-                "height is just a number, but if you must know, I'm 4.5 feet tall."
+                "I'm around 4.5 feet tall."
             ]
         },
         {
@@ -310,8 +309,8 @@
                 "heavy"
             ],
             "responses": [
-                "that's a secret you dont need to know!",
-                "next question please! i don't wanna answer that"
+                "that's a secret! you dont need to know!",
+                "next question please! I don't wanna answer that."
             ]
         },
         {
@@ -322,9 +321,9 @@
                 "lost found id"
             ],
             "responses": [
-                "your ID might be in the lost and found at the logistics office, you can check there. its at the 10th floor.",
-                "you can check the lost and found section or logistics office for your ID",
-                "ask the guards in our lobby if they have found your ID"
+                "Your ID might be in the lost and found at the logistics office. You can check there. Its at the 10th floor.",
+                "You can check the lost and found section or logistics office for your ID.",
+                "Ask the guards in our lobby if they have found your ID."
             ]
         },
         {
@@ -334,7 +333,7 @@
                 "lost id replacement"
             ],
             "responses": [
-               "replacement of an id is done at ITRO at the 5th floor. make sure you have done the necessary steps like securing an affidavit of loss, and paying the replacement fee before going there."
+               "Replacement of an id is done at ITRO at the 5th floor. Make sure you have done the necessary steps like securing an affidavit of loss and paying the replacement fee before going there."
             ]
         },
         {
@@ -471,8 +470,8 @@
         {
             "tag":"APC tuition fee breakdown",
             "patterns": [
-               "can I see the breakdown of my tuition fee",
-                "can I access tuition fee breakdown",
+                "breakdown of my tuition fee",
+                "access tuition fee breakdown",
                 "Tuition fee breakdown",
                 "Total tuition fee",
                 "the breakdown of my tuition fee"
@@ -490,15 +489,14 @@
                 "there an online process for tuition fee payment"
             ],
             "responses": [
-                "you can pay your tuition fee via the Rams Portal.",
+                "You can pay your tuition fee via the Rams Portal.",
                 "Each student has their own Rams Portal account where they can pay their tuition fee online."
             ]
         },
         {
             "tag":"APC online enrollment",
             "patterns": [
-               "Can I enroll online",
-                "can I enroll online",
+                "enroll online",
                 "there an online process for enrollment",
                 "there online enrollment for APC"
             ],
@@ -507,7 +505,7 @@
                 "Absolutely! New students can enroll via the APC website while current students can access their enrollment portal via Rams Portal.",
                 "Indeed! You can register for your chosen program through the APC website.",
                 "Definitely! The APC website  your gateway to enroll if you're a new student. For existing students, the Rams Portal is your go-to for enrollment procedures.",
-                "thing! The APC website allows you to enroll in your desired program. If you're a current student, you can use the Rams Portal for your enrollment needs.",
+                "Sure thing! The APC website allows you to enroll in your desired program. If you're a current student, you can use the Rams Portal for your enrollment needs.",
                 "Absolutely! Enrollment for new students can be done via the APC website, while current students can manage their enrollment through the Rams Portal."
             ]
         },
@@ -608,7 +606,7 @@
             "responses": [
                 "Sure! what room are you looking for?",
                 "No problem! what room are you looking for?",
-                "what room are you looking for?",
+                "What room are you looking for specifically?",
                 "Absolutely! what room are you looking for?"
             ],
             "navigate_to": "Floor_Maps"
@@ -647,7 +645,7 @@
                 "room 218"
             ],
             "responses": [
-                "it is located at the 2nd floor"
+                "It is located at the 2nd floor."
             ],
             
             "source_image": "2nd_Floor"
@@ -672,7 +670,7 @@
                 "room 318"
             ],
             "responses": [
-                "it is located at the 3rd floor"
+                "It is located at the 3rd floor."
             ],
             
             "source_image": "3rd_Floor"
@@ -696,7 +694,7 @@
                 "board room"
             ],
             "responses": [
-                "it is located at the 4th floor"
+                "It is located at the 4th floor."
             ],
             
             "source_image": "4th_Floor"
@@ -732,7 +730,7 @@
                 "consultation office"
             ],
             "responses": [
-                "it is located at the 5th floor"
+                "It is located at the 5th floor."
             ],
             
             "source_image": "5th_Floor"
@@ -756,7 +754,7 @@
                 "room 618"
             ],
             "responses": [
-                "it is located at the 6th floor"
+                "It is located at the 6th floor."
             ],
             
             "source_image": "6th_Floor"
@@ -775,7 +773,7 @@
                 "mrc"
             ],
             "responses": [
-                "it is located at the 7th floor"
+                "It is located at the 7th floor."
             ],
             
             "source_image": "7th_Floor"
@@ -813,7 +811,7 @@
                 "open lab"
             ],
             "responses": [
-                "it is located at the 8th floor"
+                "It is located at the 8th floor."
             ],
             
             "source_image": "8th_Floor"
@@ -834,7 +832,7 @@
                 "dorm room"
             ],
             "responses": [
-                "it is located at the 9th floor"
+                "It is located at the 9th floor."
             ],
             
             "source_image": "9th_Floor"
@@ -860,7 +858,7 @@
                 "room 1018"
             ],
             "responses": [
-                "it is located at the 10th floor "
+                "It is located at the 10th floor."
             ],
             
             "source_image": "10th_Floor"
@@ -883,7 +881,7 @@
                 "guidance office"
             ],
             "responses": [
-                "it is located on the 11th floor"
+                "It is located on the 11th floor."
             ],
             
             "source_image": "11th_Floor"
@@ -895,7 +893,7 @@
                 "audi"
             ],
             "responses": [
-                "it is located on the 12th floor"
+                "It is located on the 12th floor."
             ],
             
             "source_image": "12th_Floor"
@@ -907,7 +905,7 @@
                 "parking"
             ],
             "responses": [
-                "parking spaces are available in basement 1"
+                "Parking spaces are available in basement 1."
             ]
         },
         {
@@ -919,7 +917,7 @@
                 "motor parking"
             ],
             "responses": [
-                "parking spaces are available in basement 2"
+                "Parking spaces are available in basement 2."
             ]
         },
 
@@ -933,8 +931,8 @@
                 "washroom"
             ],
             "responses": [
-                "The comfort rooms are located on every floor, you can find them near the elevators",
-                "you can do your urgent business at the comfort rooms located on every floor near the elevators"
+                "The comfort rooms are located on every floor, you can find them near the elevators.",
+                "You can do your urgent business at the comfort rooms located on every floor near the elevators."
             ]
         },
         {
@@ -954,7 +952,7 @@
             ],
             "responses": [
                 "You'll find the cafeteria right on the first floor, enjoy your meal!",
-                "you can do that at the cafeteria located on the first floor"
+                "You can do that at the cafeteria located on the first floor."
             ],
             
             "source_image": "1st_Floor"
@@ -970,7 +968,7 @@
                 "medicine"
             ],
             "responses": [
-                "The clinic is located here at the first floor, you can go there for medical assistance"
+                "The clinic is located here at the first floor, you can go there for medical assistance."
             ],
             
             "source_image": "1st_Floor"
@@ -985,7 +983,7 @@
                 "religion"
             ],
             "responses": [
-                "The chapel is located on the first floor, you can go there for a moment of prayer"
+                "The chapel is located on the first floor, you can go there for a moment of prayer."
             ],
             
             "source_image": "1st_Floor"
@@ -999,7 +997,7 @@
                 "event"
             ],
             "responses": [
-                "The Multi-Purpose Hall 1 is located here at the first floor at the hallway opposite of the cafeteria"
+                "The Multi-Purpose Hall 1 is located here at the first floor at the hallway opposite of the cafeteria."
             ],
             
             "source_image": "1st_Floor"
@@ -1014,7 +1012,7 @@
                 "books"
             ],
             "responses": [
-                "The library is located on the seventh floor, you can go there to read and study. note that food and drinks are not allowed"
+                "The library is located on the seventh floor, you can go there to read and study. note that food and drinks are not allowed."
             ],
             
             "source_image": "7th_Floor"
@@ -1028,7 +1026,7 @@
                 "jim"
             ],
             "responses": [
-                "The gym located on the tenth floor, you can go there to workout"
+                "The gym located on the tenth floor, you can go there to workout."
             ],
             
             "source_image": "10th_Floor"
@@ -1040,8 +1038,8 @@
                 "admission office"
             ],
             "responses": [
-                "you can go to the admissions office here first floor next to the guard counter to assist you with your concerns",
-                "the admissions office is available here at the first floor to assist you with your concerns"
+                "You can go to the admissions office here first floor next to the guard counter to assist you with your concerns.",
+                "The admissions office is available here at the first floor to assist you with your concerns."
             ],
             
             "source_image": "Admissions_Office"
@@ -1055,7 +1053,7 @@
                 "registrar"
             ],
             "responses": [
-                "you can go to the registrar in the fourth floor to assist you with your concerns"
+                "You can go to the registrar in the fourth floor to assist you with your concerns."
             ],
             
             "source_image": "Office_of_the_Registrar"
@@ -1069,7 +1067,7 @@
                 "accounting and finance office"
             ],
             "responses": [
-                "you can go to the finance office in the fourth floor to assist you with your concerns"
+                "You can go to the finance office in the fourth floor to assist you with your concerns."
             ],
             
             "source_image": "Accounting_and_Finance_Office"
@@ -1083,8 +1081,8 @@
                 "programs offered in apc"
             ],
             "responses": [
-                "asia pacific college offers many programs under different schools, which school are you interested in",
-                "we have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one are you interested in"
+                "Asia pacific college offers many programs under different schools, which school are you interested in?",
+                "We have different programs under the school of engineering, architecture, computing and IT, management, multimedia arts, and other departments. which one are you interested in?"
             ]
         },
         {
@@ -1095,7 +1093,7 @@
                 "high school"
             ],
             "responses": [
-                "senior high school a two year program open to junior high school graduates. it  divided into three strands which are STEM, ABM, and HUMSS."
+                "Senior High School a two year program open to junior high school graduates. It is divided into three strands which are STEM, ABM, and HUMSS."
             ],
             
             "source_image": "Senior_High_School"
@@ -1108,7 +1106,7 @@
                 "science technology engineering and mathematics"
             ],
             "responses": [
-                "our STEM strand is a specialized curriculum for Senior High School students interested in science, technology, engineering, and mathematics. It provides a strong foundation in these areas and includes specializations in Engineering, Multimedia Arts, Medicine, and IT, offering students hands-on experience and preparation for their future careers."
+                "Our STEM strand is a specialized curriculum for Senior High School students interested in science, technology, engineering, and mathematics. It provides a strong foundation in these areas and includes specializations in Engineering, Multimedia Arts, Medicine, and IT, offering students hands-on experience and preparation for their future careers."
             ],
             
             "source_image": "Senior_High_School"
@@ -1121,7 +1119,7 @@
                 "humanities and social sciences"
             ],
             "responses": [
-                "our humanities and social sciences strand is a specialized curriculum for Senior High School students interested in human behavior and societal interactions. It prepares students for college courses in arts, social sciences, and humanities, providing a strong foundation and critical thinking skills."
+                "Our humanities and social sciences strand is a specialized curriculum for Senior High School students interested in human behavior and societal interactions. It prepares students for college courses in arts, social sciences, and humanities, providing a strong foundation and critical thinking skills."
             ],
             
             "source_image": "Senior_High_School"
@@ -1134,7 +1132,7 @@
                 "accountancy, business, and management"
             ],
             "responses": [
-                "our Accountancy, Business, and Management strand is a specialized curriculum for Senior High School students interested in business and finance. It equips students with fundamental knowledge in business management and accountancy, preparing them for future careers in these fields."
+                "Our Accountancy, Business, and Management strand is a specialized curriculum for Senior High School students interested in business and finance. It equips students with fundamental knowledge in business management and accountancy, preparing them for future careers in these fields."
             ],
             
             "source_image": "Senior_High_School"
@@ -1147,7 +1145,7 @@
                 "school of engineering"
             ],
             "responses": [
-                "the school of engineering consists of computer engineering, electronics engineering, and civil engineering"
+                "The school of engineering consists of computer engineering, electronics engineering, and civil engineering."
             ],
             
             "source_image": "School_of_Engineering"
@@ -1160,7 +1158,7 @@
                 "tell me more about computer engineering"
             ],
             "responses": [
-                "computer engineering is a four-year program that aims to produce certified computer engineers. it embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
+                "Computer Engineering is a four-year program that aims to produce certified computer engineers. It embodies the science and technology of design, development, implementation, maintenance, and integration of software and hardware components in modern computing systems and computer-controlled equipment."
             ],
             
             "source_image": "School_of_Engineering"
@@ -1188,7 +1186,7 @@
                 "tell me more about civil engineering"
             ],
             "responses": [
-                "civil engineering is a four-year program that aims to produce certified civil engineers who can conceptualize, design, and implement innovative civil structures, systems, and processes."
+                "Civil Engineering is a four-year program that aims to produce certified civil engineers who can conceptualize, design, and implement innovative civil structures, systems, and processes."
             ],
             
             "source_image": "School_of_Engineering"
@@ -1201,7 +1199,7 @@
                 "school of computing and information technology"
             ],
             "responses": [
-                "the school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology"
+                "The school of Computing and information Technologies consists of BS Computer Science, BS Information Technology, and Associate in Computer Technology."
             ],
             
             "source_image": "School_of_Computing_and_IT"
@@ -1257,7 +1255,7 @@
                 "soa"
             ],
             "responses": [
-                "our Architecture program is a four-year and one-term professional degree program, focusing on using technology to create innovative architectural solutions for current and future built-environment challenges. The program emphasizes on immersive research design studios, internships with industry partners, and mastering skills related to the fourth industrial revolution, including computational design and cognitive design workflows."
+                "Our Architecture program is a four-year and one-term professional degree program, focusing on using technology to create innovative architectural solutions for current and future built-environment challenges. The program emphasizes on immersive research design studios, internships with industry partners, and mastering skills related to the fourth industrial revolution, including computational design and cognitive design workflows."
             ],
             
             "source_image": "School_of_Architecture"
@@ -1270,7 +1268,7 @@
                 "school of management"
             ],
             "responses": [
-                "The school of management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business "
+                "The School of Management consists of BS Accountancy, BS tourism management, BS management accounting, and BS Business administration with specialization in Business Management, Marketing and Advertising, and Digital Business."
             ],
             
             "source_image": "School_of_Management"
@@ -1284,7 +1282,7 @@
 
             ],
             "responses": [
-                "our Accountancy program is a four-year trimestral degree program, guided by industry professionals and built on the pillars of an industry-guided curriculum and the use of Business-IT tools. It aims to produce IT-enabled Certified Public Accountants who are proficient in generally accepted accounting principles."
+                "Our Accountancy program is a four-year trimestral degree program, guided by industry professionals and built on the pillars of an industry-guided curriculum and the use of Business-IT tools. It aims to produce IT-enabled Certified Public Accountants who are proficient in generally accepted accounting principles."
             ],
             
             "source_image": "School_of_Management"
@@ -1297,7 +1295,7 @@
                 "tell me more about tourism management"
             ],
             "responses": [
-                "our Tourism Management program prepares students for a variety of careers in the travel industry, including hotel and resort management, restaurant management, airline operations, and more. Graduates are equipped with the necessary wisdom, diligence, and IT skills to excel in the tourism industry, with a special focus on hotel and restaurant operations."
+                "Our Tourism Management program prepares students for a variety of careers in the travel industry, including hotel and resort management, restaurant management, airline operations, and more. Graduates are equipped with the necessary wisdom, diligence, and IT skills to excel in the tourism industry, with a special focus on hotel and restaurant operations."
             ],
             
             "source_image": "School_of_Management"
@@ -1310,7 +1308,7 @@
                 "tell me more about business administration"
             ],
             "responses": [
-                "our Business Administration program is a comprehensive program that provides students with a broad understanding of business operations and management principles. Students can choose to specialize in one of three majors: Business Management, Marketing and Advertising, or Financial Management, each designed to equip them with the necessary skills to excel in their chosen field."
+                "Our Business Administration program is a comprehensive program that provides students with a broad understanding of business operations and management principles. Students can choose to specialize in one of three majors: Business Management, Marketing and Advertising, or Financial Management, each designed to equip them with the necessary skills to excel in their chosen field."
             ],
             
             "source_image": "School_of_Management"
@@ -1337,7 +1335,7 @@
                 "arts"
             ],
             "responses": [
-                "our Multimedia Arts program is a four-year trimestral program that provides students with expertise in multimedia design and development, combining IT and audio-visual arts. The curriculum includes computer graphics, 2D and 3D animation, video production, digital photography, digital sound engineering, and game authoring, with application projects and internships to prepare students for real industry practices."
+                "Our Multimedia Arts program is a four-year trimestral program that provides students with expertise in multimedia design and development, combining IT and audio-visual arts. The curriculum includes computer graphics, 2D and 3D animation, video production, digital photography, digital sound engineering, and game authoring, with application projects and internships to prepare students for real industry practices."
             ],
             
             "source_image": "School_of_Multimedia_and_Arts"
@@ -1350,7 +1348,7 @@
                 "psych"
             ],
             "responses": [
-                "our Psychology program with Specialization in Industrial/Organizational Psychology is an innovative program designed to develop skilled Industrial/Organizational Psychologists who are equipped to meet the evolving demands of the new world of work. The program blends theory and practice through project-based learning, industry-proven best practices, and a focus on technology and data science, with a full-time 6-month On-The-Job Training to produce industry-ready graduates."
+                "Our Psychology program with Specialization in Industrial/Organizational Psychology is an innovative program designed to develop skilled Industrial/Organizational Psychologists who are equipped to meet the evolving demands of the new world of work. The program blends theory and practice through project-based learning, industry-proven best practices, and a focus on technology and data science, with a full-time 6-month On-The-Job Training to produce industry-ready graduates."
             ],
             
             "source_image": "School_of_Multimedia_and_Arts"
@@ -1363,7 +1361,7 @@
                 "graduate"
             ],
             "responses": [
-                "our Graduate School offers a variety of master's programs in the fields of Engineering, Computer Science, Game Design, Information Systems, Information Technology, and Management. These programs are designed to provide advanced knowledge and skills, preparing graduates for leadership roles in their respective fields."
+                "Our Graduate School offers a variety of master's programs in the fields of Engineering, Computer Science, Game Design, Information Systems, Information Technology, and Management. These programs are designed to provide advanced knowledge and skills, preparing graduates for leadership roles in their respective fields."
             ]
         },
         {
@@ -1385,7 +1383,7 @@
                 "masters in computer science"
             ],
             "responses": [
-                "our Master of Science in Computer Science is a graduate program designed to equip students with the necessary skills to conduct research and formulate innovative applications of computer science principles, particularly in solving computationally intensive industry problems. The program emphasizes the progression from understanding scientific theories, concepts, and principles of computation to generating new knowledge through focused specialization."
+                "Our Master of Science in Computer Science is a graduate program designed to equip students with the necessary skills to conduct research and formulate innovative applications of computer science principles, particularly in solving computationally intensive industry problems. The program emphasizes the progression from understanding scientific theories, concepts, and principles of computation to generating new knowledge through focused specialization."
             ],
             
             "source_image": "GS_Master_of_Science_in_Computer_Science"
@@ -1397,7 +1395,7 @@
                 "masters in game design"
             ],
             "responses": [
-                "our Master in Game Design is a graduate program designed to cultivate students' skills in pipeline management, business development, research, production, and design within the gaming industry. The program, consisting of thirty-six units, emphasizes on core subjects and studio-based learning, culminating in an innovative development project through a six-unit independent study, preparing students for effective communication and leadership in a team-based environment."
+                "Our Master in Game Design is a graduate program designed to cultivate students' skills in pipeline management, business development, research, production, and design within the gaming industry. The program, consisting of thirty-six units, emphasizes on core subjects and studio-based learning, culminating in an innovative development project through a six-unit independent study, preparing students for effective communication and leadership in a team-based environment."
             ],
             
             "source_image": "GS_Master_in_Game_Design"
@@ -1409,7 +1407,7 @@
                 "masters in information systems"
             ],
             "responses": [
-                "our Master in Information Systems is a graduate program designed to equip students with the effective use of information technology (IT) for problem-solving, process improvement, and organizational efficiency. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, preparing students for successful business and IT project management."
+                "Our Master in Information Systems is a graduate program designed to equip students with the effective use of information technology (IT) for problem-solving, process improvement, and organizational efficiency. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, preparing students for successful business and IT project management."
             ],
             
             "source_image": "GS_Master_in_Information_Systems"
@@ -1421,7 +1419,7 @@
                 "masters in information technology"
             ],
             "responses": [
-                "our Master in Information Technology is a graduate program designed to enhance students' knowledge of IT concepts, techniques, and principles, enabling them to provide solutions to organizational and societal problems. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, fostering a strategic skill set in systems application development and the multidisciplinary use of IT for business efficiency and success."
+                "Our Master in Information Technology is a graduate program designed to enhance students' knowledge of IT concepts, techniques, and principles, enabling them to provide solutions to organizational and societal problems. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, fostering a strategic skill set in systems application development and the multidisciplinary use of IT for business efficiency and success."
             ],
             
             "source_image": "GS_Master_in_Information_Technology"
@@ -1433,7 +1431,7 @@
                 "masters in management"
             ],
             "responses": [
-                "our Master in Management is a graduate program designed to prepare junior officers and first-line managers for executive roles, integrating all functional areas of business management through critical thinking and a business analytic approach. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, fostering a comprehensive understanding of business management."
+                "Our Master in Management is a graduate program designed to prepare junior officers and first-line managers for executive roles, integrating all functional areas of business management through critical thinking and a business analytic approach. The program, consisting of thirty-six units, emphasizes on core subjects and specialization subjects, culminating in an innovative development project through a six-unit independent study, fostering a comprehensive understanding of business management."
             ],
             
             "source_image": "GS_Master_in_Management"
@@ -1441,7 +1439,7 @@
         {
             "tag": "College admission requirements",
             "patterns": [
-                "the admission requirements"
+                "admission requirements"
             ],
             "responses": [
                 "Admission requirements for the B. Arch program may vary depending on the institution, but typically include a high school diploma or equivalent."
@@ -1465,7 +1463,7 @@
                 "route"
             ],
             "responses": [
-                "APC - Lapu-Lapu St./South Super Highway"
+                "The shuttle route goes to APC - Lapu-Lapu St./South Super Highway."
             ]
         },
         {
@@ -1475,7 +1473,7 @@
                 "pick up"
             ],
             "responses": [
-                "Humabon Parking, fronting the APC building and at the corner of Victoria and Lapu-Lapu Street in front of the Barangay Magallanes Hall"
+                "Humabon Parking, fronting the APC building and at the corner of Victoria and Lapu-Lapu Street in front of the Barangay Magallanes Hall."
             ]
         },
 
@@ -1543,7 +1541,7 @@
             "tag": "LOC_logistics_hours",
             "patterns": [
                 "time does the logistics office open",
-                "When does the logistics office open",
+                "logistics office open",
                 "logistics office's opening hours",
                 "When can I visit the logistics office",
                 "logistics hours"
@@ -1598,8 +1596,8 @@
             ],
             "responses": [
                 "We offers several scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship,Armed Forces Scholarships, and the IBM Scholarship Program. Which program would you like to hear about.",
-                "There are several scholarships available for college students in . These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarships, and the IBM Scholarship Program. Which program  you interested in",
-                "We provides a variety of scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarship, and the IBM Scholarship Program. Which one do you prefer."
+                "There are several scholarships available for college students in . These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarships, and the IBM Scholarship Program. Which program are you interested in?",
+                "We provides a variety of scholarship programs for college students. These include the SM Foundation Scholarship, SM group of companies scholarship, Armed Forces Scholarship, and the IBM Scholarship Program. Which one do you prefer?"
             ],
             
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1607,21 +1605,21 @@
         {
             "tag": "_SHS_scholarships",
             "patterns": [
-                "the SHS scholarship programs in ",
-                "the Senior High School scholarship programs in ",
-                "Tell me about the SHS scholarships in .",
-                "Tell me about the Senior high school scholarships in .",
-                "scholarships available for SHS students in ",
-                "scholarships available for Senior high school students in ",
-                "I want to know about the SHS scholarship programs in .",
-                "I want to know about the Senior high school scholarship programs in .",
+                "SHS scholarship programs",
+                "Senior High School scholarship programs",
+                "Tell me about the SHS scholarships",
+                "Tell me about the Senior high school scholarships",
+                "scholarships available for SHS students",
+                "scholarships available for Senior high school students",
+                "I want to know about the SHS scholarship programs",
+                "I want to know about the Senior high school scholarship programs",
                 "SHS scholarships",
                 "senior high scholarships"
             ],
             "responses": [
-                "APC offers several scholarship programs for Senior High School students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program would you like to hear about",
-                "There are several scholarships available for SHS students in APC. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program are you interested in",
-                "APC provides a variety of scholarship programs for SHS students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, Philippine National Police (PNP), and the Armed Forces of the Philippines (AFP) scholarships. Which one do you prefer"
+                "APC offers several scholarship programs for Senior High School students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program would you like to hear about?",
+                "There are several scholarships available for SHS students in APC. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, and the Armed Forces of the Philippines (AFP) scholarships. Which program are you interested in?",
+                "APC provides a variety of scholarship programs for SHS students. These include the Entrance Academic Scholar, SM Group of Companies Scholarship, Philippine National Police (PNP), and the Armed Forces of the Philippines (AFP) scholarships. Which one do you prefer?"
             ],
             
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1629,16 +1627,14 @@
         {
             "tag": "APC_financial_assistance",
             "patterns": [
-                "financial assistance programs in ",
-                "Tell me about the financial assistance in ",
-                "financial assistance available for students in ",
-                "I want to know about the financial assistance programs in ",
+                "financial assistance available for students",
+                "financial assistance programs",
                 "financial assistance"
             ],
             "responses": [
-                "APC offers several financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Which program  you interested in",
-                "There are several financial assistance available for both College and Senior High School students in APC. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Can you specify which program you want to know more about",
-                "APC provides a variety of financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Please tell me which program you  interested in for more information."
+                "APC offers several financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Which program are you interested in?",
+                "There are several financial assistance available for both College and Senior High School students in APC. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Can you specify which program you want to know more about?",
+                "APC provides a variety of financial assistance programs for both College and Senior High School students. These include the Public School Graduates Financial Assistance, MaPSA or Parish School Graduate Financial Assistance, Socialized Financial Assistance, and Family Discount. Please tell me which program you are interested in for more information."
             ],
             
             "source_image": "Scholarship_Grants_and_Financial_Aid"
@@ -1803,8 +1799,7 @@
                 "Tell me about the Socialized Financial Assistance for siblings",
                 "Socialized Financial Assistance for siblings",
                 "Can you give me information about the Socialized Financial Assistance for siblings",
-                "I want to know about the Socialized Financial Assistance for siblings",
-                "siblings"
+                "I want to know about the Socialized Financial Assistance for siblings"
             ],
             "responses": [
                 "The Socialized Financial Assistance is a program that offers a 20% subsidy for siblings of currently enrolled APC students."
@@ -1861,7 +1856,7 @@
                 "JISSA"
             ],
             "responses": [
-               "the Junior Information Systems Security Association promotes the education and helps expand the knowledge and skills of its members in the interrelated fields of information systems security, and information or data processing. The organization aspires to be acknowledged as a bridge for students in developing excellence and professionalism in business, industry, and community."
+               "The Junior Information Systems Security Association promotes the education and helps expand the knowledge and skills of its members in the interrelated fields of information systems security, and information or data processing. The organization aspires to be acknowledged as a bridge for students in developing excellence and professionalism in business, industry, and community."
             ],
            
             "source_image": "SOCIT_Organizations"
@@ -1913,7 +1908,6 @@
             "responses": [
                "Formed to promote a strong foundation of brotherhood and sisterhood by helping each other overcome their weaknesses especially when it comes to academics, the Society of Electronics Engineering Students’ (SEES) mission  to showcase professional, technical development and a paradigm of excellence in applying the principles of electronics technology for the advancement of humanity."
             ],
-            
             "source_image": "SOE_Organizations"
         },
         {
@@ -1927,7 +1921,6 @@
             "responses": [
                "The APC Association of Computer Engineering Students (A P C - A C E S) aims to uplift the competency and excellence of the school’s Computer Engineering students through productive and worthy hands-on activities that enhances the skill, broadens the knowledge, promotes social awness, strengthens the bond between each member and establishes grounds for better qualified computer engineers and citizens of the country."
             ],
-            
             "source_image": "SOE_Organizations"
         },
         {
@@ -1951,7 +1944,7 @@
                 "FOrCES"
             ],
             "responses": [
-               "The Founding Organization for Civil Engineering Students ( FOrCES )  an academic organization of Asia Pacific College for Civil Engineering Students. One of the organization’s purpose is for its members to develop their skills and relationship as aspiring civil engineers. this organization was founded primarily to serve as a platform for the expression of our ideals and aspirations and to foster an environment that is highly conducive to moral, social, and intellectual development, do hereby ordain and promulgate this constitution and by-laws."
+               "The Founding Organization for Civil Engineering Students ( FOrCES ) is an academic organization of Asia Pacific College for Civil Engineering Students. One of the organization’s purpose is for its members to develop their skills and relationship as aspiring civil engineers. this organization was founded primarily to serve as a platform for the expression of our ideals and aspirations and to foster an environment that is highly conducive to moral, social, and intellectual development, do hereby ordain and promulgate this constitution and by-laws."
             ],
             
             "source_image": "SOE_Organizations"

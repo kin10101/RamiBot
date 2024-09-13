@@ -63,6 +63,7 @@ def show_columns(table):
 
 
 def get_column_data(table, column):
+    # TODO: add condition for prof status and do not query this
     """Get all data from a column in a table."""
     query = f"SELECT {column} FROM {table} WHERE {column} IS NOT NULL AND {column} != '';"
     results = sql_query(query)

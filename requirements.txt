@@ -25,7 +25,7 @@ whisper~=1.1.10
 
 # Chatbot Module Dependencies
 nltk~=3.8.1
-keras~=3.3.3
+keras~=2.12
 tensorflow~=2.16.1
 tf-keras~=2.16.0
 numpy~=1.26.4
@@ -50,3 +50,5 @@ ctranslate2~=4.3.0
 tokenizers~=0.15.2
 kaldialign~=0.9.1
 soundfile~=0.12.1
+jsonify~=0.5
+python-dotenv~=1.0.1
