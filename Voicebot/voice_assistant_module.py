@@ -1,6 +1,7 @@
 import os
 import time
 
+import requests
 import speech_recognition as sr
 from dotenv import load_dotenv
 
@@ -15,7 +16,6 @@ from queue import Queue
 from sql_module import show_value_as_bool, add_row_to_voicebot_results
 
 active_state = threading.Event()
-Transcription_Queue = Queue()
 Timeout_Queue = Queue()
 
 
@@ -54,6 +54,7 @@ class VoiceAssistant:
         text = recognizer.recognize_google(audio)
         return text.lower()
 
+
     def handle_command(self, text):
         try:
             if text is not None:
@@ -62,6 +63,55 @@ class VoiceAssistant:
                     return response, confidence_score, intent_tag
         except Exception as e:
             print(f"Error handling command: {e}")
+
+    def request_voicebot_api(self, message):
+        """requests query and returns response, confidence score, intent tag, and audio file"""
+        url = 'http://192.168.80.4:5000/voicebot'
+        url = 'http://127.0.0.1:5000/voicebot'
+
+        # Prepare the data payload
+        data = {
+            'message': message  # The message sent by the client
+        }
+
+        try:
+            # Send the POST request to the Flask endpoint with the message data
+            result = requests.post(url, json=data)
+
+            # Check if the request was successful
+            if result.status_code == 200:
+                # Parse the JSON response
+                response_data = result.json()
+                response = response_data['response']
+                confidence_score = response_data['confidence_score']
+                intent_tag = response_data['intent_tag']
+                audio_file_url = response_data.get('audio_file_url')  # URL to download the audio file
+
+                # Print the received response, confidence score, intent tag, and audio URL
+                print('Response:', response)
+                print('Confidence Score:', confidence_score)
+                print('Intent Tag:', intent_tag)
+                print('Audio File URL:', audio_file_url)
+
+                # Optionally download the audio file
+                if audio_file_url:
+                    audio_response = requests.get(audio_file_url)
+                    if audio_response.status_code == 200:
+                        with open("output.mp3", "wb") as f:
+                            f.write(audio_response.content)
+                        print("Audio file downloaded successfully.")
+                    else:
+                        print("Failed to download the audio file.")
+
+                return response, confidence_score, intent_tag, audio_file_url
+
+            else:
+                print(f'Error: Received status code {result.status_code}')
+                return None, None, None, None
+
+        except Exception as e:
+            print(f'An error occurred: {e}')
+            return None, None, None, None
 
     def voice_assistant_tap_to_speak(self, callback):
         """Handle a single voice interaction for tap-to-speak mode."""
@@ -81,7 +131,6 @@ class VoiceAssistant:
             return
 
         print("Tap-to-speak mode activated")
-        # Timeout_Queue.put("stop")  # stop the idle screen timer
 
         try:
             with self.mic as source:
@@ -99,14 +148,14 @@ class VoiceAssistant:
                 print("Audio received to text: " + text)
 
                 # Process the main command
-                response, confidence_score, intent_tag = self.handle_command(text)
+                response, confidence_score, intent_tag, audio_url = self.request_voicebot_api(text)
                 end_time = time.time()  # End time after the function execution
                 execution_time = end_time - start_time  # Calculate the execution time
 
                 if response:
                     callback('success', text, response)
                     print(f"The voice_assistant_tap_to_speak function took {execution_time} seconds to execute")
-                    ts.speak(response)
+                    ts.play_audio_file("output.mp3")
                     ts.play_audio_file("audio/deactivate.wav")  # Sound to indicate that the interaction is over
 
         except sr.RequestError:
@@ -136,11 +185,9 @@ class VoiceAssistant:
         finally:
             if 'end_time' in locals():
                 execution_time = end_time - start_time  # Calculate the execution time
-
             print("tap_to_speak function end. logging in results to database")
 
-            # Log results to database
-
+            # Log the results to the database
             add_row_to_voicebot_results(response_time=execution_time,
                                         intent_recognized=intent_tag,
                                         confidence_score=confidence_score,
@@ -149,84 +196,6 @@ class VoiceAssistant:
                                         query_time=time.strftime("%H:%M:%S"),
                                         query_date=time.strftime("%Y-%m-%d"),
                                         error_code=error_code)
-
-    def voice_assistant_loop(self):
-        """if in idle screen, only listen for wakeword. if in active state, listen for any other convo."""
-
-        print("Current mic being used: ", self.mic)
-        recognizer = sr.Recognizer()
-        recognizer.pause_threshold = self.pause_threshold
-        recognizer.energy_threshold = self.energy_threshold
-        recognizer.operation_timeout = self.operation_timeout
-        recognizer.dynamic_energy_threshold = self.dynamic_energy_threshold
-        while True:
-            state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
-            # if ramibotreturn is set to 1, voice assistant is deactivated
-            if state:
-                print("voice assistant deactivated")
-                pass
-            # if ramibotreturn is set to 0, voice assistant is activated
-            elif not state:
-                if not active_state.is_set():  # while active state is not set (roaming, idle screen), listen for wake word.
-                    print("wakeword listening active")
-                    try:
-                        with self.mic as source:
-                            print('speak now')
-
-                            text = self.listen_to_command(recognizer, source)
-                            print("Audio received to text: " + text)
-
-                            if any(variation in text for variation in self.wake_word_variations):  # if wake word detected
-                                print('Wake word detected. Now listening...')
-
-
-                                gpio.set_gpio_pin(4, 1)  # set GPIO pin to HIGH to stop the motor wheel from moving
-
-                                # greet user
-                                ts.play_audio_file_async('audio/activate.wav')
-                                Speech_Queue.put("greetscreen")
-                                wake_word_response = voicebotengine.get_from_json("GEN hello")
-                                ts.speak(wake_word_response)
-
-                    except sr.RequestError:
-                        print("Could not request results from google Speech Recognition service")
-                    except sr.UnknownValueError:
-                        print("Wake word detected but unable to recognize speech")
-                    except sr.WaitTimeoutError:
-                        print("Timeout error while waiting for speech input")
-
-                if active_state.is_set():  # while active state is set (rami stopped, gui active)
-                    print("conversation mode active")
-                    with self.mic as source:
-                        text2 = None
-                        response2 = None
-
-                        while active_state.is_set():  # listen until something is heard from the user
-                            print("SAY SOMETHING!!!")
-
-                            try:
-                                text2 = self.listen_to_command(recognizer, source)
-                                Transcription_Queue.put(text2)
-                                Timeout_Queue.put("stop")
-                                print("Received command: " + text2)
-                            except:
-                                text2 = None
-                                pass
-                            # generate a response from the chatbot
-                            if text2 is not None:
-                                try:
-                                    response2 = self.handle_command(text2)
-                                except:
-                                    response2 = None
-                                    pass
-
-                            if response2 is not None:
-                                ts.speak(response2)
-                                ts.play_audio_file_async("audio/deactivate.wav")  # sound to indicate that the conversation is over
-                                Timeout_Queue.put("start")
-                                break
-                            if not active_state.is_set():
-                                break
 
 
 if __name__ == "__main__":

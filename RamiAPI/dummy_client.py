@@ -9,7 +9,7 @@ import requests
 
 def request_chatbot_api(message):
     # Define the endpoint URL (update 'http://localhost:5000' if your Flask app is hosted elsewhere)
-    url = 'http://192.168.80.4:5000/chatbot'
+    url = 'http://192.168 .80.4:5000/chatbot'
 
     # Prepare the data payload
     data = {

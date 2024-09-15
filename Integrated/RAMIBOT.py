@@ -38,6 +38,8 @@ image_queue = voicebotengine.Image_Queue
 Window.fullscreen = True
 detect = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
+
+
 WINDOW_SIZE = tuple(map(int, os.getenv('WINDOW_SIZE').strip('()').split(',')))
 HOST_IP = os.getenv('HOST_IP')
 IMAGE_PATH = os.getenv('IMAGE_PATH')
@@ -156,6 +158,7 @@ class MainApp(MDApp):
     def on_stop(self):
         sql_module.disconnect()
 
+    # REQUESTS ----------------------------------------
     def request_image(self, image, timeout=REQUEST_TIMEOUT):
         """
         Request an image from the server and save it locally.
@@ -188,6 +191,81 @@ class MainApp(MDApp):
         except Exception as e:
             print(f"Failed to load image: {e}")
             _set_missing_image()
+
+    def request_chat_response(self, message):
+        # Prepare the data payload
+        data = {
+            'message': message  # The message sent by the client
+        }
+
+        try:
+            # Send the POST request to the Flask endpoint with the message data
+            result = requests.post(HOST_IP+"/chatbot", json=data)  # Changed to POST
+
+            # Check if the request was successful
+            if result.status_code == 200:
+                # Parse the JSON response
+                response_data = result.json()
+                response = response_data['response']
+                confidence_score = response_data['confidence_score']
+                intent_tag = response_data['intent_tag']
+
+                # Print or process the received response, confidence score, and intent tag
+                print('Response:', response)
+                print('Confidence Score:', confidence_score)
+                print('Intent Tag:', intent_tag)
+                return response, confidence_score, intent_tag
+            else:
+                print(f'Error: Received status code {result.status_code}')
+                return None, None, None
+        except Exception as e:
+            print(f'An error occurred: {e}')
+            return None, None, None
+
+    def request_voice_response(self, message):
+        # Prepare the data payload
+        data = {
+            'message': message  # The message sent by the client
+        }
+
+        try:
+            # Send the POST request to the Flask endpoint with the message data
+            result = requests.post(HOST_IP+"/voicebot", json=data)
+
+            # Check if the request was successful
+            if result.status_code == 200:
+                # Parse the JSON response
+                response_data = result.json()
+                response = response_data['response']
+                confidence_score = response_data['confidence_score']
+                intent_tag = response_data['intent_tag']
+                audio_file_url = response_data.get('audio_file_url')  # URL to download the audio file
+
+                # Print the received response, confidence score, intent tag, and audio URL
+                print('Response:', response)
+                print('Confidence Score:', confidence_score)
+                print('Intent Tag:', intent_tag)
+                print('Audio File URL:', audio_file_url)
+
+                # Optionally download the audio file
+                if audio_file_url:
+                    audio_response = requests.get(audio_file_url)
+                    if audio_response.status_code == 200:
+                        with open("output.mp3", "wb") as f:
+                            f.write(audio_response.content)
+                        print("Audio file downloaded successfully.")
+                    else:
+                        print("Failed to download the audio file.")
+
+                return response, confidence_score, intent_tag, audio_file_url
+
+            else:
+                print(f'Error: Received status code {result.status_code}')
+                return None, None, None, None
+
+        except Exception as e:
+            print(f'An error occurred: {e}')
+            return None, None, None, None
 
     # GUI BUTTONS -------------------------------------
 
@@ -502,7 +580,7 @@ class MainApp(MDApp):
     def response(self, *args):
         """Generate and display a response."""
         response = ""
-        response, confidence_score, intent_tag = handle_request(self.input_text.lower())
+        response, confidence_score, intent_tag = self.request_chat_response(self.input_text.lower())
 
         screen_manager.get_screen("chatscreen").chat_list.add_widget(
             Response(text=response, size_hint_x=.75, halign=halign))

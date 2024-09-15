@@ -133,7 +133,7 @@ if __name__ == "__main__":
     print("-------------------------------")
     show_columns("admin_control")
     print("-------------------------------")
-    # change_value("admin_control", "LCD_state", 0, "ID", 1)
+    change_value("admin_control", "LCD_state", 0, "ID", 1)
 
     # print(show_value_as_bool("admin_control", "MOTOR_state", "ID", 1))
     # state = show_value_as_bool("admin_control", "RamiBot_Return", "ID", 1)
