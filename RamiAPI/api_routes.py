@@ -2,7 +2,7 @@ from flask import send_file, request, jsonify, Blueprint
 import os
 import subprocess
 import chatbot
-import train_model
+import train_model as tm
 
 # Image directory path
 image_directory = 'Image_Infos/'
@@ -107,9 +107,10 @@ def voicebot_api():
         return jsonify({'error': str(e)}), 500
 
 
-@api_routes.route('/train_model')  # TODO: add proper logic
+@api_routes.route('/train_model')
 def train_model():
-    train_model.train()
+    tm.train_bot()
+    return "Model training completed", 200
 
 
 # Endpoint to serve the generated audio file

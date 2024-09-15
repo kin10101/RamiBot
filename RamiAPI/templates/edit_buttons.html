@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 class="mt-4">RamiBot Admin Facility</h1>
+
+<div class="header">
+    <h1 class="mt-4">Edit Buttons</h1>
+    <button class="add_new_button" onclick="window.location.href='{{ url_for('add_button') }}'">Add New Button</button>
+</div>
+{% endblock %}

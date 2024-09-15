@@ -113,7 +113,19 @@ def request_speak_api(text):
     TTS.play_audio_file(AUDIO_PATH)
 
 
+def request_train_api():
+    # Define the endpoint URL (update 'http://localhost:5000' if your Flask app is hosted elsewhere)
+    url = 'http://localhost:5000/train_model'
+    response = requests.get(url)
+    # Check the status code and print the response
+    if response.status_code == 200:
+        print('Model training initiated.')
+    else:
+        print('Failed to initiate model training. Status code:', response.status_code)
+
+
 if __name__ == "__main__":
-    while True:
-        request_voicebot_api(input("WRITE YOUR MESSAGE: "))
-        #request_speak_api("HI")
+    # while True:
+    #     request_voicebot_api(input("WRITE YOUR MESSAGE: "))
+    #     #request_speak_api("HI")
+    request_train_api()

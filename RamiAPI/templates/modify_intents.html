@@ -10,6 +10,8 @@
 <div class="header">
     <h1 class="mt-4">Modify Intents</h1>
     <button class="add_new_button" onclick="window.location.href='{{ url_for('add_intent') }}'">Add New Intent</button>
+    <button class="train_model" onclick="window.location.href='{{ url_for('api_routes.train_model') }}'">Train Model</button>
+    <button class="test_model" onclick="window.location.href='{{ url_for('api_routes.test_model') }}'">Test Model</button>
 </div>
 
 <div class="intents_div">
@@ -81,6 +83,31 @@
             modal.style.display = 'none';
         }
     }
+</script>
+
+<!--Test Model Modal-->
+<div id="test_model" class="Modal">
+    <div class="modal-content">
+        <h2>Test Model</h2>
+        <p>Enter a message to test the model.</p>
+        <form id="testForm" method="POST" action="{{ url_for('api_routes.test_model') }}">
+            <input type="text" name="message" id="message" placeholder="Enter a message" required>
+            <button type="submit" id="testModel">Test</button>
+        </form>
+        <button id="cancelTest">Cancel</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('test_model').addEventListener('click', function() {
+        const modal = document.getElementById('test_model');
+        modal.style.display = 'flex'; // Show the modal
+
+        // Handle cancel test
+        document.getElementById('cancelTest').onclick = function() {
+            modal.style.display = 'none'; // Hide the modal
+        };
+    });
 </script>
 
 {% endblock %}
