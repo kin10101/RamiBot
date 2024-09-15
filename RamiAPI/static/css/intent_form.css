@@ -1,0 +1,96 @@
+/* intent_form.css */
+
+.edit_intent_form {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.edit_intent_form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #333;
+    font-weight: 600;
+}
+
+.edit_intent_form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+}
+
+.edit_intent_form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.input-group {
+    display: flex;
+    align-items: center; /* Aligns input and delete button side by side */
+    margin-bottom: 10px;
+}
+
+.input-group input[type="text"] {
+    flex: 1;
+    margin-right: 10px; /* Adds space between input and delete button */
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.delete-button {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #e60000;
+}
+
+button[type="submit"], #add-pattern-button, #add-response-button {
+    display: block;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover, #add-pattern-button:hover, #add-response-button:hover {
+    background-color: #218838;
+}
+
+a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+a:hover {
+    text-decoration: underline;
+}

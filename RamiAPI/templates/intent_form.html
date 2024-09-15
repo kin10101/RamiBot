@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Edit Intents{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/intent_form.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2 class="mt-4">{{ 'Edit' if intent else 'Add' }} {{ intent.tag if intent else 'New Intent' }}</h2>
+<p>Modify tag name, patterns, and responses.</p>
+
+<div class="edit_intent_form">
+
+    <form method="POST">
+        <input type="hidden" name="last_modified_date" id="last_modified_date">
+        <input type="hidden" name="last_modified_by" id="last_modified_by">
+        <label>Tag:</label>
+        <input type="text" name="tag" value="{{ intent.tag if intent else '' }}" required>
+
+        <h3>Patterns</h3>
+        <div id="patterns">
+            <div id="patterns-list">
+                {% for pattern in (intent.patterns if intent else []) %}
+                    <div class="input-group">
+                        <input type="text" name="patterns" value="{{ pattern }}" required>
+                        <button type="button" class="delete-button" onclick="removeField(this)">×</button>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" id="add-pattern-button" onclick="addField('patterns-list', 'patterns')">Add Pattern</button>
+        </div>
+
+        <h3>Responses</h3>
+        <div id="responses">
+            <div id="responses-list">
+                {% for response in (intent.responses if intent else []) %}
+                    <div class="input-group">
+                        <input type="text" name="responses" value="{{ response }}" required>
+                        <button type="button" class="delete-button" onclick="removeField(this)">×</button>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" id="add-response-button" onclick="addField('responses-list', 'responses')">Add Response</button>
+        </div>
+        <button type="submit">Save</button>
+        <a href="{{ url_for('modify_intents') }}">Cancel</a>
+    </form>
+
+    <script>
+    document.querySelector('form').addEventListener('submit', function() {
+        const now = new Date();
+        document.getElementById('last_modified_date').value = now.toISOString();
+    });
+    </script>
+
+
+    <script>
+
+        function addField(listId, fieldName) {
+            const newDiv = document.createElement('div');
+            newDiv.className = 'input-group';
+            newDiv.innerHTML = `<input type="text" name="${fieldName}" required>
+                                <button type="button" class="delete-button" onclick="removeField(this)">×</button>`;
+            document.getElementById(listId).appendChild(newDiv);
+        }
+
+        function removeField(button) {
+            button.parentElement.remove();
+        }
+
+    </script>
+</div>
+{% endblock %}
