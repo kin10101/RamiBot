@@ -12,13 +12,20 @@ import keras
 # Load data
 lemmatizer = WordNetLemmatizer()
 
-intents = json.loads(open('Model/intents.json').read())
-words = pickle.load(open('Model/words.pkl', 'rb'))
-classes = pickle.load(open('Model/classes.pkl', 'rb'))
-model = keras.models.load_model('Model/chatbot_model.h5')
+intents = None
+words = None
+classes = None
+model = None
 
 ERROR_THRESHOLD = 0.3  # Acceptable limit to output the response. Adjust if necessary
 
+
+def load_model(model_path, intents_path, words_path, classes_path):
+    global model, intents, words, classes
+    model = keras.models.load_model(model_path)
+    intents = json.loads(open(intents_path).read())
+    words = pickle.load(open(words_path, 'rb'))
+    classes = pickle.load(open(classes_path, 'rb'))
 
 def clean_up_sentence(sentence):
     """Tokenize and lemmatize the sentence."""
@@ -86,6 +93,7 @@ def get_response(intents_list, intents_json):
 def handle_request(message):
     """Determine whether the predicted intent corresponds to a custom command function
     or a standard response and return the appropriate output."""
+    load_model("Model/chatbot_model.h5", "Model/intents.json", "Model/words.pkl", "Model/classes.pkl")
     predicted_intents = predict_class(message)
     print("PREDICTED INTENTS", predicted_intents)
 
@@ -105,7 +113,7 @@ def handle_request(message):
 
 def get_from_json(tag):
     """Get wake word response."""
-    with open("../Chatbot/chatbotintents.json") as file:  # change file name when necessary
+    with open("Model/intents.json") as file:  # change file name when necessary
         intents_json = json.load(file)
 
     list_of_intents = intents_json['intents']
@@ -149,3 +157,4 @@ def run_chatbot():
 
 if __name__ == "__main__":
     run_chatbot()
+

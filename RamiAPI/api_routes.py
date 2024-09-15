@@ -13,6 +13,7 @@ INTENTS_FILE = 'Model/intents.json'
 api_routes = Blueprint('api_routes', __name__)
 
 
+
 # Function to generate audio file from text
 def generate_audio_file(text, output_path):
     if os.path.exists(output_path):
@@ -110,6 +111,7 @@ def voicebot_api():
 @api_routes.route('/train_model')
 def train_model():
     tm.train_bot()
+    chatbot.load_model("Model/voicebot_model.h5","Model/intents.json","Model/words.pkl","Model/classes.pkl")
     return "Model training completed", 200
 
 
