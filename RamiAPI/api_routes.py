@@ -113,6 +113,27 @@ def train_model():
     return "Model training completed", 200
 
 
+@api_routes.route('/test_model', methods=['POST'])
+def test_model():
+    # Get the message from the form data
+    message = request.form.get('message')
+
+    # Ensure message is provided
+    if not message:
+        return jsonify({'error': 'No input message provided'}), 400
+
+    # Call your chatbot function to get the response
+    response, confidence_score, intent_tag = chatbot.handle_request(message)
+
+    # Return the result as a JSON object
+    return jsonify({
+        'response': response,
+        'confidence': confidence_score,
+        'intent': intent_tag
+    })
+
+
+
 # Endpoint to serve the generated audio file
 @api_routes.route('/get_audio')
 def get_audio():

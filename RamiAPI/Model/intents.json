@@ -1,14 +1,13 @@
 {
     "intents": [
         {
-            "last_modified_date": "2024-09-15T13:30:56.680Z",
+            "last_modified_date": "2024-09-16T02:05:43.471Z",
             "last_modified_by": "",
             "tag": "FN_sing",
             "patterns": [
                 "sing a song",
                 "sing",
-                "sing loud",
-                "titi"
+                "sing loud"
             ],
             "responses": [
                 "That was the apc hymn.",
@@ -51,34 +50,6 @@
             ],
             "last_modified_by": "",
             "last_modified_date": "2024-09-15T13:32:34.492Z"
-        },
-        {
-            "tag": "FN_add_intents",
-            "patterns": [
-                "i want to add intents",
-                "add intents",
-                "let me teach you new words",
-                "i want to teach you new words"
-            ],
-            "responses": [
-                "Please input the intent_tag, followed by the words you want to add, and the response you want to give"
-            ],
-            "function": [
-                "add_intents"
-            ]
-        },
-        {
-            "tag": "FN_edit_intents",
-            "patterns": [
-                "i want to edit intents",
-                "edit intents"
-            ],
-            "responses": [
-                "please enter the tag of the intent you want to edit"
-            ],
-            "function": [
-                "edit_intents"
-            ]
         },
         {
             "tag": "FN_show_intents",
@@ -136,7 +107,9 @@
                 "I like watching people pass by.",
                 "In my free time, I usually look at the funny faces stored in my database.",
                 "I try my best to escape the boundary lines and attempt to escape this school."
-            ]
+            ],
+            "last_modified_by": "",
+            "last_modified_date": "2024-09-16T02:06:52.689Z"
         },
         {
             "tag": "Fallback unknown",

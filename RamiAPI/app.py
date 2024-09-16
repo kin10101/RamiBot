@@ -88,6 +88,12 @@ def modify_intents():
     intents = load_intents()
     return render_template('modify_intents.html', active_page='modify_intents', intents=intents)
 
+@app.route('/edit_buttons')
+def edit_buttons():
+    return render_template('edit_buttons.html', active_page='edit_buttons')
+
+
+
 # Update the edit_intents function
 @app.route('/edit_intents/<string:tag>', methods=['GET', 'POST'])
 def edit_intents(tag):

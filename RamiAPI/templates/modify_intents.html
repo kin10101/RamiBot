@@ -11,8 +11,7 @@
     <h1 class="mt-4">Modify Intents</h1>
     <button class="add_new_button" onclick="window.location.href='{{ url_for('add_intent') }}'">Add New Intent</button>
     <button class="train_model" onclick="window.location.href='{{ url_for('api_routes.train_model') }}'">Train Model</button>
-    <button class="test_model" onclick="window.location.href='{{ url_for('api_routes.test_model') }}'">Test Model</button>
-</div>
+    <button class="test_model" id="testModelButton">Test Model</button></div>
 
 <div class="intents_div">
    <table>
@@ -84,30 +83,80 @@
         }
     }
 </script>
-
-<!--Test Model Modal-->
-<div id="test_model" class="Modal">
+<!-- Test Model Modal -->
+<div id="testModal" class="modal">
     <div class="modal-content">
         <h2>Test Model</h2>
-        <p>Enter a message to test the model.</p>
-        <form id="testForm" method="POST" action="{{ url_for('api_routes.test_model') }}">
+        <p>Enter a message to test the model:</p>
+        <form id="testForm" method="POST">
             <input type="text" name="message" id="message" placeholder="Enter a message" required>
             <button type="submit" id="testModel">Test</button>
         </form>
         <button id="cancelTest">Cancel</button>
+
+        <!-- Result Display -->
+        <div id="testResult" style="display: none; margin-top: 20px;">
+            <h3>Test Result:</h3>
+            <p><strong>Response:</strong> <span id="modelResponse"></span></p>
+            <p><strong>Confidence:</strong> <span id="confidenceScore"></span></p>
+            <p><strong>Intent:</strong> <span id="intentTag"></span></p>
+        </div>
     </div>
 </div>
 
 <script>
-    document.getElementById('test_model').addEventListener('click', function() {
-        const modal = document.getElementById('test_model');
-        modal.style.display = 'flex'; // Show the modal
-
-        // Handle cancel test
-        document.getElementById('cancelTest').onclick = function() {
-            modal.style.display = 'none'; // Hide the modal
-        };
+    // Show the Test Model modal when the button is clicked
+    document.querySelector('.test_model').addEventListener('click', function(event) {
+        event.preventDefault();
+        const modal = document.getElementById('testModal');
+        modal.style.display = 'flex';
     });
-</script>
 
+    // Close the modal when cancel is clicked
+    document.getElementById('cancelTest').onclick = function() {
+        const modal = document.getElementById('testModal');
+        modal.style.display = 'none';
+        resetModal(); // Reset the modal for new test
+    };
+
+    // Handle the test model form submission with AJAX
+    document.getElementById('testForm').onsubmit = async function(event) {
+        event.preventDefault();
+
+        const message = document.getElementById('message').value;
+        const response = await fetch("{{ url_for('api_routes.test_model') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'message': message
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Populate the result fields with the model's response
+            document.getElementById('modelResponse').textContent = data.response;
+            document.getElementById('confidenceScore').textContent = data.confidence;
+            document.getElementById('intentTag').textContent = data.intent;
+
+            // Show the result div
+            document.getElementById('testResult').style.display = 'block';
+        } else {
+            document.getElementById('modelResponse').textContent = 'Error: ' + data.error;
+            document.getElementById('confidenceScore').textContent = '-';
+            document.getElementById('intentTag').textContent = '-';
+
+            document.getElementById('testResult').style.display = 'block';
+        }
+    };
+
+    // Reset modal form and hide result section
+    function resetModal() {
+        document.getElementById('message').value = ''; // Clear input
+        document.getElementById('testResult').style.display = 'none'; // Hide results
+    }
+</script>
 {% endblock %}
