@@ -5,7 +5,7 @@ import chatbot
 import train_model as tm
 
 # Image directory path
-image_directory = 'Image_Infos/'
+image_directory = 'Images/'
 # Model path
 MODEL_PATH = "Voices/en_US-lessac-low.onnx"
 INTENTS_FILE = 'Model/intents.json'

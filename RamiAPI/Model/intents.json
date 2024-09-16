@@ -2319,23 +2319,14 @@
             "navigate_to": "SOE_Faculty"
         },
         {
-            "tag": "NIGGA",
+            "last_modified_by": "",
+            "last_modified_date": "2024-09-16T06:38:20.727Z",
+            "tag": "mongo",
             "patterns": [
-                "NIGGA"
+                "mongo"
             ],
             "responses": [
-                "NIGGA"
-            ]
-        },
-        {
-            "tag": "NNN",
-            "patterns": [
-                "ff",
-                "f"
-            ],
-            "responses": [
-                "ff",
-                "ff"
+                "panget"
             ]
         }
     ]
