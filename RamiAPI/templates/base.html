@@ -23,8 +23,7 @@
             <div class="sidebar-heading">RamiBot Admin</div>
             <div class="list-group list-group-flush">
                 <a href="{{ url_for('home') }}" class="list-group-item list-group-item-action bg-light {% if active_page == 'home' %}active{% endif %}">Home</a>
-                <a href="{{ url_for('upload_images') }}" class="list-group-item list-group-item-action bg-light {% if active_page == 'upload_images' %}active{% endif %}">Upload Images</a>
-                <a href="{{ url_for('modify_intents') }}" class="list-group-item list-group-item-action bg-light {% if active_page == 'modify_intents' %}active{% endif %}">Modify Intents</a>
+                <a href="https://airhub-soe.apc.edu.ph:1000/ramibot_web/login/login.php" class="list-group-item list-group-item-action bg-light {% if active_page == 'upload_images' %}active{% endif %}">Upload Images</a>                <a href="{{ url_for('modify_intents') }}" class="list-group-item list-group-item-action bg-light {% if active_page == 'modify_intents' %}active{% endif %}">Modify Intents</a>
                 <a href="{{ url_for('conversation_history') }}" class="list-group-item list-group-item-action bg-light {% if active_page == 'conversation_history' %}active{% endif %}">Conversation History</a>
             </div>
         </div>

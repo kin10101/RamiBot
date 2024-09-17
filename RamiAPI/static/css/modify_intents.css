@@ -5,12 +5,7 @@ body {
     color: #333;
 }
 
-/* Style the main heading */
-h1 {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 10px;
-}
+
 
 /* Style buttons */
 button, form button {
@@ -48,52 +43,6 @@ button:focus, form button:focus {
 
 
 
-/* Style the table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Style the table headers */
-table thead {
-    background-color: #04243d;
-    color: white;
-}
-
-/* Style the table headers and cells */
-table th, table td {
-    padding: 12px 20px;
-    text-align: left;
-}
-
-/* Make table headers bold */
-table th {
-    font-weight: bold;
-}
-
-/* Add a background color to every even row */
-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/* Style the links in the table */
-table td a {
-    text-decoration: none;
-    color: #04243d;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-/* Change the color of links on hover */
-table td a:hover {
-    color: #0056b3;
-}
-
 /* Responsive styles for screens with a max width of 600px */
 @media screen and (max-width: 600px) {
     table thead {
@@ -115,27 +64,14 @@ table td a:hover {
     }
 }
 
-
-
-
-
-/* Style the container of the intents list */
-.intents_list {
-    margin: 20px auto;
-    width: 100%;
-    max-width: 800px;
-}
-
-/* Style the scrollbar */
-.intents_list::-webkit-scrollbar {
-    width: 10px;
-}
-.intents_list::-webkit-scrollbar-thumb {
-    background-color: #04243d;
-    border-radius: 5px;
-}
-.intents_list::-webkit-scrollbar-track {
-    background-color: #f2f2f2;
+.intents_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 /* Style the div containing intents */

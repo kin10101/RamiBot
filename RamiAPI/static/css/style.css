@@ -62,3 +62,53 @@
 .active {
   color: orange !important;
 }
+
+
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 80vh;
+}
+
+/* Style the table headers */
+table thead {
+    background-color: #04243d;
+    color: white;
+}
+
+/* Style the table headers and cells */
+table th, table td {
+    padding: 12px 20px;
+    text-align: left;
+}
+
+/* Make table headers bold */
+table th {
+    font-weight: bold;
+}
+
+/* Add a background color to every even row */
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style the links in the table */
+table td a {
+    text-decoration: none;
+    color: #04243d;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Change the color of links on hover */
+table td a:hover {
+    color: #0056b3;
+}
+

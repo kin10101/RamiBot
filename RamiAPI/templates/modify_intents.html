@@ -8,7 +8,11 @@
 {% block content %}
 
 <div class="header">
+    <div class="header_description">
     <h1 class="mt-4">Modify Intents</h1>
+    <p>View, add, edit, and delete intents for the chatbot & voicebot feature of RamiBot.</p>
+    </div>
+
     <div>
         <button class="add_new_button" onclick="window.location.href='{{ url_for('add_intent') }}'">Add New Intent</button>
         <button class="train_model" onclick="window.location.href='{{ url_for('api_routes.train_model') }}'">Train Model</button>

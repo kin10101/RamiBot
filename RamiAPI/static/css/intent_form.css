@@ -24,7 +24,6 @@
     color: #555;
     font-weight: 500;
 }
-
 .edit_intent_form input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -34,6 +33,25 @@
     font-size: 16px;
     color: #333;
     box-sizing: border-box;
+}
+
+button[type="submit"], #add-pattern-button, #add-response-button {
+    display: block;
+    width: 50%;
+    margin: 0 auto; /* Center the buttons horizontally */
+    background-color: #04243d;
+    color: white;
+    padding: 12px 0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover, #add-pattern-button:hover, #add-response-button:hover {
+    background-color: #218838;
 }
 
 .input-group {
@@ -65,10 +83,14 @@
     background-color: #e60000;
 }
 
+.add-form-button {
+    background-color: #04243d;
+}
+
 button[type="submit"], #add-pattern-button, #add-response-button {
     display: block;
-    width: 100%;
-    background-color: #28a745;
+    width: 50%;
+    background-color: #04243d;
     color: white;
     padding: 12px 0;
     border: none;
@@ -80,7 +102,46 @@ button[type="submit"], #add-pattern-button, #add-response-button {
 }
 
 button[type="submit"]:hover, #add-pattern-button:hover, #add-response-button:hover {
+    background-color: #11558a;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.save-button {
+    display: block;
+    width: 50%;
     background-color: #218838;
+    color: white;
+    padding: 12px 0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+    display: block;
+    width: 50%;
+    background-color: #8a8a8a;
+    color: white;
+    padding: 12px 0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.button-group button {
+    flex: 1;
+    margin-right: 10px;
 }
 
 a {

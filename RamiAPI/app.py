@@ -78,11 +78,74 @@ def upload_images():
 
 @app.route('/conversation_history')
 def conversation_history():
-    sql_module.connect()
-    query = "SELECT query_id, intent_recognized, confidence_score, received_text, bot_response, response_time, query_time, query_date FROM chatbot_results"
+    # Get table, sort order, rows per page, and current page from the request arguments
+    selected_table = request.args.get('table', 'chatbot_results')
+    sort_by = request.args.get('sortBy', 'date_desc')
+    rows_per_page = int(request.args.get('rowsPerPage', 10))  # Default to 10 rows per page
+    current_page = int(request.args.get('page', 1))  # Default to page 1
+
+    # Determine the sort order
+    order_by = "ORDER BY query_date DESC" if sort_by == 'date_desc' else "ORDER BY query_date ASC"
+
+    # Validate the selected table
+    if selected_table not in ['chatbot_results', 'voicebot_results']:
+        selected_table = 'chatbot_results'
+
+    # Calculate the offset for pagination
+    offset = (current_page - 1) * rows_per_page
+
+    # Fetch the total number of rows to calculate the number of pages
+    total_query = f"SELECT COUNT(*) as total_count FROM {selected_table}"
+
+    # Execute the query and handle potential errors
+    total_result = sql_module.sql_query(total_query)
+
+    if total_result is None or len(total_result) == 0:
+        total_rows = 0  # Default to 0 if the query failed
+    else:
+        total_rows = total_result[0]['total_count']  # Access the count using dictionary key
+
+    # Calculate total pages and ensure at least 1 page exists
+    total_pages = max((total_rows + rows_per_page - 1) // rows_per_page, 1)
+
+
+
+    # Adjust the query based on the selected table
+    if selected_table == 'chatbot_results':
+        query = f"""
+            SELECT query_id, intent_recognized, confidence_score, received_text, bot_response, 
+                   response_time, query_time, query_date 
+            FROM {selected_table} 
+            {order_by} 
+            LIMIT {rows_per_page} OFFSET {offset}
+        """
+    elif selected_table == 'voicebot_results':
+        query = f"""
+            SELECT query_id, intent_recognized, confidence_score, transcribed_text AS received_text, bot_response, 
+                   response_time, query_time, query_date 
+            FROM {selected_table} 
+            {order_by} 
+            LIMIT {rows_per_page} OFFSET {offset}
+        """
+
+    # Fetch the paginated results from the database
+
     results = sql_module.sql_query(query)
 
-    return render_template('conversation_history.html', active_page='conversation_history', conversations=results)
+    if results is None:
+        results = []  # Handle case where no results are returned
+
+    # Render the template with pagination, row limits, and sorting
+    return render_template(
+        'conversation_history.html',
+        active_page='conversation_history',
+        conversations=results,
+        sort_order=sort_by,
+        table=selected_table,
+        rows_per_page=rows_per_page,
+        current_page=current_page,
+        total_pages=total_pages
+    )
 
 
 @app.route('/modify_intents')

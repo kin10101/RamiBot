@@ -28,7 +28,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <button type="button" id="add-pattern-button" onclick="addField('patterns-list', 'patterns')">Add Pattern</button>
+            <button  class="add-form-button" type="button" id="add-pattern-button" onclick="addField('patterns-list', 'patterns')">Add Pattern</button>
         </div>
 
         <h3>Responses</h3>
@@ -41,10 +41,12 @@
                     </div>
                 {% endfor %}
             </div>
-            <button type="button" id="add-response-button" onclick="addField('responses-list', 'responses')">Add Response</button>
+            <button class="add-form-button" type="button" id="add-response-button" onclick="addField('responses-list', 'responses')">Add Response</button>
         </div>
-        <button type="submit">Save</button>
-        <a href="{{ url_for('modify_intents') }}">Cancel</a>
+        <div class="button-group">
+            <button class="save-button" type="submit">Save</button>
+            <button class="cancel-button" type="button" onclick="window.location.href='{{ url_for('modify_intents') }}'">Cancel</button>
+        </div>
     </form>
 
     <script>
