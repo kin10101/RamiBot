@@ -1,39 +1,6 @@
 {
     "intents": [
         {
-            "last_modified_date": "2024-09-16T09:27:33.283Z",
-            "last_modified_by": "test_user",
-            "tag": "FN_sing",
-            "patterns": [
-                "sing a song",
-                "sing",
-                "sing loud"
-            ],
-            "responses": [
-                "That was the apc hymn.",
-                "Thats enough singing for the day. Hope you were satisfied.",
-                "I have to cut it short, my speakers are becoming sore."
-            ]
-        },
-        {
-            "last_modified_date": "2024-09-15T13:31:11.788Z",
-            "last_modified_by": "test_user",
-            "tag": "FN_current_time",
-            "patterns": [
-                "time it now",
-                "tell time",
-                "oras na",
-                "current time",
-                "time"
-            ],
-            "responses": [
-                " "
-            ],
-            "function": [
-                "current_time"
-            ]
-        },
-        {
             "tag": "FN_current_date",
             "patterns": [
                 "day  it today",
@@ -156,18 +123,16 @@
             "tag": "GEN hello",
             "patterns": [
                 "hi",
-                "hello",
-                "hi romy",
-                "hello rami",
-                "konnichiwa"
+                "hello"
             ],
             "responses": [
                 "Hello there! how can I be of service?",
                 "Greetings! How can I be of service?",
-                "Hello there! Heard you loud and clear.",
                 "Hi! how may i help you?",
                 "hello! what would you like me to do?"
-            ]
+            ],
+            "last_modified_by": "",
+            "last_modified_date": "2024-09-17T14:05:01.481Z"
         },
         {
             "tag": "GEN good morning",
@@ -2320,24 +2285,24 @@
         },
         {
             "last_modified_by": "",
-            "last_modified_date": "2024-09-16T06:38:20.727Z",
-            "tag": "mongo",
+            "last_modified_date": "2024-09-17T13:56:57.254Z",
+            "tag": "test",
             "patterns": [
-                "mongo"
+                "test"
             ],
             "responses": [
-                "panget"
+                "test intent run"
             ]
         },
         {
             "last_modified_by": "",
-            "last_modified_date": "2024-09-16T09:28:14.841Z",
+            "last_modified_date": "2024-09-17T14:22:15.732Z",
             "tag": "test",
             "patterns": [
-                "ff"
+                "globnob"
             ],
             "responses": [
-                "ff"
+                "plog brip cloc"
             ]
         }
     ]

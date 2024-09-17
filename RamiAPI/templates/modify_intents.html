@@ -11,11 +11,20 @@
     <div class="header_description">
     <h1 class="mt-4">Modify Intents</h1>
     <p>View, add, edit, and delete intents for the chatbot & voicebot feature of RamiBot.</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flashes">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
     </div>
 
     <div>
         <button class="add_new_button" onclick="window.location.href='{{ url_for('add_intent') }}'">Add New Intent</button>
-        <button class="train_model" onclick="window.location.href='{{ url_for('api_routes.train_model') }}'">Train Model</button>
+        <button class="train_model" >Train Model</button>
         <button class="test_model" id="testModelButton">Test Model</button>
     </div>
 </div>
@@ -53,9 +62,12 @@
         <!-- Form for deletion -->
         <form id="deleteForm" method="POST" action="">
             <input type="hidden" name="_method" value="DELETE">
-            <button type="submit" id="confirmDelete">Yes, delete it</button>
+            <div>
+                <button type="submit" id="confirmDelete">Yes, delete it</button>
+                <button id="cancelDelete">No, cancel</button>
+            </div>
         </form>
-        <button id="cancelDelete">No, cancel</button>
+
     </div>
 </div>
 
@@ -77,9 +89,11 @@
         deleteForm.action = "/delete_intents/" + tag; // Set the form action dynamically
 
         // Handle cancel delete
-        document.getElementById('cancelDelete').onclick = function() {
-            modal.style.display = 'none'; // Hide the modal
-        };
+        document.getElementById('cancelDelete').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the form from being submitted
+        const modal = document.getElementById('deleteModal');
+        modal.style.display = 'none'; // Hide the modal
+        });
     }
 
     // Optional: Close the modal when clicking outside the modal content
@@ -97,9 +111,13 @@
         <p>Enter a message to test the model:</p>
         <form id="testForm" method="POST">
             <input type="text" name="message" id="message" placeholder="Enter a message" required>
+        <div class="button-group">
             <button type="submit" id="testModel">Test</button>
+            <button id="cancelTest">Cancel</button>
+        </div>
         </form>
-        <button id="cancelTest">Cancel</button>
+
+
 
         <!-- Result Display -->
         <div id="testResult" style="display: none; margin-top: 20px;">
@@ -166,4 +184,50 @@
         document.getElementById('testResult').style.display = 'none'; // Hide results
     }
 </script>
+
+<!-- Train Model Modal with Loading Animation -->
+<div id="trainModelModal" class="modal">
+    <div class="modal-content">
+        <h2>Training Model</h2>
+        <p>Please wait while RamiBot is learning your changes...</p>
+        <div class="loader"></div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.train_model').addEventListener('click', async function(event) {
+        event.preventDefault();
+
+        // Show the loading modal
+        const modal = document.getElementById('trainModelModal');
+        modal.style.display = 'flex';
+
+        try {
+            // Trigger the backend to start model training
+            const response = await fetch("{{ url_for('api_routes.train_model') }}", {
+                method: 'GET',
+            });
+
+            if (response.ok) {
+                // Close the modal after successful model training
+                modal.style.display = 'none';
+                alert("Model training completed successfully.");
+            } else {
+                throw new Error('Model training failed.');
+            }
+        } catch (error) {
+            modal.style.display = 'none';
+            alert(error.message);
+        }
+    });
+
+    // Optional: Close the modal if clicking outside the modal content
+    window.onclick = function(event) {
+        const modal = document.getElementById('trainModelModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
 {% endblock %}

@@ -1,4 +1,7 @@
-from flask import send_file, request, jsonify, Blueprint
+import threading
+
+from flask import send_file, request, jsonify, Blueprint, redirect, url_for, flash
+
 import os
 import subprocess
 import chatbot
@@ -9,6 +12,7 @@ image_directory = 'Images/'
 # Model path
 MODEL_PATH = "Voices/en_US-lessac-low.onnx"
 INTENTS_FILE = 'Model/intents.json'
+training_status = {'in_progress': False}
 
 api_routes = Blueprint('api_routes', __name__)
 
@@ -110,9 +114,18 @@ def voicebot_api():
 
 @api_routes.route('/train_model')
 def train_model():
-    tm.train_bot()
-    chatbot.load_model("Model/voicebot_model.h5","Model/intents.json","Model/words.pkl","Model/classes.pkl")
-    return "Model training completed", 200
+    try:
+        # Create a new thread that will run the tm.train_bot function
+        train_thread = threading.Thread(target=tm.train_bot)
+        # Start the new thread
+        train_thread.start()
+        train_thread.join()
+        # Reload the chatbot model
+        chatbot.load_model("Model/voicebot_model.h5", "Model/intents.json", "Model/words.pkl", "Model/classes.pkl")
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    return redirect(url_for('modify_intents'))  # Redirect back to the modify intents page
 
 
 @api_routes.route('/test_model', methods=['POST'])

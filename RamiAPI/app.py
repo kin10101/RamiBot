@@ -10,6 +10,7 @@ from api_routes import api_routes
 # if nothing is being encoded onto the audio file, try pip install piper-tts.
 
 app = Flask(__name__)
+app.secret_key = 'secret'
 app.register_blueprint(api_routes)
 
 # Image directory path
