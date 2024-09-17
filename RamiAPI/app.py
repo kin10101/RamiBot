@@ -40,8 +40,6 @@ def log_last_modified_date_and_username(intent_tag, username='admin'):
         print(intent)
         if intent['tag'] == intent_tag:
             print("found intent")
-            intent['last_modified_date'] = "NIGGA"
-            intent['last_modified_by'] = "NIGGA"
             print(f"Updated 'last_modified_date' and 'last_modified_by' for intent '{intent_tag}'")
             break
 
@@ -80,7 +78,11 @@ def upload_images():
 
 @app.route('/conversation_history')
 def conversation_history():
-    return render_template('conversation_history.html', active_page='conversation_history')
+    sql_module.connect()
+    query = "SELECT query_id, intent_recognized, confidence_score, received_text, bot_response, response_time, query_time, query_date FROM chatbot_results"
+    results = sql_module.sql_query(query)
+
+    return render_template('conversation_history.html', active_page='conversation_history', conversations=results)
 
 
 @app.route('/modify_intents')
@@ -143,4 +145,4 @@ def add_intent():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5050)

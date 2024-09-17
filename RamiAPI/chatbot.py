@@ -7,7 +7,7 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 import keras
-#os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 # Load data
 lemmatizer = WordNetLemmatizer()

@@ -66,8 +66,8 @@ class VoiceAssistant:
 
     def request_voicebot_api(self, message):
         """requests query and returns response, confidence score, intent tag, and audio file"""
-        url = 'http://192.168.80.4:5000/voicebot'
-        url = 'http://127.0.0.1:5000/voicebot'
+        host_ip = os.getenv('HOST_IP')
+        url = f'{host_ip}/voicebot'
 
         # Prepare the data payload
         data = {

@@ -41,9 +41,10 @@ def sql_query(query):
         if conn is None:
             raise Exception("Failed to connect to the database")
 
-        cursor = conn.cursor()
+        cursor = conn.cursor(dictionary=True)  # Use dictionary cursor here
         cursor.execute(query)
         result = cursor.fetchall()
+        print("query executed successfully")
         return result
     except Error as e:
         print(f"Error: {e}")

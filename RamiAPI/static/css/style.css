@@ -23,6 +23,10 @@
   width: 15rem;
 
 }
+#menu-toggle {
+     background-color: #f9f9f9;
+     border: none;
+}
 
 #page-content-wrapper {
   min-width: 100vw;

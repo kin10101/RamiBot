@@ -1,55 +1,19 @@
+/* Set the default font and background color for the body */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
     color: #333;
 }
 
+/* Style the main heading */
 h1 {
     text-align: center;
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.intents_div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px;
-    height: 80vh;
-    overflow-y: auto;
-}
-
-@media screen and (max-width: 600px) {
-    table thead {
-        display: none;
-    }
-
-    table tr {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    table td {
-        display: block;
-        text-align: right;
-    }
-
-    table td:before {
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-}
-
-button {
+/* Style buttons */
+button, form button {
     background-color: #04243d;
     color: white;
     border: none;
@@ -60,19 +24,31 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+/* Change button background on hover */
+button:hover, form button:hover {
     background-color: #0056b3;
 }
 
-button:focus {
+/* Remove the outline of buttons on focus */
+button:focus, form button:focus {
     outline: none;
 }
 
-.add_new_button {
-    margin-right: 10px;
+
+/* Style the header to display its children in a row and align them in the center */
+.header {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
-/* Table Styles */
+
+
+
+
+/* Style the table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -83,24 +59,29 @@ table {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Style the table headers */
 table thead {
     background-color: #04243d;
     color: white;
 }
 
+/* Style the table headers and cells */
 table th, table td {
     padding: 12px 20px;
     text-align: left;
 }
 
+/* Make table headers bold */
 table th {
     font-weight: bold;
 }
 
+/* Add a background color to every even row */
 table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+/* Style the links in the table */
 table td a {
     text-decoration: none;
     color: #04243d;
@@ -108,171 +89,129 @@ table td a {
     transition: color 0.3s ease;
 }
 
+/* Change the color of links on hover */
 table td a:hover {
     color: #0056b3;
 }
 
-/* Modal base styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
+/* Responsive styles for screens with a max width of 600px */
+@media screen and (max-width: 600px) {
+    table thead {
+        display: none;
+    }
+    table tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+    table td {
+        display: block;
+        text-align: right;
+    }
+    table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 }
 
-/* Modal content styles */
-.modal-content {
-    background-color: #fff;
-    padding: 30px; /* Increased padding for a spacious feel */
-    border-radius: 10px;
-    width: 600px; /* Increased width */
-    max-width: 90%;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-}
 
-.modal-content h2 {
-    font-size: 28px; /* Larger font size */
-    margin-bottom: 20px;
-}
 
-.modal-content p {
-    font-size: 18px; /* Larger text for better readability */
-    margin-bottom: 25px;
-}
 
-#confirmDelete {
-    background-color: #dc3545;
-    margin-right: 10px;
-}
 
-#confirmDelete:hover {
-    background-color: #c82333;
-}
-
-#cancelDelete {
-    background-color: #6c757d;
-}
-
-#cancelDelete:hover {
-    background-color: #5a6268;
-}
-
-/* Style for the form buttons */
-form button {
-    width: 45%;
-    padding: 12px; /* Slightly larger padding for better touch targets */
-    margin-top: 15px;
-}
-
-form button + button {
-    margin-left: 10px;
-}
-
-/* For the container of intents list */
+/* Style the container of the intents list */
 .intents_list {
     margin: 20px auto;
     width: 100%;
     max-width: 800px;
 }
 
-/* Optional: style the scrollbar for overflow */
+/* Style the scrollbar */
 .intents_list::-webkit-scrollbar {
     width: 10px;
 }
-
 .intents_list::-webkit-scrollbar-thumb {
     background-color: #04243d;
     border-radius: 5px;
 }
-
 .intents_list::-webkit-scrollbar-track {
     background-color: #f2f2f2;
 }
 
-/* Adjusted test model modal for better experience */
-#testModal {
-    display: none;
-    position: fixed;
-    z-index: 100;
+/* Style the div containing intents */
+.intents_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    height: 80vh;
+    overflow-y: auto;
+}
+
+
+/* General Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px; /* Maximum width */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for 3D effect */
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#testModal .modal-content {
-    width: 600px;
-    max-width: 90%;
-    padding: 30px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+/* Modal Header */
+.modal-content h2 {
+    margin-top: 0;
 }
 
-#testModal .modal-content h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-#testModal .modal-content p {
-    font-size: 18px;
-    margin-bottom: 25px;
-}
-
-#testModal .modal-content form {
-    display: flex;
-    flex-direction: column;
-}
-
-#testModal .modal-content form input[type="text"] {
-    padding: 12px;
-    font-size: 16px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#testModal .modal-content form button {
-    padding: 12px;
-    font-size: 16px;
-    background-color: #04243d;
-    color: white;
+/* Modal Buttons */
+.modal-content button {
+    background-color: #4CAF50; /* Green background */
     border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
-}
-
-#testModal .modal-content form button:hover {
-    background-color: #0056b3;
-}
-
-#testModal .modal-content #cancelTest {
-    margin-top: 10px;
-    padding: 12px;
-    background-color: #6c757d;
     color: white;
-    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 5px; /* Rounded corners for buttons */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
-#testModal .modal-content #cancelTest:hover {
-    background-color: #5a6268;
+
+/* Modal Buttons: Cancel */
+#cancelDelete, #cancelTest {
+    background-color: #f44336; /* Red background */
 }
 
-/* Adjust the modal for larger screens */
-@media (min-width: 1024px) {
-    .modal-content {
-        width: 700px;
-    }
+/* Button Hover Effects */
+.modal-content button:hover {
+    background-color: #45a049; /* Darker green on hover */
 }
+
+#cancelDelete:hover, #cancelTest:hover {
+    background-color: #e53935; /* Darker red on hover */
+}
+
+

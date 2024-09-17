@@ -1,6 +1,45 @@
 {% extends "base.html" %}
 {% block title %}Conversation History{% endblock %}
 {% block content %}
-<h1 class="mt-4">Home</h1>
-<p>This is the Home content.</p>
+    <div class="header">
+        <h1 class="mt-4">Conversation History</h1>
+    </div>
+
+    <div>
+        <select id="sortBy" onchange="sortConversations()">
+            <option value="date_desc">Date (Newest First)</option>
+            <option value="date_asc">Date (Oldest First)</option>
+        </select>
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th> Query ID </th>
+                    <th> Recognized Intent Tag</th>
+                    <th> Confidence Score </th>
+                    <th> Received Query</th>
+                    <th> Bot Response </th>
+                    <th> Response Time </th>
+                    <th> Query Time </th>
+                    <th> Query Date </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in conversations %}
+                    <tr>
+                        <td>{{ row.query_id }}</td>
+                        <td>{{ row.intent_recognized }}</td>
+                        <td>{{ row.confidence_score }}</td>
+                        <td>{{ row.received_text }}</td>
+                        <td>{{ row.bot_response }}</td>
+                        <td>{{ row.response_time }}</td>
+                        <td>{{ row.query_time }}</td>
+                        <td>{{ row.query_date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
