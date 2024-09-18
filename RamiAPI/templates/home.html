@@ -1,6 +1,113 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}RamiBot Admin Facility Guide{% endblock %}
 {% block content %}
-<h1 class="mt-4">RamiBot Admin Facility</h1>
-<p>Interface designed to facilitate the management and modification of the Intent Classifier Feature.</p>
+<style>
+    .container {
+        max-width: 100%;
+        margin: auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        color: #2c3e50;
+    }
+    h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: #34495e;
+    }
+    h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #34495e;
+    }
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #4d4d4d;
+    }
+    ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    hr {
+        border: 1px solid #ddd;
+        margin: 30px 0;
+    }
+    .todo-section {
+        background-color: #f8f9fa;
+        border: 1px solid #e1e1e1;
+        padding: 15px;
+        border-radius: 5px;
+    }
+    .todo-section h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #c0392b;
+    }
+</style>
+
+<div class="container">
+    <h1>RamiBot Admin Facility - User Guide</h1>
+    <p>Welcome to the RamiBot Admin Facility! This guide will help you manage and modify the Intent Classifier Feature efficiently.</p>
+
+    <div class="todo-section">
+        <h3>TODO: Upcoming Features</h3>
+        <ul>
+            <li>User activity logging to SQL</li>
+            <li>Username tracking for "Last modified by"</li>
+            <li>User authentication system</li>
+        </ul>
+    </div>
+
+    <h2>Key Features</h2>
+    <ul>
+        <li><strong>View Intents:</strong> Review existing intents and their properties, including the last modified date and the user who made the changes.</li>
+        <li><strong>Add New Intents:</strong> Easily add new intents for RamiBot to learn and understand.</li>
+        <li><strong>Edit Intents:</strong> Update existing intents to ensure the chatbot accurately interprets user messages.</li>
+        <li><strong>Delete Intents:</strong> Remove obsolete or incorrect intents.</li>
+        <li><strong>Train Model:</strong> Train RamiBot's model after making any changes to the intents.</li>
+        <li><strong>Test Model:</strong> Verify RamiBot's responses by testing the model against various inputs.</li>
+    </ul>
+
+    <h2>How to Use</h2>
+    <h3>1. Viewing Intents</h3>
+    <p>Navigate to the "Modify Intents" page to view a list of all current intents. You can edit or delete intents directly from this page.</p>
+
+    <h3>2. Adding New Intents</h3>
+    <p>Click the "Add New Intent" button to create a new intent. Provide the required details, such as the intent name, examples of user inputs, and corresponding responses.</p>
+
+    <h3>3. Editing Intents</h3>
+    <p>To edit an existing intent, click on the "Edit" link next to the intent you wish to modify. Update the necessary fields and save your changes.</p>
+
+    <h3>4. Deleting Intents</h3>
+    <p>Click "Delete" next to any intent to remove it. You will be asked to confirm before the intent is permanently deleted.</p>
+
+    <h3>5. Training the Model</h3>
+    <p>Once you've made changes to the intents, click "Train Model" to retrain RamiBot. Training will take around 2-3 mins so please be patient.</p>
+
+    <h3>6. Testing the Model</h3>
+    <p>After training, use the "Test Model" feature to input sample messages and see how RamiBot responds based on the updated model.</p>
+
+    <hr>
+
+    <h2>Best Practices</h2>
+    <p>
+        Ensure that the intents you create or modify are specific and cover a wide range of user inputs. <br>
+        Changes will only reflect after re-training. Always test the new changes to ensure RamiBot will only output correct information. <br>
+        It is recommended to only write keywords or phrases in the Patterns field when creating or editing intents. <br>
+        Avoid using similar patterns or responses across multiple intents to prevent confusion in the model. <br>
+    </p>
+
+    <hr>
+
+
+</div>
 {% endblock %}

@@ -52,7 +52,7 @@
     <script>
     document.querySelector('form').addEventListener('submit', function() {
         const now = new Date();
-        document.getElementById('last_modified_date').value = now.toISOString();
+        document.getElementById('last_modified_date').value = now.toLocaleString();
     });
     </script>
 

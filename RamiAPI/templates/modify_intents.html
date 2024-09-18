@@ -11,15 +11,6 @@
     <div class="header_description">
     <h1 class="mt-4">Modify Intents</h1>
     <p>View, add, edit, and delete intents for the chatbot & voicebot feature of RamiBot.</p>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <div class="flashes">
-      {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
-      {% endfor %}
-    </div>
-  {% endif %}
-{% endwith %}
     </div>
 
     <div>
